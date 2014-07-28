@@ -1,7 +1,20 @@
 LotsoBear::Application.routes.draw do
 
+  resources :reports,   only:  [:index]
+  resources :bills,     only:  [:index]
+  resources :paysheets, only:  [:index]
 
+  get "bills/index"
+  get "paysheets/index"
+
+  #Taller
   match '/w',  to: 'workshop#index', via: 'get'
+  #Administrador
+  match '/a',  to: "workshop#admin",    via: 'get'
+  #Gerente
+  match '/m',  to: "workshop#admin",    via: 'get'
+
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

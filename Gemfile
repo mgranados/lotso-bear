@@ -22,6 +22,8 @@ gem 'jbuilder', '~> 1.2'
 group :development, :test do
   gem 'rspec-rails', '2.13.1'
   gem 'sqlite3'
+  gem 'capybara', '2.1.0'
+  gem 'spork-rails', '4.0.0'
 end
 
 group :production do
