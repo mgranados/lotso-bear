@@ -4,9 +4,6 @@ LotsoBear::Application.routes.draw do
   resources :bills,     only:  [:index]
   resources :paysheets, only:  [:index]
 
-  get "bills/index"
-  get "paysheets/index"
-
   #Taller
   match '/w',  to: 'workshop#index', via: 'get'
   #Administrador
