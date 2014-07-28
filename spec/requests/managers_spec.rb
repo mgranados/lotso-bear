@@ -1,11 +1,16 @@
 require 'spec_helper'
 
-describe "Managers" do
-  describe "GET /managers" do
-    it "works! (now write some real specs)" do
-      # Run the generator again with the --webrat flag if you want to use webrat methods/matchers
-      get managers_path
-      response.status.should be(200)
+describe "Gerente" do
+  subject {page}
+
+  describe "Index" do
+    before do
+      visit '/a'
     end
+    it { should have_title ('Gerente') }
+    it { should have_button('Reportes') }
+    it { should have_button('Facturas') }
+    it { should have_button('Nóminas') }
   end
+
 end
