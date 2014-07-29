@@ -9,4 +9,8 @@ class WorkshopController < ApplicationController
     redirect_to action: admin
   end
 
+  def operator
+
+  end
+
 end

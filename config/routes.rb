@@ -3,13 +3,24 @@ LotsoBear::Application.routes.draw do
   resources :reports,   only:  [:index]
   resources :bills,     only:  [:index]
   resources :paysheets, only:  [:index]
+  resources :valuations, only:  [:new,:edit]
+  resources :stocks, only:  [:inventory,:order,:dispatch]
+
 
   #Taller
-  match '/w',  to: 'workshop#index', via: 'get'
+  match '/w',  to: 'workshop#index',      via: 'get'
   #Administrador
-  match '/a',  to: "workshop#admin",    via: 'get'
+  match '/a',  to: "workshop#admin",      via: 'get'
   #Gerente
-  match '/m',  to: "workshop#admin",    via: 'get'
+  match '/m',  to: "workshop#admin",      via: 'get'
+  #Operador
+  match '/o',  to: "workshop#operator",   via: 'get'
+  #Pedido
+  match '/orders',  to: 'stocks#order',      via: 'get'
+  #Iventario
+  match '/inventory',  to: 'stocks#inventory',      via: 'get'
+  #Envio
+  match '/dispatchs',  to: 'stocks#dispatch',      via: 'get'
 
 
 
