@@ -6,7 +6,6 @@ class CreateCars < ActiveRecord::Migration
       t.string :year
       t.string :generation
       t.string :model
-
       t.timestamps
     end
   end

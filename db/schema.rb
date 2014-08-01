@@ -50,8 +50,9 @@ ActiveRecord::Schema.define(version: 20140729172712) do
   create_table "stock_spare_parts", force: true do |t|
     t.string   "status"
     t.integer  "idWarehouse"
-    t.integer  "idWorkshop"
+    t.integer  "idWorkshopCar"
     t.string   "color"
+    t.integer  "idSparePart"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -3,9 +3,10 @@ class CreateStockSpareParts < ActiveRecord::Migration
     create_table :stock_spare_parts do |t|
       t.string :status
       t.integer :idWarehouse
-      t.integer :idWorkshop
+      t.integer :idWorkshopCar
       t.string :color
-
+      t.integer :idSparePart
+      
       t.timestamps
     end
   end

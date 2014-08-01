@@ -24338,3 +24338,382 @@ Migrating to CreateCarSpareParts (20140729172712)
   [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20140729172712"]]
   [1m[36m (0.9ms)[0m  [1mcommit transaction[0m
   [1m[35mActiveRecord::SchemaMigration Load (0.3ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+
+
+Started GET "/" for 127.0.0.1 at 2014-07-31 10:36:42 -0500
+  [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by WelcomeController#index as HTML
+  Rendered welcome/index.html.erb within layouts/application (2.2ms)
+  Rendered layouts/_header.html.erb (2.8ms)
+Completed 200 OK in 330ms (Views: 329.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-07-31 10:36:42 -0500
+
+
+Started GET "/assets/_header.css?body=1" for 127.0.0.1 at 2014-07-31 10:36:42 -0500
+
+
+Started GET "/assets/paysheets.css?body=1" for 127.0.0.1 at 2014-07-31 10:36:42 -0500
+
+
+Started GET "/assets/admin.css?body=1" for 127.0.0.1 at 2014-07-31 10:36:42 -0500
+
+
+Started GET "/assets/reports.css?body=1" for 127.0.0.1 at 2014-07-31 10:36:42 -0500
+
+
+Started GET "/assets/valuations.css?body=1" for 127.0.0.1 at 2014-07-31 10:36:42 -0500
+
+
+Started GET "/assets/stocks.css?body=1" for 127.0.0.1 at 2014-07-31 10:36:42 -0500
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2014-07-31 10:36:42 -0500
+
+
+Started GET "/assets/bills.css?body=1" for 127.0.0.1 at 2014-07-31 10:36:42 -0500
+
+
+Started GET "/assets/custom.css?body=1" for 127.0.0.1 at 2014-07-31 10:36:42 -0500
+
+
+Started GET "/assets/welcome.css?body=1" for 127.0.0.1 at 2014-07-31 10:36:42 -0500
+
+
+Started GET "/assets/workshop.css?body=1" for 127.0.0.1 at 2014-07-31 10:36:42 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-07-31 10:36:42 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-07-31 10:36:42 -0500
+
+
+Started GET "/assets/bootstrap-transition.js?body=1" for 127.0.0.1 at 2014-07-31 10:36:42 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-07-31 10:36:42 -0500
+
+
+Started GET "/assets/bootstrap-affix.js?body=1" for 127.0.0.1 at 2014-07-31 10:36:42 -0500
+
+
+Started GET "/assets/bootstrap-dropdown.js?body=1" for 127.0.0.1 at 2014-07-31 10:36:42 -0500
+
+
+Started GET "/assets/bootstrap-modal.js?body=1" for 127.0.0.1 at 2014-07-31 10:36:42 -0500
+
+
+Started GET "/assets/bootstrap-button.js?body=1" for 127.0.0.1 at 2014-07-31 10:36:42 -0500
+
+
+Started GET "/assets/bootstrap-alert.js?body=1" for 127.0.0.1 at 2014-07-31 10:36:43 -0500
+
+
+Started GET "/assets/bootstrap-tooltip.js?body=1" for 127.0.0.1 at 2014-07-31 10:36:43 -0500
+
+
+Started GET "/assets/bootstrap-popover.js?body=1" for 127.0.0.1 at 2014-07-31 10:36:43 -0500
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2014-07-31 10:36:43 -0500
+
+
+Started GET "/assets/bootstrap-carousel.js?body=1" for 127.0.0.1 at 2014-07-31 10:36:43 -0500
+
+
+Started GET "/assets/bootstrap-collapse.js?body=1" for 127.0.0.1 at 2014-07-31 10:36:43 -0500
+
+
+Started GET "/assets/bootstrap-scrollspy.js?body=1" for 127.0.0.1 at 2014-07-31 10:36:43 -0500
+
+
+Started GET "/assets/bootstrap-tab.js?body=1" for 127.0.0.1 at 2014-07-31 10:36:43 -0500
+
+
+Started GET "/assets/reports.js?body=1" for 127.0.0.1 at 2014-07-31 10:36:43 -0500
+
+
+Started GET "/assets/stocks.js?body=1" for 127.0.0.1 at 2014-07-31 10:36:43 -0500
+
+
+Started GET "/assets/valuations.js?body=1" for 127.0.0.1 at 2014-07-31 10:36:43 -0500
+
+
+Started GET "/assets/bootstrap-typeahead.js?body=1" for 127.0.0.1 at 2014-07-31 10:36:43 -0500
+
+
+Started GET "/assets/workshop.js?body=1" for 127.0.0.1 at 2014-07-31 10:36:43 -0500
+
+
+Started GET "/assets/admin.js?body=1" for 127.0.0.1 at 2014-07-31 10:36:43 -0500
+
+
+Started GET "/assets/welcome.js?body=1" for 127.0.0.1 at 2014-07-31 10:36:43 -0500
+
+
+Started GET "/assets/bills.js?body=1" for 127.0.0.1 at 2014-07-31 10:36:43 -0500
+
+
+Started GET "/assets/paysheets.js?body=1" for 127.0.0.1 at 2014-07-31 10:36:43 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-07-31 10:36:43 -0500
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (1.6ms)[0m  [1mCREATE TABLE "brands" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (1.3ms)[0m  CREATE TABLE "car_spare_parts" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "idCar" integer, "idSparePart" integer, "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (1.4ms)[0m  [1mCREATE TABLE "cars" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "idBrand" integer, "carType" varchar(255), "year" varchar(255), "generation" varchar(255), "model" varchar(255), "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (1.3ms)[0m  CREATE TABLE "spare_parts" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "description" text, "carRegion" varchar(255), "parent" integer, "brand" varchar(255), "spareCode" varchar(255), "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (1.2ms)[0m  [1mCREATE TABLE "stock_spare_parts" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "status" varchar(255), "idWarehouse" integer, "idWorkshop" integer, "color" varchar(255), "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (1.1ms)[0m  CREATE TABLE "warehouses" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "branch" varchar(255), "location" varchar(255), "geoLocation" varchar(255), "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (1.2ms)[0m  [1mCREATE TABLE "workshop_cars" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "color" varchar(255), "doorNumber" integer, "status" varchar(255), "idSerie" varchar(255), "idMotor" varchar(255), "licensePlates" varchar(255), "idCar" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (1.7ms)[0m  CREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) 
+  [1m[36m (1.2ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35m (0.2ms)[0m  SELECT version FROM "schema_migrations"
+  [1m[36m (1.7ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140729172712')[0m
+  [1m[35m (1.2ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140729163539')
+  [1m[36m (1.2ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140729171428')[0m
+  [1m[35m (1.8ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140729171726')
+  [1m[36m (1.5ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140729171829')[0m
+  [1m[35m (1.3ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140729172200')
+  [1m[36m (1.5ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140729172339')[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (1.1ms)[0m  [1mCREATE TABLE "brands" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (1.3ms)[0m  CREATE TABLE "car_spare_parts" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "idCar" integer, "idSparePart" integer, "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (1.9ms)[0m  [1mCREATE TABLE "cars" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "idBrand" integer, "carType" varchar(255), "year" varchar(255), "generation" varchar(255), "model" varchar(255), "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (1.0ms)[0m  CREATE TABLE "spare_parts" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "description" text, "carRegion" varchar(255), "parent" integer, "brand" varchar(255), "spareCode" varchar(255), "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (1.2ms)[0m  [1mCREATE TABLE "stock_spare_parts" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "status" varchar(255), "idWarehouse" integer, "idWorkshop" integer, "color" varchar(255), "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (0.9ms)[0m  CREATE TABLE "warehouses" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "branch" varchar(255), "location" varchar(255), "geoLocation" varchar(255), "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (1.6ms)[0m  [1mCREATE TABLE "workshop_cars" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "color" varchar(255), "doorNumber" integer, "status" varchar(255), "idSerie" varchar(255), "idMotor" varchar(255), "licensePlates" varchar(255), "idCar" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (1.1ms)[0m  CREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) 
+  [1m[36m (1.7ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35m (0.2ms)[0m  SELECT version FROM "schema_migrations"
+  [1m[36m (1.2ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140729172712')[0m
+  [1m[35m (2.1ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140729163539')
+  [1m[36m (1.2ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140729171428')[0m
+  [1m[35m (0.9ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140729171726')
+  [1m[36m (1.3ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140729171829')[0m
+  [1m[35m (1.3ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140729172200')
+  [1m[36m (1.6ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140729172339')[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.2ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (1.1ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) [0m
+  [1m[35m (0.9ms)[0m  CREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateBrands (20140729163539)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.6ms)[0m  [1mCREATE TABLE "brands" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20140729163539"]]
+  [1m[36m (1.0ms)[0m  [1mcommit transaction[0m
+Migrating to CreateWorkshopCars (20140729171428)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.5ms)[0m  [1mCREATE TABLE "workshop_cars" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "color" varchar(255), "doorNumber" integer, "status" varchar(255), "idSerie" varchar(255), "idMotor" varchar(255), "licensePlates" varchar(255), "idCar" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20140729171428"]]
+  [1m[36m (1.1ms)[0m  [1mcommit transaction[0m
+Migrating to CreateStockSpareParts (20140729171726)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.6ms)[0m  [1mCREATE TABLE "stock_spare_parts" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "status" varchar(255), "idWarehouse" integer, "idWorkshop" integer, "color" varchar(255), "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20140729171726"]]
+  [1m[36m (1.0ms)[0m  [1mcommit transaction[0m
+Migrating to CreateCars (20140729171829)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.6ms)[0m  [1mCREATE TABLE "cars" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "idBrand" integer, "carType" varchar(255), "year" varchar(255), "generation" varchar(255), "model" varchar(255), "name" varchar(255), "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20140729171829"]]
+  [1m[36m (0.9ms)[0m  [1mcommit transaction[0m
+Migrating to CreateSpareParts (20140729172200)
+  [1m[35m (0.2ms)[0m  begin transaction
+  [1m[36m (0.7ms)[0m  [1mCREATE TABLE "spare_parts" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "description" text, "carRegion" varchar(255), "parent" integer, "brand" varchar(255), "spareCode" varchar(255), "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20140729172200"]]
+  [1m[36m (1.0ms)[0m  [1mcommit transaction[0m
+Migrating to CreateWarehouses (20140729172339)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.6ms)[0m  [1mCREATE TABLE "warehouses" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "branch" varchar(255), "location" varchar(255), "geoLocation" varchar(255), "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20140729172339"]]
+  [1m[36m (1.0ms)[0m  [1mcommit transaction[0m
+Migrating to CreateCarSpareParts (20140729172712)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.6ms)[0m  [1mCREATE TABLE "car_spare_parts" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "idCar" integer, "idSparePart" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20140729172712"]]
+  [1m[36m (0.9ms)[0m  [1mcommit transaction[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.3ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+
+
+Started GET "/" for 127.0.0.1 at 2014-07-31 12:35:14 -0500
+Processing by WelcomeController#index as HTML
+  Rendered welcome/index.html.erb within layouts/application (0.1ms)
+  Rendered layouts/_header.html.erb (0.7ms)
+Completed 200 OK in 24ms (Views: 23.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/_header.css?body=1" for 127.0.0.1 at 2014-07-31 12:35:14 -0500
+
+
+Started GET "/assets/admin.css?body=1" for 127.0.0.1 at 2014-07-31 12:35:14 -0500
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-07-31 12:35:14 -0500
+
+
+Started GET "/assets/bills.css?body=1" for 127.0.0.1 at 2014-07-31 12:35:14 -0500
+
+
+Started GET "/assets/custom.css?body=1" for 127.0.0.1 at 2014-07-31 12:35:14 -0500
+
+
+Started GET "/assets/paysheets.css?body=1" for 127.0.0.1 at 2014-07-31 12:35:14 -0500
+
+
+Started GET "/assets/reports.css?body=1" for 127.0.0.1 at 2014-07-31 12:35:14 -0500
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2014-07-31 12:35:14 -0500
+
+
+Started GET "/assets/stocks.css?body=1" for 127.0.0.1 at 2014-07-31 12:35:14 -0500
+
+
+Started GET "/assets/valuations.css?body=1" for 127.0.0.1 at 2014-07-31 12:35:14 -0500
+
+
+Started GET "/assets/welcome.css?body=1" for 127.0.0.1 at 2014-07-31 12:35:14 -0500
+
+
+Started GET "/assets/workshop.css?body=1" for 127.0.0.1 at 2014-07-31 12:35:14 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-07-31 12:35:14 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-07-31 12:35:14 -0500
+
+
+Started GET "/assets/bootstrap-affix.js?body=1" for 127.0.0.1 at 2014-07-31 12:35:14 -0500
+
+
+Started GET "/assets/bootstrap-transition.js?body=1" for 127.0.0.1 at 2014-07-31 12:35:14 -0500
+
+
+Started GET "/assets/bootstrap-button.js?body=1" for 127.0.0.1 at 2014-07-31 12:35:14 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-07-31 12:35:14 -0500
+
+
+Started GET "/assets/bootstrap-carousel.js?body=1" for 127.0.0.1 at 2014-07-31 12:35:14 -0500
+
+
+Started GET "/assets/bootstrap-alert.js?body=1" for 127.0.0.1 at 2014-07-31 12:35:14 -0500
+
+
+Started GET "/assets/bootstrap-dropdown.js?body=1" for 127.0.0.1 at 2014-07-31 12:35:14 -0500
+
+
+Started GET "/assets/bootstrap-collapse.js?body=1" for 127.0.0.1 at 2014-07-31 12:35:14 -0500
+
+
+Started GET "/assets/bootstrap-modal.js?body=1" for 127.0.0.1 at 2014-07-31 12:35:14 -0500
+
+
+Started GET "/assets/bootstrap-scrollspy.js?body=1" for 127.0.0.1 at 2014-07-31 12:35:14 -0500
+
+
+Started GET "/assets/bootstrap-tab.js?body=1" for 127.0.0.1 at 2014-07-31 12:35:14 -0500
+
+
+Started GET "/assets/bootstrap-tooltip.js?body=1" for 127.0.0.1 at 2014-07-31 12:35:14 -0500
+
+
+Started GET "/assets/bootstrap-popover.js?body=1" for 127.0.0.1 at 2014-07-31 12:35:14 -0500
+
+
+Started GET "/assets/bootstrap-typeahead.js?body=1" for 127.0.0.1 at 2014-07-31 12:35:14 -0500
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2014-07-31 12:35:15 -0500
+
+
+Started GET "/assets/admin.js?body=1" for 127.0.0.1 at 2014-07-31 12:35:15 -0500
+
+
+Started GET "/assets/bills.js?body=1" for 127.0.0.1 at 2014-07-31 12:35:15 -0500
+
+
+Started GET "/assets/paysheets.js?body=1" for 127.0.0.1 at 2014-07-31 12:35:15 -0500
+
+
+Started GET "/assets/reports.js?body=1" for 127.0.0.1 at 2014-07-31 12:35:15 -0500
+
+
+Started GET "/assets/stocks.js?body=1" for 127.0.0.1 at 2014-07-31 12:35:15 -0500
+
+
+Started GET "/assets/valuations.js?body=1" for 127.0.0.1 at 2014-07-31 12:35:15 -0500
+
+
+Started GET "/assets/workshop.js?body=1" for 127.0.0.1 at 2014-07-31 12:35:15 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-07-31 12:35:15 -0500
+
+
+Started GET "/assets/welcome.js?body=1" for 127.0.0.1 at 2014-07-31 12:35:15 -0500
+  [1m[36m (2.0ms)[0m  [1mCREATE TABLE "brands" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (1.2ms)[0m  CREATE TABLE "car_spare_parts" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "idCar" integer, "idSparePart" integer, "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (1.2ms)[0m  [1mCREATE TABLE "cars" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "idBrand" integer, "carType" varchar(255), "year" varchar(255), "generation" varchar(255), "model" varchar(255), "name" varchar(255), "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (1.2ms)[0m  CREATE TABLE "spare_parts" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "description" text, "carRegion" varchar(255), "parent" integer, "brand" varchar(255), "spareCode" varchar(255), "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (1.2ms)[0m  [1mCREATE TABLE "stock_spare_parts" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "status" varchar(255), "idWarehouse" integer, "idWorkshop" integer, "color" varchar(255), "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (1.2ms)[0m  CREATE TABLE "warehouses" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "branch" varchar(255), "location" varchar(255), "geoLocation" varchar(255), "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (1.1ms)[0m  [1mCREATE TABLE "workshop_cars" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "color" varchar(255), "doorNumber" integer, "status" varchar(255), "idSerie" varchar(255), "idMotor" varchar(255), "licensePlates" varchar(255), "idCar" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (1.1ms)[0m  CREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) 
+  [1m[36m (1.6ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35m (0.2ms)[0m  SELECT version FROM "schema_migrations"
+  [1m[36m (1.1ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140729172712')[0m
+  [1m[35m (1.3ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140729163539')
+  [1m[36m (1.0ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140729171428')[0m
+  [1m[35m (1.0ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140729171726')
+  [1m[36m (1.3ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140729171829')[0m
+  [1m[35m (1.2ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140729172200')
+  [1m[36m (1.0ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140729172339')[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.2ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (1.4ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) [0m
+  [1m[35m (1.0ms)[0m  CREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateBrands (20140729163539)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.5ms)[0m  [1mCREATE TABLE "brands" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20140729163539"]]
+  [1m[36m (1.1ms)[0m  [1mcommit transaction[0m
+Migrating to CreateWorkshopCars (20140729171428)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.4ms)[0m  [1mCREATE TABLE "workshop_cars" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "color" varchar(255), "doorNumber" integer, "status" varchar(255), "idSerie" varchar(255), "idMotor" varchar(255), "licensePlates" varchar(255), "idCar" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20140729171428"]]
+  [1m[36m (1.1ms)[0m  [1mcommit transaction[0m
+Migrating to CreateStockSpareParts (20140729171726)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.4ms)[0m  [1mCREATE TABLE "stock_spare_parts" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "status" varchar(255), "idWarehouse" integer, "idWorkshopCar" integer, "color" varchar(255), "idSparePart" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20140729171726"]]
+  [1m[36m (1.1ms)[0m  [1mcommit transaction[0m
+Migrating to CreateCars (20140729171829)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.7ms)[0m  [1mCREATE TABLE "cars" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "idBrand" integer, "carType" varchar(255), "year" varchar(255), "generation" varchar(255), "model" varchar(255), "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20140729171829"]]
+  [1m[36m (1.1ms)[0m  [1mcommit transaction[0m
+Migrating to CreateSpareParts (20140729172200)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.4ms)[0m  [1mCREATE TABLE "spare_parts" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "description" text, "carRegion" varchar(255), "parent" integer, "brand" varchar(255), "spareCode" varchar(255), "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20140729172200"]]
+  [1m[36m (1.1ms)[0m  [1mcommit transaction[0m
+Migrating to CreateWarehouses (20140729172339)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.4ms)[0m  [1mCREATE TABLE "warehouses" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "branch" varchar(255), "location" varchar(255), "geoLocation" varchar(255), "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20140729172339"]]
+  [1m[36m (0.9ms)[0m  [1mcommit transaction[0m
+Migrating to CreateCarSpareParts (20140729172712)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.5ms)[0m  [1mCREATE TABLE "car_spare_parts" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "idCar" integer, "idSparePart" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20140729172712"]]
+  [1m[36m (0.9ms)[0m  [1mcommit transaction[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"

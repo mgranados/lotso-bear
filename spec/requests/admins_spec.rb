@@ -7,31 +7,31 @@ describe "Administrador" do
     before do
       visit '/a'
     end
-    it { should have_title ('Administrador') }
-    it { should have_link('Reportes', href: reports_path) }
-    it { should have_link('Facturas', href:bills_path) }
-    it { should have_link('Nóminas', href:paysheets_path) }
+    it "Tiene Titulo" do should have_title ('Administrador') end
+    it "Tiene link a Reportes" do should have_link('Reportes', href: reports_path) end
+    it "Tiene link a Facturas" do  should have_link('Facturas', href:bills_path)  end
+    it "Tiene link a Nóminas" do should have_link('Nóminas', href:paysheets_path) end
   end
 
   describe "Reportes" do
     before do
       visit reports_path
     end
-    it { should have_title ('Reportes') }
+    it "Tiene Titulo" do should have_title ('Reportes') end
   end
 
   describe "Facturas" do
     before do
       visit bills_path
     end
-    it { should have_title ('Facturas') }
+    it "Tiene Titulo" do should have_title ('Facturas')  end
   end
 
   describe "Nóminas" do
     before do
       visit paysheets_path
     end
-    it { should have_title ('Nóminas') }
+    it "Tiene Titulo" do should have_title ('Nóminas') end
   end
 
 end
