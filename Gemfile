@@ -21,7 +21,6 @@ group :development, :test do
   gem 'capybara', '2.1.0'
   gem 'spork-rails', '4.0.0'
   gem 'selenium-webdriver', '2.35.1'
-  gem 'factory_girl_rails', '~> 4.0'
   gem 'faker'
   end
 
