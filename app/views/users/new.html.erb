@@ -1,0 +1,30 @@
+<h1>Dar de alta usuario</h1>
+<p>Ingresa los datos del usuario</p>
+
+<div class="row">
+  <div class="span6 offset3">
+    <%= form_for(@user) do |f| %>
+      <%= render 'shared/error_messages' %>
+
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+
+      <%= f.label :email %>
+      <%= f.text_field :email %>
+
+      <%= f.label :username %>
+      <%= f.text_field :username %>
+
+      <%= f.label :privileges %>
+      <%= f.text_field :privileges %>
+
+      <%= f.label :password %>
+      <%= f.password_field :password %>
+
+      <%= f.label :password_confirmation, "Confirmation" %>
+      <%= f.password_field :password_confirmation %>
+
+      <%= f.submit "Dar de Alta Usuario", class: "btn btn-large btn-primary" %>
+    <% end %>
+  </div>
+</div>
