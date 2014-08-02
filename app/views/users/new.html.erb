@@ -16,7 +16,8 @@
       <%= f.text_field :username %>
 
       <%= f.label :privileges %>
-      <%= f.select(ApplicationHelper::PRIVS) %>
+      <%= f.select(:privileges, ApplicationHelper::PRIVS) %>
+
 
       <%= f.label :password %>
       <%= f.password_field :password %>
