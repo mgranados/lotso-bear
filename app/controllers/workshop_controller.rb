@@ -20,9 +20,6 @@ class WorkshopController < ApplicationController
   def operative
   end
 
-  def process
-  end
-
   def warehouse
   end
 
@@ -32,9 +29,5 @@ class WorkshopController < ApplicationController
     def signed_in
       redirect_to signin_url, notice: "Por favor, inicia sesión." unless signed_in?
     end
-
-
-
-
 
 end

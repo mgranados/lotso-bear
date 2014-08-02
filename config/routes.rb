@@ -11,7 +11,6 @@ LotsoBear::Application.routes.draw do
 
   get "bills/index"
   get "paysheets/index"
-PRIVS = %w(admin gerente ajustador operador capturista proceso almacen)
 
   match '/admin',  to: 'workshop#admin', via: 'get'
   match '/gerente',  to: 'workshop#manager', via: 'get'
@@ -27,7 +26,6 @@ PRIVS = %w(admin gerente ajustador operador capturista proceso almacen)
   #Administrador
   match '/a',  to: "workshop#admin",      via: 'get'
   #Gerente
-  match '/m',  to: "workshop#manager",    via: 'get'
   #Signin Trabajadores
   match '/signin',  to: 'sessions#new',         via: 'get'
   #Salir

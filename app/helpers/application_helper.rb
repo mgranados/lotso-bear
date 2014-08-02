@@ -8,6 +8,7 @@ module ApplicationHelper
       "#{base_title} | #{page_title}"
     end
   end
+  
   PRIVS = %w(admin gerente ajustador operador capturista proceso almacen)
 
 end
