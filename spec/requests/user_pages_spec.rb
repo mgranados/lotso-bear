@@ -44,7 +44,7 @@ describe "UserPages" do
         fill_in "Name",         with: "Example User"
         fill_in "Email",        with: "user@example.com"
         fill_in "Username",     with: "exampleuser"
-        fill_in "Privileges",   with: "admin"
+        select "admin",         :from =>'Privileges'
         fill_in "Password",     with: "foobar"
         fill_in "Confirmation", with: "foobar"
       end

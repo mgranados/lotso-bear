@@ -6,9 +6,16 @@ FactoryGirl.define do
     password "foobar"
     password_confirmation "foobar"
     privileges "capturista"
-  end
-  factory :admin do
+    factory :admin do
       privileges "admin"
-  end
+    end
+    factory :manager do
+      privileges "gerente"
+    end
+    factory :operator do
+      privileges "operador"
+    end
+end
+
 
 end

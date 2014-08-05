@@ -1,16 +1,17 @@
 require 'spec_helper'
 
-describe "Gerente" do
+describe "Managers" do
   subject {page}
 
   describe "Index" do
+    let(:manager){FactoryGirl.create(:manager)}
+
     before do
-      visit '/a'
+      sign_in manager
     end
-    it { should have_title ('Gerente') }
-    it { should have_button('Reportes') }
-    it { should have_button('Facturas') }
-    it { should have_button('Nóminas') }
+    it { should have_title ('SYRAT | Gerente') }
+    it { should have_link('Reportes') }
+    it { should have_link('Nóminas') }
   end
 
 end

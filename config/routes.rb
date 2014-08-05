@@ -2,16 +2,17 @@ LotsoBear::Application.routes.draw do
 
   resources :users
   resources :reports,   only:  [:index]
+  resources :valuations,   only:  [:index,:new]
+
   resources :bills,     only:  [:index]
   resources :paysheets, only:  [:index]
   resources :sessions, only: [:new, :create, :destroy]
 
-  # You can have the root of your site routed with "root"
-  root 'welcome#index'
 
-  get "bills/index"
-  get "paysheets/index"
+  # root to: 'sessions#new'
+  root 'sessions#new'
 
+  match '/login', to: 'sessions#new', via: 'get'
   match '/admin',  to: 'workshop#admin', via: 'get'
   match '/gerente',  to: 'workshop#manager', via: 'get'
   match '/ajustador',  to: 'workshop#adjuster', via: 'get'
@@ -19,17 +20,15 @@ LotsoBear::Application.routes.draw do
   match '/capturista',  to: 'workshop#capturist', via: 'get'
   match '/proceso',  to: 'workshop#process', via: 'get'
   match '/almacen',  to: 'workshop#warehouse', via: 'get'
+  match '/orders', to: 'stock#order', via: 'get'
+  match '/dispatchs', to: 'stock#dispatch', via: 'get'
+  match '/inventory', to: 'stock#inventory', via: 'get'
 
-
-  #Taller
-  match '/w',  to: 'workshop#index',      via: 'get'
-  #Administrador
-  match '/a',  to: "workshop#admin",      via: 'get'
-  #Gerente
   #Signin Trabajadores
   match '/signin',  to: 'sessions#new',         via: 'get'
   #Salir
   match '/signout', to: 'sessions#destroy',     via: 'delete'
+
 
 
 

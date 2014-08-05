@@ -17,9 +17,9 @@ describe "Authentication" do
     before { visit signin_path }
 
     describe "with invalid information" do
-      before { click_button "Sign in" }
+      before { click_button "Ingresar" }
 
-      # it { should have_title('Sign in') }
+      # it { should have_title('Ingresar') }
       it { should have_selector('div.alert.alert-error') }
 
       describe "after visiting another page" do
@@ -33,16 +33,16 @@ describe "Authentication" do
       before do
         fill_in "Email",    with: user.email.upcase
         fill_in "Password", with: user.password
-        click_button "Sign in"
+        click_button "Ingresar"
       end
 
       it { should have_content("Home") }
       it { should have_link('Sign out',    href: signout_path) }
-      it { should_not have_link('Sign in', href: signin_path) }
+      it { should_not have_link('Ingresar', href: signin_path) }
 
       describe "followed by signout" do
         before { click_link "Sign out" }
-        it { should have_link('Sign in') }
+        it { should have_button('Ingresar') }
       end
     end
   end
@@ -55,7 +55,7 @@ describe "Authentication" do
 
         describe "visiting admin page" do
           #index admin
-          before { visit '/a' }
+          before { visit '/admin' }
           it { should have_content('Login') }
         end
 
@@ -71,8 +71,9 @@ describe "Authentication" do
       describe "in the Workshop controller" do
 
         describe "visiting admin page" do
+        before  {visit '/admin'}
           #index admin
-          it { should have_content('Bienvenido') }
+          it { should_not have_content('Admin') }
         end
 
       end
@@ -83,9 +84,8 @@ describe "Authentication" do
       before { sign_in right_privileges_user }
 
       describe "in the First Page" do
-
           #index admin
-          it { should have_content("#{right_privileges_user.privileges}") }
+          it { should have_content("#{right_privileges_user.privileges}".capitalize) }
 
       end
     end

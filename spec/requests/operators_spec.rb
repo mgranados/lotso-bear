@@ -4,13 +4,19 @@ describe "Operador" do
   subject {page}
 
   describe "Index" do
+    let(:operator){FactoryGirl.create(:operator)}
+
     before do
-      visit '/a'
+      sign_in operator
     end
-    it { should have_title ('Operador') }
-    it { should have_link('Reportes', href: reports_path) }
-    it { should have_link('Facturas', href:bills_path) }
-    it { should have_link('Nóminas', href:paysheets_path) }
+
+    it { should have_title ('SYRAT | Operador') }
+    it { should have_link('Nueva', href: new_valuation_path) }
+    it { should have_link('Editar') }
+    it { should have_link('Inventario', href:'/inventory') }
+    it { should have_link('Pedidos', href:'/orders') }
+    it { should have_link('Envios', href:'/dispatchs') }
+
   end
 
   describe "Reportes" do

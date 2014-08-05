@@ -4,10 +4,12 @@ describe "Administrador" do
   subject {page}
 
   describe "Index" do
+    let(:admin){FactoryGirl.create(:admin)}
+
     before do
-      visit '/a'
+      sign_in admin
     end
-    it "Tiene Titulo" do should have_title ('Administrador') end
+    it "Tiene Titulo" do should have_title ('SYRAT | Administrador') end
     it "Tiene link a Reportes" do should have_link('Reportes', href: reports_path) end
     it "Tiene link a Facturas" do  should have_link('Facturas', href:bills_path)  end
     it "Tiene link a Nóminas" do should have_link('Nóminas', href:paysheets_path) end
