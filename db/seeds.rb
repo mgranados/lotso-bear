@@ -6,12 +6,8 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-admin = User.create!(name:'admin',username:'admin',password:'admin',email:'admin@admin.com', privileges:'admin',password_confirmation:'admin')
-
-operador = User.create!(name:'operador',username:'operador',password:'operador',email:'operador@operador.com', privileges:'operador',password_confirmation:'operador')
-
-capturista = User.create!(name:'capturista',username:'capturista',password:'capturista',email:'capturista@capturista.com', privileges:'capturista',password_confirmation:'capturista')
-
-gerente = User.create!(name:'gerente',username:'gerente',password:'gerente',email:'gerente@gerente.com', privileges:'gerente',password_confirmation:'gerente')
-
-ajustador = User.create!(name:'ajustador',username:'ajustador',password:'ajustador',email:'ajustador@ajustador.com', privileges:'ajustador',password_confirmation:'ajustador')
+User.create!(name:"Administrador", email:"admin@admin.com",password:"admin", password_confirmation:"admin", username: "Administrador", privileges:"admin")
+User.create!(name:"Operador",email:"operador@operador.com",password:"operador", password_confirmation:"operador", username: "Operador", privileges:"operador")
+User.create!(name:"Capturista",email:"capturista@capturista.com",password:"capturista", password_confirmation:"capturista", username: "Capturista", privileges:"capturista")
+User.create!(name:"Gerente",email:"gerente@gerente.com",password:"gerente", password_confirmation:"gerente", username: "Gerente", privileges:"gerente")
+User.create!(name:"Ajustador",email:"ajustador@ajustador.com",password:"ajustador", password_confirmation:"ajustador", username: "Ajustador", privileges:"ajustador")

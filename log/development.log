@@ -53414,6 +53414,7 @@ Started GET "/assets/welcome.js?body=1" for 127.0.0.1 at 2014-08-04 20:14:37 -05
 
 
 Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-08-04 20:14:37 -0500
+<<<<<<< HEAD
   [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
   [1m[35mUser Exists (0.3ms)[0m  SELECT 1 AS one FROM "users" WHERE "users"."email" IS NULL LIMIT 1
   [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
@@ -54337,3 +54338,673 @@ Migrating to AddRememberTokenToUsers (20140731180705)
   [1m[36mSQL (0.7ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20140731180705"]]
   [1m[35m (5.2ms)[0m  commit transaction
   [1m[36mActiveRecord::SchemaMigration Load (0.9ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+=======
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (9.3ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) [0m
+  [1m[35m (1.1ms)[0m  CREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateUsers (20140728174620)
+  [1m[35m (0.2ms)[0m  begin transaction
+  [1m[36m (0.6ms)[0m  [1mCREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "email" varchar(255), "username" varchar(255), "privileges" varchar(255), "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20140728174620"]]
+  [1m[36m (0.8ms)[0m  [1mcommit transaction[0m
+Migrating to CreateBrands (20140729163539)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.6ms)[0m  [1mCREATE TABLE "brands" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20140729163539"]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+Migrating to CreateWorkshopCars (20140729171428)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.5ms)[0m  [1mCREATE TABLE "workshop_cars" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "color" varchar(255), "doorNumber" integer, "status" varchar(255), "idSerie" varchar(255), "idMotor" varchar(255), "licensePlates" varchar(255), "idCar" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20140729171428"]]
+  [1m[36m (0.9ms)[0m  [1mcommit transaction[0m
+Migrating to CreateStockSpareParts (20140729171726)
+  [1m[35m (0.2ms)[0m  begin transaction
+  [1m[36m (0.6ms)[0m  [1mCREATE TABLE "stock_spare_parts" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "status" varchar(255), "idWarehouse" integer, "idWorkshopCar" integer, "color" varchar(255), "idSparePart" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20140729171726"]]
+  [1m[36m (0.6ms)[0m  [1mcommit transaction[0m
+Migrating to CreateCars (20140729171829)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.4ms)[0m  [1mCREATE TABLE "cars" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "idBrand" integer, "carType" varchar(255), "year" varchar(255), "generation" varchar(255), "model" varchar(255), "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20140729171829"]]
+  [1m[36m (0.9ms)[0m  [1mcommit transaction[0m
+Migrating to CreateSpareParts (20140729172200)
+  [1m[35m (0.2ms)[0m  begin transaction
+  [1m[36m (0.6ms)[0m  [1mCREATE TABLE "spare_parts" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "description" text, "carRegion" varchar(255), "parent" integer, "brand" varchar(255), "spareCode" varchar(255), "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20140729172200"]]
+  [1m[36m (1.5ms)[0m  [1mcommit transaction[0m
+Migrating to AddIndexToUsersEmail (20140729172229)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.3ms)[0m  [1mCREATE UNIQUE INDEX "index_users_on_email" ON "users" ("email")[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20140729172229"]]
+  [1m[36m (0.6ms)[0m  [1mcommit transaction[0m
+Migrating to CreateWarehouses (20140729172339)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.6ms)[0m  [1mCREATE TABLE "warehouses" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "branch" varchar(255), "location" varchar(255), "geoLocation" varchar(255), "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20140729172339"]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+Migrating to CreateCarSpareParts (20140729172712)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.6ms)[0m  [1mCREATE TABLE "car_spare_parts" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "idCar" integer, "idSparePart" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20140729172712"]]
+  [1m[36m (0.9ms)[0m  [1mcommit transaction[0m
+Migrating to AddPassdigestToUsers (20140729173058)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.6ms)[0m  [1mALTER TABLE "users" ADD "password_digest" varchar(255)[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20140729173058"]]
+  [1m[36m (0.6ms)[0m  [1mcommit transaction[0m
+Migrating to AddRememberTokenToUsers (20140731180705)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.5ms)[0m  [1mALTER TABLE "users" ADD "remember_token" varchar(255)[0m
+  [1m[35m (0.2ms)[0m  CREATE INDEX "index_users_on_remember_token" ON "users" ("remember_token")
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20140731180705"]]
+  [1m[35m (1.0ms)[0m  commit transaction
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+
+
+Started GET "/" for 127.0.0.1 at 2014-08-05 18:39:32 -0500
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by SessionsController#new as HTML
+  Rendered sessions/new.html.erb within layouts/application (373.2ms)
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."remember_token" = '9587f5190c76c81ac44dc79943d9db1223d20e02' LIMIT 1
+  Rendered layouts/_header.html.erb (26.9ms)
+Completed 200 OK in 1722ms (Views: 1720.2ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-08-05 18:39:34 -0500
+
+
+Started GET "/assets/_header.css?body=1" for 127.0.0.1 at 2014-08-05 18:39:34 -0500
+
+
+Started GET "/assets/admin.css?body=1" for 127.0.0.1 at 2014-08-05 18:39:34 -0500
+
+
+Started GET "/assets/bills.css?body=1" for 127.0.0.1 at 2014-08-05 18:39:35 -0500
+
+
+Started GET "/assets/custom.css?body=1" for 127.0.0.1 at 2014-08-05 18:39:35 -0500
+
+
+Started GET "/assets/paysheets.css?body=1" for 127.0.0.1 at 2014-08-05 18:39:35 -0500
+
+
+Started GET "/assets/reports.css?body=1" for 127.0.0.1 at 2014-08-05 18:39:35 -0500
+
+
+Started GET "/assets/stocks.css?body=1" for 127.0.0.1 at 2014-08-05 18:39:35 -0500
+
+
+Started GET "/assets/sessions.css?body=1" for 127.0.0.1 at 2014-08-05 18:39:35 -0500
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2014-08-05 18:39:35 -0500
+
+
+Started GET "/assets/valuations.css?body=1" for 127.0.0.1 at 2014-08-05 18:39:35 -0500
+
+
+Started GET "/assets/users.css?body=1" for 127.0.0.1 at 2014-08-05 18:39:35 -0500
+
+
+Started GET "/assets/workshop.css?body=1" for 127.0.0.1 at 2014-08-05 18:39:35 -0500
+
+
+Started GET "/assets/welcome.css?body=1" for 127.0.0.1 at 2014-08-05 18:39:35 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-08-05 18:39:35 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-08-05 18:39:35 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-08-05 18:39:35 -0500
+
+
+Started GET "/assets/bootstrap-transition.js?body=1" for 127.0.0.1 at 2014-08-05 18:39:35 -0500
+
+
+Started GET "/assets/bootstrap-affix.js?body=1" for 127.0.0.1 at 2014-08-05 18:39:35 -0500
+
+
+Started GET "/assets/bootstrap-alert.js?body=1" for 127.0.0.1 at 2014-08-05 18:39:35 -0500
+
+
+Started GET "/assets/bootstrap-button.js?body=1" for 127.0.0.1 at 2014-08-05 18:39:35 -0500
+
+
+Started GET "/assets/bootstrap-collapse.js?body=1" for 127.0.0.1 at 2014-08-05 18:39:35 -0500
+
+
+Started GET "/assets/bootstrap-dropdown.js?body=1" for 127.0.0.1 at 2014-08-05 18:39:35 -0500
+
+
+Started GET "/assets/bootstrap-carousel.js?body=1" for 127.0.0.1 at 2014-08-05 18:39:35 -0500
+
+
+Started GET "/assets/bootstrap-modal.js?body=1" for 127.0.0.1 at 2014-08-05 18:39:35 -0500
+
+
+Started GET "/assets/bootstrap-tab.js?body=1" for 127.0.0.1 at 2014-08-05 18:39:35 -0500
+
+
+Started GET "/assets/bootstrap-scrollspy.js?body=1" for 127.0.0.1 at 2014-08-05 18:39:35 -0500
+
+
+Started GET "/assets/bootstrap-tooltip.js?body=1" for 127.0.0.1 at 2014-08-05 18:39:35 -0500
+
+
+Started GET "/assets/bootstrap-popover.js?body=1" for 127.0.0.1 at 2014-08-05 18:39:35 -0500
+
+
+Started GET "/assets/bootstrap-typeahead.js?body=1" for 127.0.0.1 at 2014-08-05 18:39:35 -0500
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2014-08-05 18:39:35 -0500
+
+
+Started GET "/assets/admin.js?body=1" for 127.0.0.1 at 2014-08-05 18:39:35 -0500
+
+
+Started GET "/assets/bills.js?body=1" for 127.0.0.1 at 2014-08-05 18:39:35 -0500
+
+
+Started GET "/assets/paysheets.js?body=1" for 127.0.0.1 at 2014-08-05 18:39:35 -0500
+
+
+Started GET "/assets/reports.js?body=1" for 127.0.0.1 at 2014-08-05 18:39:35 -0500
+
+
+Started GET "/assets/sessions.js?body=1" for 127.0.0.1 at 2014-08-05 18:39:35 -0500
+
+
+Started GET "/assets/stocks.js?body=1" for 127.0.0.1 at 2014-08-05 18:39:35 -0500
+
+
+Started GET "/assets/users.js?body=1" for 127.0.0.1 at 2014-08-05 18:39:35 -0500
+
+
+Started GET "/assets/valuations.js?body=1" for 127.0.0.1 at 2014-08-05 18:39:35 -0500
+
+
+Started GET "/assets/welcome.js?body=1" for 127.0.0.1 at 2014-08-05 18:39:35 -0500
+
+
+Started GET "/assets/workshop.js?body=1" for 127.0.0.1 at 2014-08-05 18:39:35 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-08-05 18:39:35 -0500
+
+
+Started POST "/sessions" for 127.0.0.1 at 2014-08-05 18:39:44 -0500
+Processing by SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"o6qkWoBFg+1hECmX9b5WtwJiomVruNHO9VVRe+mwF3k=", "session"=>{"email"=>"admin@admin.com\t", "password"=>"[FILTERED]"}, "commit"=>"Ingresar"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."email" = 'admin@admin.com	' LIMIT 1[0m
+  Rendered sessions/new.html.erb within layouts/application (1.0ms)
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."remember_token" = '9587f5190c76c81ac44dc79943d9db1223d20e02' LIMIT 1
+  Rendered layouts/_header.html.erb (1.1ms)
+Completed 200 OK in 19ms (Views: 17.0ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-08-05 18:39:44 -0500
+
+
+Started GET "/assets/custom.css?body=1" for 127.0.0.1 at 2014-08-05 18:39:44 -0500
+
+
+Started GET "/assets/reports.css?body=1" for 127.0.0.1 at 2014-08-05 18:39:44 -0500
+
+
+Started GET "/assets/admin.css?body=1" for 127.0.0.1 at 2014-08-05 18:39:44 -0500
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2014-08-05 18:39:44 -0500
+
+
+Started GET "/assets/bills.css?body=1" for 127.0.0.1 at 2014-08-05 18:39:44 -0500
+
+
+Started GET "/assets/sessions.css?body=1" for 127.0.0.1 at 2014-08-05 18:39:44 -0500
+
+
+Started GET "/assets/_header.css?body=1" for 127.0.0.1 at 2014-08-05 18:39:44 -0500
+
+
+Started GET "/assets/paysheets.css?body=1" for 127.0.0.1 at 2014-08-05 18:39:44 -0500
+
+
+Started GET "/assets/stocks.css?body=1" for 127.0.0.1 at 2014-08-05 18:39:44 -0500
+
+
+Started GET "/assets/users.css?body=1" for 127.0.0.1 at 2014-08-05 18:39:44 -0500
+
+
+Started GET "/assets/valuations.css?body=1" for 127.0.0.1 at 2014-08-05 18:39:44 -0500
+
+
+Started GET "/assets/welcome.css?body=1" for 127.0.0.1 at 2014-08-05 18:39:44 -0500
+
+
+Started GET "/assets/workshop.css?body=1" for 127.0.0.1 at 2014-08-05 18:39:44 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-08-05 18:39:44 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-08-05 18:39:44 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-08-05 18:39:44 -0500
+
+
+Started GET "/assets/bootstrap-transition.js?body=1" for 127.0.0.1 at 2014-08-05 18:39:44 -0500
+
+
+Started GET "/assets/bootstrap-affix.js?body=1" for 127.0.0.1 at 2014-08-05 18:39:44 -0500
+
+
+Started GET "/assets/bootstrap-alert.js?body=1" for 127.0.0.1 at 2014-08-05 18:39:44 -0500
+
+
+Started GET "/assets/bootstrap-button.js?body=1" for 127.0.0.1 at 2014-08-05 18:39:44 -0500
+
+
+Started GET "/assets/bootstrap-carousel.js?body=1" for 127.0.0.1 at 2014-08-05 18:39:44 -0500
+
+
+Started GET "/assets/bootstrap-collapse.js?body=1" for 127.0.0.1 at 2014-08-05 18:39:44 -0500
+
+
+Started GET "/assets/bootstrap-dropdown.js?body=1" for 127.0.0.1 at 2014-08-05 18:39:44 -0500
+
+
+Started GET "/assets/bootstrap-modal.js?body=1" for 127.0.0.1 at 2014-08-05 18:39:44 -0500
+
+
+Started GET "/assets/bootstrap-scrollspy.js?body=1" for 127.0.0.1 at 2014-08-05 18:39:44 -0500
+
+
+Started GET "/assets/bootstrap-tab.js?body=1" for 127.0.0.1 at 2014-08-05 18:39:44 -0500
+
+
+Started GET "/assets/bootstrap-tooltip.js?body=1" for 127.0.0.1 at 2014-08-05 18:39:44 -0500
+
+
+Started GET "/assets/bootstrap-popover.js?body=1" for 127.0.0.1 at 2014-08-05 18:39:44 -0500
+
+
+Started GET "/assets/bootstrap-typeahead.js?body=1" for 127.0.0.1 at 2014-08-05 18:39:44 -0500
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2014-08-05 18:39:44 -0500
+
+
+Started GET "/assets/admin.js?body=1" for 127.0.0.1 at 2014-08-05 18:39:44 -0500
+
+
+Started GET "/assets/bills.js?body=1" for 127.0.0.1 at 2014-08-05 18:39:44 -0500
+
+
+Started GET "/assets/paysheets.js?body=1" for 127.0.0.1 at 2014-08-05 18:39:44 -0500
+
+
+Started GET "/assets/reports.js?body=1" for 127.0.0.1 at 2014-08-05 18:39:44 -0500
+
+
+Started GET "/assets/sessions.js?body=1" for 127.0.0.1 at 2014-08-05 18:39:44 -0500
+
+
+Started GET "/assets/stocks.js?body=1" for 127.0.0.1 at 2014-08-05 18:39:44 -0500
+
+
+Started GET "/assets/users.js?body=1" for 127.0.0.1 at 2014-08-05 18:39:44 -0500
+
+
+Started GET "/assets/valuations.js?body=1" for 127.0.0.1 at 2014-08-05 18:39:44 -0500
+
+
+Started GET "/assets/welcome.js?body=1" for 127.0.0.1 at 2014-08-05 18:39:44 -0500
+
+
+Started GET "/assets/workshop.js?body=1" for 127.0.0.1 at 2014-08-05 18:39:44 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-08-05 18:39:44 -0500
+
+
+Started POST "/sessions" for 127.0.0.1 at 2014-08-05 18:39:59 -0500
+Processing by SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"o6qkWoBFg+1hECmX9b5WtwJiomVruNHO9VVRe+mwF3k=", "session"=>{"email"=>"admin@admin.com", "password"=>"[FILTERED]"}, "commit"=>"Ingresar"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."email" = 'admin@admin.com' LIMIT 1[0m
+  Rendered sessions/new.html.erb within layouts/application (0.8ms)
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."remember_token" = '9587f5190c76c81ac44dc79943d9db1223d20e02' LIMIT 1
+  Rendered layouts/_header.html.erb (1.1ms)
+Completed 200 OK in 16ms (Views: 14.7ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/assets/_header.css?body=1" for 127.0.0.1 at 2014-08-05 18:39:59 -0500
+
+
+Started GET "/assets/admin.css?body=1" for 127.0.0.1 at 2014-08-05 18:39:59 -0500
+
+
+Started GET "/assets/bills.css?body=1" for 127.0.0.1 at 2014-08-05 18:39:59 -0500
+
+
+Started GET "/assets/reports.css?body=1" for 127.0.0.1 at 2014-08-05 18:39:59 -0500
+
+
+Started GET "/assets/paysheets.css?body=1" for 127.0.0.1 at 2014-08-05 18:39:59 -0500
+
+
+Started GET "/assets/custom.css?body=1" for 127.0.0.1 at 2014-08-05 18:39:59 -0500
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-08-05 18:39:59 -0500
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2014-08-05 18:39:59 -0500
+
+
+Started GET "/assets/users.css?body=1" for 127.0.0.1 at 2014-08-05 18:39:59 -0500
+
+
+Started GET "/assets/sessions.css?body=1" for 127.0.0.1 at 2014-08-05 18:39:59 -0500
+
+
+Started GET "/assets/stocks.css?body=1" for 127.0.0.1 at 2014-08-05 18:39:59 -0500
+
+
+Started GET "/assets/valuations.css?body=1" for 127.0.0.1 at 2014-08-05 18:39:59 -0500
+
+
+Started GET "/assets/welcome.css?body=1" for 127.0.0.1 at 2014-08-05 18:39:59 -0500
+
+
+Started GET "/assets/workshop.css?body=1" for 127.0.0.1 at 2014-08-05 18:39:59 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-08-05 18:39:59 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-08-05 18:39:59 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-08-05 18:39:59 -0500
+
+
+Started GET "/assets/bootstrap-transition.js?body=1" for 127.0.0.1 at 2014-08-05 18:39:59 -0500
+
+
+Started GET "/assets/bootstrap-affix.js?body=1" for 127.0.0.1 at 2014-08-05 18:39:59 -0500
+
+
+Started GET "/assets/bootstrap-alert.js?body=1" for 127.0.0.1 at 2014-08-05 18:39:59 -0500
+
+
+Started GET "/assets/bootstrap-button.js?body=1" for 127.0.0.1 at 2014-08-05 18:39:59 -0500
+
+
+Started GET "/assets/bootstrap-carousel.js?body=1" for 127.0.0.1 at 2014-08-05 18:39:59 -0500
+
+
+Started GET "/assets/bootstrap-collapse.js?body=1" for 127.0.0.1 at 2014-08-05 18:39:59 -0500
+
+
+Started GET "/assets/bootstrap-dropdown.js?body=1" for 127.0.0.1 at 2014-08-05 18:39:59 -0500
+
+
+Started GET "/assets/bootstrap-modal.js?body=1" for 127.0.0.1 at 2014-08-05 18:40:00 -0500
+
+
+Started GET "/assets/bootstrap-scrollspy.js?body=1" for 127.0.0.1 at 2014-08-05 18:40:00 -0500
+
+
+Started GET "/assets/bootstrap-tab.js?body=1" for 127.0.0.1 at 2014-08-05 18:40:00 -0500
+
+
+Started GET "/assets/bootstrap-tooltip.js?body=1" for 127.0.0.1 at 2014-08-05 18:40:00 -0500
+
+
+Started GET "/assets/bootstrap-typeahead.js?body=1" for 127.0.0.1 at 2014-08-05 18:40:00 -0500
+
+
+Started GET "/assets/bootstrap-popover.js?body=1" for 127.0.0.1 at 2014-08-05 18:40:00 -0500
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2014-08-05 18:40:00 -0500
+
+
+Started GET "/assets/admin.js?body=1" for 127.0.0.1 at 2014-08-05 18:40:00 -0500
+
+
+Started GET "/assets/bills.js?body=1" for 127.0.0.1 at 2014-08-05 18:40:00 -0500
+
+
+Started GET "/assets/paysheets.js?body=1" for 127.0.0.1 at 2014-08-05 18:40:00 -0500
+
+
+Started GET "/assets/reports.js?body=1" for 127.0.0.1 at 2014-08-05 18:40:00 -0500
+
+
+Started GET "/assets/sessions.js?body=1" for 127.0.0.1 at 2014-08-05 18:40:00 -0500
+
+
+Started GET "/assets/stocks.js?body=1" for 127.0.0.1 at 2014-08-05 18:40:00 -0500
+
+
+Started GET "/assets/valuations.js?body=1" for 127.0.0.1 at 2014-08-05 18:40:00 -0500
+
+
+Started GET "/assets/users.js?body=1" for 127.0.0.1 at 2014-08-05 18:40:00 -0500
+
+
+Started GET "/assets/welcome.js?body=1" for 127.0.0.1 at 2014-08-05 18:40:00 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-08-05 18:40:00 -0500
+
+
+Started GET "/assets/workshop.js?body=1" for 127.0.0.1 at 2014-08-05 18:40:00 -0500
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mUser Exists (0.3ms)[0m  [1mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('admin@admin.com') LIMIT 1[0m
+Binary data inserted for `string` type on column `password_digest`
+  [1m[35mSQL (5.5ms)[0m  INSERT INTO "users" ("created_at", "email", "name", "password_digest", "privileges", "remember_token", "updated_at", "username") VALUES (?, ?, ?, ?, ?, ?, ?, ?)  [["created_at", Tue, 05 Aug 2014 23:40:46 UTC +00:00], ["email", "admin@admin.com"], ["name", "Administrador"], ["password_digest", "$2a$10$Ir7q/r/NaMNksPhXx49fyO7jaJcQXWmFZlrWzIBPe3USgPeQmf5Ny"], ["privileges", "admin"], ["remember_token", "b8e93aea5d708589566e1461299eecf179421aa9"], ["updated_at", Tue, 05 Aug 2014 23:40:46 UTC +00:00], ["username", "Administrador"]]
+  [1m[36m (0.8ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mUser Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('operador@operador.com') LIMIT 1[0m
+Binary data inserted for `string` type on column `password_digest`
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "users" ("created_at", "email", "name", "password_digest", "privileges", "remember_token", "updated_at", "username") VALUES (?, ?, ?, ?, ?, ?, ?, ?)  [["created_at", Tue, 05 Aug 2014 23:40:46 UTC +00:00], ["email", "operador@operador.com"], ["name", "Operador"], ["password_digest", "$2a$10$At4lJLOXJGPMkRaGuqugBOlX2vfH.HZQdRHKdnz3oSF3h5o/RFXsG"], ["privileges", "operador"], ["remember_token", "0cee6c6a13707271b0a436a152ef995f2b4bb956"], ["updated_at", Tue, 05 Aug 2014 23:40:46 UTC +00:00], ["username", "Operador"]]
+  [1m[36m (0.8ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mUser Exists (0.1ms)[0m  [1mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('capturista@capturista.com') LIMIT 1[0m
+Binary data inserted for `string` type on column `password_digest`
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "users" ("created_at", "email", "name", "password_digest", "privileges", "remember_token", "updated_at", "username") VALUES (?, ?, ?, ?, ?, ?, ?, ?)  [["created_at", Tue, 05 Aug 2014 23:40:47 UTC +00:00], ["email", "capturista@capturista.com"], ["name", "Capturista"], ["password_digest", "$2a$10$OdxtM1MDWPcOVTJQI9UKQOViUzR7F/p8hT9pBD6GjTxWOemzs2b6G"], ["privileges", "capturista"], ["remember_token", "a6facf46a9de2f6b8c1fe2aa4bf689c5d3683c82"], ["updated_at", Tue, 05 Aug 2014 23:40:47 UTC +00:00], ["username", "Capturista"]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mUser Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('gerente@gerente.com') LIMIT 1[0m
+Binary data inserted for `string` type on column `password_digest`
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "users" ("created_at", "email", "name", "password_digest", "privileges", "remember_token", "updated_at", "username") VALUES (?, ?, ?, ?, ?, ?, ?, ?)  [["created_at", Tue, 05 Aug 2014 23:40:47 UTC +00:00], ["email", "gerente@gerente.com"], ["name", "Gerente"], ["password_digest", "$2a$10$NQS64NiowJkFH1aoLCBlce.jWh0yLiTEnzAUuU7Z2MPMFXlqsrn2a"], ["privileges", "gerente"], ["remember_token", "9b01e2c86245f2326bcde963650119c9e94c2d26"], ["updated_at", Tue, 05 Aug 2014 23:40:47 UTC +00:00], ["username", "Gerente"]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mUser Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('ajustador@ajustador.com') LIMIT 1[0m
+Binary data inserted for `string` type on column `password_digest`
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "users" ("created_at", "email", "name", "password_digest", "privileges", "remember_token", "updated_at", "username") VALUES (?, ?, ?, ?, ?, ?, ?, ?)  [["created_at", Tue, 05 Aug 2014 23:40:47 UTC +00:00], ["email", "ajustador@ajustador.com"], ["name", "Ajustador"], ["password_digest", "$2a$10$8bNVfDPluKbWa4OEwb8L0.nDlykCC0x1v0D/UIrKv5kiT3LwKuJj6"], ["privileges", "ajustador"], ["remember_token", "f3891f79d916ce99dfa99f6b1462857ba4c07221"], ["updated_at", Tue, 05 Aug 2014 23:40:47 UTC +00:00], ["username", "Ajustador"]]
+  [1m[36m (0.6ms)[0m  [1mcommit transaction[0m
+
+
+Started POST "/sessions" for 127.0.0.1 at 2014-08-05 18:41:03 -0500
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"o6qkWoBFg+1hECmX9b5WtwJiomVruNHO9VVRe+mwF3k=", "session"=>{"email"=>"admin@admin.com", "password"=>"[FILTERED]"}, "commit"=>"Ingresar"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."email" = 'admin@admin.com' LIMIT 1
+  [1m[36m (0.2ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (3.2ms)[0m  UPDATE "users" SET "remember_token" = ?, "updated_at" = ? WHERE "users"."id" = 1  [["remember_token", "c1aba480e6b53410a52906f640e2266e73773134"], ["updated_at", Tue, 05 Aug 2014 23:41:03 UTC +00:00]]
+  [1m[36m (0.8ms)[0m  [1mcommit transaction[0m
+Redirected to http://localhost:3000/admin
+Completed 302 Found in 132ms (ActiveRecord: 4.7ms)
+
+
+Started GET "/admin" for 127.0.0.1 at 2014-08-05 18:41:03 -0500
+Processing by WorkshopController#admin as HTML
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."remember_token" = 'c1aba480e6b53410a52906f640e2266e73773134' LIMIT 1
+  Rendered workshop/admin.html.erb within layouts/application (1.9ms)
+  Rendered layouts/_header.html.erb (2.8ms)
+Completed 200 OK in 219ms (Views: 217.0ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/assets/_header.css?body=1" for 127.0.0.1 at 2014-08-05 18:41:04 -0500
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-08-05 18:41:04 -0500
+
+
+Started GET "/assets/reports.css?body=1" for 127.0.0.1 at 2014-08-05 18:41:04 -0500
+
+
+Started GET "/assets/admin.css?body=1" for 127.0.0.1 at 2014-08-05 18:41:04 -0500
+
+
+Started GET "/assets/custom.css?body=1" for 127.0.0.1 at 2014-08-05 18:41:04 -0500
+
+
+Started GET "/assets/bills.css?body=1" for 127.0.0.1 at 2014-08-05 18:41:04 -0500
+
+
+Started GET "/assets/paysheets.css?body=1" for 127.0.0.1 at 2014-08-05 18:41:04 -0500
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2014-08-05 18:41:04 -0500
+
+
+Started GET "/assets/sessions.css?body=1" for 127.0.0.1 at 2014-08-05 18:41:04 -0500
+
+
+Started GET "/assets/stocks.css?body=1" for 127.0.0.1 at 2014-08-05 18:41:04 -0500
+
+
+Started GET "/assets/users.css?body=1" for 127.0.0.1 at 2014-08-05 18:41:04 -0500
+
+
+Started GET "/assets/valuations.css?body=1" for 127.0.0.1 at 2014-08-05 18:41:04 -0500
+
+
+Started GET "/assets/welcome.css?body=1" for 127.0.0.1 at 2014-08-05 18:41:04 -0500
+
+
+Started GET "/assets/workshop.css?body=1" for 127.0.0.1 at 2014-08-05 18:41:04 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-08-05 18:41:04 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-08-05 18:41:04 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-08-05 18:41:04 -0500
+
+
+Started GET "/assets/bootstrap-transition.js?body=1" for 127.0.0.1 at 2014-08-05 18:41:04 -0500
+
+
+Started GET "/assets/bootstrap-affix.js?body=1" for 127.0.0.1 at 2014-08-05 18:41:04 -0500
+
+
+Started GET "/assets/bootstrap-alert.js?body=1" for 127.0.0.1 at 2014-08-05 18:41:04 -0500
+
+
+Started GET "/assets/bootstrap-button.js?body=1" for 127.0.0.1 at 2014-08-05 18:41:04 -0500
+
+
+Started GET "/assets/bootstrap-carousel.js?body=1" for 127.0.0.1 at 2014-08-05 18:41:04 -0500
+
+
+Started GET "/assets/bootstrap-collapse.js?body=1" for 127.0.0.1 at 2014-08-05 18:41:04 -0500
+
+
+Started GET "/assets/bootstrap-dropdown.js?body=1" for 127.0.0.1 at 2014-08-05 18:41:04 -0500
+
+
+Started GET "/assets/bootstrap-modal.js?body=1" for 127.0.0.1 at 2014-08-05 18:41:04 -0500
+
+
+Started GET "/assets/bootstrap-scrollspy.js?body=1" for 127.0.0.1 at 2014-08-05 18:41:04 -0500
+
+
+Started GET "/assets/bootstrap-tab.js?body=1" for 127.0.0.1 at 2014-08-05 18:41:04 -0500
+
+
+Started GET "/assets/bootstrap-tooltip.js?body=1" for 127.0.0.1 at 2014-08-05 18:41:04 -0500
+
+
+Started GET "/assets/bootstrap-popover.js?body=1" for 127.0.0.1 at 2014-08-05 18:41:04 -0500
+
+
+Started GET "/assets/bootstrap-typeahead.js?body=1" for 127.0.0.1 at 2014-08-05 18:41:04 -0500
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2014-08-05 18:41:04 -0500
+
+
+Started GET "/assets/admin.js?body=1" for 127.0.0.1 at 2014-08-05 18:41:04 -0500
+
+
+Started GET "/assets/bills.js?body=1" for 127.0.0.1 at 2014-08-05 18:41:04 -0500
+
+
+Started GET "/assets/paysheets.js?body=1" for 127.0.0.1 at 2014-08-05 18:41:04 -0500
+
+
+Started GET "/assets/reports.js?body=1" for 127.0.0.1 at 2014-08-05 18:41:04 -0500
+
+
+Started GET "/assets/sessions.js?body=1" for 127.0.0.1 at 2014-08-05 18:41:04 -0500
+
+
+Started GET "/assets/stocks.js?body=1" for 127.0.0.1 at 2014-08-05 18:41:04 -0500
+
+
+Started GET "/assets/users.js?body=1" for 127.0.0.1 at 2014-08-05 18:41:04 -0500
+
+
+Started GET "/assets/valuations.js?body=1" for 127.0.0.1 at 2014-08-05 18:41:04 -0500
+
+
+Started GET "/assets/welcome.js?body=1" for 127.0.0.1 at 2014-08-05 18:41:04 -0500
+
+
+Started GET "/assets/workshop.js?body=1" for 127.0.0.1 at 2014-08-05 18:41:04 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-08-05 18:41:04 -0500
+>>>>>>> e593c7bf573d05ee0b5d4551516886461c002a9f
+  [1m[36m (1.2ms)[0m  [1mCREATE TABLE "brands" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (1.2ms)[0m  CREATE TABLE "car_spare_parts" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "idCar" integer, "idSparePart" integer, "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (1.0ms)[0m  [1mCREATE TABLE "cars" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "idBrand" integer, "carType" varchar(255), "year" varchar(255), "generation" varchar(255), "model" varchar(255), "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (0.9ms)[0m  CREATE TABLE "spare_parts" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "description" text, "carRegion" varchar(255), "parent" integer, "brand" varchar(255), "spareCode" varchar(255), "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (1.0ms)[0m  [1mCREATE TABLE "stock_spare_parts" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "status" varchar(255), "idWarehouse" integer, "idWorkshopCar" integer, "color" varchar(255), "idSparePart" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (1.1ms)[0m  CREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "email" varchar(255), "username" varchar(255), "privileges" varchar(255), "created_at" datetime, "updated_at" datetime, "password_digest" varchar(255), "remember_token" varchar(255)) 
+  [1m[36m (0.9ms)[0m  [1mCREATE UNIQUE INDEX "index_users_on_email" ON "users" ("email")[0m
+  [1m[35m (1.1ms)[0m  CREATE INDEX "index_users_on_remember_token" ON "users" ("remember_token")
+  [1m[36m (1.1ms)[0m  [1mCREATE TABLE "warehouses" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "branch" varchar(255), "location" varchar(255), "geoLocation" varchar(255), "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (1.1ms)[0m  CREATE TABLE "workshop_cars" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "color" varchar(255), "doorNumber" integer, "status" varchar(255), "idSerie" varchar(255), "idMotor" varchar(255), "licensePlates" varchar(255), "idCar" integer, "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (1.2ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) [0m
+  [1m[35m (1.0ms)[0m  CREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")
+  [1m[36m (0.1ms)[0m  [1mSELECT version FROM "schema_migrations"[0m
+  [1m[35m (1.0ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140731180705')
+  [1m[36m (1.3ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140728174620')[0m
+  [1m[35m (1.2ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140729163539')
+  [1m[36m (1.2ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140729171428')[0m
+  [1m[35m (1.0ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140729171726')
+  [1m[36m (1.0ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140729171829')[0m
+  [1m[35m (0.8ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140729172200')
+  [1m[36m (1.0ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140729172229')[0m
+  [1m[35m (1.0ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140729172339')
+  [1m[36m (1.2ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140729172712')[0m
+  [1m[35m (1.0ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140729173058')
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
