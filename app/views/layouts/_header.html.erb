@@ -1,32 +1,26 @@
-<header class="navbar navbar-fixed-top navbar-inverse grey">
-    <div class="container-fluid">
-      <!-- <%= link_to image_tag("logo.png"), root_path, id: "logo" %> -->
-      <%= link_to "SYRAT", root_path, id: "logo", class:"brand" %>
-      <nav>
-        <ul class="nav pull-right">
-          <!-- <button class="btn btn-default btn-lg" data-toggle="modal" data-target="#login">
-              INGRESAR
-          </button> -->
-          <li><%= link_to "Home", root_path %></li>
-          <% if signed_in? %>
-            <li><%= link_to "Signed In", '#' %></li>
-            <li id="fat-menu" class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                Account <b class="caret"></b>
-              </a>
-              <ul class="dropdown-menu">
-                <li><%= link_to "Profile", current_user %></li>
-                <li class="divider"></li>
-                <li>
-                  <%= link_to "Sign out", signout_path, method: "delete" %>
-                </li>
-              </ul>
-            </li>
-          <% else %>
-            <li><%= link_to "Sign in", signin_path %></li>
-          <% end %>
+<header class="navbar navbar-inverse navbar-fixed-top sitetab" role="navigation">
 
-        </ul>
-      </nav>
+    <div class="container">
+      <!-- <%= link_to image_tag("logo.png"), root_path, id: "logo" %> -->
+      <%= link_to image_tag("logo.png"), root_path, class:"navbar-brand", style:"max-width:100px; margin-top: -7px;" %>
+    </div>
+    <div class="navbar-header pull-right btn-lg">
+      <% if signed_in? %>
+        <li><%= link_to "Signed In", '#', class: "navbar-brand navtabcont rightlink" %></li>
+        <li id="fat-menu" class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+            Account <b class="caret"></b>
+          </a>
+          <ul class="dropdown-menu">
+            <li><%= link_to "Profile", current_user %></li>
+            <li class="divider"></li>
+            <li>
+              <%= link_to "Sign out", signout_path, method: "delete", class: "navbar-brand navtabcont rightlink" %>
+            </li>
+          </ul>
+        </li>
+      <% else %>
+        <li><%= link_to "Sign in", signin_path , class: "navbar-brand navtabcont rightlink"%></li>
+      <% end %>
     </div>
 </header>

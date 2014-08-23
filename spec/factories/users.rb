@@ -15,6 +15,9 @@ FactoryGirl.define do
     factory :operator do
       privileges "operador"
     end
+    factory :adjuster do
+      privileges "ajustador"
+    end
 end
 
 

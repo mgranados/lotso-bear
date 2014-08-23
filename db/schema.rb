@@ -13,50 +13,6 @@
 
 ActiveRecord::Schema.define(version: 20140731180705) do
 
-  create_table "brands", force: true do |t|
-    t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "car_spare_parts", force: true do |t|
-    t.integer  "idCar"
-    t.integer  "idSparePart"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "cars", force: true do |t|
-    t.integer  "idBrand"
-    t.string   "carType"
-    t.string   "year"
-    t.string   "generation"
-    t.string   "model"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "spare_parts", force: true do |t|
-    t.string   "name"
-    t.text     "description"
-    t.string   "carRegion"
-    t.integer  "parent"
-    t.string   "brand"
-    t.string   "spareCode"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "stock_spare_parts", force: true do |t|
-    t.string   "status"
-    t.integer  "idWarehouse"
-    t.integer  "idWorkshopCar"
-    t.string   "color"
-    t.integer  "idSparePart"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "users", force: true do |t|
     t.string   "name"
     t.string   "email"
@@ -70,25 +26,5 @@ ActiveRecord::Schema.define(version: 20140731180705) do
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
   add_index "users", ["remember_token"], name: "index_users_on_remember_token"
-
-  create_table "warehouses", force: true do |t|
-    t.string   "branch"
-    t.string   "location"
-    t.string   "geoLocation"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "workshop_cars", force: true do |t|
-    t.string   "color"
-    t.integer  "doorNumber"
-    t.string   "status"
-    t.string   "idSerie"
-    t.string   "idMotor"
-    t.string   "licensePlates"
-    t.integer  "idCar"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
 
 end

@@ -1,5 +1,6 @@
 LotsoBear::Application.routes.draw do
 
+  get "sinisters/new"
   resources :users
   resources :reports,   only:  [:index]
   resources :valuations,   only:  [:index,:new]
