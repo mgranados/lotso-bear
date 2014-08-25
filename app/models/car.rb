@@ -1,4 +1,4 @@
 class Car < ActiveRecord::Base
-  belongs_to :insured, :genericCar, :warehouse, :carStatus
+  belongs_to :insured, :genericCar
   has_many :spareParts
 end

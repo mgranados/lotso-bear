@@ -22,6 +22,7 @@ group :development, :test do
   gem 'spork-rails', '4.0.0'
   gem 'selenium-webdriver', '2.35.1'
   gem 'faker'
+  gem 'shoulda-matchers'
   end
 
 group :production do

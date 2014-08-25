@@ -1,4 +1,3 @@
 class GenericCar < ActiveRecord::Base
-  belongs_to :carBrands
-  has_many :cars , :spareParts
+  has_many :cars , :spareParts, :sparePartGroups
 end
