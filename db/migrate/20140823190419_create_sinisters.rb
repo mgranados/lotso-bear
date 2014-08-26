@@ -1,8 +1,7 @@
 class CreateSinisters < ActiveRecord::Migration
   def change
     create_table :sinisters do |t|
-      t.integer :idThirdInsured
-      t.integer :idInsured
+      t.integer :insured_id
       t.string :sinisterNumber
       t.string :sinisterPolicyNumber
       t.string :sinisterSubsection

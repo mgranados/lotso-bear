@@ -1,9 +1,9 @@
 class CreateCars < ActiveRecord::Migration
   def change
     create_table :cars do |t|
-      t.integer :idGenericCar
-      t.integer :idInsured
-      t.integer :idWarehouse
+      t.integer :genericCar_id
+      t.integer :insured_id
+      t.integer :warehouse_id
       t.string :carColor
       t.integer :carDoorNumber
       t.string :carSerie

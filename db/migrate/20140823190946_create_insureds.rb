@@ -1,7 +1,7 @@
 class CreateInsureds < ActiveRecord::Migration
   def change
     create_table :insureds do |t|
-      t.integer :idSinister
+      t.integer :sinister_id
       t.boolean :insuredIsThird
       t.string :insuredName
       t.integer :insuredTelephone

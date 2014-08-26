@@ -1,5 +1,11 @@
 require 'spec_helper'
 
-describe Car do
-  pending "add some examples to (or delete) #{__FILE__}"
+describe "Car Model" do
+before{ @car = FactoryGirl.create(:car) }
+
+  describe "Car Columns" do
+    subject {@car}
+
+    it "idCar" do should respond_to(:id) end
+  end
 end

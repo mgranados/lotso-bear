@@ -13,23 +13,10 @@
 
 ActiveRecord::Schema.define(version: 20140823192216) do
 
-  create_table "car_brands", force: true do |t|
-    t.string   "carBrandName"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "car_statuses", force: true do |t|
-    t.string   "carStatus"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "cars", force: true do |t|
-    t.integer  "idGenericCar"
-    t.integer  "idInsured"
-    t.integer  "idCarStatus"
-    t.integer  "idWarehouse"
+    t.integer  "genericCar_id"
+    t.integer  "insured_id"
+    t.integer  "warehouse_id"
     t.string   "carColor"
     t.integer  "carDoorNumber"
     t.string   "carSerie"
@@ -43,7 +30,7 @@ ActiveRecord::Schema.define(version: 20140823192216) do
   end
 
   create_table "generic_cars", force: true do |t|
-    t.integer  "idBrand"
+    t.integer  "genericCarBrand"
     t.string   "genericCarType"
     t.integer  "genericCarYear"
     t.string   "genericCarGeneration"
@@ -53,7 +40,7 @@ ActiveRecord::Schema.define(version: 20140823192216) do
   end
 
   create_table "insureds", force: true do |t|
-    t.integer  "idSinister"
+    t.integer  "sinister_id"
     t.boolean  "insuredIsThird"
     t.string   "insuredName"
     t.integer  "insuredTelephone"
@@ -63,8 +50,7 @@ ActiveRecord::Schema.define(version: 20140823192216) do
   end
 
   create_table "sinisters", force: true do |t|
-    t.integer  "idThirdInsured"
-    t.integer  "idInsured"
+    t.integer  "insured_id"
     t.string   "sinisterNumber"
     t.string   "sinisterPolicyNumber"
     t.string   "sinisterSubsection"
@@ -82,12 +68,6 @@ ActiveRecord::Schema.define(version: 20140823192216) do
     t.datetime "updated_at"
   end
 
-  create_table "spare_part_brands", force: true do |t|
-    t.string   "sparePartBrandName"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "spare_part_groups", force: true do |t|
     t.text     "sparePartGroupDescription"
     t.string   "sparePartGroupName"
@@ -95,32 +75,19 @@ ActiveRecord::Schema.define(version: 20140823192216) do
     t.datetime "updated_at"
   end
 
-  create_table "spare_part_statuses", force: true do |t|
-    t.string   "sparePartStatus"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "spare_part_types", force: true do |t|
-    t.string   "sparePartTypeName"
-    t.text     "sparePartTypeDescription"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "spare_parts", force: true do |t|
-    t.integer  "idWareHouse"
-    t.integer  "idSparePartBrand"
-    t.integer  "idSparePartType"
-    t.integer  "idSparePartGroup"
-    t.integer  "idSparePartStatus"
-    t.integer  "idCar"
+    t.integer  "car_id"
+    t.integer  "wareHouse_id"
+    t.integer  "genericCar_id"
+    t.integer  "sparePartGroup_id"
+    t.integer  "sparePartBrand"
+    t.integer  "sparePartType"
+    t.integer  "sparePartStatus"
     t.string   "sparePartName"
     t.text     "sparePartDescription"
     t.string   "sparePartCarRegion"
     t.string   "sparePartCode"
     t.string   "sparePartColor"
-    t.integer  "idGenericCar"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
