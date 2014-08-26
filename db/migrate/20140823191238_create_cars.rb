@@ -3,7 +3,6 @@ class CreateCars < ActiveRecord::Migration
     create_table :cars do |t|
       t.integer :idGenericCar
       t.integer :idInsured
-      t.integer :idCarStatus
       t.integer :idWarehouse
       t.string :carColor
       t.integer :carDoorNumber
