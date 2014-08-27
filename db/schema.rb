@@ -13,6 +13,18 @@
 
 ActiveRecord::Schema.define(version: 20140823192216) do
 
+  create_table "car_brands", force: true do |t|
+    t.string   "carBrandName"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "car_statuses", force: true do |t|
+    t.string   "carStatus"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "cars", force: true do |t|
     t.integer  "genericCar_id"
     t.integer  "insured_id"
@@ -68,9 +80,28 @@ ActiveRecord::Schema.define(version: 20140823192216) do
     t.datetime "updated_at"
   end
 
+  create_table "spare_part_brands", force: true do |t|
+    t.string   "sparePartBrandName"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "spare_part_groups", force: true do |t|
     t.text     "sparePartGroupDescription"
     t.string   "sparePartGroupName"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "spare_part_statuses", force: true do |t|
+    t.string   "sparePartStatus"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "spare_part_types", force: true do |t|
+    t.string   "sparePartTypeName"
+    t.text     "sparePartTypeDescription"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

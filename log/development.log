@@ -73735,3 +73735,152 @@ Migrating to CreateSparePartGroups (20140823192216)
   [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20140823192216"]]
   [1m[35m (1.0ms)[0m  commit transaction
   [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateCarStatuses (20140823191333)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.5ms)[0m  [1mCREATE TABLE "car_statuses" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "carStatus" varchar(255), "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20140823191333"]]
+  [1m[36m (1.1ms)[0m  [1mcommit transaction[0m
+Migrating to CreateCarBrands (20140823191518)
+  [1m[35m (0.2ms)[0m  begin transaction
+  [1m[36m (0.4ms)[0m  [1mCREATE TABLE "car_brands" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "carBrandName" varchar(255), "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20140823191518"]]
+  [1m[36m (0.8ms)[0m  [1mcommit transaction[0m
+Migrating to CreateSparePartStatuses (20140823191551)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.4ms)[0m  [1mCREATE TABLE "spare_part_statuses" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "sparePartStatus" varchar(255), "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20140823191551"]]
+  [1m[36m (0.8ms)[0m  [1mcommit transaction[0m
+Migrating to CreateSparePartTypes (20140823192118)
+  [1m[35m (0.2ms)[0m  begin transaction
+  [1m[36m (0.5ms)[0m  [1mCREATE TABLE "spare_part_types" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "sparePartTypeName" varchar(255), "sparePartTypeDescription" text, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20140823192118"]]
+  [1m[36m (0.9ms)[0m  [1mcommit transaction[0m
+Migrating to CreateSparePartBrands (20140823192137)
+  [1m[35m (0.2ms)[0m  begin transaction
+  [1m[36m (0.4ms)[0m  [1mCREATE TABLE "spare_part_brands" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "sparePartBrandName" varchar(255), "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20140823192137"]]
+  [1m[36m (0.8ms)[0m  [1mcommit transaction[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (1.3ms)[0m  [1mCREATE TABLE "car_brands" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "carBrandName" varchar(255), "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (1.1ms)[0m  CREATE TABLE "car_statuses" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "carStatus" varchar(255), "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (1.0ms)[0m  [1mCREATE TABLE "cars" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "genericCar_id" integer, "insured_id" integer, "warehouse_id" integer, "carColor" varchar(255), "carDoorNumber" integer, "carSerie" varchar(255), "carMotor" varchar(255), "carLicensePlates" varchar(255), "carInventoryDescription" text, "carTaxiNumber" varchar(255), "carSpecialEquipment" text, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (1.0ms)[0m  CREATE TABLE "generic_cars" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "genericCarBrand" integer, "genericCarType" varchar(255), "genericCarYear" integer, "genericCarGeneration" varchar(255), "genericCarModel" varchar(255), "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (1.0ms)[0m  [1mCREATE TABLE "insureds" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "sinister_id" integer, "insuredIsThird" boolean, "insuredName" varchar(255), "insuredTelephone" integer, "insuredMail" varchar(255), "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (0.9ms)[0m  CREATE TABLE "sinisters" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "insured_id" integer, "sinisterNumber" varchar(255), "sinisterPolicyNumber" varchar(255), "sinisterSubsection" varchar(255), "sinisterExpeditionDate" date, "sinisterDate" date, "sinisterDeductibleValue" float, "sinisterCommercialValue" float, "sinisterRequiresCrane" boolean, "sinisterCollectionStatus" boolean, "sinisterSpecialConditions" varchar(255), "sinisterThirdInsured" boolean, "sinisterAgentName" varchar(255), "sinisterComment" text, "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (1.0ms)[0m  [1mCREATE TABLE "spare_part_brands" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "sparePartBrandName" varchar(255), "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (1.2ms)[0m  CREATE TABLE "spare_part_groups" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "sparePartGroupDescription" text, "sparePartGroupName" varchar(255), "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (1.0ms)[0m  [1mCREATE TABLE "spare_part_statuses" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "sparePartStatus" varchar(255), "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (1.2ms)[0m  CREATE TABLE "spare_part_types" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "sparePartTypeName" varchar(255), "sparePartTypeDescription" text, "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (1.4ms)[0m  [1mCREATE TABLE "spare_parts" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "car_id" integer, "wareHouse_id" integer, "genericCar_id" integer, "sparePartGroup_id" integer, "sparePartBrand" integer, "sparePartType" integer, "sparePartStatus" integer, "sparePartName" varchar(255), "sparePartDescription" text, "sparePartCarRegion" varchar(255), "sparePartCode" varchar(255), "sparePartColor" varchar(255), "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (1.0ms)[0m  CREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "email" varchar(255), "username" varchar(255), "privileges" varchar(255), "created_at" datetime, "updated_at" datetime, "password_digest" varchar(255), "remember_token" varchar(255)) 
+  [1m[36m (0.9ms)[0m  [1mCREATE UNIQUE INDEX "index_users_on_email" ON "users" ("email")[0m
+  [1m[35m (1.2ms)[0m  CREATE INDEX "index_users_on_remember_token" ON "users" ("remember_token")
+  [1m[36m (1.0ms)[0m  [1mCREATE TABLE "warehouses" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "warehouseBranch" varchar(255), "warehouseLocation" varchar(255), "warehouseGeolocation" varchar(255), "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (0.9ms)[0m  CREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) 
+  [1m[36m (1.1ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35m (0.2ms)[0m  SELECT version FROM "schema_migrations"
+  [1m[36m (0.8ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140823192216')[0m
+  [1m[35m (0.9ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140728174620')
+  [1m[36m (0.7ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140729172229')[0m
+  [1m[35m (0.8ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140729173058')
+  [1m[36m (0.8ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140731180705')[0m
+  [1m[35m (0.8ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140823190419')
+  [1m[36m (1.0ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140823190946')[0m
+  [1m[35m (1.0ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140823191238')
+  [1m[36m (0.9ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140823191333')[0m
+  [1m[35m (1.1ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140823191440')
+  [1m[36m (1.4ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140823191518')[0m
+  [1m[35m (0.9ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140823191551')
+  [1m[36m (0.9ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140823191924')[0m
+  [1m[35m (1.2ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140823192023')
+  [1m[36m (1.3ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140823192118')[0m
+  [1m[35m (1.0ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140823192137')
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mUser Exists (0.3ms)[0m  [1mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('admin@admin.com') LIMIT 1[0m
+Binary data inserted for `string` type on column `password_digest`
+  [1m[35mSQL (5.8ms)[0m  INSERT INTO "users" ("created_at", "email", "name", "password_digest", "privileges", "remember_token", "updated_at", "username") VALUES (?, ?, ?, ?, ?, ?, ?, ?)  [["created_at", Wed, 27 Aug 2014 19:07:20 UTC +00:00], ["email", "admin@admin.com"], ["name", "Administrador"], ["password_digest", "$2a$10$sBDPxsTvCImR82lkkxKIduGpWYmwN66ZhmpnQStnFgekUKZkrzKiW"], ["privileges", "admin"], ["remember_token", "1c40cf2dce6b8b3174197f82f8d96cf6b91191f5"], ["updated_at", Wed, 27 Aug 2014 19:07:20 UTC +00:00], ["username", "Administrador"]]
+  [1m[36m (1.0ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mUser Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('operador@operador.com') LIMIT 1[0m
+Binary data inserted for `string` type on column `password_digest`
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "users" ("created_at", "email", "name", "password_digest", "privileges", "remember_token", "updated_at", "username") VALUES (?, ?, ?, ?, ?, ?, ?, ?)  [["created_at", Wed, 27 Aug 2014 19:07:20 UTC +00:00], ["email", "operador@operador.com"], ["name", "Operador"], ["password_digest", "$2a$10$a67Hvv0x7975OM6mg3PRl.C1GUWpWwuGu.tH0Qta2ONti535kbdL."], ["privileges", "operador"], ["remember_token", "1a19120f1304857b9d2c0a831303446a012a8dee"], ["updated_at", Wed, 27 Aug 2014 19:07:20 UTC +00:00], ["username", "Operador"]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mUser Exists (0.1ms)[0m  [1mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('capturista@capturista.com') LIMIT 1[0m
+Binary data inserted for `string` type on column `password_digest`
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "users" ("created_at", "email", "name", "password_digest", "privileges", "remember_token", "updated_at", "username") VALUES (?, ?, ?, ?, ?, ?, ?, ?)  [["created_at", Wed, 27 Aug 2014 19:07:20 UTC +00:00], ["email", "capturista@capturista.com"], ["name", "Capturista"], ["password_digest", "$2a$10$SdCTAADgYzPF5Eqmam3AQOoErixRXmokALvRj6hg8fEdgnQnC1uC6"], ["privileges", "capturista"], ["remember_token", "19beae15939f5b8db95a02ad74ad8c8eb1c4fc6b"], ["updated_at", Wed, 27 Aug 2014 19:07:20 UTC +00:00], ["username", "Capturista"]]
+  [1m[36m (1.1ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mUser Exists (0.1ms)[0m  [1mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('gerente@gerente.com') LIMIT 1[0m
+Binary data inserted for `string` type on column `password_digest`
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "users" ("created_at", "email", "name", "password_digest", "privileges", "remember_token", "updated_at", "username") VALUES (?, ?, ?, ?, ?, ?, ?, ?)  [["created_at", Wed, 27 Aug 2014 19:07:20 UTC +00:00], ["email", "gerente@gerente.com"], ["name", "Gerente"], ["password_digest", "$2a$10$/6gq1pPYm12b2BUa36gTZuBASeLgcW7AE6wqiytzeftwg3p5siAPO"], ["privileges", "gerente"], ["remember_token", "af9e09900522856dc27387702e74fee4bcbabbec"], ["updated_at", Wed, 27 Aug 2014 19:07:20 UTC +00:00], ["username", "Gerente"]]
+  [1m[36m (9.1ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mUser Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('ajustador@ajustador.com') LIMIT 1[0m
+Binary data inserted for `string` type on column `password_digest`
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "users" ("created_at", "email", "name", "password_digest", "privileges", "remember_token", "updated_at", "username") VALUES (?, ?, ?, ?, ?, ?, ?, ?)  [["created_at", Wed, 27 Aug 2014 19:07:20 UTC +00:00], ["email", "ajustador@ajustador.com"], ["name", "Ajustador"], ["password_digest", "$2a$10$5yT6ArZmKkHowfxREJHRVe31fYpKcEk.V7dHsUKiibhw7Dsh2Hl0O"], ["privileges", "ajustador"], ["remember_token", "b4f020be801099c52bf53fe56bec8f919066a4c2"], ["updated_at", Wed, 27 Aug 2014 19:07:20 UTC +00:00], ["username", "Ajustador"]]
+  [1m[36m (0.9ms)[0m  [1mcommit transaction[0m
+  [1m[36m (1.5ms)[0m  [1mCREATE TABLE "car_brands" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "carBrandName" varchar(255), "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (1.1ms)[0m  CREATE TABLE "car_statuses" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "carStatus" varchar(255), "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (1.0ms)[0m  [1mCREATE TABLE "cars" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "genericCar_id" integer, "insured_id" integer, "warehouse_id" integer, "carColor" varchar(255), "carDoorNumber" integer, "carSerie" varchar(255), "carMotor" varchar(255), "carLicensePlates" varchar(255), "carInventoryDescription" text, "carTaxiNumber" varchar(255), "carSpecialEquipment" text, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (0.9ms)[0m  CREATE TABLE "generic_cars" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "genericCarBrand" integer, "genericCarType" varchar(255), "genericCarYear" integer, "genericCarGeneration" varchar(255), "genericCarModel" varchar(255), "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (1.0ms)[0m  [1mCREATE TABLE "insureds" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "sinister_id" integer, "insuredIsThird" boolean, "insuredName" varchar(255), "insuredTelephone" integer, "insuredMail" varchar(255), "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (1.1ms)[0m  CREATE TABLE "sinisters" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "insured_id" integer, "sinisterNumber" varchar(255), "sinisterPolicyNumber" varchar(255), "sinisterSubsection" varchar(255), "sinisterExpeditionDate" date, "sinisterDate" date, "sinisterDeductibleValue" float, "sinisterCommercialValue" float, "sinisterRequiresCrane" boolean, "sinisterCollectionStatus" boolean, "sinisterSpecialConditions" varchar(255), "sinisterThirdInsured" boolean, "sinisterAgentName" varchar(255), "sinisterComment" text, "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (0.9ms)[0m  [1mCREATE TABLE "spare_part_brands" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "sparePartBrandName" varchar(255), "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (1.5ms)[0m  CREATE TABLE "spare_part_groups" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "sparePartGroupDescription" text, "sparePartGroupName" varchar(255), "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (1.1ms)[0m  [1mCREATE TABLE "spare_part_statuses" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "sparePartStatus" varchar(255), "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (0.9ms)[0m  CREATE TABLE "spare_part_types" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "sparePartTypeName" varchar(255), "sparePartTypeDescription" text, "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (1.5ms)[0m  [1mCREATE TABLE "spare_parts" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "car_id" integer, "wareHouse_id" integer, "genericCar_id" integer, "sparePartGroup_id" integer, "sparePartBrand" integer, "sparePartType" integer, "sparePartStatus" integer, "sparePartName" varchar(255), "sparePartDescription" text, "sparePartCarRegion" varchar(255), "sparePartCode" varchar(255), "sparePartColor" varchar(255), "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (1.1ms)[0m  CREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "email" varchar(255), "username" varchar(255), "privileges" varchar(255), "created_at" datetime, "updated_at" datetime, "password_digest" varchar(255), "remember_token" varchar(255)) 
+  [1m[36m (0.9ms)[0m  [1mCREATE UNIQUE INDEX "index_users_on_email" ON "users" ("email")[0m
+  [1m[35m (1.1ms)[0m  CREATE INDEX "index_users_on_remember_token" ON "users" ("remember_token")
+  [1m[36m (0.9ms)[0m  [1mCREATE TABLE "warehouses" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "warehouseBranch" varchar(255), "warehouseLocation" varchar(255), "warehouseGeolocation" varchar(255), "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (1.1ms)[0m  CREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) 
+  [1m[36m (1.2ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35m (0.2ms)[0m  SELECT version FROM "schema_migrations"
+  [1m[36m (0.9ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140823192216')[0m
+  [1m[35m (0.8ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140728174620')
+  [1m[36m (0.8ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140729172229')[0m
+  [1m[35m (0.9ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140729173058')
+  [1m[36m (0.9ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140731180705')[0m
+  [1m[35m (1.0ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140823190419')
+  [1m[36m (0.8ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140823190946')[0m
+  [1m[35m (0.8ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140823191238')
+  [1m[36m (0.8ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140823191333')[0m
+  [1m[35m (0.9ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140823191440')
+  [1m[36m (1.1ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140823191518')[0m
+  [1m[35m (1.1ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140823191551')
+  [1m[36m (1.2ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140823191924')[0m
+  [1m[35m (0.8ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140823192023')
+  [1m[36m (0.9ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140823192118')[0m
+  [1m[35m (0.8ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140823192137')
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mUser Exists (0.3ms)[0m  [1mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('admin@admin.com') LIMIT 1[0m
+Binary data inserted for `string` type on column `password_digest`
+  [1m[35mSQL (5.4ms)[0m  INSERT INTO "users" ("created_at", "email", "name", "password_digest", "privileges", "remember_token", "updated_at", "username") VALUES (?, ?, ?, ?, ?, ?, ?, ?)  [["created_at", Wed, 27 Aug 2014 19:15:32 UTC +00:00], ["email", "admin@admin.com"], ["name", "Administrador"], ["password_digest", "$2a$10$iqzAd9R08TV6jb1RiJan9uG3MiQxx4e8/ggr2QI5tUHtiw2892v3C"], ["privileges", "admin"], ["remember_token", "2a7fdcf3d8fd7c29cfc35b45ccab0c360e24660f"], ["updated_at", Wed, 27 Aug 2014 19:15:32 UTC +00:00], ["username", "Administrador"]]
+  [1m[36m (0.8ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mUser Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('operador@operador.com') LIMIT 1[0m
+Binary data inserted for `string` type on column `password_digest`
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "users" ("created_at", "email", "name", "password_digest", "privileges", "remember_token", "updated_at", "username") VALUES (?, ?, ?, ?, ?, ?, ?, ?)  [["created_at", Wed, 27 Aug 2014 19:15:32 UTC +00:00], ["email", "operador@operador.com"], ["name", "Operador"], ["password_digest", "$2a$10$YSMq7ixaVhXwbMN2G5fOj.G7DhLpeHyA480urAYP5MSFjmRWkw4Jq"], ["privileges", "operador"], ["remember_token", "179ff8f6df88fa50c5b0c02dda32fd312459c4de"], ["updated_at", Wed, 27 Aug 2014 19:15:32 UTC +00:00], ["username", "Operador"]]
+  [1m[36m (0.8ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mUser Exists (0.1ms)[0m  [1mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('capturista@capturista.com') LIMIT 1[0m
+Binary data inserted for `string` type on column `password_digest`
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "users" ("created_at", "email", "name", "password_digest", "privileges", "remember_token", "updated_at", "username") VALUES (?, ?, ?, ?, ?, ?, ?, ?)  [["created_at", Wed, 27 Aug 2014 19:15:32 UTC +00:00], ["email", "capturista@capturista.com"], ["name", "Capturista"], ["password_digest", "$2a$10$GkKcvcBslPL48wPI67fu0uZNBmpwVUR7OtqNhOIQXZk7I50uWidyG"], ["privileges", "capturista"], ["remember_token", "2a490b9a1478b2f4e387a52159a06dd9d119fa49"], ["updated_at", Wed, 27 Aug 2014 19:15:32 UTC +00:00], ["username", "Capturista"]]
+  [1m[36m (0.8ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mUser Exists (0.1ms)[0m  [1mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('gerente@gerente.com') LIMIT 1[0m
+Binary data inserted for `string` type on column `password_digest`
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "users" ("created_at", "email", "name", "password_digest", "privileges", "remember_token", "updated_at", "username") VALUES (?, ?, ?, ?, ?, ?, ?, ?)  [["created_at", Wed, 27 Aug 2014 19:15:33 UTC +00:00], ["email", "gerente@gerente.com"], ["name", "Gerente"], ["password_digest", "$2a$10$Q4yn2UXxkEVBuQA5eXmv7OrceCq6d3UcYbPOcQa12oa14xHFQo7EG"], ["privileges", "gerente"], ["remember_token", "f6fc5e3d5a6f24fa720086a9566acdfd5c184bd5"], ["updated_at", Wed, 27 Aug 2014 19:15:33 UTC +00:00], ["username", "Gerente"]]
+  [1m[36m (0.9ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mUser Exists (0.1ms)[0m  [1mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('ajustador@ajustador.com') LIMIT 1[0m
+Binary data inserted for `string` type on column `password_digest`
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "users" ("created_at", "email", "name", "password_digest", "privileges", "remember_token", "updated_at", "username") VALUES (?, ?, ?, ?, ?, ?, ?, ?)  [["created_at", Wed, 27 Aug 2014 19:15:33 UTC +00:00], ["email", "ajustador@ajustador.com"], ["name", "Ajustador"], ["password_digest", "$2a$10$nxrrz.HRn6fRvj7PNhLzlOCqMoux2yQvCAQ.ck7RwcsXF218yQQEG"], ["privileges", "ajustador"], ["remember_token", "3fe4dd408893e14ce2145969a8dc0a90cac5f3a5"], ["updated_at", Wed, 27 Aug 2014 19:15:33 UTC +00:00], ["username", "Ajustador"]]
+  [1m[36m (0.8ms)[0m  [1mcommit transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
