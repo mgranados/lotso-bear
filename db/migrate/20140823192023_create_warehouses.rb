@@ -1,9 +1,9 @@
 class CreateWarehouses < ActiveRecord::Migration
   def change
     create_table :warehouses do |t|
-      t.string :branch
-      t.string :location
-      t.string :geoLocation
+      t.string :warehouseBranch
+      t.string :warehouseLocation
+      t.string :warehouseGeolocation
 
       t.timestamps
     end

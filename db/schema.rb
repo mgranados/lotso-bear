@@ -11,48 +11,83 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140731180705) do
-
-  create_table "brands", force: true do |t|
-    t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "car_spare_parts", force: true do |t|
-    t.integer  "idCar"
-    t.integer  "idSparePart"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
+ActiveRecord::Schema.define(version: 20140823192216) do
 
   create_table "cars", force: true do |t|
-    t.integer  "idBrand"
-    t.string   "carType"
-    t.string   "year"
-    t.string   "generation"
-    t.string   "model"
+    t.integer  "genericCar_id"
+    t.integer  "insured_id"
+    t.integer  "warehouse_id"
+    t.string   "carColor"
+    t.integer  "carDoorNumber"
+    t.string   "carSerie"
+    t.string   "carMotor"
+    t.string   "carLicensePlates"
+    t.text     "carInventoryDescription"
+    t.string   "carTaxiNumber"
+    t.text     "carSpecialEquipment"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "generic_cars", force: true do |t|
+    t.integer  "genericCarBrand"
+    t.string   "genericCarType"
+    t.integer  "genericCarYear"
+    t.string   "genericCarGeneration"
+    t.string   "genericCarModel"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "insureds", force: true do |t|
+    t.integer  "sinister_id"
+    t.boolean  "insuredIsThird"
+    t.string   "insuredName"
+    t.integer  "insuredTelephone"
+    t.string   "insuredMail"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "sinisters", force: true do |t|
+    t.integer  "insured_id"
+    t.string   "sinisterNumber"
+    t.string   "sinisterPolicyNumber"
+    t.string   "sinisterSubsection"
+    t.date     "sinisterExpeditionDate"
+    t.date     "sinisterDate"
+    t.float    "sinisterDeductibleValue"
+    t.float    "sinisterCommercialValue"
+    t.boolean  "sinisterRequiresCrane"
+    t.boolean  "sinisterCollectionStatus"
+    t.string   "sinisterSpecialConditions"
+    t.boolean  "sinisterThirdInsured"
+    t.string   "sinisterAgentName"
+    t.text     "sinisterComment"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "spare_part_groups", force: true do |t|
+    t.text     "sparePartGroupDescription"
+    t.string   "sparePartGroupName"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "spare_parts", force: true do |t|
-    t.string   "name"
-    t.text     "description"
-    t.string   "carRegion"
-    t.integer  "parent"
-    t.string   "brand"
-    t.string   "spareCode"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "stock_spare_parts", force: true do |t|
-    t.string   "status"
-    t.integer  "idWarehouse"
-    t.integer  "idWorkshopCar"
-    t.string   "color"
-    t.integer  "idSparePart"
+    t.integer  "car_id"
+    t.integer  "wareHouse_id"
+    t.integer  "genericCar_id"
+    t.integer  "sparePartGroup_id"
+    t.integer  "sparePartBrand"
+    t.integer  "sparePartType"
+    t.integer  "sparePartStatus"
+    t.string   "sparePartName"
+    t.text     "sparePartDescription"
+    t.string   "sparePartCarRegion"
+    t.string   "sparePartCode"
+    t.string   "sparePartColor"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -72,21 +107,9 @@ ActiveRecord::Schema.define(version: 20140731180705) do
   add_index "users", ["remember_token"], name: "index_users_on_remember_token"
 
   create_table "warehouses", force: true do |t|
-    t.string   "branch"
-    t.string   "location"
-    t.string   "geoLocation"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "workshop_cars", force: true do |t|
-    t.string   "color"
-    t.integer  "doorNumber"
-    t.string   "status"
-    t.string   "idSerie"
-    t.string   "idMotor"
-    t.string   "licensePlates"
-    t.integer  "idCar"
+    t.string   "warehouseBranch"
+    t.string   "warehouseLocation"
+    t.string   "warehouseGeolocation"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

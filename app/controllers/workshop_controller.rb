@@ -20,7 +20,6 @@ class WorkshopController < ApplicationController
 
   def adjuster
     redirect_to "/#{current_user.privileges}" unless (current_user.privileges=='ajustador')
-
   end
 
   def operative

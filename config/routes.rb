@@ -1,8 +1,12 @@
 LotsoBear::Application.routes.draw do
 
+<<<<<<< HEAD
   get "storehouse/stock"
   get "storehouse/orders"
   get "storehouse/shipping"
+=======
+  get "sinisters/new"
+>>>>>>> 3e5623e5b099fd17673e56005eac59abad39ed38
   resources :users
   resources :reports,   only:  [:index]
   resources :valuations,   only:  [:index,:new]
