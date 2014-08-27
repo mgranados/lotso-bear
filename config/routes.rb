@@ -1,5 +1,8 @@
 LotsoBear::Application.routes.draw do
 
+  get "storehouse/stock"
+  get "storehouse/orders"
+  get "storehouse/shipping"
   resources :users
   resources :reports,   only:  [:index]
   resources :valuations,   only:  [:index,:new]
@@ -20,9 +23,9 @@ LotsoBear::Application.routes.draw do
   match '/capturista',  to: 'workshop#capturist', via: 'get'
   match '/proceso',  to: 'workshop#process', via: 'get'
   match '/almacen',  to: 'workshop#warehouse', via: 'get'
-  match '/orders', to: 'stock#order', via: 'get'
-  match '/dispatchs', to: 'stock#dispatch', via: 'get'
-  match '/inventory', to: 'stock#inventory', via: 'get'
+  match '/orders', to: 'storehouse#orders', via: 'get'
+  match '/shipping', to: 'storehouse#shipping', via: 'get'
+  match '/stock', to: 'storehouse#stock', via: 'get'
 
   #Signin Trabajadores
   match '/signin',  to: 'sessions#new',         via: 'get'
