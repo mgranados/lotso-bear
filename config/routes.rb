@@ -1,5 +1,6 @@
 LotsoBear::Application.routes.draw do
 
+  get "pre_valuation/new"
   resources :users
   resources :reports,   only:  [:index]
   resources :valuations,   only:  [:index,:new]
@@ -7,6 +8,7 @@ LotsoBear::Application.routes.draw do
   resources :bills,     only:  [:index]
   resources :paysheets, only:  [:index]
   resources :sessions, only: [:new, :create, :destroy]
+  resources :pre_valuations
 
 
   # root to: 'sessions#new'
