@@ -73659,3 +73659,79 @@ Migrating to CreateSparePartGroups (20140823192216)
   [1m[35m (0.9ms)[0m  commit transaction
   [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
 >>>>>>> 3e5623e5b099fd17673e56005eac59abad39ed38
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateSinisters (20140823190419)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.5ms)[0m  [1mCREATE TABLE "sinisters" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "insured_id" integer, "sinisterNumber" varchar(255), "sinisterPolicyNumber" varchar(255), "sinisterSubsection" varchar(255), "sinisterExpeditionDate" date, "sinisterDate" date, "sinisterDeductibleValue" float, "sinisterCommercialValue" float, "sinisterRequiresCrane" boolean, "sinisterCollectionStatus" boolean, "sinisterSpecialConditions" varchar(255), "sinisterThirdInsured" boolean, "sinisterAgentName" varchar(255), "sinisterComment" text, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20140823190419"]]
+  [1m[36m (1.0ms)[0m  [1mcommit transaction[0m
+Migrating to CreateInsureds (20140823190946)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.4ms)[0m  [1mCREATE TABLE "insureds" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "sinister_id" integer, "insuredIsThird" boolean, "insuredName" varchar(255), "insuredTelephone" integer, "insuredMail" varchar(255), "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20140823190946"]]
+  [1m[36m (1.0ms)[0m  [1mcommit transaction[0m
+Migrating to CreateCars (20140823191238)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.2ms)[0m  [1mCREATE TABLE "cars" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "genericCar_id" integer, "insured_id" integer, "warehouse_id" integer, "carColor" varchar(255), "carDoorNumber" integer, "carSerie" varchar(255), "carMotor" varchar(255), "carLicensePlates" varchar(255), "carInventoryDescription" text, "carTaxiNumber" varchar(255), "carSpecialEquipment" text, "created_at" datetime, "updated_at" datetime) [0m
+SQLite3::SQLException: table "cars" already exists: CREATE TABLE "cars" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "genericCar_id" integer, "insured_id" integer, "warehouse_id" integer, "carColor" varchar(255), "carDoorNumber" integer, "carSerie" varchar(255), "carMotor" varchar(255), "carLicensePlates" varchar(255), "carInventoryDescription" text, "carTaxiNumber" varchar(255), "carSpecialEquipment" text, "created_at" datetime, "updated_at" datetime) 
+  [1m[35m (0.0ms)[0m  rollback transaction
+  [1m[36m (2.7ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) [0m
+  [1m[35m (1.0ms)[0m  CREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateUsers (20140728174620)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.6ms)[0m  [1mCREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "email" varchar(255), "username" varchar(255), "privileges" varchar(255), "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20140728174620"]]
+  [1m[36m (0.9ms)[0m  [1mcommit transaction[0m
+Migrating to AddIndexToUsersEmail (20140729172229)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.5ms)[0m  [1mCREATE UNIQUE INDEX "index_users_on_email" ON "users" ("email")[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20140729172229"]]
+  [1m[36m (0.9ms)[0m  [1mcommit transaction[0m
+Migrating to AddPassdigestToUsers (20140729173058)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.8ms)[0m  [1mALTER TABLE "users" ADD "password_digest" varchar(255)[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20140729173058"]]
+  [1m[36m (0.8ms)[0m  [1mcommit transaction[0m
+Migrating to AddRememberTokenToUsers (20140731180705)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.7ms)[0m  [1mALTER TABLE "users" ADD "remember_token" varchar(255)[0m
+  [1m[35m (0.3ms)[0m  CREATE INDEX "index_users_on_remember_token" ON "users" ("remember_token")
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20140731180705"]]
+  [1m[35m (1.2ms)[0m  commit transaction
+Migrating to CreateSinisters (20140823190419)
+  [1m[36m (0.2ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.6ms)[0m  CREATE TABLE "sinisters" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "insured_id" integer, "sinisterNumber" varchar(255), "sinisterPolicyNumber" varchar(255), "sinisterSubsection" varchar(255), "sinisterExpeditionDate" date, "sinisterDate" date, "sinisterDeductibleValue" float, "sinisterCommercialValue" float, "sinisterRequiresCrane" boolean, "sinisterCollectionStatus" boolean, "sinisterSpecialConditions" varchar(255), "sinisterThirdInsured" boolean, "sinisterAgentName" varchar(255), "sinisterComment" text, "created_at" datetime, "updated_at" datetime) 
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20140823190419"]]
+  [1m[35m (2.0ms)[0m  commit transaction
+Migrating to CreateInsureds (20140823190946)
+  [1m[36m (0.2ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.6ms)[0m  CREATE TABLE "insureds" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "sinister_id" integer, "insuredIsThird" boolean, "insuredName" varchar(255), "insuredTelephone" integer, "insuredMail" varchar(255), "created_at" datetime, "updated_at" datetime) 
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20140823190946"]]
+  [1m[35m (0.9ms)[0m  commit transaction
+Migrating to CreateCars (20140823191238)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.7ms)[0m  CREATE TABLE "cars" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "genericCar_id" integer, "insured_id" integer, "warehouse_id" integer, "carColor" varchar(255), "carDoorNumber" integer, "carSerie" varchar(255), "carMotor" varchar(255), "carLicensePlates" varchar(255), "carInventoryDescription" text, "carTaxiNumber" varchar(255), "carSpecialEquipment" text, "created_at" datetime, "updated_at" datetime) 
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20140823191238"]]
+  [1m[35m (0.9ms)[0m  commit transaction
+Migrating to CreateGenericCars (20140823191440)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  CREATE TABLE "generic_cars" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "genericCarBrand" integer, "genericCarType" varchar(255), "genericCarYear" integer, "genericCarGeneration" varchar(255), "genericCarModel" varchar(255), "created_at" datetime, "updated_at" datetime) 
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20140823191440"]]
+  [1m[35m (0.8ms)[0m  commit transaction
+Migrating to CreateSpareParts (20140823191924)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  CREATE TABLE "spare_parts" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "car_id" integer, "wareHouse_id" integer, "genericCar_id" integer, "sparePartGroup_id" integer, "sparePartBrand" integer, "sparePartType" integer, "sparePartStatus" integer, "sparePartName" varchar(255), "sparePartDescription" text, "sparePartCarRegion" varchar(255), "sparePartCode" varchar(255), "sparePartColor" varchar(255), "created_at" datetime, "updated_at" datetime) 
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20140823191924"]]
+  [1m[35m (1.3ms)[0m  commit transaction
+Migrating to CreateWarehouses (20140823192023)
+  [1m[36m (0.5ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.8ms)[0m  CREATE TABLE "warehouses" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "warehouseBranch" varchar(255), "warehouseLocation" varchar(255), "warehouseGeolocation" varchar(255), "created_at" datetime, "updated_at" datetime) 
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20140823192023"]]
+  [1m[35m (1.0ms)[0m  commit transaction
+Migrating to CreateSparePartGroups (20140823192216)
+  [1m[36m (0.2ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.7ms)[0m  CREATE TABLE "spare_part_groups" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "sparePartGroupDescription" text, "sparePartGroupName" varchar(255), "created_at" datetime, "updated_at" datetime) 
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20140823192216"]]
+  [1m[35m (1.0ms)[0m  commit transaction
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
