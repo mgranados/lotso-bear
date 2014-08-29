@@ -8,12 +8,12 @@ LotsoBear::Application.routes.draw do
   resources :bills,     only:  [:index]
   resources :paysheets, only:  [:index]
   resources :sessions, only: [:new, :create, :destroy]
-  resources :pre_valuations
+  resources :pre_valuations, only: [:new, :create]
 
 
   # root to: 'sessions#new'
   root 'sessions#new'
-
+  match '/pre_valuations', to: 'pre_valuations#new', via: 'get'
   match '/login', to: 'sessions#new', via: 'get'
   match '/admin',  to: 'workshop#admin', via: 'get'
   match '/gerente',  to: 'workshop#manager', via: 'get'

@@ -1,0 +1,69 @@
+<%= form_for @preValuation, html: {role: "form"} do |f| %>
+
+  <div class="form-group">
+    <%= f.label :preValuationNumber, "Número de Siniestro" %>
+    <%= f.text_field :preValuationNumber, class:"form-control" %>
+  </div>
+
+<div class="form-group">
+
+  <%= f.label :preValuationPolicyNumber, "Número de Poliza" %>
+  <%= f.text_field :preValuationPolicyNumber %>
+</div>
+<div class="form-group">
+
+  <%= f.label :preValuationSubsection, "Número Inciso" %>
+  <%= f.text_field :preValuationSubsection %>
+</div>
+<div class="form-group">
+
+  <%= f.label :preValuationExpeditionDate, "Fecha de Expedición del Documento" %>
+  <%= f.date_field :preValuationExpeditionDate ,:value => Time.now.strftime('%Y-%m-%d')%>
+</div>
+<div class="form-group">
+
+  <%= f.label :preValuationDate, "Fecha del Siniestro" %>
+  <%= f.date_field :preValuationDate ,:value => Time.now.strftime('%Y-%m-%d')%>
+</div>
+<div class="form-group">
+
+  <%= f.label :preValuationDeductibleValue, "Valor Deducible" %>
+  <%= f.text_field :preValuationDeductibleValue %>
+</div>
+<div class="form-group">
+
+  <%= f.label :preValuationCommercialValue, "Valor Comercial" %>
+  <%= f.text_field :preValuationCommercialValue %>
+</div>
+<div class="form-group">
+
+  <%= f.label :preValuationRequiresCrane, "¿Requiere Grua?" %>
+  <%= f.text_field :preValuationRequiresCrane %>
+</div>
+<div class="form-group">
+
+  <%= f.label :preValuationCollectionStatus, "Estatus de la Cobranza" %>
+  <%= f.text_field :preValuationCollectionStatus %>
+</div>
+<div class="form-group">
+
+  <%= f.label :preValuationSpecialConditions, "Condiciones Especiales" %>
+  <%= f.text_field :preValuationSpecialConditions %>
+</div>
+<div class="form-group">
+
+  <%= f.label :preValuationThirdInsured, "¿Tercero Asegurado?" %>
+  <%= f.text_field :preValuationThirdInsured %>
+</div>
+<div class="form-group">
+
+  <%= f.label :preValuationAgentName, "Nombre del Ajustador" %>
+  <%= f.text_field :preValuationAgentName %>
+</div>
+<div class="form-group">
+
+  <%= f.label :preValuationComment, "Comentario" %>
+  <%= f.text_area :preValuationComment %>
+</div>
+  <%= f.submit "Guardar", class: "btn btn-default" %>
+<% end %>
