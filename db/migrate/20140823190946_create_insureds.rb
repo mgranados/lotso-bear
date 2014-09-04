@@ -1,11 +1,11 @@
 class CreateInsureds < ActiveRecord::Migration
   def change
     create_table :insureds do |t|
-      t.integer :sinister_id
+      t.integer :pre_valuation_id
       t.boolean :insuredIsThird
       t.string :insuredName
       t.integer :insuredTelephone
-      t.string :insuredMail
+      t.string :insuredEmail
 
       t.timestamps
     end

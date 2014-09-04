@@ -8,7 +8,7 @@ describe "Authentication" do
     before {visit signin_path}
 
     #debe tener la página
-    it {should have_content('Login')}
+    it {should have_content('INGRESO AL SISTEMA')}
     # it {should have_title('Login')}
 
   end
@@ -22,17 +22,17 @@ describe "Authentication" do
       # it { should have_title('Ingresar') }
       it { should have_selector('div.alert.alert-error') }
 
-      describe "after visiting another page" do
-        before { click_link "SYRAT" }
-        it { should_not have_selector('div.alert.alert-error') }
-      end
+      # describe "after visiting another page" do
+      #   before { click_link "SYRAT" }
+      #   it { should_not have_selector('div.alert.alert-error') }
+      # end
     end
 
     describe "with valid information" do
       let(:user) { FactoryGirl.create(:user) }
       before do
-        fill_in "Email",    with: user.email.upcase
-        fill_in "Password", with: user.password
+        fill_in "email",    with: user.email.upcase
+        fill_in "password", with: user.password
         click_button "Ingresar"
       end
 

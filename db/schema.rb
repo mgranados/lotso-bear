@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140823192216) do
+ActiveRecord::Schema.define(version: 20140904050743) do
 
   create_table "car_statuses", force: true do |t|
     t.string   "carStatus"
@@ -20,8 +20,8 @@ ActiveRecord::Schema.define(version: 20140823192216) do
   end
 
   create_table "cars", force: true do |t|
+    t.integer  "pre_valuation_id"
     t.integer  "genericCar_id"
-    t.integer  "insured_id"
     t.integer  "warehouse_id"
     t.string   "carColor"
     t.integer  "carDoorNumber"
@@ -46,17 +46,16 @@ ActiveRecord::Schema.define(version: 20140823192216) do
   end
 
   create_table "insureds", force: true do |t|
-    t.integer  "sinister_id"
+    t.integer  "pre_valuation_id"
     t.boolean  "insuredIsThird"
     t.string   "insuredName"
     t.integer  "insuredTelephone"
-    t.string   "insuredMail"
+    t.string   "insuredEmail"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "pre_valuations", force: true do |t|
-    t.integer  "insured_id"
     t.string   "preValuationNumber"
     t.string   "preValuationPolicyNumber"
     t.string   "preValuationSubsection"
@@ -72,6 +71,38 @@ ActiveRecord::Schema.define(version: 20140823192216) do
     t.text     "preValuationComment"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "photo1_file_name"
+    t.string   "photo1_content_type"
+    t.integer  "photo1_file_size"
+    t.datetime "photo1_updated_at"
+    t.string   "photo2_file_name"
+    t.string   "photo2_content_type"
+    t.integer  "photo2_file_size"
+    t.datetime "photo2_updated_at"
+    t.string   "photo3_file_name"
+    t.string   "photo3_content_type"
+    t.integer  "photo3_file_size"
+    t.datetime "photo3_updated_at"
+    t.string   "photo4_file_name"
+    t.string   "photo4_content_type"
+    t.integer  "photo4_file_size"
+    t.datetime "photo4_updated_at"
+    t.string   "doc1_file_name"
+    t.string   "doc1_content_type"
+    t.integer  "doc1_file_size"
+    t.datetime "doc1_updated_at"
+    t.string   "doc2_file_name"
+    t.string   "doc2_content_type"
+    t.integer  "doc2_file_size"
+    t.datetime "doc2_updated_at"
+    t.string   "doc3_file_name"
+    t.string   "doc3_content_type"
+    t.integer  "doc3_file_size"
+    t.datetime "doc3_updated_at"
+    t.string   "doc4_file_name"
+    t.string   "doc4_content_type"
+    t.integer  "doc4_file_size"
+    t.datetime "doc4_updated_at"
   end
 
   create_table "spare_part_brands", force: true do |t|

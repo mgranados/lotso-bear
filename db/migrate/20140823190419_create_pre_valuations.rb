@@ -1,7 +1,6 @@
 class CreatePreValuations < ActiveRecord::Migration
   def change
     create_table :pre_valuations do |t|
-      t.integer :insured_id
       t.string :preValuationNumber
       t.string :preValuationPolicyNumber
       t.string :preValuationSubsection

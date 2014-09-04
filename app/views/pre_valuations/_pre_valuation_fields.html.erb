@@ -1,0 +1,67 @@
+<h3>Siniestro</h3>
+<div class="form-group">
+  <%= builder.label :preValuationNumber, "Número de Siniestro" %>
+  <%= builder.text_field :preValuationNumber %>
+</div>
+
+<div class="form-group">
+  <%= builder.label :preValuationPolicyNumber, "Número de Póliza" %>
+  <%= builder.text_field :preValuationPolicyNumber %>
+</div>
+
+<div class="form-group">
+  <%= builder.label :preValuationSubsection, "Sub-Indice" %>
+  <%= builder.text_field :preValuationSubsection %>
+</div>
+
+<div class="form-group">
+  <%= builder.label :preValuationExpeditionDate, "Fecha de Expedición" %>
+  <%= builder.date_field :preValuationExpeditionDate, :value => Time.now.strftime('%Y-%m-%d') %>
+</div>
+
+
+<div class="form-group">
+  <%= builder.label :preValuationDate, "Fecha del Siniestro" %>
+  <%= builder.date_field :preValuationDate, :value => Time.now.strftime('%Y-%m-%d') %>
+</div>
+
+
+<div class="form-group">
+  <%= builder.label :preValuationDeductibleValue, "Valor Deducible" %>
+  <%= builder.number_field :preValuationDeductibleValue %>
+</div>
+
+<div class="form-group">
+  <%= builder.label :preValuationCommercialValue, "Valor Comercial" %>
+  <%= builder.number_field :preValuationCommercialValue %>
+</div>
+
+<div class="form-group">
+  <%= builder.label :preValuationRequiresCrane, "¿Requiere Grua?" %>
+  <%= builder.check_box :preValuationRequiresCrane %>
+</div>
+
+<div class="form-group">
+  <%= builder.label :preValuationCollectionStatus, "Estatus Cobranza" %>
+  <%= builder.check_box :preValuationCollectionStatus %>
+</div>
+
+<div class="form-group">
+  <%= builder.label :preValuationSpecialConditions, "Condiciones Especiales" %>
+  <%= builder.text_area :preValuationSpecialConditions %>
+</div>
+
+<div class="form-group">
+  <%= builder.label :preValuationThirdInsured, "¿Tercero Asegurado?" %>
+  <%= builder.check_box :preValuationThirdInsured %>
+</div>
+
+<div class="form-group">
+  <%= builder.label :preValuationAgentName, "Nombre del Ajustador" %>
+  <%= builder.text_field :preValuationAgentName %>
+</div>
+
+<div class="form-group">
+  <%= builder.label :preValuationComment, "Comentario" %>
+  <%= builder.text_area :preValuationComment %>
+</div>

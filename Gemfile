@@ -8,6 +8,7 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 1.2'
 gem 'bcrypt-ruby', '3.1.2' #passwords hasheados
 gem 'pundit' #authorizations
+gem "paperclip", "~> 4.2"
 
 #Style
   gem 'bootstrap-sass', '2.3.2.0'
