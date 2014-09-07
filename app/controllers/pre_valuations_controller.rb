@@ -45,7 +45,8 @@ class PreValuationsController < ApplicationController
       insureds_attributes: [
         :insuredName,
         :insuredTelephone,
-        :insuredEmail
+        :insuredEmail,
+        :insuredIsThird
       ],
       :cars_attributes => [
         :carColor,
@@ -54,6 +55,7 @@ class PreValuationsController < ApplicationController
         :carInventoryDescription,
         :carTaxiNumber,
         :carSpecialEquipment
-      ])
+      ]
+    )
   end
 end

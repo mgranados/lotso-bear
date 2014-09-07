@@ -1,0 +1,25 @@
+<div>
+<h3>Tercero Asegurado</h3>
+<div>
+<div class="form-group">
+  <%= builder.label :insuredName, "Nombre del Tercero Asegurado" %>
+  <%= builder.text_field :insuredName %>
+</div>
+
+<div class="form-group">
+  <%= builder.label :insuredTelephone, "Telefono del Tercero Asegurado" %>
+  <%= builder.telephone_field :insuredTelephone %>
+</div>
+
+<div class="form-group">
+  <%= builder.label :insuredEmail, "Email del Tercero Asegurado" %>
+  <%= builder.email_field :insuredEmail %>
+</div>
+
+<!-- <div class="form-group" style="display:none"> -->
+<div class="form-group">
+  <%= builder.label :insuredIsThird, "Nombre del Tercero Asegurado" %>
+  <%= builder.check_box :insuredIsThird, {checked: true}%>
+</div>
+
+</div>

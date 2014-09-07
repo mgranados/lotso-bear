@@ -11,13 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140904050743) do
-
-  create_table "car_statuses", force: true do |t|
-    t.string   "carStatus"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
+ActiveRecord::Schema.define(version: 20140907070859) do
 
   create_table "cars", force: true do |t|
     t.integer  "pre_valuation_id"
@@ -35,12 +29,29 @@ ActiveRecord::Schema.define(version: 20140904050743) do
     t.datetime "updated_at"
   end
 
+  create_table "generic_car_generic_spare_parts", force: true do |t|
+    t.integer  "genericCar_id"
+    t.integer  "genericSparePart_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "generic_cars", force: true do |t|
     t.string   "genericCarBrand"
     t.string   "genericCarType"
     t.integer  "genericCarYear"
     t.string   "genericCarGeneration"
     t.string   "genericCarModel"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "generic_spare_parts", force: true do |t|
+    t.string   "genericSparePartBrand"
+    t.string   "genericSparePartType"
+    t.string   "genericSparePartName"
+    t.string   "genericSparePartCarRegion"
+    t.text     "genericSparePartDescription"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -105,43 +116,11 @@ ActiveRecord::Schema.define(version: 20140904050743) do
     t.datetime "doc4_updated_at"
   end
 
-  create_table "spare_part_brands", force: true do |t|
-    t.string   "sparePartBrandName"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "spare_part_groups", force: true do |t|
-    t.text     "sparePartGroupDescription"
-    t.string   "sparePartGroupName"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "spare_part_statuses", force: true do |t|
-    t.string   "sparePartStatus"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "spare_part_types", force: true do |t|
-    t.string   "sparePartTypeName"
-    t.text     "sparePartTypeDescription"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "spare_parts", force: true do |t|
     t.integer  "car_id"
     t.integer  "wareHouse_id"
-    t.integer  "genericCar_id"
-    t.integer  "sparePartGroup_id"
-    t.integer  "sparePartBrand"
-    t.integer  "sparePartType"
     t.integer  "sparePartStatus"
-    t.string   "sparePartName"
     t.text     "sparePartDescription"
-    t.string   "sparePartCarRegion"
     t.string   "sparePartCode"
     t.string   "sparePartColor"
     t.datetime "created_at"
