@@ -1,0 +1,20 @@
+<%= form_for @preValuation, :html => {:multipart=>true} do |preValuation|%>
+  <%= render "pre_valuation_fields", builder: preValuation %>
+
+    <%= preValuation.fields_for :cars do |car| %>
+      <%= render "car_fields", builder: car %>
+    <% end %>
+
+    <%= preValuation.fields_for :insureds do |insured| %>
+      <%= render "insured_fields", builder: insured %>
+    <% end %>
+
+    <%= preValuation.fields_for :insureds do |insured| %>
+      <%= render "third_insured_fields", builder: insured %>
+    <% end %>
+
+
+    <%= render "attachment_fields", builder: preValuation %>
+
+  <%= preValuation.submit "Guardar" %>
+<% end %>
