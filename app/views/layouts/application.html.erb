@@ -5,15 +5,17 @@
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
+  <%= render 'layouts/headmeta' %>
 </head>
-  <body class="sitesback">
+  <body class="backround">
     <%= render 'layouts/header' %>
-    <div class="container">
+    <div id="panpri" class="container jumbotron">
+
       <% flash.each do |key, value| %>
         <%= content_tag(:div, value, class: "alert alert-#{key}") %>
       <% end %>
       <%= yield %>
-      <%= debug(params) if Rails.env.development? %>
+        <%= debug(params) if Rails.env.development? %>
     </div>
   </body>
 </html>
