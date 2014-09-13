@@ -1,0 +1,19 @@
+
+<%= form_for @generic_car do |f|%>
+  <%= f.label :genericCarModel, "Modelo" %>
+  <%= f.text_field :genericCarModel %>
+
+  <%= f.fields_for :genericCarGenericSpareParts do |ff| %>
+
+
+    <%= ff.fields_for :genericSparePart do |fff| %>
+      <p><%= fff.label :genericSparePartName, "Nombre de pieza" %></p>
+      <p><%= fff.text_field :genericSparePartName %></p>
+    <% end %>
+
+
+  <% end %>
+
+  <%= f.submit "Guardar" %>
+
+<% end %>

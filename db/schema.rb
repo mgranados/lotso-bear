@@ -11,77 +11,75 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140907070859) do
+ActiveRecord::Schema.define(version: 20140912232245) do
 
   create_table "cars", force: true do |t|
-    t.integer  "pre_valuation_id"
-    t.integer  "genericCar_id"
+    t.integer  "prevaluation_id"
+    t.integer  "generic_car_id"
     t.integer  "warehouse_id"
-    t.string   "carColor"
-    t.integer  "carDoorNumber"
-    t.string   "carSerie"
-    t.string   "carMotor"
-    t.string   "carLicensePlates"
-    t.text     "carInventoryDescription"
-    t.string   "carTaxiNumber"
-    t.text     "carSpecialEquipment"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "generic_car_generic_spare_parts", force: true do |t|
-    t.integer  "genericCar_id"
-    t.integer  "genericSparePart_id"
+    t.string   "color"
+    t.integer  "door_number"
+    t.string   "serie"
+    t.string   "motor"
+    t.string   "license_plates"
+    t.text     "inventory_description"
+    t.text     "special_equipment"
+    t.string   "economic_number"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "generic_cars", force: true do |t|
-    t.string   "genericCarBrand"
-    t.string   "genericCarType"
-    t.integer  "genericCarYear"
-    t.string   "genericCarGeneration"
-    t.string   "genericCarModel"
+    t.string   "brand"
+    t.string   "type"
+    t.integer  "year"
+    t.string   "generation"
+    t.string   "model"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "generic_spare_parts", force: true do |t|
-    t.string   "genericSparePartBrand"
-    t.string   "genericSparePartType"
-    t.string   "genericSparePartName"
-    t.string   "genericSparePartCarRegion"
-    t.text     "genericSparePartDescription"
+  create_table "generic_cars_generic_spares", force: true do |t|
+    t.integer  "generic_car_id"
+    t.integer  "generic_spare_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "generic_spares", force: true do |t|
+    t.string   "brand"
+    t.string   "type"
+    t.string   "name"
+    t.string   "region"
+    t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "insureds", force: true do |t|
-    t.integer  "pre_valuation_id"
-    t.boolean  "insuredIsThird"
-    t.string   "insuredName"
-    t.integer  "insuredTelephone"
-    t.string   "insuredEmail"
+    t.integer  "prevaluation_id"
+    t.boolean  "third"
+    t.string   "name"
+    t.integer  "telephone"
+    t.string   "email"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "pre_valuations", force: true do |t|
-    t.string   "preValuationNumber"
-    t.string   "preValuationPolicyNumber"
-    t.string   "preValuationSubsection"
-    t.date     "preValuationExpeditionDate"
-    t.date     "preValuationDate"
-    t.float    "preValuationDeductibleValue"
-    t.float    "preValuationCommercialValue"
-    t.boolean  "preValuationRequiresCrane"
-    t.boolean  "preValuationCollectionStatus"
-    t.string   "preValuationSpecialConditions"
-    t.boolean  "preValuationThirdInsured"
-    t.string   "preValuationAgentName"
-    t.text     "preValuationComment"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+  create_table "prevaluations", force: true do |t|
+    t.string   "number"
+    t.string   "policy"
+    t.string   "subsection"
+    t.date     "expedition_date"
+    t.date     "valuation_date"
+    t.float    "deductible_value"
+    t.float    "commercial_value"
+    t.boolean  "requires_crane"
+    t.boolean  "collection_status"
+    t.string   "special_conditions"
+    t.boolean  "third_insured"
+    t.string   "agent_name"
+    t.text     "comment"
     t.string   "photo1_file_name"
     t.string   "photo1_content_type"
     t.integer  "photo1_file_size"
@@ -114,15 +112,17 @@ ActiveRecord::Schema.define(version: 20140907070859) do
     t.string   "doc4_content_type"
     t.integer  "doc4_file_size"
     t.datetime "doc4_updated_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
-  create_table "spare_parts", force: true do |t|
+  create_table "spares", force: true do |t|
     t.integer  "car_id"
-    t.integer  "wareHouse_id"
-    t.integer  "sparePartStatus"
-    t.text     "sparePartDescription"
-    t.string   "sparePartCode"
-    t.string   "sparePartColor"
+    t.integer  "warehouse_id"
+    t.string   "status"
+    t.text     "description"
+    t.string   "code"
+    t.string   "color"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -142,9 +142,9 @@ ActiveRecord::Schema.define(version: 20140907070859) do
   add_index "users", ["remember_token"], name: "index_users_on_remember_token"
 
   create_table "warehouses", force: true do |t|
-    t.string   "warehouseBranch"
-    t.string   "warehouseLocation"
-    t.string   "warehouseGeolocation"
+    t.string   "branch"
+    t.string   "location"
+    t.string   "geolocation"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
