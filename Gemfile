@@ -11,7 +11,6 @@ gem 'pundit' #authorizations
 gem "paperclip", "~> 4.2"
 
 #Style
-  gem 'bootstrap-sass', '2.3.2.0'
   gem 'sprockets', '2.11.0'
   gem 'sass-rails', '~> 4.0.2'
 
