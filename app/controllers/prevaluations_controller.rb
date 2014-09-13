@@ -20,7 +20,7 @@ class PrevaluationsController < ApplicationController
 
 
   def pre_valuation_params
-    params.require(:pre_valuation).permit(
+    params.require(:prevaluation).permit(
       :Number,
       :PolicyNumber,
       :Subsection,
