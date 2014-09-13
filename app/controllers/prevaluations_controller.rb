@@ -6,7 +6,7 @@ class PrevaluationsController < ApplicationController
   end
 
   def create
-    @prevaluation = PreValuation.new(pre_valuation_params)
+    @prevaluation = Prevaluation.new(pre_valuation_params)
     if @prevaluation.save
       flash[:success] = "Guardado con Exito"
       redirect_to action: 'new'
