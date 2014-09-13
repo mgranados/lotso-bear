@@ -1,30 +1,20 @@
 LotsoBear::Application.routes.draw do
-
-  resources :users
-  resources :reports,   only:  [:index]
-  resources :valuations,   only:  [:index,:new]
-
-  resources :bills,     only:  [:index]
-  resources :paysheets, only:  [:index]
-  resources :sessions, only: [:new, :create, :destroy]
-  resources :pre_valuations, only: [:new, :create, :show]
-
-
   # root to: 'sessions#new'
   root 'sessions#new'
-  match '/new_pre_valuations', to: 'pre_valuations#new', via: 'get'
 
-  match '/login', to: 'sessions#new', via: 'get'
-  match '/admin',  to: 'workshop#admin', via: 'get'
-  match '/gerente',  to: 'workshop#manager', via: 'get'
-  match '/ajustador',  to: 'workshop#adjuster', via: 'get'
-  match '/operador',  to: 'workshop#operative', via: 'get'
-  match '/capturista',  to: 'workshop#capturist', via: 'get'
-  match '/proceso',  to: 'workshop#process', via: 'get'
-  match '/almacen',  to: 'workshop#warehouse', via: 'get'
-  match '/orders', to: 'storehouse#orders', via: 'get'
-  match '/shipping', to: 'storehouse#shipping', via: 'get'
-  match '/stock', to: 'storehouse#stock', via: 'get'
+  resources :users
+  resources :sessions, only: [:new, :create, :destroy]
+  resources :prevaluations, only: [:new, :create, :show]
+
+  match '/new_pre_valuations', to: 'prevaluations#new',  via: 'get'
+  match '/login',              to: 'sessions#new',        via: 'get'
+  match '/admin',              to: 'branches#admin',      via: 'get'
+  match '/gerente',            to: 'branches#manager',    via: 'get'
+  match '/ajustador',          to: 'branches#adjuster',   via: 'get'
+  match '/operador',           to: 'branches#operative',  via: 'get'
+  match '/capturista',         to: 'branches#capturist',  via: 'get'
+  match '/proceso',            to: 'branches#process',    via: 'get'
+  match '/almacen',             to: 'branches#warehouse', via: 'get'
 
   #Signin Trabajadores
   match '/signin',  to: 'sessions#new',         via: 'get'
