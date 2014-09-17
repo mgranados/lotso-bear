@@ -1,0 +1,23 @@
+<p><%= link_to "Nuevo Coche Generico", new_generic_car_path %></p>
+
+<table class="table">
+  <tr>
+    <th> Marca </th>
+    <th> Tipo </th>
+    <th> Año </th>
+    <th> Generación </th>
+    <th> Modelo </th>
+  </tr>
+  <% for car in @generic_cars %>
+    <tr>
+      <td><%= car.brand %></td>
+      <td><%= car.type_of_car %></td>
+      <td><%= car.year %></td>
+      <td><%= car.generation %></td>
+      <td><%= car.model %></td>
+
+      <td><%= link_to "Ver", car %></td>
+      <td><%= link_to "Borrar", car, :confirm => '¿Seguro Que Deseas Borrarlo?', :method => :delete %></td>
+    </tr>
+  <% end %>
+</table>

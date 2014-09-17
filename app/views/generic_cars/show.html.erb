@@ -1,0 +1,47 @@
+<h1>Coche Generico</h1>
+<table class="table">
+  <tr>
+    <th> Marca </th>
+    <th> Tipo </th>
+    <th> Año </th>
+    <th> Generación </th>
+    <th> Modelo </th>
+  </tr>
+    <tr>
+      <td><%= @generic_car.brand %></td>
+      <td><%= @generic_car.type_of_car %></td>
+      <td><%= @generic_car.year %></td>
+      <td><%= @generic_car.generation %></td>
+      <td><%= @generic_car.model %></td>
+
+      <td><%= link_to "Borrar", @generic_car, :confirm => '¿Seguro Que Deseas Borrarlo?', :method => :delete %></td>
+    </tr>
+</table>
+<h1>Piezas Genericas</h1>
+
+<table class="table">
+  <thead>
+  <th> Marca </th>
+  <th> Tipo </th>
+  <th> Nombre </th>
+  <th> Region </th>
+  <th> Descripción </th>
+</thead>
+<tbody>
+  <% for spare in @generic_car.generic_spares %>
+    <tr>
+      <td><%= spare.name %></td>
+      <td><%= spare.type_of_spare %></td>
+      <td><%= spare.name %></td>
+      <td><%= spare.region %></td>
+      <td><%= spare.description %></td>
+
+    </tr>
+  <% end %>
+</tbody>
+</table>
+<%= link_to "Ver Todos", generic_cars_path %>
+
+<p>
+
+</p>

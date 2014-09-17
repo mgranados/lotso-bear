@@ -1,0 +1,44 @@
+<%= form_for @generic_car do |f|%>
+
+  <%= render "generic_car_fields", f: f %>
+<h1>Piezas Genericas</h1>
+<table class="table">
+  <thead>
+    <th>
+      Relación
+    </th>
+    <th>
+      Marca
+    </th>
+    <th>
+      Nombre
+    </th>
+    <th>
+      Tipo
+    </th>
+    <th>
+      Region
+    </th>
+    <th>
+      Descripción
+    </th>
+  </thead>
+  <tbody>
+
+  <%= f.fields_for :car_spare_alloys do |ff| %>
+    <tr>
+      <td>
+      <%= ff.select(:relation,[ ["---",""], ["Mecanico","Mecanico"], ["Interior","Interior"], ["Exterior","Exterior"]]) %>
+      </td>
+      <%= ff.fields_for :generic_spare do |fff| %>
+          <%= render "generic_spare_fields", fff: fff %>
+      <% end %>
+    </tr>
+  <% end %>
+
+  </tbody>
+</table>
+
+
+  <%= f.submit "Guardar" %>
+<% end %>

@@ -2392,3 +2392,30 @@ Completed 200 OK in 9ms (Views: 8.6ms | ActiveRecord: 0.2ms)
   [1m[36m (0.9ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140912231504')[0m
   [1m[35m (1.1ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140912231724')
   [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36m (1.3ms)[0m  [1mCREATE TABLE "car_spare_alloys" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "generic_car_id" integer, "generic_spare_id" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (1.2ms)[0m  CREATE TABLE "cars" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "prevaluation_id" integer, "generic_car_id" integer, "warehouse_id" integer, "color" varchar(255), "door_number" integer, "serie" varchar(255), "motor" varchar(255), "license_plates" varchar(255), "inventory_description" text, "special_equipment" text, "economic_number" varchar(255), "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (1.6ms)[0m  [1mCREATE TABLE "generic_cars" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "brand" varchar(255), "type_of_car" varchar(255), "year" integer, "generation" varchar(255), "model" varchar(255), "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (1.2ms)[0m  CREATE TABLE "generic_spares" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "brand" varchar(255), "type_of_spare" varchar(255), "name" varchar(255), "region" varchar(255), "description" text, "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (1.0ms)[0m  [1mCREATE TABLE "insureds" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "prevaluation_id" integer, "third" boolean, "name" varchar(255), "telephone" integer, "email" varchar(255), "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (1.2ms)[0m  CREATE TABLE "prevaluations" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "number" varchar(255), "policy" varchar(255), "subsection" varchar(255), "expedition_date" date, "valuation_date" date, "deductible_value" float, "commercial_value" float, "requires_crane" boolean, "collection_status" boolean, "special_conditions" varchar(255), "third_insured" boolean, "agent_name" varchar(255), "comment" text, "photo1_file_name" varchar(255), "photo1_content_type" varchar(255), "photo1_file_size" integer, "photo1_updated_at" datetime, "photo2_file_name" varchar(255), "photo2_content_type" varchar(255), "photo2_file_size" integer, "photo2_updated_at" datetime, "photo3_file_name" varchar(255), "photo3_content_type" varchar(255), "photo3_file_size" integer, "photo3_updated_at" datetime, "photo4_file_name" varchar(255), "photo4_content_type" varchar(255), "photo4_file_size" integer, "photo4_updated_at" datetime, "doc1_file_name" varchar(255), "doc1_content_type" varchar(255), "doc1_file_size" integer, "doc1_updated_at" datetime, "doc2_file_name" varchar(255), "doc2_content_type" varchar(255), "doc2_file_size" integer, "doc2_updated_at" datetime, "doc3_file_name" varchar(255), "doc3_content_type" varchar(255), "doc3_file_size" integer, "doc3_updated_at" datetime, "doc4_file_name" varchar(255), "doc4_content_type" varchar(255), "doc4_file_size" integer, "doc4_updated_at" datetime, "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (0.9ms)[0m  [1mCREATE TABLE "spares" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "car_id" integer, "warehouse_id" integer, "status" varchar(255), "description" text, "code" varchar(255), "color" varchar(255), "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (1.0ms)[0m  CREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "email" varchar(255), "username" varchar(255), "privileges" varchar(255), "created_at" datetime, "updated_at" datetime, "password_digest" varchar(255), "remember_token" varchar(255)) 
+  [1m[36m (0.9ms)[0m  [1mCREATE UNIQUE INDEX "index_users_on_email" ON "users" ("email")[0m
+  [1m[35m (0.9ms)[0m  CREATE INDEX "index_users_on_remember_token" ON "users" ("remember_token")
+  [1m[36m (1.1ms)[0m  [1mCREATE TABLE "warehouses" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "branch" varchar(255), "location" varchar(255), "geolocation" varchar(255), "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (1.6ms)[0m  CREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) 
+  [1m[36m (1.5ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35m (0.2ms)[0m  SELECT version FROM "schema_migrations"
+  [1m[36m (1.1ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140913200623')[0m
+  [1m[35m (1.2ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140728174620')
+  [1m[36m (0.9ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140729172229')[0m
+  [1m[35m (1.2ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140729173058')
+  [1m[36m (1.4ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140731180705')[0m
+  [1m[35m (1.0ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140912224702')
+  [1m[36m (1.0ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140912224905')[0m
+  [1m[35m (0.9ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140912230303')
+  [1m[36m (0.9ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140912230419')[0m
+  [1m[35m (0.9ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140912230748')
+  [1m[36m (1.2ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140912231504')[0m
+  [1m[35m (1.0ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140912231724')
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m

@@ -1,0 +1,2 @@
+module GenericSparesHelper
+end
