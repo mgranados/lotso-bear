@@ -2,7 +2,7 @@ class GenericCarsController < ApplicationController
     def new
       @generic_car = GenericCar.new
 
-      10.times{@generic_car.genericCarGenericSpareParts.build.build_genericSparePart}
+      @generic_car.car_spare_alloys.build.build_generic_spare
 
 
     end
@@ -19,14 +19,23 @@ class GenericCarsController < ApplicationController
 
     def generic_car_params
       params.require(:generic_car).permit(
-      :genericCarModel,
-      generic_spare_parts_attributes: [
+      :brand,
+      :type,
+      :year,
+      :generation,
+      :model,
+      car_spare_alloys_attributes: [
         :generic_car_id,
-        :genericSparePart_id
-      ],
-      generic_spare_parts:[
-        :genericSparePartName
-      ])
+        :generic_spare_id,
+        generic_spare_attributes:[
+          :type,
+          :brand,
+          :name,
+          :region,
+          :description
+        ]
+      ]
+    )
 
     end
 end

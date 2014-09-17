@@ -1,19 +1,58 @@
-
 <%= form_for @generic_car do |f|%>
-  <%= f.label :genericCarModel, "Modelo" %>
-  <%= f.text_field :genericCarModel %>
+  <h1>Carro Generico </h1>
+  <!-- <%= options_for_select([['Lisbon'], ['Madrid', 2]]) %> -->
 
-  <%= f.fields_for :genericCarGenericSpareParts do |ff| %>
+  <div class="form-group">
+    <%= f.label :type, "Tipo" %>
+    <%= f.text_field :type %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :year, "Año" %>
+    <%= f.text_field :year %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :generation, "Generación" %>
+    <%= f.text_field :generation %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :model, "Modelo" %>
+    <%= f.text_field :model %>
+  </div>
 
 
-    <%= ff.fields_for :genericSparePart do |fff| %>
-      <p><%= fff.label :genericSparePartName, "Nombre de pieza" %></p>
-      <p><%= fff.text_field :genericSparePartName %></p>
+  <%= f.fields_for :car_spare_alloys do |ff| %>
+    <%= ff.fields_for :generic_spare do |fff| %>
+    <h1>Pieza Generica</h1>
+      <div class="form-group">
+        <%= fff.label :brand, "Marca" %>
+        <%= fff.text_field :brand %>
+      </div>
+
+      <div class="form-group">
+        <%= fff.label :type, "Tipo" %>
+        <%= fff.text_field :type %>
+      </div>
+
+      <div class="form-group">
+        <%= fff.label :name, "Nombre" %>
+        <%= fff.text_field :name %>
+      </div>
+
+      <div class="form-group">
+        <%= fff.label :region, "Region" %>
+        <%= fff.text_field :region %>
+      </div>
+
+      <div class="form-group">
+        <%= fff.label :description, "Descripción" %>
+        <%= fff.text_field :description %>
+      </div>
+
     <% end %>
-
-
   <% end %>
 
   <%= f.submit "Guardar" %>
-
 <% end %>
