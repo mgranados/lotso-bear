@@ -1,4 +1,6 @@
 LotsoBear::Application.routes.draw do
+  get "client_actions/home"
+  get "client_actions/show"
   # root to: 'sessions#new'
   root 'sessions#new'
 
