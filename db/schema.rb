@@ -11,7 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140912232245) do
+ActiveRecord::Schema.define(version: 20140913200623) do
+
+  create_table "car_spare_alloys", force: true do |t|
+    t.integer  "generic_car_id"
+    t.integer  "generic_spare_id"
+    t.string   "relation"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "cars", force: true do |t|
     t.integer  "prevaluation_id"
@@ -31,7 +39,7 @@ ActiveRecord::Schema.define(version: 20140912232245) do
 
   create_table "generic_cars", force: true do |t|
     t.string   "brand"
-    t.string   "type"
+    t.string   "type_of_car"
     t.integer  "year"
     t.string   "generation"
     t.string   "model"
@@ -39,16 +47,9 @@ ActiveRecord::Schema.define(version: 20140912232245) do
     t.datetime "updated_at"
   end
 
-  create_table "generic_cars_generic_spares", force: true do |t|
-    t.integer  "generic_car_id"
-    t.integer  "generic_spare_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "generic_spares", force: true do |t|
     t.string   "brand"
-    t.string   "type"
+    t.string   "type_of_spare"
     t.string   "name"
     t.string   "region"
     t.text     "description"

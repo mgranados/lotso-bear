@@ -1,3 +1,5 @@
 class GenericSpare < ActiveRecord::Base
-  has_and_belongs_to_many :generic_cars
+  has_many :car_spare_alloys
+  has_many :generic_cars, through: :car_spare_alloys
+
 end
