@@ -20,6 +20,7 @@ LotsoBear::Application.routes.draw do
   match '/capturista',         to: 'branches#capturist',  via: 'get'
   match '/proceso',            to: 'branches#process',    via: 'get'
   match '/almacen',             to: 'branches#warehouse', via: 'get'
+  match '/consultar',           to: 'client_actions#home', via: 'get'
 
   #Signin Trabajadores
   match '/signin',  to: 'sessions#new',         via: 'get'
