@@ -1,7 +1,7 @@
 <% provide(:title, "Consultar estado de Auto") %>
 
 <div class="jumbotron">
-  <%= form_for(:client_actions, url: client_actions_show_path, class: "form-signin form-inline") do |f| %>
+  <%= form_for(:client_actions, url: '/c/show', class: "form-signin form-inline") do |f| %>
     <h1 class="blutits">Consultar estado de Auto</h1>
       <div class="form-group col-md-5">
             <%= f.text_field :email, class: "form-control basic-input", placeholder: "NUMERO DE REGISTRO", id: "userInput" %>
