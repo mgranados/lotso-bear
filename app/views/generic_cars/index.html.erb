@@ -17,6 +17,7 @@
       <td><%= car.model %></td>
 
       <td><%= link_to "Ver", car %></td>
+      <td><%= link_to 'Editar', edit_generic_car_path(car) %></td>
       <td><%= link_to "Borrar", car, :confirm => '¿Seguro Que Deseas Borrarlo?', :method => :delete %></td>
     </tr>
   <% end %>
