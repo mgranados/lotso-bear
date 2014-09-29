@@ -1,6 +1,4 @@
 LotsoBear::Application.routes.draw do
-  get "client_actions/home"
-  get "client_actions/show"
   # root to: 'sessions#new'
   root 'sessions#new'
 
@@ -20,6 +18,7 @@ LotsoBear::Application.routes.draw do
   match '/capturista',         to: 'branches#capturist',  via: 'get'
   match '/proceso',            to: 'branches#process',    via: 'get'
   match '/almacen',             to: 'branches#warehouse', via: 'get'
+  #client actions routes
   match '/consultar',           to: 'client_actions#home', via: 'get'
   match '/c/show',              to: 'client_actions#show', via: 'get'
 
