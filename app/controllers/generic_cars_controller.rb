@@ -1,7 +1,7 @@
 class GenericCarsController < ApplicationController
     def new
       @generic_car = GenericCar.new
-      1.times{  @generic_car.car_spare_alloys.build.build_generic_spare}
+      15.times{  @generic_car.car_spare_alloys.build.build_generic_spare}
     end
 
     def show
