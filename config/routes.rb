@@ -1,13 +1,11 @@
 LotsoBear::Application.routes.draw do
-  get "client_actions/home"
-  get "client_actions/show"
   # root to: 'sessions#new'
   root 'sessions#new'
 
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
   resources :prevaluations, only: [:new, :create, :show]
-  resources :generic_cars, only: [:index, :new, :create, :show ,:destroy]
+  resources :generic_cars, only: [:index, :new, :create, :show, :edit ,:destroy]
   resources :generic_spares, only: [:destroy]
 
   match '/new_generic_car', to: 'generic_cars#new',  via: 'get'
@@ -20,6 +18,7 @@ LotsoBear::Application.routes.draw do
   match '/capturista',         to: 'branches#capturist',  via: 'get'
   match '/proceso',            to: 'branches#process',    via: 'get'
   match '/almacen',             to: 'branches#warehouse', via: 'get'
+  #client actions routes
   match '/consultar',           to: 'client_actions#home', via: 'get'
   match '/c/show',              to: 'client_actions#show', via: 'get'
 

@@ -1,10 +1,14 @@
 class GenericCarsController < ApplicationController
     def new
       @generic_car = GenericCar.new
-      50.times{  @generic_car.car_spare_alloys.build.build_generic_spare}
+      1.times{  @generic_car.car_spare_alloys.build.build_generic_spare}
     end
 
     def show
+      @generic_car = GenericCar.find(params[:id])
+    end
+
+    def edit
       @generic_car = GenericCar.find(params[:id])
     end
 
