@@ -1,15 +1,14 @@
 class GenericCarsController < ApplicationController
+  before_action :set_generic_car, only: [:show, :edit, :destroy, :update]
     def new
       @generic_car = GenericCar.new
       15.times{  @generic_car.car_spare_alloys.build.build_generic_spare}
     end
 
     def show
-      @generic_car = GenericCar.find(params[:id])
     end
 
     def edit
-      @generic_car = GenericCar.find(params[:id])
     end
 
     def index
@@ -26,8 +25,19 @@ class GenericCarsController < ApplicationController
         end
     end
 
+    def update
+      respond_to do |format|
+        if @generic_car.update(generic_car_params)
+          format.html { redirect_to @generic_car, notice: 'El Carro fue editado con exito' }
+          format.json { render :show, status: :ok, location: @generic_car }
+        else
+          format.html { render :edit }
+          format.json { render json: @generic_car.errors, status: :unprocessable_entity }
+        end
+      end
+    end
+
     def destroy
-      @generic_car = GenericCar.find(params[:id])
       @generic_car.destroy
       flash[:notice] = "Borrado Exitosamente."
       redirect_to action: 'index'
@@ -55,6 +65,10 @@ class GenericCarsController < ApplicationController
           ]
         ]
     )
-
     end
+
+    def set_generic_car
+      @generic_car = GenericCar.find(params[:id])
+    end
+
 end

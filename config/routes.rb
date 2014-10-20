@@ -5,7 +5,7 @@ LotsoBear::Application.routes.draw do
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
   resources :prevaluations, only: [:new, :create, :show]
-  resources :generic_cars, only: [:index, :new, :create, :show, :edit ,:destroy]
+  resources :generic_cars, only: [:index, :new, :create, :show, :edit ,:destroy, :update]
   resources :generic_spares, only: [:destroy]
 
   match '/new_generic_car', to: 'generic_cars#new',  via: 'get'
