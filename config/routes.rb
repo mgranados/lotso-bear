@@ -9,6 +9,7 @@ LotsoBear::Application.routes.draw do
   resources :generic_spares, only: [:index, :new, :create, :show, :edit ,:destroy, :update]
 
   match '/new_generic_car', to: 'generic_cars#new',  via: 'get'
+  match '/busqueda', to: 'generic_cars#search',  via: 'get'
   match '/new_pre_valuations', to: 'prevaluations#new',  via: 'get'
   match '/login',              to: 'sessions#new',        via: 'get'
   match '/admin',              to: 'branches#admin',      via: 'get'

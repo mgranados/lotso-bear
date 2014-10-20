@@ -1,6 +1,6 @@
-<% form_tag generic_cars_path, :method => 'get' do %>
+<%= form_tag "busqueda", :method => 'get' do %>
   <p>
-    <%= text_field_tag :search, params[:search] %>
+    <%= search_field_tag :search, params[:search] %>
     <%= submit_tag "Buscar", :name => nil %>
   </p>
 <% end %>
