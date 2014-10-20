@@ -1,0 +1,25 @@
+<p><%= link_to "Nueva Pieza Generica", new_generic_spare_path %></p>
+
+<table class="table">
+  <tr>
+    <th> Marca </th>
+    <th> Tipo </th>
+    <th> Nombre </th>
+    <th> Región </th>
+    <th> Descripción </th>
+  </tr>
+<% for spare in @generic_spares %>
+    <tr>
+      <td><%= spare.brand %></td>
+      <td><%= spare.type_of_spare %></td>
+      <td><%= spare.name %></td>
+      <td><%= spare.region %></td>
+      <td><%= spare.description %></td>
+
+
+      <td><%= link_to "Ver", spare %></td>
+      <td><%= link_to 'Editar', edit_generic_spare_path(spare) %></td>
+      <td><%= link_to "Borrar", spare, :confirm => '¿Seguro Que Deseas Borrarlo?', :method => :delete %></td>
+    </tr>
+  <% end %>
+</table>

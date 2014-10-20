@@ -1,0 +1,25 @@
+<h1>Pieza Generica</h1>
+<table class="table">
+  <tr>
+    <th> Marca </th>
+    <th> Tipo </th>
+    <th> Nombre </th>
+    <th> Región </th>
+    <th> Descripción </th>
+  </tr>
+    <tr>
+      <td><%= @generic_spare.brand %></td>
+      <td><%= @generic_spare.type_of_spare %></td>
+      <td><%= @generic_spare.name %></td>
+      <td><%= @generic_spare.region %></td>
+      <td><%= @generic_spare.description %></td>
+
+      <td><%= link_to "Borrar", @generic_spare, :confirm => '¿Seguro Que Deseas Borrarlo?', :method => :delete %></td>
+    </tr>
+</table>
+
+<%= link_to "Ver Todos", generic_spares_path %>
+
+<p>
+
+</p>
