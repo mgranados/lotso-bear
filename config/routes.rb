@@ -1,4 +1,6 @@
 LotsoBear::Application.routes.draw do
+  get "roster/employeePerformance"
+  get "roster/attendance"
   get "reports/insurance"
   get "reports/repair"
   get "reports/cars"
