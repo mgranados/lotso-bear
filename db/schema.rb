@@ -39,7 +39,7 @@ ActiveRecord::Schema.define(version: 20140923171729) do
 
   create_table "generic_cars", force: true do |t|
     t.string   "brand"
-    t.string   "type"
+    t.string   "type_of_car"
     t.integer  "year"
     t.string   "generation"
     t.string   "model"
@@ -47,16 +47,9 @@ ActiveRecord::Schema.define(version: 20140923171729) do
     t.datetime "updated_at"
   end
 
-  create_table "generic_cars_generic_spares", force: true do |t|
-    t.integer  "generic_car_id"
-    t.integer  "generic_spare_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "generic_spares", force: true do |t|
     t.string   "brand"
-    t.string   "type"
+    t.string   "type_of_spare"
     t.string   "name"
     t.string   "region"
     t.text     "description"
@@ -127,6 +120,7 @@ ActiveRecord::Schema.define(version: 20140923171729) do
   create_table "spares", force: true do |t|
     t.integer  "car_id"
     t.integer  "warehouse_id"
+    t.integer  "spare_id"
     t.string   "status"
     t.text     "description"
     t.string   "code"
