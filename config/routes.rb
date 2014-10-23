@@ -1,4 +1,6 @@
 LotsoBear::Application.routes.draw do
+  get "invoices/home"
+  get "admin/home"
   get "roster/employeePerformance"
   get "roster/attendance"
   get "reports/insurance"
