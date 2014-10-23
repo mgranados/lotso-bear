@@ -1,4 +1,7 @@
 LotsoBear::Application.routes.draw do
+  get "reports/insurance"
+  get "reports/repair"
+  get "reports/cars"
   # root to: 'sessions#new'
   root 'sessions#new'
 
