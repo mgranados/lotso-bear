@@ -77,4 +77,11 @@ class GenericCarsController < ApplicationController
       @generic_car = GenericCar.find(params[:id])
     end
 
+    def search
+      if params[:search]
+      @generic_cars = GenericCar.search(params[:search])
+      else
+      end
+    end
+
 end

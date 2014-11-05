@@ -1,0 +1,12 @@
+<% for car in @generic_cars %>
+   <tr>
+     <td><%= car.brand %></td>
+     <td><%= car.type_of_car %></td>
+     <td><%= car.year %></td>
+     <td><%= car.generation %></td>
+     <td><%= car.model %></td>
+
+     <td><%= link_to 'Editar', edit_generic_car_path(car) %></td>
+     <td><%= link_to "Borrar", car, :confirm => '¿Seguro Que Deseas Borrarlo?', :method => :delete %></td>
+   </tr>
+ <% end %>
