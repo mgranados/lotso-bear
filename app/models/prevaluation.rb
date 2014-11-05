@@ -1,7 +1,7 @@
 class Prevaluation < ActiveRecord::Base
   has_many :cars
   has_many :insureds
-  has_one :prevaluation
+  has_one :valuation
   accepts_nested_attributes_for :cars, :insureds
 
   # Paperclip Photo Upload

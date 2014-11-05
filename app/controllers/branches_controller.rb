@@ -1,2 +1,3 @@
 class BranchesController < ApplicationController
+  
 end

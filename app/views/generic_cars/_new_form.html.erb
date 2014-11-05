@@ -4,17 +4,31 @@
   <table class="table">
     <thead>
       <th> Marca </th>
+      <th> Modelo </th>
       <th> Tipo </th>
       <th> Año </th>
       <th> Generación </th>
-      <th> Modelo </th>
+      <th> # Puertas </th>
     </thead>
     <tbody>
       <%= render "generic_car_fields", f: f %>
     </tbody>
   </table>
 
-  <h1>Piezas Genericas</h1>
+  <td>
+  <%= f.file_field :photo1 %>
+  </td>
+  <td>
+  <%= f.file_field :photo2 %>
+  </td>
+  <td>
+  <%= f.file_field :photo3 %>
+  </td>
+  <td>
+  <%= f.file_field :photo4 %>
+  </td>
+
+  <!-- <h1>Piezas Genericas</h1>
   <table class="table">
     <thead>
       <th> Relación </th>
@@ -36,7 +50,7 @@
         </tr>
       <% end %>
     </tbody>
-  </table>
+  </table> -->
 
   <%= f.submit "Guardar" %>
 <% end %>

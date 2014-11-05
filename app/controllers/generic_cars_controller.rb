@@ -9,6 +9,7 @@ class GenericCarsController < ApplicationController
     end
 
     def edit
+      @generic_spares = GenericSpare.all
     end
 
     def index
@@ -52,6 +53,11 @@ class GenericCarsController < ApplicationController
         :year,
         :generation,
         :model,
+        :doors,
+        :photo1,
+        :photo2,
+        :photo3,
+        :photo4,
         car_spare_alloys_attributes: [
           :generic_car_id,
           :generic_spare_id,

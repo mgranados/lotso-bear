@@ -2,5 +2,24 @@
 
   <%= render "generic_car_fields", f: f %>
 
+
+
+  <table class="table">
+    <thead>
+    <th> Marca </th>
+    <th> Tipo </th>
+    <th> Nombre </th>
+    <th> Region </th>
+    <th> Descripción </th>
+  </thead>
+  <tbody>
+
+    <%= collection_check_boxes(:generic_spares, :generic_spare_id, GenericSpare.all, :id, :name) %>
+
+  </tbody>
+  </table>
+
+
+
   <%= f.submit "Guardar" %>
 <% end %>
