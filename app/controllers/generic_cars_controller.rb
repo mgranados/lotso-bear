@@ -33,8 +33,8 @@ class GenericCarsController < ApplicationController
           end
 
 
-          
-          flash[:succes]= "Guardado Con exito"
+
+          flash[:success]= "Guardado con exito"
           redirect_to action: 'index'
         else
           render new
