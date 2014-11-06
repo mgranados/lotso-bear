@@ -25,12 +25,19 @@ class GenericCarsController < ApplicationController
 
 
         if @generic_car.save
-
-          for i in @firstyear...@lastyear
-            @record = Generation.find_by_year(i)
+          if @lastyear
+            for i in @firstyear...@lastyear
+              @record = Generation.find_by_year(i)
+              @generation =   GenericCarGeneration.new(generic_car_id:@generic_car.id, generation_id: @record.id)
+              @generation.save
+            end
+        
+          else
+            @record = Generation.find_by_year(@firstyear)
             @generation =   GenericCarGeneration.new(generic_car_id:@generic_car.id, generation_id: @record.id)
             @generation.save
           end
+
 
 
 

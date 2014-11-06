@@ -15,9 +15,11 @@
     <td><%= @generic_car.model %></td>
     <td><%= @generic_car.type_of_car %></td>
     <td><%= @generic_car.year %></td>
+    <td><%= @generic_car.generic_car_generations.first.generation.year %> - <%= @generic_car.generic_car_generations.last.generation.year %>
     <td><%= @generic_car.doors %></td>
-    <td><%= image_tag @generic_car.generic_images.first.photo.url %></td>
-
+    <% if @generic_car.generic_images.first %>
+      <td><%= image_tag @generic_car.generic_images.first.photo.url(:thumb) %></td>
+    <%end %>
     <td><%= link_to "Borrar", @generic_car, :confirm => '¿Seguro Que Deseas Borrarlo?', :method => :delete %></td>
   </tr>
 </table>
