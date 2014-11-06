@@ -4,29 +4,50 @@
   <table class="table">
     <thead>
       <th> Marca </th>
-      <th> Modelo </th>
       <th> Tipo </th>
+      <th> Modelo </th>
       <th> Año </th>
-      <th> Generación </th>
       <th> # Puertas </th>
+      <th> Generacion 1 </th>
+      <th> Generacion 2 </th>
+
     </thead>
     <tbody>
-      <%= render "generic_car_fields", f: f %>
+      <td>
+        <%= f.select(:brand, %w[Acura Alfa\ Romeo Bentley BMW Cadillac Chevrolet Chrysler Dodge Ferrari Fiat Ford GMC Honda Hyundai Infinity Isuzu Jaguar Jeep Kia Lamborghini Land\ Rover Lexus Lincoln Maserati Mastretta Mazda Mercedes\ Benz Mini Mitsubishi Nissan Peugeot Porsche Renault Rolls\ Royce Saab Seat Smart Subaru Suzuki Toyota Volkswagen Volvo]) %>
+      </td>
+
+      <td>
+        <%= f.select(:type_of_car, %w[Sedan Hatchback Pick\ Up SUV Croosover Chasis]) %>
+      </td>
+      <td>
+        <%= f.text_field :model %>
+      </td>
+
+      <td>
+        <%= f.text_field :year %>
+      </td>
+
+      <td>
+        <%= f.select(:doors, %w[3 4 5 6]) %>
+      </td>
+      <td>
+        <%= f.text_field :first_generation_year %>
+
+      </td>
+
+      <td>
+        <%= f.text_field :last_generation_year %>
+
+      </td>
     </tbody>
   </table>
 
-  <td>
-  <%= f.file_field :photo1 %>
-  </td>
-  <td>
-  <%= f.file_field :photo2 %>
-  </td>
-  <td>
-  <%= f.file_field :photo3 %>
-  </td>
-  <td>
-  <%= f.file_field :photo4 %>
-  </td>
+
+  <%= f.fields_for :generic_images do |ff| %>
+    <%= ff.file_field :photo %>
+  <% end %>
+
 
   <!-- <h1>Piezas Genericas</h1>
   <table class="table">

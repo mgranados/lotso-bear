@@ -2,7 +2,8 @@ class GenericCarsController < ApplicationController
   before_action :set_generic_car, only: [:show, :edit, :destroy, :update]
     def new
       @generic_car = GenericCar.new
-      15.times{  @generic_car.car_spare_alloys.build.build_generic_spare}
+      # 15.times{  @generic_car.car_spare_alloys.build.build_generic_spare}
+       4.times{  @generic_car.generic_images.build }
     end
 
     def show
@@ -18,7 +19,21 @@ class GenericCarsController < ApplicationController
 
     def create
         @generic_car = GenericCar.new(generic_car_params)
+        @firstyear = generic_car_params[:first_generation_year]
+        @lastyear = generic_car_params[:last_generation_year]
+
+
+
         if @generic_car.save
+
+          for i in @firstyear...@lastyear
+            @record = Generation.find_by_year(i)
+            @generation =   GenericCarGeneration.new(generic_car_id:@generic_car.id, generation_id: @record.id)
+            @generation.save
+          end
+
+
+          
           flash[:succes]= "Guardado Con exito"
           redirect_to action: 'index'
         else
@@ -54,22 +69,25 @@ class GenericCarsController < ApplicationController
         :generation,
         :model,
         :doors,
-        :photo1,
-        :photo2,
-        :photo3,
-        :photo4,
-        car_spare_alloys_attributes: [
-          :generic_car_id,
-          :generic_spare_id,
-          :relation,
-          generic_spare_attributes:[
-            :type_of_spare,
-            :brand,
-            :name,
-            :region,
-            :description
-          ]
+        :first_generation_year,
+        :last_generation_year,
+        generic_images_attributes: [
+          :generic_id,
+          :photo
         ]
+
+        # car_spare_alloys_attributes: [
+        #   :generic_car_id,
+        #   :generic_spare_id,
+        #   :relation,
+        #   generic_spare_attributes:[
+        #     :type_of_spare,
+        #     :brand,
+        #     :name,
+        #     :region,
+        #     :description
+        #   ]
+        # ]
     )
     end
 

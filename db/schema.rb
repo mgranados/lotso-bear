@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141103232822) do
+ActiveRecord::Schema.define(version: 20141105201856) do
 
   create_table "car_spare_alloys", force: true do |t|
     t.integer  "generic_car_id"
@@ -37,31 +37,37 @@ ActiveRecord::Schema.define(version: 20141103232822) do
     t.datetime "updated_at"
   end
 
+  create_table "generations", force: true do |t|
+    t.integer  "year"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "generic_car_generations", force: true do |t|
+    t.integer  "generic_car_id"
+    t.integer  "generation_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "generic_cars", force: true do |t|
     t.string   "brand"
     t.string   "type_of_car"
     t.integer  "year"
-    t.string   "generation"
     t.string   "model"
     t.integer  "doors"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "photo1_file_name"
-    t.string   "photo1_content_type"
-    t.integer  "photo1_file_size"
-    t.datetime "photo1_updated_at"
-    t.string   "photo2_file_name"
-    t.string   "photo2_content_type"
-    t.integer  "photo2_file_size"
-    t.datetime "photo2_updated_at"
-    t.string   "photo3_file_name"
-    t.string   "photo3_content_type"
-    t.integer  "photo3_file_size"
-    t.datetime "photo3_updated_at"
-    t.string   "photo4_file_name"
-    t.string   "photo4_content_type"
-    t.integer  "photo4_file_size"
-    t.datetime "photo4_updated_at"
+  end
+
+  create_table "generic_images", force: true do |t|
+    t.integer  "generic_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+    t.datetime "photo_updated_at"
   end
 
   create_table "generic_spares", force: true do |t|

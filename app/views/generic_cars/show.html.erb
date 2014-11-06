@@ -7,6 +7,7 @@
     <th> Año </th>
     <th> Generación </th>
     <th> # Puertas </th>
+    <th> Image </th>
 
   </thead>
   <tr>
@@ -14,8 +15,9 @@
     <td><%= @generic_car.model %></td>
     <td><%= @generic_car.type_of_car %></td>
     <td><%= @generic_car.year %></td>
-    <td><%= @generic_car.generation %></td>
     <td><%= @generic_car.doors %></td>
+    <td><%= image_tag @generic_car.generic_images.first.photo.url %></td>
+
     <td><%= link_to "Borrar", @generic_car, :confirm => '¿Seguro Que Deseas Borrarlo?', :method => :delete %></td>
   </tr>
 </table>

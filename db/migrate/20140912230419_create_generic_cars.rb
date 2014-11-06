@@ -4,7 +4,6 @@ class CreateGenericCars < ActiveRecord::Migration
       t.string :brand
       t.string :type_of_car
       t.integer :year
-      t.string :generation
       t.string :model
       t.integer :doors
 
