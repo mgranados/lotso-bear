@@ -25,16 +25,27 @@ class GenericCarsController < ApplicationController
 
 
         if @generic_car.save
-
-          for i in @firstyear...@lastyear
-            @record = Generation.find_by_year(i)
+          if @lastyear
+            for i in @firstyear...@lastyear
+              @record = Generation.find_by_year(i)
+              @generation =   GenericCarGeneration.new(generic_car_id:@generic_car.id, generation_id: @record.id)
+              @generation.save
+            end
+        
+          else
+            @record = Generation.find_by_year(@firstyear)
             @generation =   GenericCarGeneration.new(generic_car_id:@generic_car.id, generation_id: @record.id)
             @generation.save
           end
 
 
 
+<<<<<<< HEAD
           flash[:succes]= "Guardado Con exito"
+=======
+
+          flash[:success]= "Guardado con exito"
+>>>>>>> 784298c5438c4c330a36905b267723abcc1c7037
           redirect_to action: 'index'
         else
           render new
