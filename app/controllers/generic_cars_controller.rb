@@ -8,7 +8,7 @@ class GenericCarsController < ApplicationController
 
     def show
     end
-
+    
     def edit
       @generic_spares = GenericSpare.all
     end
@@ -33,7 +33,7 @@ class GenericCarsController < ApplicationController
           end
 
 
-          
+
           flash[:succes]= "Guardado Con exito"
           redirect_to action: 'index'
         else

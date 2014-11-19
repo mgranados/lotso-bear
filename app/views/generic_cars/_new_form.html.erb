@@ -1,77 +1,52 @@
 <%= form_for @generic_car do |f|%>
-  <h1>Carro Generico </h1>
+<h1>Carro Generico </h1>
+<div class="row">
+  <div class="col-lg-2">
+    <h3>Marca</h3>
+    <%= f.select(:brand, %w[Acura Alfa\ Romeo Bentley BMW Cadillac Chevrolet Chrysler Dodge Ferrari Fiat Ford GMC Honda Hyundai Infinity Isuzu Jaguar Jeep Kia Lamborghini Land\ Rover Lexus Lincoln Maserati Mastretta Mazda Mercedes\ Benz Mini Mitsubishi Nissan Peugeot Porsche Renault Rolls\ Royce Saab Seat Smart Subaru Suzuki Toyota Volkswagen Volvo], {class: "input-group"}) %>
+  </div>
+  <div class="col-lg-2">
+    <h3>Tipo</h3>
+    <%= f.select(:type_of_car, %w[Sedan Hatchback Pick\ Up SUV Croosover Chasis], {class: "form-control"}) %>
+  </div>
+  <div class="col-lg-2">
+    <h3># Puertas</h3>
+    <%= f.select(:doors, %w[3 4 5 6]) %>
+  </div>
+</div>
 
-  <table class="table">
-    <thead>
-      <th> Marca </th>
-      <th> Tipo </th>
-      <th> Modelo </th>
-      <th> Año </th>
-      <th> # Puertas </th>
-      <th> Generacion 1 </th>
-      <th> Generacion 2 </th>
-
-    </thead>
-    <tbody>
-      <td>
-        <%= f.select(:brand, %w[Acura Alfa\ Romeo Bentley BMW Cadillac Chevrolet Chrysler Dodge Ferrari Fiat Ford GMC Honda Hyundai Infinity Isuzu Jaguar Jeep Kia Lamborghini Land\ Rover Lexus Lincoln Maserati Mastretta Mazda Mercedes\ Benz Mini Mitsubishi Nissan Peugeot Porsche Renault Rolls\ Royce Saab Seat Smart Subaru Suzuki Toyota Volkswagen Volvo]) %>
-      </td>
-
-      <td>
-        <%= f.select(:type_of_car, %w[Sedan Hatchback Pick\ Up SUV Croosover Chasis]) %>
-      </td>
-      <td>
-        <%= f.text_field :model %>
-      </td>
-
-      <td>
-        <%= f.text_field :year %>
-      </td>
-
-      <td>
-        <%= f.select(:doors, %w[3 4 5 6]) %>
-      </td>
-      <td>
-        <%= f.text_field :first_generation_year %>
-
-      </td>
-
-      <td>
-        <%= f.text_field :last_generation_year %>
-
-      </td>
-    </tbody>
-  </table>
-
-
-  <%= f.fields_for :generic_images do |ff| %>
+<div class="row">
+  <div class="col-lg-2">
+    <h3>Modelo</h3>
+    <%= f.text_field :model, class: "form-control" %>
+  </div>
+  <div class="col-lg-2">
+    <h3>Año</h3>
+    <%= f.text_field :year, class: "form-control" %>
+  </div>
+  <div class="col-lg-4">
+    <h3>Generación</h3>
+    <div class="col-lg-4">
+      <%= f.text_field :first_generation_year, class: "form-control " %>
+    </div>
+    <div class="col-lg-1 text-center">
+      <span class="bold">-</span>
+    </div>
+    <div class="col-lg-4">
+      <%= f.text_field :last_generation_year, class: "form-control " %>
+    </div>
+  </div>
+  <div class="col-lg-6">
+    <%= f.fields_for :generic_images do |ff| %>
     <%= ff.file_field :photo %>
-  <% end %>
-
-
-  <!-- <h1>Piezas Genericas</h1>
-  <table class="table">
-    <thead>
-      <th> Relación </th>
-      <th> Marca </th>
-      <th> Nombre </th>
-      <th> Tipo </th>
-      <th> Region </th>
-      <th> Descripción </th>
-    </thead>
-    <tbody>
-      <%= f.fields_for :car_spare_alloys do |ff| %>
-        <tr>
-          <td>
-            <%= ff.select(:relation,[ ["---",""], ["Mecanico","Mecanico"], ["Interior","Interior"], ["Exterior","Exterior"]]) %>
-          </td>
-            <%= ff.fields_for :generic_spare do |fff| %>
-              <%= render "generic_spares/generic_spare_fields", fff: fff %>
-            <% end %>
-        </tr>
-      <% end %>
-    </tbody>
-  </table> -->
-
-  <%= f.submit "Guardar" %>
+    <% end %>
+  </div>
+</div>
+<div class="row">
+  <!-- <div class="col-log-4"></div> -->
+  <div class="col-md-offset-4">
+    <%= f.submit "Guardar", class: "btn btn-primary col-md-2" %>
+  </div>
+  <!-- <div class="col-log-4"></div> -->
+</div>
 <% end %>
