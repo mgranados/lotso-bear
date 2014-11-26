@@ -15,7 +15,13 @@
       <td><%= car.model %></td>
       <td><%= car.type_of_car %></td>
       <td><%= car.year %></td>
-      <td><%= car.first_generation_year %> - <%= car.last_generation_year %></td>
+      <td><%= car.first_generation_year %> -
+        <% if car.last_generation_year != 0 %>
+          <%= car.last_generation_year %>
+        <% else %>
+          <p>Vigente</p>
+        <% end %>
+       </td>
       <td><%= car.doors %></td>
       <td><%= link_to "Ver", car %></td>
       <td><%= link_to 'Editar', edit_generic_car_path(car) %></td>
