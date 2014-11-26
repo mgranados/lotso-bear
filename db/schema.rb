@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141105201856) do
+ActiveRecord::Schema.define(version: 20141126225413) do
 
   create_table "car_spare_alloys", force: true do |t|
     t.integer  "generic_car_id"
@@ -58,6 +58,7 @@ ActiveRecord::Schema.define(version: 20141105201856) do
     t.integer  "doors"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "gen"
   end
 
   create_table "generic_images", force: true do |t|
