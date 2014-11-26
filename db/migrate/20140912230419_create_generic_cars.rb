@@ -6,6 +6,8 @@ class CreateGenericCars < ActiveRecord::Migration
       t.integer :year
       t.string :model
       t.integer :doors
+      t.integer :first_generation_year
+      t.integer :last_generation_year
 
       t.timestamps
     end

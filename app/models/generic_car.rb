@@ -6,7 +6,7 @@ class GenericCar < ActiveRecord::Base
   has_many :generic_car_generations
   has_many :generations, through: :generic_car_generations, dependent: :destroy
 
-  attr_accessor :first_generation_year, :last_generation_year
+  # attr_accessor :first_generation_year, :last_generation_year
 
 
   # accepts_nested_attributes_for :car_spare_alloys, :reject_if => proc { |a| a[:relation].blank? }
