@@ -4,4 +4,7 @@ class RosterController < ApplicationController
 
   def attendance
   end
+
+  def index
+  end
 end

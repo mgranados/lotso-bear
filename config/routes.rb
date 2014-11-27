@@ -1,11 +1,5 @@
 LotsoBear::Application.routes.draw do
-  get "invoices/home"
   get "admin/home"
-  get "roster/employeePerformance"
-  get "roster/attendance"
-  get "reports/insurance"
-  get "reports/repair"
-  get "reports/cars"
   # root to: 'sessions#new'
   root 'sessions#new'
 
@@ -27,8 +21,18 @@ LotsoBear::Application.routes.draw do
   match '/proceso',            to: 'branches#process',    via: 'get'
   match '/almacen',             to: 'branches#warehouse', via: 'get'
   #client actions routes
-  match '/consultar',           to: 'client_actions#home', via: 'get'
-  match '/c/show',              to: 'client_actions#show', via: 'get'
+  match '/consultar',            to: 'client_actions#home', via: 'get'
+  match '/c/show',               to: 'client_actions#show', via: 'get'
+  match '/reports',              to: 'reports#index', via: 'get'
+  match '/reports/repair',       to: 'reports#repair', via: 'get'
+  match '/reports/insurance',    to: 'reports#insurance', via: 'get'
+  match '/reports/cars',         to: 'reports#cars', via: 'get'
+
+  match '/roster',              to: 'roster#index', via: 'get'
+  match '/roster/employeePerformance', to: 'roster#employeePerformance', via: 'get'
+  match '/roster/attendance',          to: 'roster#attendance', via: 'get'
+
+  match '/invoices',            to: 'invoices#home', via: 'get'
 
   #Signin Trabajadores
   match '/signin',  to: 'sessions#new',         via: 'get'
