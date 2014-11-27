@@ -6,6 +6,7 @@ LotsoBear::Application.routes.draw do
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
   resources :prevaluations, only: [:new, :create, :show]
+  resources :valuations, only: [:index, :new, :create, :show]
   resources :generic_cars, only: [:index, :new, :create, :show, :edit ,:destroy, :update]
   resources :generic_spares, only: [:index, :new, :create, :show, :edit ,:destroy, :update]
 
@@ -33,6 +34,8 @@ LotsoBear::Application.routes.draw do
   match '/roster/attendance',          to: 'roster#attendance', via: 'get'
 
   match '/invoices',            to: 'invoices#home', via: 'get'
+
+
 
   #Signin Trabajadores
   match '/signin',  to: 'sessions#new',         via: 'get'
