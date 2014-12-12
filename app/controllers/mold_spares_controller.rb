@@ -15,6 +15,8 @@ class MoldSparesController < ApplicationController
   # GET /mold_spares/new
   def new
     @mold_spare = MoldSpare.new
+    15.times{  @mold_spare.mold_attributes.build }
+
   end
 
   # GET /mold_spares/1/edit
@@ -69,6 +71,10 @@ class MoldSparesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def mold_spare_params
-      params.require(:mold_spare).permit(:name, :comment, :comment2, :type)
+      params.require(:mold_spare).permit(
+      :name, :comment, :comment2, :type,
+      :mold_attribures[
+        :name
+        ])
     end
 end
