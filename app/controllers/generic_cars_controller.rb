@@ -35,9 +35,11 @@ class GenericCarsController < ApplicationController
         end
 
       else
-        @record = Generation.find_by_year(@firstyear)
-        @generation = GenericCarGeneration.new(generic_car_id:@generic_car.id, generation_id: @record.id)
-        @generation.save
+        for i in @firstyear.to_i...Date.today.year+1
+          @record = Generation.find_by_year(i)
+          @generation = GenericCarGeneration.new(generic_car_id:@generic_car.id, generation_id: @record.id)
+          @generation.save
+        end
       end
 
       flash[:success]= "Guardado con exito"
