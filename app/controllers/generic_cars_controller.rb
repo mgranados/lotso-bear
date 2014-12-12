@@ -42,7 +42,7 @@ class GenericCarsController < ApplicationController
 
       redirect_to action: 'index'
     else
-      render new
+      render new_generic_car_path
     end
   end
 

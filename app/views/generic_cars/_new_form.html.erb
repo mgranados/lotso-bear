@@ -1,3 +1,16 @@
+<% if @generic_car.errors.any? %>
+<div id="error_explanation">
+  <div class="alert alert-error">
+  <ul>
+    <% @generic_car.errors.full_messages.each do |msg| %>
+    <li>* <%= msg %></li>
+    <% end %>
+  </ul>
+  </div>
+</div>
+<% end %>
+
+
 <%= form_for @generic_car do |f|%>
 <h1>Carro Generico </h1>
 <div class="row">
