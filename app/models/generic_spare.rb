@@ -5,4 +5,8 @@ class GenericSpare < ActiveRecord::Base
   has_many :generic_cars, through: :car_spare_alloys
   belongs_to :mold_spare
 
+  has_many :families
+  has_many :childs, :through => :families
+
+
 end

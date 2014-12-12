@@ -1,0 +1,4 @@
+<h2>Moldes</h2>
+<% for template in @templates  %>
+<%= link_to template.name, new_generic_spare_path(:mold_spare_id => template.id) %>
+<% end %>
