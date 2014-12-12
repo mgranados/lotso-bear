@@ -16,16 +16,16 @@
       <td><%= car.type_of_car %></td>
       <td><%= car.year %></td>
       <td><%= car.first_generation_year %> -
-        <% if car.last_generation_year != 0 %>
+        <!-- <% if car.last_generation_year != 0 %> -->
           <%= car.last_generation_year %>
-        <% else %>
-          <p>Vigente</p>
-        <% end %>
+        <!-- <% else %>
+          <p>Año Actual</p>
+        <% end %> -->
        </td>
       <td><%= car.doors %></td>
-      <td><%= link_to "Ver", car %></td>
-      <td><%= link_to 'Editar', edit_generic_car_path(car) %></td>
-      <td><%= link_to "Borrar", car, :confirm => '¿Seguro Que Deseas Borrarlo?', :method => :delete %></td>
+      <td><%= link_to "Ver", car, class: "button" %></td>
+      <td><%= link_to 'Editar', edit_generic_car_path(car), class: "button" %></td>
+      <td><%= link_to "Borrar", car, :confirm => '¿Seguro Que Deseas Borrarlo?', :method => :delete , class: "button"%></td>
     </tr>
   <% end %>
 </table>

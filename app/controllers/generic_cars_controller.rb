@@ -25,7 +25,8 @@ class GenericCarsController < ApplicationController
 
 
     if @generic_car.save
-      if @lastyear.to_s != "Vigente"
+      if @lastyear.empty?
+        puts "LAST YEAR ESTA EMPTY CULEROS"
         for i in @firstyear.to_i...@lastyear.to_i+1
           @record = Generation.find_by_year(i)
           @generation = GenericCarGeneration.new(generic_car_id:@generic_car.id, generation_id: @record.id)
