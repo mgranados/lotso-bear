@@ -1,7 +1,58 @@
 <% provide(:title, 'Administrador') %>
 <h1>Admin</h1>
 
+<nav class="navbar navbar-default" role="navigation">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Inicio</a>
+    </div>
 
-<p><%= link_to "Reportes",  reports_path,  class: "btn btn-primary" %></p>
-<p><%= link_to "Facturas",  bills_path,  class: "btn btn-primary" %></p>
-<p><%= link_to "Nóminas",   paysheets_path,  class: "btn btn-primary" %></p>
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">ADMIN<span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="#">Reportes</a></li>
+            <li><a href="#">Nóminas</a></li>
+            <li><a href="#">Facturas</a></li>
+          </ul>
+        </li>
+        <li><a href="#">PREVALUACIÓN</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">PROCESO<span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="#">Seguimiento</a></li>
+            <li><a href="#">Valuaciónes</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">ALMACÉN <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="#">Pedidos</a></li>
+            <li><a href="#">Envíos</a></li>
+            <li><a href="#">Inventario</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">CLIENTES <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="#">Admin Clientes</a></li>
+            <li><a href="#">Consulta (Seguimientos)</a></li>
+          </ul>
+        </li>
+
+      </ul>
+    </div>
+  </div>
+</nav>
+<p><%= link_to "Reportes",  "/reports",  class: "btn btn-primary" %></p>
+<p><%= link_to "Facturas",  "/invoices",  class: "btn btn-primary" %></p>
+<p><%= link_to "Nóminas",   "/roster",  class: "btn btn-primary" %></p>
