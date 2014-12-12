@@ -22,11 +22,12 @@ class GenericCarsController < ApplicationController
     @firstyear = generic_car_params[:first_generation_year]
     @lastyear = generic_car_params[:last_generation_year]
 
-
+    if @lastyear.empty?
+      @generic_car.last_generation_year = 10
+    end
 
     if @generic_car.save
-      if @lastyear.empty?
-        puts "LAST YEAR ESTA EMPTY CULEROS"
+      if !@lastyear.empty?
         for i in @firstyear.to_i...@lastyear.to_i+1
           @record = Generation.find_by_year(i)
           @generation = GenericCarGeneration.new(generic_car_id:@generic_car.id, generation_id: @record.id)

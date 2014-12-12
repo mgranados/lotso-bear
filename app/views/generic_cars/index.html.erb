@@ -16,11 +16,11 @@
       <td><%= car.type_of_car %></td>
       <td><%= car.year %></td>
       <td><%= car.first_generation_year %> -
-        <!-- <% if car.last_generation_year != 0 %> -->
+        <% if car.last_generation_year != 10 %>
           <%= car.last_generation_year %>
-        <!-- <% else %>
+        <% else %>
           <p>Año Actual</p>
-        <% end %> -->
+        <% end %>
        </td>
       <td><%= car.doors %></td>
       <td><%= link_to "Ver", car, class: "button" %></td>
