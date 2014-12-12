@@ -37,6 +37,7 @@ LotsoBear::Application.routes.draw do
 
   match '/invoices',            to: 'invoices#home', via: 'get'
 
+  match '/nuevaTemplate',            to: 'generic_spares#newtemplate', via: 'get'
 
 
   #Signin Trabajadores
