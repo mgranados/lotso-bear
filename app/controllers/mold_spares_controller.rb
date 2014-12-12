@@ -15,7 +15,7 @@ class MoldSparesController < ApplicationController
   # GET /mold_spares/new
   def new
     @mold_spare = MoldSpare.new
-    15.times{  @mold_spare.mold_attributes.build }
+    5.times{ @mold_spare.mold_components.build }
 
   end
 
@@ -73,7 +73,7 @@ class MoldSparesController < ApplicationController
     def mold_spare_params
       params.require(:mold_spare).permit(
       :name, :comment, :comment2, :type,
-      :mold_attribures[
+      :mold_components_attributes[
         :name
         ])
     end
