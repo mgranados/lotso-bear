@@ -7,7 +7,8 @@
     <th> Año </th>
     <th> Generación </th>
     <th> # Puertas </th>
-    <th> Image </th>
+    <th> Imagenes </th>
+    <th>   </th>
 
   </thead>
   <tr>
@@ -22,10 +23,13 @@
       end %> -->
        <%= @generic_car.last_generation_year %>
     <td><%= @generic_car.doors %></td>
-    <% if @generic_car.generic_images.first %>
-      <td><%= image_tag @generic_car.generic_images.first.photo.url(:medium) %></td>
-    <%end %>
-    <td><%= link_to "Borrar", @generic_car, :confirm => '¿Seguro Que Deseas Borrarlo?', :method => :delete %></td>
+    <td>
+      <% for image in @generic_car.generic_images %>
+      <%= image_tag image.photo.url(:thumb) %>
+      <%end %>
+    </td>
+  </td>
+    <td><%= link_to "Borrar", @generic_car, :confirm => '¿Seguro Que Deseas Borrarlo?', :method => :delete, class: "button" %></td>
   </tr>
 </table>
 <!-- <h1>Piezas Genericas</h1>
@@ -55,4 +59,4 @@
 <p>
 
 </p> -->
-<%= link_to "Ver Todos", generic_cars_path %>
+<%= link_to "Regresar", generic_cars_path, class: "button" %>
