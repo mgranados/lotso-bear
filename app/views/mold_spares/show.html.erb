@@ -1,24 +1,27 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Name:</strong>
+  <strong>Nombre:</strong>
   <%= @mold_spare.name %>
 </p>
-
 <p>
-  <strong>Comment:</strong>
-  <%= @mold_spare.comment %>
+  <strong>Tipo:</strong>
+  <%= @mold_spare.mold_type %>
 </p>
 
-<p>
-  <strong>Comment2:</strong>
-  <%= @mold_spare.comment2 %>
-</p>
+<table class="u-full-width">
+  <thead>
+    <th> Piezas que contiene </th>
+  </thead>
+  <tbody>
+    <% for mold_spare in @mold_spare.mold_components %>
+    <tr>
+      <td><%= mold_spare.name %></td>
 
-<p>
-  <strong>Type:</strong>
-  <%= @mold_spare.type %>
-</p>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
 
-<%= link_to 'Edit', edit_mold_spare_path(@mold_spare) %> |
-<%= link_to 'Back', mold_spares_path %>
+<%= link_to 'Editar', edit_mold_spare_path(@mold_spare), class: "button button-primary" %>
+<%= link_to 'Regresar', mold_spares_path, class:"button"%>

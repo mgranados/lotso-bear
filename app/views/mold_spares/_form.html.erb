@@ -12,29 +12,30 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :name %><br>
+    <%= f.label "Nombre" %><br>
     <%= f.text_field :name %>
   </div>
   <div class="field">
-    <%= f.label :comment %><br>
+    <%= f.label "Comentario" %><br>
     <%= f.text_field :comment %>
   </div>
   <div class="field">
-    <%= f.label :comment2 %><br>
+    <%= f.label "Comentarios adicionales" %><br>
     <%= f.text_field :comment2 %>
   </div>
   <div class="field">
-    <%= f.label :type %><br>
-    <%= f.text_field :type %>
+    <%= f.label "Tipo" %><br>
+    <%= f.text_field :mold_type %>
   </div>
   <div class="field">
+    <h3>Piezas pertenecientes</h3>
     <%= f.fields_for :mold_components do |ff| %>
-    <%= ff.text_field :name%>
+    <%= ff.text_field :name %><br/>
     <% end %>
   </div>
 
 
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Guardar Pieza",    class: "button-primary" %>
   </div>
 <% end %>

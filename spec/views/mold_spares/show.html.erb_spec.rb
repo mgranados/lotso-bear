@@ -6,7 +6,7 @@ describe "mold_spares/show" do
       :name => "Name",
       :comment => "Comment",
       :comment2 => "Comment2",
-      :type => "Type"
+      :mold_type => "Type"
     ))
   end
 

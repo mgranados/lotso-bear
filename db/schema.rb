@@ -103,7 +103,7 @@ ActiveRecord::Schema.define(version: 20141212012550) do
     t.string   "name"
     t.string   "comment"
     t.string   "comment2"
-    t.string   "type"
+    t.string   "mold_type"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

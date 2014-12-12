@@ -1,12 +1,14 @@
-<h1>Listing mold_spares</h1>
+<h1>Moldes para Piezas </h1>
+<%= link_to 'Nueva Pieza Molde', new_mold_spare_path, class: "button button-primary u-pull-right" %>
 
-<table>
+<br>
+<br>
+
+<table class="u-full-width">
   <thead>
     <tr>
-      <th>Name</th>
-      <th>Comment</th>
-      <th>Comment2</th>
-      <th>Type</th>
+      <th>Nombre Pieza</th>
+      <th>Tipo</th>
       <th></th>
       <th></th>
       <th></th>
@@ -17,17 +19,13 @@
     <% @mold_spares.each do |mold_spare| %>
       <tr>
         <td><%= mold_spare.name %></td>
-        <td><%= mold_spare.comment %></td>
-        <td><%= mold_spare.comment2 %></td>
-        <td><%= mold_spare.type %></td>
-        <td><%= link_to 'Show', mold_spare %></td>
-        <td><%= link_to 'Edit', edit_mold_spare_path(mold_spare) %></td>
-        <td><%= link_to 'Destroy', mold_spare, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= mold_spare.mold_type %></td>
+        <td><%= link_to 'Mostrar', mold_spare, class: "button " %></td>
+        <td><%= link_to 'Editar', edit_mold_spare_path(mold_spare), class: "button " %></td>
+        <td><%= link_to 'Borrar', mold_spare, method: :delete, data: { confirm: 'Estás seguro?' }, class: "button" %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
 <br>
-
-<%= link_to 'New Mold spare', new_mold_spare_path %>

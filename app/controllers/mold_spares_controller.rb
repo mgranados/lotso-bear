@@ -30,7 +30,7 @@ class MoldSparesController < ApplicationController
 
     respond_to do |format|
       if @mold_spare.save
-        format.html { redirect_to @mold_spare, notice: 'Mold spare was successfully created.' }
+        format.html { redirect_to @mold_spare, notice: 'Molde de pieza creado correctamente.' }
         format.json { render action: 'show', status: :created, location: @mold_spare }
       else
         format.html { render action: 'new' }
@@ -44,7 +44,7 @@ class MoldSparesController < ApplicationController
   def update
     respond_to do |format|
       if @mold_spare.update(mold_spare_params)
-        format.html { redirect_to @mold_spare, notice: 'Mold spare was successfully updated.' }
+        format.html { redirect_to @mold_spare, notice: 'Molde de pieza actualizada.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -72,9 +72,10 @@ class MoldSparesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def mold_spare_params
       params.require(:mold_spare).permit(
-      :name, :comment, :comment2, :type,
-      :mold_components_attributes[
-        :name
-        ])
+      :name, :comment, :comment2, :mold_type,
+        mold_components_attributes:[
+          :name
+          ]
+        )
     end
 end

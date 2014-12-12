@@ -4,7 +4,7 @@ class CreateMoldSpares < ActiveRecord::Migration
       t.string :name
       t.string :comment
       t.string :comment2
-      t.string :type
+      t.string :mold_type
 
       t.timestamps
     end
