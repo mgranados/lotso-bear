@@ -11,6 +11,8 @@ before_action :set_generic_spare, only: [:show, :edit, :destroy, :update]
 
   def show
   end
+  def newTemplate
+  end
 
   def edit
   end
