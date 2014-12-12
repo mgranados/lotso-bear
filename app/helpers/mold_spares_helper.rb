@@ -1,0 +1,2 @@
+module MoldSparesHelper
+end

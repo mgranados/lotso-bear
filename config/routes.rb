@@ -1,4 +1,6 @@
 LotsoBear::Application.routes.draw do
+  resources :mold_spares
+
   get "admin/home"
   # root to: 'sessions#new'
   root 'sessions#new'

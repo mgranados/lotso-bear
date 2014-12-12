@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141105201856) do
+ActiveRecord::Schema.define(version: 20141212010127) do
 
   create_table "car_spare_alloys", force: true do |t|
     t.integer  "generic_car_id"
@@ -88,6 +88,22 @@ ActiveRecord::Schema.define(version: 20141105201856) do
     t.string   "name"
     t.integer  "telephone"
     t.string   "email"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "mold_attributes", force: true do |t|
+    t.integer  "mold_spare_id"
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "mold_spares", force: true do |t|
+    t.string   "name"
+    t.string   "comment"
+    t.string   "comment2"
+    t.string   "type"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

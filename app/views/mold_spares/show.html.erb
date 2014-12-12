@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @mold_spare.name %>
+</p>
+
+<p>
+  <strong>Comment:</strong>
+  <%= @mold_spare.comment %>
+</p>
+
+<p>
+  <strong>Comment2:</strong>
+  <%= @mold_spare.comment2 %>
+</p>
+
+<p>
+  <strong>Type:</strong>
+  <%= @mold_spare.type %>
+</p>
+
+<%= link_to 'Edit', edit_mold_spare_path(@mold_spare) %> |
+<%= link_to 'Back', mold_spares_path %>

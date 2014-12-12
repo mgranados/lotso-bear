@@ -1,0 +1,33 @@
+<h1>Listing mold_spares</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Comment</th>
+      <th>Comment2</th>
+      <th>Type</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @mold_spares.each do |mold_spare| %>
+      <tr>
+        <td><%= mold_spare.name %></td>
+        <td><%= mold_spare.comment %></td>
+        <td><%= mold_spare.comment2 %></td>
+        <td><%= mold_spare.type %></td>
+        <td><%= link_to 'Show', mold_spare %></td>
+        <td><%= link_to 'Edit', edit_mold_spare_path(mold_spare) %></td>
+        <td><%= link_to 'Destroy', mold_spare, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Mold spare', new_mold_spare_path %>
