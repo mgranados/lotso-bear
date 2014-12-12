@@ -1,8 +1,12 @@
 class GenericSparesController < ApplicationController
 
 before_action :set_generic_spare, only: [:show, :edit, :destroy, :update]
+
   def new
     @generic_spare = GenericSpare.new
+    if params[:mold_spare_id].empty?
+      @template = MoldSpare.find_by_id(params[:mold_spare_id])
+    end
   end
 
   def show
@@ -12,6 +16,11 @@ before_action :set_generic_spare, only: [:show, :edit, :destroy, :update]
 
   def edit
   end
+
+  def template
+    @templates = MoldSpare.all
+  end
+
 
   def index
     @generic_spares = GenericSpare.all
@@ -53,7 +62,7 @@ before_action :set_generic_spare, only: [:show, :edit, :destroy, :update]
       :type_of_spare,
       :name,
       :region,
-      :description
+      :description,
       )
   end
 

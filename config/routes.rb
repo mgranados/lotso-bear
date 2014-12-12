@@ -1,4 +1,6 @@
 LotsoBear::Application.routes.draw do
+  resources :families
+
   resources :mold_spares
 
   get "admin/home"
@@ -12,6 +14,7 @@ LotsoBear::Application.routes.draw do
   resources :generic_cars, only: [:index, :new, :create, :show, :edit ,:destroy, :update]
   resources :generic_spares, only: [:index, :new, :create, :show, :edit ,:destroy, :update]
 
+  match '/new_generic_spare_from_template', to: 'generic_spares#template', via: 'get'
   match '/new_generic_car', to: 'generic_cars#new',  via: 'get'
   match '/busqueda', to: 'generic_cars#search',  via: 'get'
   match '/new_pre_valuations', to: 'prevaluations#new',  via: 'get'
