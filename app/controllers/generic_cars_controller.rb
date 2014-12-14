@@ -3,14 +3,14 @@ class GenericCarsController < ApplicationController
   def new
     @generic_car = GenericCar.new
     # 15.times{  @generic_car.car_spare_alloys.build.build_generic_spare}
-    4.times{  @generic_car.generic_images.build }
+    5.times{  @generic_car.generic_images.build }
   end
 
   def show
   end
 
   def edit
-    @generic_spares = GenericSpare.all
+    5.times{  @generic_car.generic_images.build }
   end
 
   def index

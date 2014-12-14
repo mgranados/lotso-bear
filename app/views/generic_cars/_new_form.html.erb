@@ -48,9 +48,19 @@
   </div>
 
     <h2>Fotos </h2>
+
+    <% if @generic_car.generic_images.exists? %>
+    <%= image_tag @blog.image.url(:thumb) %><br/>
+    <% end %>
+
+
+
       <%= f.fields_for :generic_images do |ff| %>
       <%= ff.file_field :photo %>
       <% end %>
+
+
+
     <div class="row">
         <%= f.submit "Guardar", class: "button button-primary" %>
     </div>
