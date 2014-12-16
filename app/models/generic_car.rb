@@ -1,4 +1,5 @@
 class GenericCar < ActiveRecord::Base
+  nilify_blanks
   # Associations
   has_many :cars
   has_many :car_spare_alloys
@@ -11,6 +12,7 @@ class GenericCar < ActiveRecord::Base
 
   #Validations
   validates :model, presence: true
+  # validates :code, uniqueness: true
   validates :year, inclusion: { in: 1900..(Date.today.year+50), message: "Invalido"}, presence: true
   validates :first_generation_year,inclusion: { in: 1900..(Date.today.year+50), message: "Invalido"},presence: true
 
@@ -19,5 +21,15 @@ class GenericCar < ActiveRecord::Base
     # where(:title, query) -> This would return an exact match of the query
     where("model like ? OR brand like ? OR year like ?", "%#{query}%", "%#{query}%", "%#{query}%")
   end
+
+  # before_validation { image.clear if @delete_image }
+  #
+  # def delete_image
+  #   @delete_image ||= false
+  # end
+  #
+  # def delete_image=(value)
+  #   @delete_image  = !value.to_i.zero?
+  # end
 
 end

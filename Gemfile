@@ -16,7 +16,8 @@ gem "paperclip", "~> 4.2"
 
 # Translation
   gem 'rails-i18n', '~> 4.0.0'
-
+#Null Database Fields
+  gem "nilify_blanks"
 
 group :development, :test do
   gem 'railroady'

@@ -67,6 +67,8 @@ ActiveRecord::Schema.define(version: 20141212191231) do
     t.integer  "doors"
     t.integer  "first_generation_year"
     t.integer  "last_generation_year"
+    t.string   "code"
+    t.boolean  "gen_continues"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -1,5 +1,6 @@
 class GenericCarsController < ApplicationController
   before_action :set_generic_car, only: [:show, :edit, :destroy, :update]
+
   def new
     @generic_car = GenericCar.new
     # 15.times{  @generic_car.car_spare_alloys.build.build_generic_spare}
@@ -10,7 +11,7 @@ class GenericCarsController < ApplicationController
   end
 
   def edit
-    5.times{  @generic_car.generic_images.build }
+    #  5.times{  @generic_car.generic_images.build }
   end
 
   def index
@@ -21,9 +22,10 @@ class GenericCarsController < ApplicationController
     @generic_car = GenericCar.new(generic_car_params)
     @firstyear = generic_car_params[:first_generation_year]
     @lastyear = generic_car_params[:last_generation_year]
+    @genContinues = generic_car_params[:gen_continues]
 
-    if @lastyear.empty?
-      @generic_car.last_generation_year = 10
+    if @genContinues == 0
+      @generic_car.last_generation_year = Date.today.year
     end
 
     if @generic_car.save
@@ -52,6 +54,12 @@ class GenericCarsController < ApplicationController
 
   def update
     respond_to do |format|
+      @genContinues = generic_car_params[:gen_continues]
+
+      if @genContinues == 0
+        generic_car_params[:gen_continues] = Date.today.year
+      end
+
       if @generic_car.update(generic_car_params)
         format.html { redirect_to @generic_car, notice: 'El Carro fue editado con exito' }
         format.json { render :show, status: :ok, location: @generic_car }
@@ -80,7 +88,10 @@ class GenericCarsController < ApplicationController
     :doors,
     :first_generation_year,
     :last_generation_year,
+    :gen_continues,
+    :code,
     generic_images_attributes: [
+      :id,
       :generic_id,
       :photo
     ]

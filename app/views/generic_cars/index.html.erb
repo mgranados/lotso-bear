@@ -16,7 +16,7 @@
       <td><%= car.type_of_car %></td>
       <td><%= car.year %></td>
       <td><%= car.first_generation_year %> -
-        <% if car.last_generation_year != 10 %>
+        <% if !car.gen_continues %>
           <%= car.last_generation_year %>
         <% else %>
           Año Actual
