@@ -11,3 +11,5 @@ $ ->
       $('#generic_car_last_generation_year').val -> d.getFullYear()
     else
       $('#generic_car_last_generation_year').val -> oldValue
+
+  $('#genericCars').dataTable()

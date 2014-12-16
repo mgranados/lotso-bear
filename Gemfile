@@ -11,7 +11,9 @@ gem 'bcrypt-ruby', '3.1.2' #passwords hasheados
 gem 'pundit' #authorizations
 gem "paperclip", "~> 4.2"
 
-
+#Data Table
+  gem 'jquery-datatables-rails', '~> 3.1.1'
+  gem 'jquery-ui-rails'
 
 #Style
   gem 'sprockets', '2.11.0'

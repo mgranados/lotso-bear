@@ -1,6 +1,6 @@
 <%= link_to "Nuevo Coche Generico", new_generic_car_path, class: "button button-primary" %>
 
-<table class="table">
+<table id="genericCars">
   <thead>
     <th> Marca </th>
     <th> Modelo </th>
@@ -8,7 +8,11 @@
     <th> Año </th>
     <th> Generación </th>
     <th> # Puertas </th>
+    <th></th>
+    <th></th>
+    <th></th>
   </thead>
+  <tbody>
 <% for car in @generic_cars %>
     <tr>
       <td><%= car.brand %></td>
@@ -28,4 +32,5 @@
       <td><%= link_to "Borrar", car, :confirm => '¿Seguro Que Deseas Borrarlo?', :method => :delete , class: "button"%></td>
     </tr>
   <% end %>
+</tbody>
 </table>
