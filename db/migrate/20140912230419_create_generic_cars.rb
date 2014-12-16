@@ -10,6 +10,7 @@ class CreateGenericCars < ActiveRecord::Migration
       t.integer :last_generation_year
       t.string :code
       t.boolean  :gen_continues
+      t.string :number_of_generation
 
 
       t.timestamps

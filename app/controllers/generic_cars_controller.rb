@@ -23,7 +23,19 @@ class GenericCarsController < ApplicationController
     @firstyear = generic_car_params[:first_generation_year]
     @lastyear = generic_car_params[:last_generation_year]
     @genContinues = generic_car_params[:gen_continues]
+    @brand =generic_car_params[:brand]
+    @typeofcar = generic_car_params[:type_of_car]
 
+    t.string   "type_of_car"
+    t.integer  "year"
+    t.string   "model"
+    t.integer  "doors"
+    t.integer  "first_generation_year"
+    t.integer  "last_generation_year"
+    t.string   "code"
+    t.boolean  "gen_continues"
+    t.datetime "created_at"
+    t.datetime "updated_at"
     if @genContinues == 0
       @generic_car.last_generation_year = Date.today.year
     end
@@ -89,6 +101,7 @@ class GenericCarsController < ApplicationController
     :first_generation_year,
     :last_generation_year,
     :gen_continues,
+    :number_of_generation,
     :code,
     generic_images_attributes: [
       :id,
