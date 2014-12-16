@@ -2,6 +2,13 @@
 @import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:600);
 @import "bootstrap.min";
 
+
+.check{
+  visibility: hidden !important;
+  background-color: red;
+}
+
+
 body {
   background-color: #e8e8e8;
   font-family     : 'source sans pro', sans-serif;
