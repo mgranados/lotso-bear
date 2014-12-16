@@ -26,44 +26,18 @@ class GenericCarsController < ApplicationController
     @brand =generic_car_params[:brand]
     @typeofcar = generic_car_params[:type_of_car]
 
-    t.string   "type_of_car"
-    t.integer  "year"
-    t.string   "model"
-    t.integer  "doors"
-    t.integer  "first_generation_year"
-    t.integer  "last_generation_year"
-    t.string   "code"
-    t.boolean  "gen_continues"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    if @genContinues == 0
-      @generic_car.last_generation_year = Date.today.year
-    end
-
     if @generic_car.save
-      if !@lastyear.empty?
-        for i in @firstyear.to_i...@lastyear.to_i+1
-          @record = Generation.find_by_year(i)
-          @generation = GenericCarGeneration.new(generic_car_id:@generic_car.id, generation_id: @record.id)
-          @generation.save
-        end
-
-      else
-        for i in @firstyear.to_i...Date.today.year+1
-          @record = Generation.find_by_year(i)
-          @generation = GenericCarGeneration.new(generic_car_id:@generic_car.id, generation_id: @record.id)
-          @generation.save
-        end
+      for i in @firstyear.to_i...@lastyear.to_i+1
+        @record = Generation.find_by_year(i)
+        @generation = GenericCarGeneration.new(generic_car_id:@generic_car.id, generation_id: @record.id)
+        @generation.save
       end
-
       flash[:success]= "Guardado con exito"
-
       redirect_to action: 'index'
     else
       render new_generic_car_path
     end
   end
-
   def update
     respond_to do |format|
       @genContinues = generic_car_params[:gen_continues]

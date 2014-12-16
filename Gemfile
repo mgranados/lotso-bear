@@ -5,10 +5,13 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
 gem 'jquery-rails'
 gem 'turbolinks'
+gem "jquery-turbolinks"
 gem 'jbuilder', '~> 1.2'
 gem 'bcrypt-ruby', '3.1.2' #passwords hasheados
 gem 'pundit' #authorizations
 gem "paperclip", "~> 4.2"
+
+
 
 #Style
   gem 'sprockets', '2.11.0'

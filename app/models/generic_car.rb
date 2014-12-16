@@ -12,9 +12,11 @@ class GenericCar < ActiveRecord::Base
 
   #Validations
   validates :model, presence: true
+  validate :generation_order
   # validates :code, uniqueness: true
   validates :year, inclusion: { in: 1900..(Date.today.year+50), message: "Invalido"}, presence: true
   validates :first_generation_year,inclusion: { in: 1900..(Date.today.year+50), message: "Invalido"},presence: true
+  validates :last_generation_year,inclusion: { in: 1900..(Date.today.year+50), message: "Invalido"},presence: true
 
   # Queries
   def self.search(query)
@@ -31,5 +33,13 @@ class GenericCar < ActiveRecord::Base
   # def delete_image=(value)
   #   @delete_image  = !value.to_i.zero?
   # end
+
+
+  private
+  def generation_order
+    if last_generation_year < first_generation_year
+      errors.add(:last_generation_year, "Ultimo año de generación no puede ser menor al primer año de generación")
+    end
+  end
 
 end

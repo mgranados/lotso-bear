@@ -1,3 +1,14 @@
+
+<% if @generic_car.errors.any? %>
+<div class="alert alert-danger">
+  <ul>
+    <% @generic_car.errors.full_messages.each do |msg| %>
+    <li><%= msg %></li>
+    <% end %>
+  </ul>
+</div>
+<% end %>
+
 <%= form_for @generic_car do |f|%>
 <h1>Carro Generico </h1>
 <div class="row">
@@ -36,27 +47,28 @@
       <%= f.text_field :last_generation_year, class: "form-control"%>
     </div>
 
-    <div class="col-lg-4">
-      <h3>La generación continua?</h3>
 
-      <%=f.check_box :gen_continues %>
+  </div>
+  <div class="col-lg-4">
+    <h3>La generación continua?</h3>
 
-    </div>
+    <%=f.check_box :gen_continues %>
+    
+  </div>
+  <div class="col-lg-2">
+    <h3>Número de generación</h3>
+    <%= f.select(:number_of_generation, %w[1er 2da 3ra 4ta 5ta 6ta], {class: "input-group"}) %>
+
   </div>
   <div class="col-lg-6">
 
-
-
-
-      <%= f.fields_for :generic_images, @generic_car.generic_images do |fff| %>
-        <%= image_tag @generic_car.generic_images[fff.index].photo.url(:thumb) %>
-        <%= fff.check_box :delete_image %>Delete Image<br/>
-      <% end %>
-
-
+    <%= f.fields_for :generic_images, @generic_car.generic_images do |fff| %>
+    <%= image_tag @generic_car.generic_images[fff.index].photo.url(:thumb) %>
+    <%= fff.check_box :delete_image %>Delete Image<br/>
+    <% end %>
 
     <%= f.fields_for :generic_images do |ff| %>
-      <%= ff.file_field :photo %>
+    <%= ff.file_field :photo %>
     <% end %>
 
 
