@@ -23,10 +23,6 @@ class GenericCarsController < ApplicationController
 
   def create
     @generic_car = GenericCar.new(generic_car_params)
-    @firstyear = generic_car_params[:first_generation_year]
-    @lastyear = generic_car_params[:last_generation_year]
-    @genContinues = generic_car_params[:gen_continues]
-
     if @generic_car.save
       flash[:success]= "Guardado con exito"
       redirect_to action: 'index'
