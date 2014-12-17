@@ -18,6 +18,8 @@ LotsoBear::Application.routes.draw do
 
   match '/new_generic_spare_from_template', to: 'generic_spares#template', via: 'get'
   match '/new_generic_car', to: 'generic_cars#new',  via: 'get'
+  match '/update_generation', to: 'generic_cars#update_generation',  via: 'get'
+
   match '/busqueda', to: 'generic_cars#search',  via: 'get'
   match '/new_pre_valuations', to: 'prevaluations#new',  via: 'get'
   match '/login',              to: 'sessions#new',        via: 'get'

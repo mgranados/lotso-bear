@@ -20,6 +20,7 @@ class GenericCar < ActiveRecord::Base
   validates :last_generation_year,inclusion: { in: 1900..(Date.today.year+50), message: "Invalido"},presence: true
 
   before_save :generate_code
+  before_save :generation_split
 
   # //Queries//
   def self.search(query)
@@ -27,15 +28,24 @@ class GenericCar < ActiveRecord::Base
     where("model like ? OR brand like ? OR year like ?", "%#{query}%", "%#{query}%", "%#{query}%")
   end
 
+  def self.gen_continues_search
+    where("gen_continues == 1")
+  end
 
   # //Functions//
   def generate_code
     @brand = Brand.find_by_id(brand_id)
     @model = model.split(//).first(2).join
-    # @typeofcar = type_of_car.split(//).first(2).join
     @edition = number_of_generation.split(//).first(1).join
-
     self.code = (@brand.acronym+@edition+@model).upcase()
+  end
+  
+  def generation_split
+    for i in first_generation_year.to_i...last_generation_year.to_i+1
+      @record = Generation.find_by_year(i)
+      @generation = GenericCarGeneration.new(generic_car_id:self.id, generation_id: @record.id)
+      @generation.save
+    end
   end
 
   private

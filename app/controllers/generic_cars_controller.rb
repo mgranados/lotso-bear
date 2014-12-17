@@ -17,6 +17,9 @@ class GenericCarsController < ApplicationController
   def index
     @generic_cars = GenericCar.all
   end
+  def update_generation
+  @generic_cars = GenericCar.where(gen_continues: true)
+  end
 
   def create
     @generic_car = GenericCar.new(generic_car_params)
@@ -25,11 +28,6 @@ class GenericCarsController < ApplicationController
     @genContinues = generic_car_params[:gen_continues]
 
     if @generic_car.save
-      for i in @firstyear.to_i...@lastyear.to_i+1
-        @record = Generation.find_by_year(i)
-        @generation = GenericCarGeneration.new(generic_car_id:@generic_car.id, generation_id: @record.id)
-        @generation.save
-      end
       flash[:success]= "Guardado con exito"
       redirect_to action: 'index'
     else

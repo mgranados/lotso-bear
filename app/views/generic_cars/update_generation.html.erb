@@ -1,5 +1,4 @@
 <%= link_to "Nuevo Coche Generico", new_generic_car_path, class: "button button-primary" %>
-<%= link_to "Generaciones que Continuan", update_generation_path, class: "button button-primary" %>
 
 <table id="genericCars">
   <thead>
@@ -15,7 +14,7 @@
     <th></th>
   </thead>
   <tbody>
-<% for car in @generic_cars %>
+    <% for car in @generic_cars %>
     <tr>
       <td><%= car.brand.name %></td>
       <td><%= car.model %></td>
@@ -23,17 +22,17 @@
       <td><%= car.year %></td>
       <td><%= car.first_generation_year %> -
         <% if !car.gen_continues %>
-          <%= car.last_generation_year %>
+        <%= car.last_generation_year %>
         <% else %>
-          Año Actual
+        Año Actual
         <% end %>
-       </td>
+      </td>
       <td><%= car.doors %></td>
       <td><%= car.code %></td>
       <td><%= link_to "Ver", car, class: "button" %></td>
       <td><%= link_to 'Editar', edit_generic_car_path(car), class: "button" %></td>
       <td><%= link_to "Borrar", car, :confirm => '¿Seguro Que Deseas Borrarlo?', :method => :delete , class: "button"%></td>
     </tr>
-  <% end %>
-</tbody>
+    <% end %>
+  </tbody>
 </table>
