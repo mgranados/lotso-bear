@@ -1,4 +1,6 @@
 LotsoBear::Application.routes.draw do
+  resources :brands
+
   resources :families
 
   resources :mold_spares

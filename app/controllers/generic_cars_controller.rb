@@ -24,14 +24,6 @@ class GenericCarsController < ApplicationController
     @lastyear = generic_car_params[:last_generation_year]
     @genContinues = generic_car_params[:gen_continues]
 
-    @brand =generic_car_params[:brand].split(//).first(2).join
-    @model = generic_car_params[:model].split(//).first(3).join
-    @year = generic_car_params[:year].split(//).last(2).join
-    @typeofcar = generic_car_params[:type_of_car].split(//).first(2).join
-    @edition = generic_car_params[:number_of_generation].split(//).join
-
-    @generic_car.code = (@brand+@model+@edition+@year).upcase()
-
     if @generic_car.save
       for i in @firstyear.to_i...@lastyear.to_i+1
         @record = Generation.find_by_year(i)
@@ -66,7 +58,7 @@ class GenericCarsController < ApplicationController
 
   def generic_car_params
     params.require(:generic_car).permit(
-    :brand,
+    :brand_id,
     :type_of_car,
     :year,
     :generation,

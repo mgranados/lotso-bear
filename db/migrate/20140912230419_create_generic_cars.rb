@@ -1,7 +1,7 @@
 class CreateGenericCars < ActiveRecord::Migration
   def change
     create_table :generic_cars do |t|
-      t.string :brand
+      t.string :brand_id
       t.string :type_of_car
       t.integer :year
       t.string :model

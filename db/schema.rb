@@ -11,7 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141212191231) do
+ActiveRecord::Schema.define(version: 20141217154326) do
+
+  create_table "brands", force: true do |t|
+    t.string   "name"
+    t.string   "acronym"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "car_spare_alloys", force: true do |t|
     t.integer  "generic_car_id"
@@ -60,7 +67,7 @@ ActiveRecord::Schema.define(version: 20141212191231) do
   end
 
   create_table "generic_cars", force: true do |t|
-    t.string   "brand"
+    t.string   "brand_id"
     t.string   "type_of_car"
     t.integer  "year"
     t.string   "model"
