@@ -3,7 +3,7 @@ es-MX:
     attributes:
       generic_car:
         year: "Año"
-        brand: "Marca"
+        brand_id: "Marca"
         type_of_car: "Tipo"
         model: "Modelo"
         doors: "Puertas"

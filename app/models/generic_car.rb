@@ -12,9 +12,9 @@ class GenericCar < ActiveRecord::Base
   accepts_nested_attributes_for :generic_images, :generic_car_generations
 
   # //Validations//
+  validates :brand_id, presence: true
   validates :model, presence: true
-  validate :generation_order
-# validates :code, uniqueness: true
+  # validates :code, uniqueness: true
   validates :year, inclusion: { in: 1900..(Date.today.year+50), message: "Invalido"}, presence: true
   validates :first_generation_year,inclusion: { in: 1900..(Date.today.year+50), message: "Invalido"},presence: true
   validates :last_generation_year,inclusion: { in: 1900..(Date.today.year+50), message: "Invalido"},presence: true

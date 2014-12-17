@@ -14,7 +14,7 @@
 <div class="row">
   <div class="col-lg-2">
     <h3>Marca</h3>
-    <%= f.select :brand_id, Brand.all.collect{|p| [ p.name, p.id ] }, {include_blank: 'None'} %>
+    <%= f.select :brand_id, Brand.all.collect{|p| [ p.name, p.id ] }, {include_blank: '---'} %>
   </div>
   <div class="col-lg-2">
     <h3>Tipo</h3>
