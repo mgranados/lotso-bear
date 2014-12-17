@@ -53,7 +53,7 @@
     <h3>La generación continua?</h3>
 
     <%=f.check_box :gen_continues %>
-    
+
   </div>
   <div class="col-lg-2">
     <h3>Número de generación</h3>
@@ -62,13 +62,12 @@
   </div>
   <div class="col-lg-6">
 
-    <%= f.fields_for :generic_images, @generic_car.generic_images do |fff| %>
-    <%= image_tag @generic_car.generic_images[fff.index].photo.url(:thumb) %>
-    <%= fff.check_box :delete_image %>Delete Image<br/>
-    <% end %>
+
 
     <%= f.fields_for :generic_images do |ff| %>
-    <%= ff.file_field :photo %>
+      <%= image_tag ff.object.photo.url(:thumb) %>
+      <%= ff.check_box :delete_image %>Delete Image<br/>
+      <%= ff.file_field :photo %>
     <% end %>
 
 

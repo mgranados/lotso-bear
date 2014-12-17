@@ -8,6 +8,7 @@
     <th> Año </th>
     <th> Generación </th>
     <th> # Puertas </th>
+    <th> Codigo</th>
     <th></th>
     <th></th>
     <th></th>
@@ -27,6 +28,7 @@
         <% end %>
        </td>
       <td><%= car.doors %></td>
+      <td><%= car.code %></td>
       <td><%= link_to "Ver", car, class: "button" %></td>
       <td><%= link_to 'Editar', edit_generic_car_path(car), class: "button" %></td>
       <td><%= link_to "Borrar", car, :confirm => '¿Seguro Que Deseas Borrarlo?', :method => :delete , class: "button"%></td>

@@ -23,8 +23,14 @@ class GenericCarsController < ApplicationController
     @firstyear = generic_car_params[:first_generation_year]
     @lastyear = generic_car_params[:last_generation_year]
     @genContinues = generic_car_params[:gen_continues]
-    @brand =generic_car_params[:brand]
-    @typeofcar = generic_car_params[:type_of_car]
+
+    @brand =generic_car_params[:brand].split(//).first(2).join
+    @model = generic_car_params[:model].split(//).first(3).join
+    @year = generic_car_params[:year].split(//).last(2).join
+    @typeofcar = generic_car_params[:type_of_car].split(//).first(2).join
+    @edition = generic_car_params[:number_of_generation].split(//).join
+
+    @generic_car.code = (@brand+@model+@edition+@year).upcase()
 
     if @generic_car.save
       for i in @firstyear.to_i...@lastyear.to_i+1
@@ -40,12 +46,6 @@ class GenericCarsController < ApplicationController
   end
   def update
     respond_to do |format|
-      @genContinues = generic_car_params[:gen_continues]
-
-      if @genContinues == 0
-        generic_car_params[:gen_continues] = Date.today.year
-      end
-
       if @generic_car.update(generic_car_params)
         format.html { redirect_to @generic_car, notice: 'El Carro fue editado con exito' }
         format.json { render :show, status: :ok, location: @generic_car }
@@ -77,6 +77,7 @@ class GenericCarsController < ApplicationController
     :gen_continues,
     :number_of_generation,
     :code,
+    :delete_image,
     generic_images_attributes: [
       :id,
       :generic_id,
