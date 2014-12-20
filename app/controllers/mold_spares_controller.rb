@@ -15,7 +15,7 @@ class MoldSparesController < ApplicationController
   # GET /mold_spares/new
   def new
     @mold_spare = MoldSpare.new
-    5.times{ @mold_spare.mold_components.build }
+    20.times{ @mold_spare.mold_components.build }
 
   end
 
