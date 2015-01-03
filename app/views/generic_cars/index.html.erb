@@ -1,18 +1,20 @@
 <%= link_to "Nuevo Coche Generico", new_generic_car_path, class: "button button-primary" %>
 <%= link_to "Generaciones que Continuan", update_generation_path, class: "button button-primary" %>
 
-<table id="genericCars" class="u-full-width">
+<table id="genericCars" >
   <thead>
-    <th> Marca </th>
-    <th> Modelo </th>
-    <th> Tipo </th>
-    <th> Año </th>
-    <th> Generación </th>
-    <th> # Puertas </th>
-    <th> Codigo</th>
-    <th></th>
-    <th></th>
-    <th></th>
+    <tr>
+      <th> Marca </th>
+      <th> Modelo </th>
+      <th> Tipo </th>
+      <th> Año </th>
+      <th> Generación </th>
+      <th> # Puertas </th>
+      <th> Codigo</th>
+      <th>Ver</th>
+      <th>Editar</th>
+      <th>Borrar</th>
+    </tr>
   </thead>
   <tbody>
 <% for car in @generic_cars %>
@@ -30,9 +32,9 @@
        </td>
       <td><%= car.doors %></td>
       <td><%= car.code %></td>
-      <td><%= link_to "Ver", car, class: "button" %></td>
-      <td><%= link_to 'Editar', edit_generic_car_path(car), class: "button" %></td>
-      <td><%= link_to "Borrar", car, :confirm => '¿Seguro Que Deseas Borrarlo?', :method => :delete , class: "button"%></td>
+      <td><%= link_to "Ver", car, class: "" %></td>
+      <td><%= link_to 'Editar', edit_generic_car_path(car), class: "" %></td>
+      <td><%= link_to "Borrar", car, :confirm => '¿Seguro Que Deseas Borrarlo?', :method => :delete , class: ""%></td>
     </tr>
   <% end %>
 </tbody>
