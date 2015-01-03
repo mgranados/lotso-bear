@@ -27,10 +27,13 @@
     <%= f.label "Tipo" %><br>
     <%= f.text_field :mold_type %>
   </div>
+
+  <br><br>
   <div class="field">
     <h3>Piezas pertenecientes</h3>
-    <%= f.fields_for :mold_components do |ff| %>
-    <%= ff.text_field :name %><br/>
+    <%= f.fields_for :mold_components do |mold_components| %>
+      <%= render 'mold_component_fields', :f => mold_components %>
+      <%= link_to_add_association 'Añadir Pieza', f, :mold_components %>
     <% end %>
   </div>
 

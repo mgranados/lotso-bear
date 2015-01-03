@@ -4,9 +4,9 @@ before_action :set_generic_spare, only: [:show, :edit, :destroy, :update]
 
   def new
     @generic_spare = GenericSpare.new
-    if params[:mold_spare_id].empty?
-      @template = MoldSpare.find_by_id(params[:mold_spare_id])
-    end
+    # if params[:mold_spare_id].empty?
+    #   @template = MoldSpare.find_by_id(params[:mold_spare_id])
+    # end
   end
 
   def show

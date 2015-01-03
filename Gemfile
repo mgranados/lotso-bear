@@ -10,6 +10,7 @@ gem 'jbuilder', '~> 1.2'
 gem 'bcrypt-ruby', '3.1.2' #passwords hasheados
 gem 'pundit' #authorizations
 gem "paperclip", "~> 4.2"
+gem "cocoon"
 
 #Data Table
   gem 'jquery-datatables-rails', '~> 3.1.1'
