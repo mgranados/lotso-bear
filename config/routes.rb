@@ -1,4 +1,5 @@
 LotsoBear::Application.routes.draw do
+
   resources :brands
 
   resources :families
@@ -10,6 +11,8 @@ LotsoBear::Application.routes.draw do
   root 'sessions#new'
 
   resources :users
+  resources :spares, only: [:index, :new, :create, :show, :edit ,:destroy, :update]
+
   resources :sessions, only: [:new, :create, :destroy]
   resources :prevaluations, only: [:new, :create, :show]
   resources :valuations, only: [:index, :new, :create, :show]
