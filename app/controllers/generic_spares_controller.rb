@@ -59,8 +59,6 @@ before_action :set_generic_spare, only: [:show, :edit, :destroy, :update]
     redirect_to action: 'index'
   end
 
-
-
   def generic_spare_params
     params.require(:generic_spare).permit(
       :brand,
@@ -68,9 +66,18 @@ before_action :set_generic_spare, only: [:show, :edit, :destroy, :update]
       :name,
       :region,
       :description,
-      generic_spare_families_attributes: [:child_id, :generic_spare_id,
-        child_attributes:[:name]]
-      )
+      generic_spare_families_attributes: [
+        :child_id,
+        :generic_spare_id,
+        child_attributes:[
+          :brand,
+          :type_of_spare,
+          :name,
+          :region,
+          :description
+        ]
+      ]
+    )
   end
 
   def set_generic_spare

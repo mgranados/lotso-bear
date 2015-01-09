@@ -1,0 +1,45 @@
+
+<div class="row nested-fields">
+  <%= f.fields_for :child do |child| %>
+
+    <div class="col-md-3">
+      <div class="nested">
+        <%= child.label :name %>
+        <% if !@mold.blank? && !@mold.mold_components[@i].blank?   %>
+          <%= child.text_field :name, value: @mold.mold_components[@i].name %>
+        <% else %>
+          <%= child.text_field :name %>
+        <% end %>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="nested">
+        <%= child.label :brand %>
+        <%= child.text_field :brand %>
+      </div>
+    </div>
+      <div class="col-md-3">
+        <div class="nested">
+          <%= child.label :type_of_spare %>
+          <%= child.text_field :type_of_spare %>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="nested">
+          <%= child.label :description %>
+          <%= child.text_field :description %>
+        </div>
+      </div>
+
+      <div class="col-md-3">
+        <div class="nested">
+          <%= child.label :region %>
+          <%= child.text_field :region %>
+        </div>
+      </div>
+
+    <div class="">
+      <%= link_to_remove_association "Remover Pieza", f , class:'btn btn-default' %>
+    </div>
+  <% end %>
+</div>
