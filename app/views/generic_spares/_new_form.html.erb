@@ -1,18 +1,10 @@
 <%= form_for @generic_spare do |f|%>
-  <h2>Pieza Generica </h2>
+  <h2>Pieza Generica</h2>
 
-  <table class="u-full-width">
-    <thead>
-      <th> Marca </th>
-      <th> Tipo </th>
-      <th> Nombre </th>
-      <th> Región </th>
-      <th> Descripción </th>
-    </thead>
-    <tbody>
-      <%= render "generic_spare_fields", fff: f %>
-    </tbody>
-  </table>
+
+    <%= render "generic_spare_fields", fff: f %>
+
+
 
   <%= f.submit "Guardar", class: "button button-primary" %>
 <% end %>

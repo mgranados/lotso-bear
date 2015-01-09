@@ -18,8 +18,8 @@
     </tr>
 </table>
 
+<% for child in @generic_spare.childs %>
+  <%= child.name %>
+<% end %>
+
 <%= link_to "Ver Todos", generic_spares_path %>
-
-<p>
-
-</p>

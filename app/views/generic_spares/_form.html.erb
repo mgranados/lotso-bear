@@ -1,0 +1,25 @@
+<%= form_for(@generic_spare) do |f| %>
+<div class="field">
+  <%= f.label :name %><br>
+  <% if !@mold.blank? %>
+    <%= f.text_field :name, value: @mold.name %>
+  <% else %>
+    <%= f.text_field :name %>
+  <% end %>
+</div>
+<% i=0 %>
+<%= f.fields_for :generic_spare_families do |alloy| %>
+  <%= alloy.fields_for :child do |generic_spare| %>
+<br>
+  <% if !@mold.blank? %>
+    <%=  @mold.mold_components[i].name %>
+  <% end %>
+    <%= generic_spare.label :name %>
+    <%= generic_spare.text_field :name %>
+    <% i+=1 %>
+  <% end %>
+<% end %>
+<div class="actions">
+  <%= f.submit %>
+</div>
+<% end %>

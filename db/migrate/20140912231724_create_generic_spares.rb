@@ -6,6 +6,7 @@ class CreateGenericSpares < ActiveRecord::Migration
       t.string :name
       t.string :region
       t.text :description
+      t.integer :family_id
 
       t.timestamps
     end

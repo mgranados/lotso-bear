@@ -1,1 +1,10 @@
-<%= f.text_field :name %><br/>
+<div class="row nested-fields">
+  <div class="col-md-3">
+    <div class="nested">
+      <%= f.text_field :name, class: 'form-control' %>
+    </div>
+  </div>
+  <div class="col-md-2">
+    <%= link_to_remove_association "Remover Pieza", f , class:'btn btn-default' %>
+  </div>
+</div>

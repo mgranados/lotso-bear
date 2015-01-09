@@ -1,24 +1,17 @@
-<p id="notice"><%= notice %></p>
+
+
 
 <p>
-  <strong>Generic spare:</strong>
-  <%= @family.generic_spare_id %>
+  <strong>Name:</strong>
+  <%= @family.name %>
 </p>
 
-<p>
-  <strong>Child:</strong>
-  <%= @family.child_id %>
-</p>
+<% for generic_spare in  @family.generic_spares %>
+  <%= generic_spare.name %>
+<% end %>
 
-<p>
-  <strong>Create:</strong>
-  <%= @family.create %>
-</p>
 
-<p>
-  <strong>Destroy:</strong>
-  <%= @family.destroy %>
-</p>
+
 
 <%= link_to 'Edit', edit_family_path(@family) %> |
 <%= link_to 'Back', families_path %>

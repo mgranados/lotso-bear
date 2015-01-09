@@ -29,7 +29,7 @@ class GenericCar < ActiveRecord::Base
   end
 
   def self.gen_continues_search
-    where("gen_continues == 1")
+    where(gen_continues: true)
   end
 
   # //Functions//
@@ -39,7 +39,7 @@ class GenericCar < ActiveRecord::Base
     @edition = number_of_generation.split(//).first(1).join
     self.code = (@brand.acronym+@edition+@model).upcase()
   end
-  
+
   def generation_split
     for i in first_generation_year.to_i...last_generation_year.to_i+1
       @record = Generation.find_by_year(i)

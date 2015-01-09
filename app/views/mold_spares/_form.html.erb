@@ -1,44 +1,50 @@
 <%= form_for(@mold_spare) do |f| %>
   <% if @mold_spare.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@mold_spare.errors.count, "error") %> prohibited this mold_spare from being saved:</h2>
-
+    <div class="alert alert-danger">
       <ul>
-      <% @mold_spare.errors.full_messages.each do |msg| %>
+        <% @mold_spare.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
-      <% end %>
+        <% end %>
       </ul>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= f.label "Nombre" %><br>
-    <%= f.text_field :name %>
+  <div class="row">
+    <div class="col-md-6 form-group">
+      <%= f.label "Nombre" %><br>
+      <%= f.text_field :name, class: 'form-control' %>
+    </div>
+    <div class="col-md-6 form-group">
+      <%= f.label "Tipo" %><br>
+      <%= f.text_field :mold_type, class: 'form-control' %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label "Comentario" %><br>
-    <%= f.text_field :comment %>
-  </div>
-  <div class="field">
-    <%= f.label "Comentarios adicionales" %><br>
-    <%= f.text_field :comment2 %>
-  </div>
-  <div class="field">
-    <%= f.label "Tipo" %><br>
-    <%= f.text_field :mold_type %>
-  </div>
-
-  <br><br>
-  <div class="field">
-    <h3>Piezas pertenecientes</h3>
-    <%= f.fields_for :mold_components do |mold_components| %>
-      <%= render 'mold_component_fields', :f => mold_components %>
-      <%= link_to_add_association 'Añadir Pieza', f, :mold_components %>
-    <% end %>
+  
+  <div class="row">
+    <div class="col-md-6 form-group">
+      <%= f.label "Comentario" %><br>
+      <%= f.text_field :comment, class: 'form-control' %>
+    </div>
+    <div class="col-md-6 form-group">
+      <%= f.label "Comentarios adicionales" %><br>
+      <%= f.text_field :comment2, class: 'form-control' %>
+    </div>
   </div>
 
+  <div id="row mold_components" class="field">
+    <h4>Piezas Pertenecientes</h4>
+      <%= f.fields_for :mold_components do |mold_components| %>
+        <%= render 'mold_component_fields', :f => mold_components %>
+      <% end %>
+      <div id="links">
+        <%= link_to_add_association 'Añadir Pieza', f, :mold_components, class: 'btn btn-default' %>
+      </div>
+  </div>
 
-  <div class="actions">
-    <%= f.submit "Guardar Pieza",    class: "button-primary" %>
+  <div class="row">
+    <div class="col-md-4"></div>
+    <div class="col-md-4">
+      <%= f.submit "Guardar Pieza",    class:"button-primary" %>
+    </div>
+    <div class="col-md-4"></div>
   </div>
 <% end %>

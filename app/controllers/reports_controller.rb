@@ -7,7 +7,7 @@ class ReportsController < ApplicationController
 
   def cars
   end
-
+  
   def new
   end
 

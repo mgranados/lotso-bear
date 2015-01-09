@@ -17,8 +17,9 @@ class GenericCarsController < ApplicationController
   def index
     @generic_cars = GenericCar.all
   end
+
   def update_generation
-  @generic_cars = GenericCar.where(gen_continues: true)
+    @generic_cars = GenericCar.gen_continues_search
   end
 
   def create

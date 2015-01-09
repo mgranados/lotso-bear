@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141217154326) do
+ActiveRecord::Schema.define(version: 20150108011004) do
 
   create_table "brands", force: true do |t|
     t.string   "name"
@@ -45,10 +45,15 @@ ActiveRecord::Schema.define(version: 20141217154326) do
   end
 
   create_table "families", force: true do |t|
+    t.string   "name"
+    t.string   "comment"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "family_generic_spare_alloys", force: true do |t|
+    t.integer  "family_id"
     t.integer  "generic_spare_id"
-    t.integer  "child_id"
-    t.string   "create"
-    t.string   "destroy"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -91,12 +96,20 @@ ActiveRecord::Schema.define(version: 20141217154326) do
     t.datetime "photo_updated_at"
   end
 
+  create_table "generic_spare_families", force: true do |t|
+    t.integer  "generic_spare_id"
+    t.integer  "child_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "generic_spares", force: true do |t|
     t.string   "brand"
     t.string   "type_of_spare"
     t.string   "name"
     t.string   "region"
     t.text     "description"
+    t.integer  "family_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

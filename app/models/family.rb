@@ -1,5 +1,6 @@
 class Family < ActiveRecord::Base
-  
-  belongs_to :generic_spare
-  belongs_to :child, :class_name => "GenericSpare"
+  has_many :family_generic_spare_alloys
+  has_many :generic_spares, through: :family_generic_spare_alloys
+  accepts_nested_attributes_for :family_generic_spare_alloys
+
 end

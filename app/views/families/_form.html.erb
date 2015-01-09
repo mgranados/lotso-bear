@@ -10,23 +10,26 @@
       </ul>
     </div>
   <% end %>
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name, value: @mold.name %>
+   </div>
+   <div class="field">
+    <%= f.label :comment %><br>
+    <%= f.text_field :comment %>
+  </div>
 
-  <div class="field">
-    <%= f.label :generic_spare_id %><br>
-    <%= f.number_field :generic_spare_id %>
-  </div>
-  <div class="field">
-    <%= f.label :child_id %><br>
-    <%= f.number_field :child_id %>
-  </div>
-  <div class="field">
-    <%= f.label :create %><br>
-    <%= f.text_field :create %>
-  </div>
-  <div class="field">
-    <%= f.label :destroy %><br>
-    <%= f.text_field :destroy %>
-  </div>
+<% i=0 %>
+  <%= f.fields_for :family_generic_spare_alloys do |alloy| %>
+    <%= alloy.fields_for :generic_spare do |generic_spare| %>
+      <br>
+      <%= @mold.mold_components[i].name %>
+      <%= generic_spare.label :name %>
+      <%= generic_spare.text_field :name %>
+    <% i+=1 %>
+    <% end %>
+  <% end %>
+
   <div class="actions">
     <%= f.submit %>
   </div>
