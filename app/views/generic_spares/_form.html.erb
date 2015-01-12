@@ -10,6 +10,13 @@
   <% end %>
 
 <h3>Pieza Padre</h3>
+<div id="code">
+  <p><strong>Codigo: </strong>
+    <label id="brand_code" class="generic_spare_code"></label>
+    -
+    <label id="name_code" class="generic_spare_code"></label>
+  </p>
+</div>
 <div class="field">
   <%= f.label :name %>
   <% if !@mold.blank? %>
@@ -42,6 +49,8 @@
     <%= render 'child_fields', :f => family %>
     <% @i+=1 %>
   <% end %>
+
+
   <div id="links">
     <%= link_to_add_association 'Añadir Pieza', f, :childs, class: 'btn btn-default' %>
   </div>

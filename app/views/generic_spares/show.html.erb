@@ -1,6 +1,9 @@
 <h1>Pieza Generica</h1>
 <table class="table">
   <tr>
+    <th>
+      Codigo
+    </th>
     <th> Marca </th>
     <th> Tipo </th>
     <th> Nombre </th>
@@ -8,6 +11,7 @@
     <th> Descripción </th>
   </tr>
     <tr>
+      <td><%= @generic_spare.code %></td>
       <td><%= @generic_spare.brand %></td>
       <td><%= @generic_spare.type_of_spare %></td>
       <td><%= @generic_spare.name %></td>
@@ -20,11 +24,13 @@
 <h3>Piezas Hijas</h3>
 <% for child in @generic_spare.childs %>
 <br>
+  <%= child.code %>
   <%= child.brand %>
   <%= child.type_of_spare %>
   <%= child.name %>
   <%= child.region %>
   <%= child.description %>
+
 <% end %>
 <br>
 <%= link_to "Ver Todos", generic_spares_path %>

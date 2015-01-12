@@ -110,6 +110,7 @@ ActiveRecord::Schema.define(version: 20150108011004) do
     t.string   "region"
     t.text     "description"
     t.integer  "family_id"
+    t.string   "code"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -1,3 +1,6 @@
-# Place all the behaviors and hooks related to the matching controller here.
-# All this logic will automatically be available in application.js.
-# You can use CoffeeScript in this file: http://coffeescript.org/
+$ ->
+  $("#generic_spare_name").change ->
+    $("#name_code").html $("#generic_spare_name").val().substring 0,2
+
+  $("#generic_spare_brand").change ->
+    $("#brand_code").html $("#generic_spare_brand").val().substring 0,2
