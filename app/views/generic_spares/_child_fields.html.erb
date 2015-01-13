@@ -3,19 +3,31 @@
   <%= f.fields_for :child do |child| %>
 
     <div class="col-md-3">
+      <div id="child_code_<%= @i %>">
+        <p><strong>Codigo: </strong>
+          <label id="child_name_code_<%= @i %>" class="generic_spare_code">
+            <% if !@mold.blank? && !@mold.mold_components[@i].blank? %>
+              <%= @mold.mold_components[@i].name.first(2) %>
+            <% end %>
+          </label>
+          -
+          <label id="child_brand_code_<%= @i %>" class="generic_spare_code">
+          </label>
+        </p>
+      </div>
       <div class="nested">
         <%= child.label :name %>
-        <% if !@mold.blank? && !@mold.mold_components[@i].blank?   %>
-          <%= child.text_field :name, value: @mold.mold_components[@i].name %>
+        <% if !@mold.blank? && !@mold.mold_components[@i].blank? %>
+          <%= child.text_field :name, value: @mold.mold_components[@i].name, class:"child_name_field #{@i}" %>
         <% else %>
-          <%= child.text_field :name %>
+          <%= child.text_field :name, class:"child_name_field #{@i}" %>
         <% end %>
       </div>
     </div>
     <div class="col-md-3">
       <div class="nested">
         <%= child.label :brand %>
-        <%= child.text_field :brand %>
+        <%= child.text_field :brand, class: "child_brand_field #{@i}" %>
       </div>
     </div>
       <div class="col-md-3">

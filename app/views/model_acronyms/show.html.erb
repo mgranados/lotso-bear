@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Brand:</strong>
+  <%= @model_acronym.brand_id %>
+</p>
+
+<p>
+  <strong>Acronym:</strong>
+  <%= @model_acronym.initials %>
+</p>
+
+<p>
+  <strong>Acronym:</strong>
+  <%= @model_acronym.model %>
+</p>
+
+<%= link_to 'Edit', edit_model_acronym_path(@model_acronym) %> |
+<%= link_to 'Back', model_acronyms_path %>

@@ -1,0 +1,36 @@
+<h1>Listing model_acronyms</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Brand</th>
+      <th>Acronym</th>
+      <th>
+        model
+      </th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @model_acronyms.each do |model_acronym| %>
+      <tr>
+        <td><%= model_acronym.brand_id %></td>
+        <td><%= model_acronym.initials %></td>
+        <td>
+            <%= model_acronym.model %>
+
+        </td>
+        <td><%= link_to 'Show', model_acronym %></td>
+        <td><%= link_to 'Edit', edit_model_acronym_path(model_acronym) %></td>
+        <td><%= link_to 'Destroy', model_acronym, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Model acronym', new_model_acronym_path %>

@@ -1,0 +1,2 @@
+module ModelAcronymsHelper
+end

@@ -34,10 +34,45 @@ class GenericCar < ActiveRecord::Base
 
   # //Functions//
   def generate_code
-    @brand = Brand.find_by_id(brand_id)
-    @model = model.split(//).first(2).join
-    @edition = number_of_generation.split(//).first(1).join
-    self.code = (@brand.acronym+@edition+@model).upcase()
+    brand = Brand.find_by_id(self.brand_id)
+    edition = self.number_of_generation.split(//).first(1).join
+    modelAcronym = modelExist
+    self.code = (brand.acronym+edition+modelAcronym).upcase()
+  end
+
+  def model_initials(model,originalModel,brand_id,iteration,emer)
+    modelInitials = "#{model.split(//)[0]}#{model.split(//)[iteration]}"
+    if emer > 9
+      modelInitials = "#{('A'...'Z').to_a[rand(0...27)]}#{rand(0...10)}"
+    end
+    if ModelAcronym.where(brand_id:brand_id).where(initials: modelInitials).blank?
+      newAcronym = ModelAcronym.create(brand_id:brand_id,initials:modelInitials, model:originalModel)
+      newAcronym.save
+      return modelInitials
+    else
+        if iteration == model.length-1
+          return model_initials("#{model}#{emer}",originalModel,brand_id,iteration,emer+1)
+        else
+          modelInitials = "#{model.split(//)[0]}#{model.split(//)[iteration]}"
+          return model_initials(model,originalModel,brand_id,iteration+1,emer)
+        end
+    end
+  end
+
+  def modelExist
+    existingModel = ModelAcronym.where(brand_id: self.brand_id).where(model: self.model).first
+    if !existingModel.blank?
+      return existingModel.initials
+    else
+      initials = self.model.split(//).first(2).join
+      if ModelAcronym.where(brand_id: self.brand_id).where(initials: initials).blank?
+        newAcronym = ModelAcronym.create(brand_id: self.brand_id, model: self.model, initials:initials)
+        newAcronym.save
+        return initials
+      else
+        model_initials(self.model,self.model,self.brand_id,1,0)
+      end
+    end
   end
 
   def generation_split

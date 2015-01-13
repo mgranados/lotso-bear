@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150108011004) do
+ActiveRecord::Schema.define(version: 20150113013129) do
 
   create_table "brands", force: true do |t|
     t.string   "name"
@@ -121,6 +121,14 @@ ActiveRecord::Schema.define(version: 20150108011004) do
     t.string   "name"
     t.integer  "telephone"
     t.string   "email"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "model_acronyms", force: true do |t|
+    t.integer  "brand_id"
+    t.string   "initials"
+    t.string   "model"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

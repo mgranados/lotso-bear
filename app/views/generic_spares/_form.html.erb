@@ -12,9 +12,15 @@
 <h3>Pieza Padre</h3>
 <div id="code">
   <p><strong>Codigo: </strong>
-    <label id="brand_code" class="generic_spare_code"></label>
+    <label id="brand_code" class="generic_spare_code">
+
+    </label>
     -
-    <label id="name_code" class="generic_spare_code"></label>
+    <label id="name_code" class="generic_spare_code">
+    <% if !@mold.blank? %>
+      <%= @mold.name.first(2) %>
+    <% end %>
+    </label>
   </p>
 </div>
 <div class="field">

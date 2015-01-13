@@ -1,5 +1,7 @@
 LotsoBear::Application.routes.draw do
 
+  resources :model_acronyms
+
   resources :brands
 
   resources :families
