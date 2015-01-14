@@ -3,11 +3,9 @@
 <table>
   <thead>
     <tr>
-      <th>Brand</th>
-      <th>Acronym</th>
-      <th>
-        model
-      </th>
+      <th>Marca</th>
+      <th>Iniciales</th>
+      <th>Modelo</th>
       <th></th>
       <th></th>
       <th></th>
@@ -17,7 +15,7 @@
   <tbody>
     <% @model_acronyms.each do |model_acronym| %>
       <tr>
-        <td><%= model_acronym.brand_id %></td>
+        <td><%= model_acronym.brand.name %></td>
         <td><%= model_acronym.initials %></td>
         <td>
             <%= model_acronym.model %>

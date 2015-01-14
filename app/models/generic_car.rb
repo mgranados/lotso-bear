@@ -21,6 +21,11 @@ class GenericCar < ActiveRecord::Base
 
   before_save :generate_code
   before_save :generation_split
+  before_save :upcase
+
+  def upcase
+    self.model.upcase!
+  end
 
   # //Queries//
   def self.search(query)
@@ -33,46 +38,46 @@ class GenericCar < ActiveRecord::Base
   end
 
   # //Functions//
+  private
+
   def generate_code
-    brand = Brand.find_by_id(self.brand_id)
-    edition = self.number_of_generation.split(//).first(1).join
-    modelAcronym = modelExist
-    self.code = (brand.acronym+edition+modelAcronym).upcase()
+    self.code = ("#{self.brand_id}-#{self.number_of_generation.split(//).first(1).join}-#{generate_model_code}")
   end
 
-  def model_initials(model,originalModel,brand_id,iteration,emer)
-    modelInitials = "#{model.split(//)[0]}#{model.split(//)[iteration]}"
-    if emer > 9
+  def model_initials(model,originalModel,iteration,emer)
+    if emer < 9
+      modelInitials = "#{model.split(//)[0]}#{model.split(//)[iteration]}"
+    else
       modelInitials = "#{('A'...'Z').to_a[rand(0...27)]}#{rand(0...10)}"
     end
-    if ModelAcronym.where(brand_id:brand_id).where(initials: modelInitials).blank?
-      newAcronym = ModelAcronym.create(brand_id:brand_id,initials:modelInitials, model:originalModel)
+    if ModelAcronym.where(brand_id:self.brand_id).where(initials: modelInitials).blank?
+      newAcronym = ModelAcronym.create(brand_id:self.brand_id,initials:modelInitials, model:originalModel)
       newAcronym.save
-      return modelInitials
+      return newAcronym.id
     else
-        if iteration == model.length-1
-          return model_initials("#{model}#{emer}",originalModel,brand_id,iteration,emer+1)
+        if iteration < model.length-1
+          return model_initials(model,originalModel,iteration+1,emer)
         else
-          modelInitials = "#{model.split(//)[0]}#{model.split(//)[iteration]}"
-          return model_initials(model,originalModel,brand_id,iteration+1,emer)
+          return model_initials("#{model}#{emer}",originalModel,iteration,emer+1)
         end
     end
   end
 
-  def modelExist
-    existingModel = ModelAcronym.where(brand_id: self.brand_id).where(model: self.model).first
-    if !existingModel.blank?
-      return existingModel.initials
+  def generate_model_code
+    return model_exist  unless model_exist.blank?
+    initials = self.model.split(//).first(2).join
+    if ModelAcronym.where(brand_id: self.brand_id).where(initials: initials).blank?
+      newAcronym = ModelAcronym.create(brand_id: self.brand_id, model: self.model, initials:initials)
+      newAcronym.save
+      return newAcronym.id
     else
-      initials = self.model.split(//).first(2).join
-      if ModelAcronym.where(brand_id: self.brand_id).where(initials: initials).blank?
-        newAcronym = ModelAcronym.create(brand_id: self.brand_id, model: self.model, initials:initials)
-        newAcronym.save
-        return initials
-      else
-        model_initials(self.model,self.model,self.brand_id,1,0)
-      end
+      model_initials(self.model,self.model,1,0)
     end
+  end
+
+  def model_exist
+    @modelCode = ModelAcronym.where(brand_id: self.brand_id).where(model: self.model).first
+    @modelCode.try(:initials)
   end
 
   def generation_split
@@ -83,7 +88,6 @@ class GenericCar < ActiveRecord::Base
     end
   end
 
-  private
   def generation_order
     if last_generation_year < first_generation_year
       errors.add(:last_generation_year, "Ultimo año de generación no puede ser menor al primer año de generación")

@@ -1,6 +1,5 @@
 class GenericCarsController < ApplicationController
   before_action :set_generic_car, only: [:show, :edit, :destroy, :update]
-
   def new
     @generic_car = GenericCar.new
     # 15.times{  @generic_car.car_spare_alloys.build.build_generic_spare}
@@ -96,5 +95,9 @@ class GenericCarsController < ApplicationController
     else
     end
   end
+
+
+
+
 
 end

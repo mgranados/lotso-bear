@@ -1,5 +1,6 @@
 <%= link_to "Nuevo Coche Generico", new_generic_car_path, class: "button button-primary" %>
 <%= link_to "Generaciones que Continuan", update_generation_path, class: "button button-primary" %>
+<%= link_to "Editar Iniciales", model_acronyms_path, class: "button button-primary" %>
 
 <table id="genericCars" >
   <thead>
@@ -31,7 +32,8 @@
         <% end %>
        </td>
       <td><%= car.doors %></td>
-      <td><%= car.code %></td>
+          <% str = car.code.to_s %>
+      <td><%= convert_code(str) %></td>
       <td><%= link_to "Ver", car, class: "" %></td>
       <td><%= link_to 'Editar', edit_generic_car_path(car), class: "" %></td>
       <td><%= link_to "Borrar", car, :confirm => '¿Seguro Que Deseas Borrarlo?', :method => :delete , class: ""%></td>
