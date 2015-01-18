@@ -11,6 +11,8 @@ gem 'bcrypt-ruby', '3.1.2' #passwords hasheados
 gem 'pundit' #authorizations
 gem "paperclip", "~> 4.2"
 gem "cocoon"
+#Input Mask
+gem 'maskedinput-rails'
 
 #Data Table
   gem 'jquery-datatables-rails', '~> 3.1.1'

@@ -1,0 +1,85 @@
+<%= form_for @generic_car do |f|%>
+  <%= render 'shared/error_messages', model: @generic_car %>
+
+  <div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-3 col-xs-6 form-group text-center">
+      <%= f.label :brand_id %><br>
+      <%= f.select :brand_id, Brand.all.collect{|p| [ p.name, p.id ] }, {include_blank: '---'} %>
+    </div>
+    <div class="col-md-3 col-xs-6 form-group text-center">
+      <%= f.label :doors %><br>
+      <%= f.select(:doors, %w[3 4 5 6]) %>
+    </div>
+    <div class="col-md-3"></div>
+  </div>
+  <div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-3 col-xs-6 form-group text-center">
+      <%= f.label :type_of_car %><br>
+      <%= f.select(:type_of_car, %w[Sedán Hatchback Hatchback/Sedán Pick\ Up SUV Crossover Chasis Van Minivan], {class: "form-control"}) %>
+    </div>
+    <div class="col-md-3 col-xs-6 form-group text-center">
+      <%= f.label :number_of_generation %><br>
+      <%= f.select(:number_of_generation, %w[1er 2da 3ra 4ta 5ta 6ta], {class: "input-group"}) %>
+    </div>
+    <div class="col-md-3"></div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-3 col-xs-6 form-group text-center">
+      <%= f.label :model %>
+      <%= f.text_field :model, class: "form-control text-center" %>
+      <p class="text-muted note ">Ejemplo: Corolla</p>
+    </div>
+    <div class="col-md-3 col-xs-6 form-group text-center">
+      <%= f.label :year %>
+      <%= f.text_field :year, class: "form-control years_con" %>
+      <p class="text-muted note">Ejemplo: 2001</p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-3 col-xs-6 form-group text-center">
+      <%= f.label :gen_continues %><br>
+      <%= f.check_box :gen_continues %>
+    </div>
+    <div class="col-md-3 col-xs-6 form-group text-center">
+      <%= f.label :years , class:"title-change"%><br>
+      <%= f.text_field :years, class: "form-control years" %>
+      <p class="text-muted note continua"></p>
+    </div>
+    <div class="col-md-3"></div>
+  </div>
+
+
+  <div class="divider"></div>
+  <div class="row">
+    <div class="col-md-12 text-center">
+      <h2>Imagenes</h2>
+    </div>
+  </div>
+  <div id='generic_images'>
+    <div id="image_fields">
+      <%= f.fields_for :generic_images do |generic_images| %>
+        <%= render 'shared/generic_image_fields', :f => generic_images %>
+      <% end %>
+    </div>
+    <div class="row">
+      <div class="col-md-12 text-center">
+        <%= link_to_add_association 'Añadir Imagen', f, :generic_images,:partial => 'shared/generic_image_fields', class: 'btn btn-default'%>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-4 text-center">
+      <%= link_to 'Cancelar', generic_cars_path, class: "btn btn-default" %>
+    </div>
+    <div class="col-md-4"></div>
+    <div class="col-md4 text-center">
+      <%= f.submit class:"btn btn-info" %>
+    </div>
+  </div>
+<% end %>

@@ -145,6 +145,7 @@ ActiveRecord::Schema.define(version: 20150113013129) do
     t.string   "comment"
     t.string   "comment2"
     t.string   "mold_type"
+    t.string   "code"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

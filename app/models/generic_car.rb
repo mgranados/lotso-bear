@@ -2,7 +2,9 @@ class GenericCar < ActiveRecord::Base
   # //Associations//
   has_many :cars
   has_many :car_spare_alloys
+
   has_many :generic_images, foreign_key: :generic_id
+
   has_many :generic_spares, through: :car_spare_alloys, dependent: :destroy
   has_many :generic_car_generations
   has_many :generations, through: :generic_car_generations, dependent: :destroy
@@ -16,15 +18,27 @@ class GenericCar < ActiveRecord::Base
   validates :model, presence: true
   # validates :code, uniqueness: true
   validates :year, inclusion: { in: 1900..(Date.today.year+50), message: "Invalido"}, presence: true
-  validates :first_generation_year,inclusion: { in: 1900..(Date.today.year+50), message: "Invalido"},presence: true
-  validates :last_generation_year,inclusion: { in: 1900..(Date.today.year+50), message: "Invalido"},presence: true
+  # validates :first_generation_year,inclusion: { in: 1900..(Date.today.year+50), message: "Invalido"},presence: true
+  # validates :last_generation_year,inclusion: { in: 1900..(Date.today.year+50), message: "Invalido"},presence: true
 
   before_save :generate_code
   before_save :generation_split
   before_save :upcase
 
+  attr_accessor :years
+
   def upcase
     self.model.upcase!
+  end
+
+  def years_split
+    if self.years.length == 4
+      self.first_generation_year = self.years
+      self.last_generation_year = Date.today.year
+    else
+      self.first_generation_year = self.years.split('-')[0]
+      self.last_generation_year = years.split('-')[1]
+    end
   end
 
   # //Queries//
@@ -81,7 +95,8 @@ class GenericCar < ActiveRecord::Base
   end
 
   def generation_split
-    for i in first_generation_year.to_i...last_generation_year.to_i+1
+    years_split
+    for i in self.first_generation_year.to_i..self.last_generation_year.to_i
       @record = Generation.find_by_year(i)
       @generation = GenericCarGeneration.new(generic_car_id:self.id, generation_id: @record.id)
       @generation.save

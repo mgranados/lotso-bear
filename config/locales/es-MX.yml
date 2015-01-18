@@ -1,5 +1,15 @@
 es-MX:
+  New: "Nuevo"
+  Edit: "Editar"
   activerecord:
+    models:
+      generic_car:
+        one: "Coche Generico"
+        other: "Coches Genericos"
+      spare:
+        one: "Pieza"
+        other: "Piezas"
+
     attributes:
       generic_car:
         year: "Año"
@@ -9,7 +19,9 @@ es-MX:
         doors: "Puertas"
         first_generation_year: "Primer Año de Generación"
         last_generation_year: "Ultimo Año de Generación"
-
+        gen_continues: "Generación Continua"
+        number_of_generation: "Generación"
+        years: "Años"
   date:
     abbr_day_names:
     - dom

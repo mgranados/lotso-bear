@@ -3,7 +3,7 @@ class GenericCarsController < ApplicationController
   def new
     @generic_car = GenericCar.new
     # 15.times{  @generic_car.car_spare_alloys.build.build_generic_spare}
-    5.times{  @generic_car.generic_images.build }
+    3.times{  @generic_car.generic_images.build }
   end
 
   def show
@@ -60,6 +60,7 @@ class GenericCarsController < ApplicationController
     :doors,
     :first_generation_year,
     :last_generation_year,
+    :years,
     :gen_continues,
     :number_of_generation,
     :code,

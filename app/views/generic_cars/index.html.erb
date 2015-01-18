@@ -32,8 +32,7 @@
         <% end %>
        </td>
       <td><%= car.doors %></td>
-          <% str = car.code.to_s %>
-      <td><%= convert_code(str) %></td>
+      <td><%= convert_code(car.code.to_s) %></td>
       <td><%= link_to "Ver", car, class: "" %></td>
       <td><%= link_to 'Editar', edit_generic_car_path(car), class: "" %></td>
       <td><%= link_to "Borrar", car, :confirm => '¿Seguro Que Deseas Borrarlo?', :method => :delete , class: ""%></td>

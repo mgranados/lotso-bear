@@ -72,9 +72,10 @@ class MoldSparesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def mold_spare_params
       params.require(:mold_spare).permit(
-      :name, :comment, :comment2, :mold_type,
+      :name, :comment, :comment2, :mold_type, :code,
         mold_components_attributes:[
           :id,
+          :_destroy,
           :name
           ]
         )

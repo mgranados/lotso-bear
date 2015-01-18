@@ -1,9 +1,14 @@
 //= require jquery
-//= require jquery_ujs
-//= require dataTables/jquery.dataTables
-//= require jquery.turbolinks
 //= require jquery-ui
-//= require turbolinks
+//= require jquery_ujs
 //= require bootstrap.min
+
+//= require turbolinks
+//= require jquery.turbolinks
+
 //= require cocoon
+//= require dataTables/jquery.dataTables
+
+//= require maskedinput
+
 //= require_tree .
