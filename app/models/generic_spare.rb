@@ -6,11 +6,6 @@ class GenericSpare < ActiveRecord::Base
   has_many :car_spare_alloys
   has_many :generic_cars, through: :car_spare_alloys
 
-  #Association that allows self referential
-  has_many :generic_spare_families
-  has_many :childs, through: :generic_spare_families
-  accepts_nested_attributes_for :generic_spare_families
-
   #Spares in stock (real inventory)
   has_many :spares
 
