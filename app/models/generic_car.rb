@@ -7,6 +7,7 @@ class GenericCar < ActiveRecord::Base
 
   has_many :generic_spares, through: :car_spare_alloys, dependent: :destroy
   has_many :generic_car_generations
+
   has_many :generations, through: :generic_car_generations, dependent: :destroy
   belongs_to :brand
 
