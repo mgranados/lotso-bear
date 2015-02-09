@@ -1,18 +1,18 @@
 class GenericCar < ActiveRecord::Base
   # //Associations//
-  has_many :cars
-  has_many :car_spare_alloys
+  has_many :stock_cars
+  has_many :generic_fittables
 
-  has_many :generic_images, foreign_key: :generic_id
+  has_many :generic_car_images
 
-  has_many :generic_spares, through: :car_spare_alloys, dependent: :destroy
+  has_many :generic_spares, through: :generic_fittables, dependent: :destroy
   has_many :generic_car_generations
 
   has_many :generations, through: :generic_car_generations, dependent: :destroy
   belongs_to :brand
 
   # accepts_nested_attributes_for :car_spare_alloys, :reject_if => proc { |a| a[:relation].blank? }
-  accepts_nested_attributes_for :generic_images, :generic_car_generations
+  accepts_nested_attributes_for :generic_car_images, :generic_car_generations
 
   # //Validations//
   validates :brand_id, presence: true

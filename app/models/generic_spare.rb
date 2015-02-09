@@ -1,16 +1,17 @@
 class GenericSpare < ActiveRecord::Base
-  #Self Referential
-  # has_many :generic_spares
 
-  #Associations that allows the relation between generic_cars and generic_spares (many_to_many)
-  has_many :car_spare_alloys
-  has_many :generic_cars, through: :car_spare_alloys
+  has_many :generic_fittables
+  has_many :generic_cars, through: :generic_fittables
 
-  #Spares in stock (real inventory)
-  has_many :spares
+  has_many :spare_likelihoods
+  has_many :generic_families, through: :spare_likelihoods
+
+  has_many :stock_spares
 
 
   before_save :generate_code
+
+  has_many :generic_spare_images
 
 
   def generate_code

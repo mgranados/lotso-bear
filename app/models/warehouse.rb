@@ -1,4 +1,4 @@
 class Warehouse < ActiveRecord::Base
-  has_many :spares
-  has_many :cars
+  has_many :stock_spares
+  has_many :stock_cars
 end
