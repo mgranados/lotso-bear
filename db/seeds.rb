@@ -110,6 +110,10 @@ brands = [
     "VL"
   ]
 
+%w[Sedán Hatchback Hatchback/Sedán Pick\ Up SUV Crossover Chasis Van Minivan].each { |type| 
+  CarType.create(name: type)
+}
+
 
 for i in 0...brands.length
   Brand.create(name: brands[i], acronym:acronyms[i])

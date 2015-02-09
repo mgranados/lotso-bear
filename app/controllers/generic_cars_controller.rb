@@ -2,15 +2,13 @@ class GenericCarsController < ApplicationController
   before_action :set_generic_car, only: [:show, :edit, :destroy, :update]
   def new
     @generic_car = GenericCar.new
-    # 15.times{  @generic_car.car_spare_alloys.build.build_generic_spare}
-    3.times{  @generic_car.generic_images.build }
+    3.times{  @generic_car.generic_car_images.build }
   end
 
   def show
   end
 
   def edit
-    #  5.times{  @generic_car.generic_images.build }
   end
 
   def index
@@ -24,7 +22,7 @@ class GenericCarsController < ApplicationController
   def create
     @generic_car = GenericCar.new(generic_car_params)
     if @generic_car.save
-      flash[:success]= "Guardado con exito"
+      flash[:success]= "Guardado con éxito"
       redirect_to action: 'index'
     else
       render new_generic_car_path
@@ -33,7 +31,7 @@ class GenericCarsController < ApplicationController
   def update
     respond_to do |format|
       if @generic_car.update(generic_car_params)
-        format.html { redirect_to @generic_car, notice: 'El Carro fue editado con exito' }
+        format.html { redirect_to @generic_car, notice: 'El Carro fue editado con éxito' }
         format.json { render :show, status: :ok, location: @generic_car }
       else
         format.html { render :edit }

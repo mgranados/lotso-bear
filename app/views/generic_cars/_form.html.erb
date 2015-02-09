@@ -16,8 +16,10 @@
   <div class="row">
     <div class="col-md-3"></div>
     <div class="col-md-3 col-xs-6 form-group text-center">
-      <%= f.label :type_of_car %><br>
-      <%= f.select(:type_of_car, %w[Sedán Hatchback Hatchback/Sedán Pick\ Up SUV Crossover Chasis Van Minivan], {class: "form-control"}) %>
+
+
+      <%= f.label :car_type_id %><br>
+      <%= f.select :car_type_id, CarType.all.collect{|p| [ p.name, p.id ] }, {include_blank: '---'} %>
     </div>
     <div class="col-md-3 col-xs-6 form-group text-center">
       <%= f.label :number_of_generation %><br>
@@ -62,13 +64,13 @@
   </div>
   <div id='generic_images'>
     <div id="image_fields">
-      <%= f.fields_for :generic_images do |generic_images| %>
-        <%= render 'shared/generic_image_fields', :f => generic_images %>
+      <%= f.fields_for :generic_car_images do |generic_images| %>
+        <%= render 'generic_car_image_fields', :f => generic_images %>
       <% end %>
     </div>
     <div class="row">
       <div class="col-md-12 text-center">
-        <%= link_to_add_association 'Añadir Imagen', f, :generic_images,:partial => 'shared/generic_image_fields', class: 'btn btn-default'%>
+        <%= link_to_add_association 'Añadir Imagen', f, :generic_car_images, class: 'btn btn-default'%>
       </div>
     </div>
   </div>
