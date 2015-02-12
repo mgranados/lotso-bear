@@ -2,7 +2,7 @@ class GenericCarsController < ApplicationController
   before_action :set_generic_car, only: [:show, :edit, :destroy, :update]
   def new
     @generic_car = GenericCar.new
-    3.times{  @generic_car.generic_car_images.build }
+    @generic_car.generic_car_images.build
   end
 
   def show

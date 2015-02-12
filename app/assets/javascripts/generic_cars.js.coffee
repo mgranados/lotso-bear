@@ -25,7 +25,4 @@ $ ->
   # Start DataTables
   $('#genericCars').dataTable()
 
-  #Coocon
-  $("#generic_images a.add_fields").
-    data("association-insertion-method", 'append').
-    data("association-insertion-node", '#image_fields');
+  

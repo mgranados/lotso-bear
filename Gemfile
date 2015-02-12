@@ -3,7 +3,6 @@ source 'https://rubygems.org'
 gem 'rails', '4.0.5'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
-gem 'jquery-rails'
 gem 'turbolinks'
 gem "jquery-turbolinks"
 gem 'jbuilder', '~> 1.2'
@@ -11,6 +10,10 @@ gem 'bcrypt-ruby', '3.1.2' #passwords hasheados
 gem 'pundit' #authorizations
 gem "paperclip", "~> 4.2"
 gem "cocoon"
+gem 'jquery-rails'
+gem 'jquery-fileupload-rails'
+gem 'twitter-bootstrap-rails'
+
 #Input Mask
 gem 'maskedinput-rails'
 
@@ -50,4 +53,12 @@ end
 
 group :test do
   gem 'factory_girl_rails', '4.2.0'
+end
+
+group :assets do
+  gem 'less-rails'
+
+  # See https://github.com/sstephenson/execjs#readme for more supported runtimes
+  gem 'therubyracer', :platforms => :ruby
+
 end
