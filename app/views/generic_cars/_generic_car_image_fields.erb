@@ -1,9 +1,6 @@
 <div class='row nested-fields'>
   <div class='col-md-4'></div>
   <div class='col-md-4 col-xs-10'>
-    <%= f.file_field :photo %>
-  </div>
-  <div class="col-md-4 col-xs-2">
-    <%= link_to_remove_association "x", f , class:'btn btn-default' %>
+    <%= f.file_field :photo, multiple: true %>
   </div>
 </div>
