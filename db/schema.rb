@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150209181442) do
+ActiveRecord::Schema.define(version: 20150212181944) do
 
   create_table "brands", force: true do |t|
     t.string   "name"
@@ -22,13 +22,20 @@ ActiveRecord::Schema.define(version: 20150209181442) do
 
   create_table "car_likelihoods", force: true do |t|
     t.integer  "car_type_id"
-    t.string   "generic_car_id"
+    t.integer  "generic_car_id"
+    t.integer  "door_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "car_types", force: true do |t|
     t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "doors", force: true do |t|
+    t.integer  "number_of_doors"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -47,7 +54,7 @@ ActiveRecord::Schema.define(version: 20150209181442) do
   end
 
   create_table "generic_car_generations", force: true do |t|
-    t.integer  "generic_car_id"
+    t.integer  "car_likelihood_id"
     t.integer  "generation_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -65,14 +72,11 @@ ActiveRecord::Schema.define(version: 20150209181442) do
 
   create_table "generic_cars", force: true do |t|
     t.string   "brand_id"
-    t.string   "car_type_id"
-    t.integer  "year"
     t.string   "model"
-    t.integer  "doors"
+    t.integer  "doors_id"
     t.integer  "first_generation_year"
     t.integer  "last_generation_year"
     t.string   "code"
-    t.boolean  "gen_continues"
     t.string   "number_of_generation"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -197,6 +201,7 @@ ActiveRecord::Schema.define(version: 20150209181442) do
   end
 
   create_table "stock_families", force: true do |t|
+    t.integer  "generic_family_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

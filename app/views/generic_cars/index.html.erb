@@ -7,8 +7,6 @@
     <tr>
       <th> Marca </th>
       <th> Modelo </th>
-      <th> Tipo </th>
-      <th> Año </th>
       <th> Generación </th>
       <th> # Puertas </th>
       <th> Codigo</th>
@@ -22,8 +20,6 @@
     <tr>
       <td><%= car.brand.name %></td>
       <td><%= car.model %></td>
-      <td><%= car.type_of_car %></td>
-      <td><%= car.year %></td>
       <td><%= car.first_generation_year %> -
         <% if !car.gen_continues %>
           <%= car.last_generation_year %>

@@ -18,8 +18,6 @@
     <div class="col-md-3 col-xs-6 form-group text-center">
 
 
-      <%= f.label :car_type_id %><br>
-      <%= f.select :car_type_id, CarType.all.collect{|p| [ p.name, p.id ] }, {include_blank: '---'} %>
     </div>
     <div class="col-md-3 col-xs-6 form-group text-center">
       <%= f.label :number_of_generation %><br>
@@ -35,11 +33,7 @@
       <%= f.text_field :model, class: "form-control text-center" %>
       <p class="text-muted note ">Ejemplo: Corolla</p>
     </div>
-    <div class="col-md-3 col-xs-6 form-group text-center">
-      <%= f.label :year %>
-      <%= f.text_field :year, class: "form-control years_con" %>
-      <p class="text-muted note">Ejemplo: 2001</p>
-    </div>
+
   </div>
   <div class="row">
     <div class="col-md-3"></div>
@@ -61,6 +55,8 @@
     <div class="col-md-12 text-center">
       <h2>Imagenes</h2>
     </div>
+
+
   </div>
   <div id='generic_images'>
     <div id="image_fields">

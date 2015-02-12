@@ -22,6 +22,9 @@ class GenericCarsController < ApplicationController
   def create
     @generic_car = GenericCar.new(generic_car_params)
     if @generic_car.save
+      params[:photo].each do |photo|
+        @generic_car.generic_car_images.create(:photo => photo)
+      end
       flash[:success]= "Guardado con éxito"
       redirect_to action: 'index'
     else
