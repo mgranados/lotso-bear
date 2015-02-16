@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150212181944) do
+ActiveRecord::Schema.define(version: 20150212192743) do
 
   create_table "brands", force: true do |t|
     t.string   "name"
@@ -54,10 +54,10 @@ ActiveRecord::Schema.define(version: 20150212181944) do
   end
 
   create_table "generic_car_generations", force: true do |t|
-    t.integer  "car_likelihood_id"
     t.integer  "generation_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "generic_car_id"
   end
 
   create_table "generic_car_images", force: true do |t|
@@ -80,6 +80,7 @@ ActiveRecord::Schema.define(version: 20150212181944) do
     t.string   "number_of_generation"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "gen_continues"
   end
 
   create_table "generic_families", force: true do |t|
@@ -223,6 +224,13 @@ ActiveRecord::Schema.define(version: 20150212181944) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "stock_family_id"
+  end
+
+  create_table "type_likelihoods", force: true do |t|
+    t.integer  "generic_car"
+    t.integer  "car_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "users", force: true do |t|

@@ -8,8 +8,7 @@
       <%= f.select :brand_id, Brand.all.collect{|p| [ p.name, p.id ] }, {include_blank: '---'} %>
     </div>
     <div class="col-md-3 col-xs-6 form-group text-center">
-      <%= f.label :doors %><br>
-      <%= f.select(:doors, %w[3 4 5 6]) %>
+
     </div>
     <div class="col-md-3"></div>
   </div>
@@ -37,10 +36,6 @@
   </div>
   <div class="row">
     <div class="col-md-3"></div>
-    <div class="col-md-3 col-xs-6 form-group text-center">
-      <%= f.label :gen_continues %><br>
-      <%= f.check_box :gen_continues %>
-    </div>
     <div class="col-md-3 col-xs-6 form-group text-center">
       <%= f.label :years , class:"title-change"%><br>
       <%= f.text_field :years, class: "form-control years" %>

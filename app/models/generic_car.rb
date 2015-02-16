@@ -7,6 +7,9 @@ class GenericCar < ActiveRecord::Base
 
   belongs_to :brand
 
+  has_many :generic_car_generations
+  has_many :generations, through: :generic_car_generations
+
   has_many :type_likelihoods
   has_many :car_types, through: :type_likelihoods
 
