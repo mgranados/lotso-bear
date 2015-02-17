@@ -8,7 +8,12 @@ gem "jquery-turbolinks"
 gem 'jbuilder', '~> 1.2'
 gem 'bcrypt-ruby', '3.1.2' #passwords hasheados
 gem 'pundit' #authorizations
+
+# Image Uploaders
 gem "paperclip", "~> 4.2"
+gem 'carrierwave'
+
+
 gem "cocoon"
 gem 'jquery-rails'
 gem 'jquery-fileupload-rails'

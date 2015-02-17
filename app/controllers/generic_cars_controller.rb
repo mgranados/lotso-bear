@@ -22,9 +22,10 @@ class GenericCarsController < ApplicationController
   def create
     @generic_car = GenericCar.new(generic_car_params)
     if @generic_car.save
-      params[:photo].each do |photo|
-        @generic_car.generic_car_images.create(:photo => photo)
-      end
+        params[:photos].each do |picture|
+          @generic_car.generic_car_images.create(photo: picture)
+        end
+
       flash[:success]= "Guardado con éxito"
       redirect_to action: 'index'
     else
@@ -66,11 +67,7 @@ class GenericCarsController < ApplicationController
     :number_of_generation,
     :code,
     :delete_image,
-    generic_images_attributes: [
-      :id,
-      :generic_id,
-      :photo
-    ]
+    :photos
 
     # car_spare_alloys_attributes: [
     #   :generic_car_id,

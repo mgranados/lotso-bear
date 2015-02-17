@@ -30,12 +30,7 @@ ActiveRecord::Schema.define(version: 20150212192743) do
 
   create_table "car_types", force: true do |t|
     t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "doors", force: true do |t|
-    t.integer  "number_of_doors"
+    t.string   "doors"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

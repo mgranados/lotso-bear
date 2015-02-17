@@ -1,4 +1,5 @@
-<%= form_for @generic_car do |f|%>
+
+<%= form_for @generic_car, :html => { :multipart => true } do |f|%>
   <%= render 'shared/error_messages', model: @generic_car %>
 
   <div class="row">
@@ -8,16 +9,10 @@
       <%= f.select :brand_id, Brand.all.collect{|p| [ p.name, p.id ] }, {include_blank: '---'} %>
     </div>
     <div class="col-md-3 col-xs-6 form-group text-center">
-
     </div>
     <div class="col-md-3"></div>
   </div>
   <div class="row">
-    <div class="col-md-3"></div>
-    <div class="col-md-3 col-xs-6 form-group text-center">
-
-
-    </div>
     <div class="col-md-3 col-xs-6 form-group text-center">
       <%= f.label :number_of_generation %><br>
       <%= f.select(:number_of_generation, %w[1er 2da 3ra 4ta 5ta 6ta], {class: "input-group"}) %>
@@ -32,10 +27,16 @@
       <%= f.text_field :model, class: "form-control text-center" %>
       <p class="text-muted note ">Ejemplo: Corolla</p>
     </div>
-
+    <div class="col-md-3 col-xs-6 form-group text-center">
+      <p class="text-muted note">Ejemplo: 2001</p>
+    </div>
   </div>
   <div class="row">
     <div class="col-md-3"></div>
+    <div class="col-md-3 col-xs-6 form-group text-center">
+      <%= f.label :gen_continues %><br>
+      <%= f.check_box :gen_continues %>
+    </div>
     <div class="col-md-3 col-xs-6 form-group text-center">
       <%= f.label :years , class:"title-change"%><br>
       <%= f.text_field :years, class: "form-control years" %>
@@ -50,16 +51,12 @@
     <div class="col-md-12 text-center">
       <h2>Imagenes</h2>
     </div>
-
-
   </div>
-  <div id='generic_images'>
-    <div id="image_fields">
-      <%= f.fields_for :generic_car_images do |generic_images| %>
-        <%= render 'generic_car_image_fields', :f => generic_images %>
-      <% end %>
+    <div id='generic_images'>
+      <div id="image_fields">
+        <%= file_field_tag :photos, multiple: true %>
+      </div>
     </div>
-  </div>
 
   <div class="row">
     <div class="col-md-4 text-center">

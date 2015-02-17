@@ -8,7 +8,6 @@
       <th> Marca </th>
       <th> Modelo </th>
       <th> Generación </th>
-      <th> # Puertas </th>
       <th> Codigo</th>
       <th>Ver</th>
       <th>Editar</th>
@@ -27,7 +26,6 @@
           Año Actual
         <% end %>
        </td>
-      <td><%= car.doors %></td>
       <td><%= convert_code(car.code.to_s) %></td>
       <td><%= link_to "Ver", car, class: "" %></td>
       <td><%= link_to 'Editar', edit_generic_car_path(car), class: "" %></td>

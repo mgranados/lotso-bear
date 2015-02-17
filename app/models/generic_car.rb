@@ -3,8 +3,6 @@ class GenericCar < ActiveRecord::Base
   has_many :stock_cars
   has_many :generic_fittables
 
-  has_many :generic_car_images, :dependent => :destroy
-
   belongs_to :brand
 
   has_many :generic_car_generations
@@ -12,6 +10,9 @@ class GenericCar < ActiveRecord::Base
 
   has_many :type_likelihoods
   has_many :car_types, through: :type_likelihoods
+
+  has_many :car_likelihoods
+  has_many :generic_families, through: :car_likelihoods
 
   # accepts_nested_attributes_for :car_spare_alloys, :reject_if => proc { |a| a[:relation].blank? }
   accepts_nested_attributes_for :generic_car_images

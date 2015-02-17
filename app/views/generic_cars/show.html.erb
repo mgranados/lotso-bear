@@ -4,26 +4,18 @@
     <th> Marca </th>
     <th> Modelo </th>
     <th> Tipo </th>
-    <th> Año </th>
     <th> Generación </th>
-    <th> # Puertas </th>
     <th> Imagenes </th>
     <th>   </th>
   </thead>
   <tr>
     <td><%= @generic_car.brand.name %></td>
     <td><%= @generic_car.model %></td>
-    <td><%= @generic_car.type_of_car %></td>
-    <td><%= @generic_car.year %></td>
     <td>
-    <%= @generic_car.first_generation_year %> -
-      <!-- <% if @generic_car.last_generation_year
-
-      end %> -->
-       <%= @generic_car.last_generation_year %>
-    <td><%= @generic_car.doors %></td>
+      <%= @generic_car.first_generation_year %> -
+      <%= @generic_car.last_generation_year %>
     <td>
-      <% for image in @generic_car.generic_images %>
+      <% for image in @generic_car.generic_car_images %>
       <%= image_tag image.photo.url(:thumb) %>
       <%end %>
     </td>
@@ -31,31 +23,5 @@
     <td><%= link_to "Borrar", @generic_car, :confirm => '¿Seguro Que Deseas Borrarlo?', :method => :delete, class: "button" %></td>
   </tr>
 </table>
-<!-- <h1>Piezas Genericas</h1>
 
-<table class="table">
-  <thead>
-  <th> Marca </th>
-  <th> Tipo </th>
-  <th> Nombre </th>
-  <th> Region </th>
-  <th> Descripción </th>
-</thead>
-<tbody>
-  <% for spare in @generic_car.generic_spares %>
-    <tr>
-      <td><%= spare.name %></td>
-      <td><%= spare.type_of_spare %></td>
-      <td><%= spare.name %></td>
-      <td><%= spare.region %></td>
-      <td><%= spare.description %></td>
-
-    </tr>
-  <% end %>
-</tbody>
-</table>
-
-<p>
-
-</p> -->
 <%= link_to "Regresar", generic_cars_path, class: "button" %>

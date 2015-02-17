@@ -6,11 +6,11 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-User.create!(name:"Administrador", email:"admin@admin.com",password:"admin", password_confirmation:"admin", username: "Administrador", privileges:"admin")
-User.create!(name:"Operador",email:"operador@operador.com",password:"operador", password_confirmation:"operador", username: "Operador", privileges:"operador")
-User.create!(name:"Capturista",email:"capturista@capturista.com",password:"capturista", password_confirmation:"capturista", username: "Capturista", privileges:"capturista")
-User.create!(name:"Gerente",email:"gerente@gerente.com",password:"gerente", password_confirmation:"gerente", username: "Gerente", privileges:"gerente")
-User.create!(name:"Ajustador",email:"ajustador@ajustador.com",password:"ajustador", password_confirmation:"ajustador", username: "Ajustador", privileges:"ajustador")
+# User.create!(name:"Administrador", email:"admin@admin.com",password:"admin", password_confirmation:"admin", username: "Administrador", privileges:"admin")
+# User.create!(name:"Operador",email:"operador@operador.com",password:"operador", password_confirmation:"operador", username: "Operador", privileges:"operador")
+# User.create!(name:"Capturista",email:"capturista@capturista.com",password:"capturista", password_confirmation:"capturista", username: "Capturista", privileges:"capturista")
+# User.create!(name:"Gerente",email:"gerente@gerente.com",password:"gerente", password_confirmation:"gerente", username: "Gerente", privileges:"gerente")
+# User.create!(name:"Ajustador",email:"ajustador@ajustador.com",password:"ajustador", password_confirmation:"ajustador", username: "Ajustador", privileges:"ajustador")
 
 
 for i in 1900...2500
@@ -109,9 +109,13 @@ brands = [
     "VW",
     "VL"
   ]
-
-%w[Sedán Hatchback Hatchback/Sedán Pick\ Up SUV Crossover Chasis Van Minivan].each { |type| 
-  CarType.create(name: type)
+types = [['Hashback','3/5'],['Hashback','3'],['Hashback','5'],['Sedan','2'],['Sedan','4'],['Sedan','2/4'],['SUV'],['Minivan'],['Sedan/Hashback','4/5'],['Sedan/Hashback','3/4/5'],['Pick Up','2'],['Pick Up','4'],['Pick Up','2/4'],['Crossover'],['Van']]
+types.each { |type|
+  if type.count == 2
+  CarType.create(name: type.first,doors: type.last)
+  elsif
+  CarType.create(name: type.first)
+  end
 }
 
 
