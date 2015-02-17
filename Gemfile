@@ -35,20 +35,21 @@ gem 'maskedinput-rails'
 #Null Database Fields
   gem "nilify_blanks"
 
+  gem 'pg', '0.15.1'
+
+
 group :development, :test do
   gem 'railroady'
   gem 'rspec-rails', '2.13.1'
-  gem 'sqlite3'
   gem 'capybara', '2.1.0'
   gem 'spork-rails', '4.0.0'
   gem 'selenium-webdriver', '2.35.1'
   gem 'faker'
   gem 'shoulda-matchers'
-  end
+end
 
 group :production do
   #postgres
-  gem 'pg', '0.15.1'
   gem 'rails_12factor', '0.0.2'
 end
 

@@ -1,4 +1,7 @@
 class GenericCar < ActiveRecord::Base
+
+  require 'carrierwave/orm/activerecord'
+
   # //Associations//
   has_many :stock_cars
   has_many :generic_fittables
@@ -13,7 +16,10 @@ class GenericCar < ActiveRecord::Base
 
   has_many :car_likelihoods
   has_many :generic_families, through: :car_likelihoods
-  
+
+  # //Image Uploader//
+  mount_uploader :generic_car_images, GenenericCarImageUploader
+
   # //Validations//
   validates :brand_id, presence: true
   validates :model, presence: true

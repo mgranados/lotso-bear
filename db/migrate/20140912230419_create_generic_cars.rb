@@ -9,7 +9,6 @@ class CreateGenericCars < ActiveRecord::Migration
       t.string :code
       t.string :number_of_generation
 
-
       t.timestamps
     end
   end
