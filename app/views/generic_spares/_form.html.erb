@@ -9,61 +9,11 @@
   </div>
   <% end %>
 
-<h3>Pieza Padre</h3>
-<div id="code">
-  <p><strong>Codigo: </strong>
-    <label id="brand_code" class="generic_spare_code">
 
-    </label>
-    -
-    <label id="name_code" class="generic_spare_code">
-    <% if !@mold.blank? %>
-      <%= @mold.name.first(2) %>
-    <% end %>
-    </label>
-  </p>
-</div>
-<div class="field">
-  <%= f.label :name %>
-  <% if !@mold.blank? %>
-    <%= f.text_field :name, value: @mold.name %>
-  <% else %>
-    <%= f.text_field :name %>
-  <% end %>
-</div>
-<div class="field">
-  <%= f.label :brand %>
-  <%= f.text_field :brand %>
-</div>
-<div class="field">
-  <%= f.label :type_of_spare %>
-  <%= f.text_field :type_of_spare %>
-</div>
-<div class="field">
-  <%= f.label :description %>
-  <%= f.text_field :description %>
-</div>
-<div class="field">
-  <%= f.label :region %>
-  <%= f.text_field :region %>
-</div>
-
-<% @i=0 %>
-<div class="row childs">
-  <h4>Piezas Hijas</h4>
-  <%= f.fields_for :generic_spare_families do |family| %>
-    <%= render 'child_fields', :f => family %>
-    <% @i+=1 %>
-  <% end %>
-
-
-  <div id="links">
-    <%= link_to_add_association 'Añadir Pieza', f, :childs, class: 'btn btn-default' %>
-  </div>
-</div>
 
 
 <div class="actions">
+  <%= link_to "Cancelar", generic_spares_path, data: { confirm: "Seguro quieres salir? (Se perderán todos los cambios)" } %>
   <%= f.submit "Guardar Familia" %>
 </div>
 <% end %>

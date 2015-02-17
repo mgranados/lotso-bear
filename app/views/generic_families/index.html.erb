@@ -1,0 +1,8 @@
+<h1>Familias genéricas</h1>
+
+ <% @generic_families.each do |family| %>
+  	<%= family.id%>
+
+ <% end %>
+
+<%= link_to "Nueva Familia", new_generic_family_path, class: "btn btn-primary"%>

@@ -1,5 +1,6 @@
 LotsoBear::Application.routes.draw do
 
+
   resources :model_acronyms
 
   resources :brands
@@ -13,6 +14,7 @@ LotsoBear::Application.routes.draw do
   root 'sessions#new'
 
   resources :users
+  resources :generic_families, only: [:index, :new, :create, :show]
   resources :spares, only: [:index, :new, :create, :show, :edit ,:destroy, :update]
 
   resources :sessions, only: [:new, :create, :destroy]
@@ -35,6 +37,7 @@ LotsoBear::Application.routes.draw do
   match '/capturista',         to: 'branches#capturist',  via: 'get'
   match '/proceso',            to: 'branches#process',    via: 'get'
   match '/almacen',             to: 'branches#warehouse', via: 'get'
+
   #client actions routes
   match '/consultar',            to: 'client_actions#home', via: 'get'
   match '/c/show',               to: 'client_actions#show', via: 'get'
@@ -59,6 +62,8 @@ LotsoBear::Application.routes.draw do
 
 
 
+
+  get '/build_spares/:id', to: 'generic_families#build_spares', as: 'build_spare'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
