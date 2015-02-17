@@ -4,13 +4,6 @@ before_action :set_generic_spare, only: [:show, :edit, :destroy, :update]
 
   def new
     @generic_spare = GenericSpare.new
-    if !params[:mold_spare_id].blank?
-      @mold = MoldSpare.find_by_id(params[:mold_spare_id])
-      count = @mold.mold_components.count
-      count.times{  @generic_spare.generic_spare_families.build.build_child }
-    else
-      1.times{  @generic_spare.generic_spare_families.build.build_child }
-    end
   end
 
   def show

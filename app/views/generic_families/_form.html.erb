@@ -1,0 +1,29 @@
+<%= form_for @generic_family do |f| %>
+	<% render 'shared/error_messages' , model: @generic_family %>
+
+	<%# f.fields_for :generic_spares do | spare | %>
+		<% #spare.label :name, "Nombre Familia"%>
+		<% #spare.text_field :name %>
+
+	<%# end %>
+
+	<%= f.label :code, "Código Familia" %>
+	<%= f.text_field :code %>
+
+	
+		<%= label_tag :number_spares %>
+		<%= number_field_tag :number_spares, 2, min: 1, max: 50 %>
+		<a id="creator" class="btn btn-success">Crear</a>
+	
+	<%= f.fields_for :generic_spares do | spare | %>
+
+		<div id="family_members">
+			
+		</div>
+	<% end %>
+
+	<%= f.submit "SUBMIT" %>
+
+
+
+<% end %>

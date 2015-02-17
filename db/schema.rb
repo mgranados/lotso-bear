@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150212192743) do
+ActiveRecord::Schema.define(version: 20150217073516) do
 
   create_table "brands", force: true do |t|
     t.string   "name"
@@ -31,13 +31,6 @@ ActiveRecord::Schema.define(version: 20150212192743) do
   create_table "car_types", force: true do |t|
     t.string   "name"
     t.string   "doors"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "family_acronyms", force: true do |t|
-    t.string   "code"
-    t.integer  "generic_family_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -83,6 +76,7 @@ ActiveRecord::Schema.define(version: 20150212192743) do
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "code"
   end
 
   create_table "generic_fittables", force: true do |t|
