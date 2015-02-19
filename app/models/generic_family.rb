@@ -6,5 +6,6 @@ class GenericFamily < ActiveRecord::Base
   has_many :generic_spares, through: :spare_likelihoods
   has_many :stock_families
 
-  accepts_nested_attributes_for :generic_spares
+
+  accepts_nested_attributes_for :spare_likelihoods
 end

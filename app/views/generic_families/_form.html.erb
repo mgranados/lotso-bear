@@ -10,16 +10,16 @@
 	<%= f.label :code, "Código Familia" %>
 	<%= f.text_field :code %>
 
-	
+
 		<%= label_tag :number_spares %>
 		<%= number_field_tag :number_spares, 2, min: 1, max: 50 %>
 		<a id="creator" class="btn btn-success">Crear</a>
-	
-	<%= f.fields_for :generic_spares do | spare | %>
 
-		<div id="family_members">
-			
-		</div>
+	<%= f.fields_for :spare_likelihoods do | likelihood | %>
+		<%= likelihood.fields_for :generic_spare do | spare | %>
+			<div id="family_members">
+			</div>
+		<% end %>
 	<% end %>
 
 	<%= f.submit "SUBMIT" %>
