@@ -1,6 +1,16 @@
 es-MX:
   New: "Nuevo"
-  Edit: "Editar"
+  edit: "Editar"
+  cancel: "Cancelar"
+  number_spares: "Numero de piezas"
+  create: "Crear"
+  new_generic_family: "Nueva Familia Generica"
+  number_of_spares: "Numeró de Piezas"
+  name: "Nombre"
+  code: "Código"
+  actions: "Accciones"
+  show: "Mostrar"
+  delete: "Borrar"
   activerecord:
     models:
       generic_car:
@@ -9,7 +19,9 @@ es-MX:
       spare:
         one: "Pieza"
         other: "Piezas"
-
+      generic_family:
+        one: "Familia Generica"
+        other: "Familias Genericas"
     attributes:
       generic_car:
         year: "Año"
@@ -22,6 +34,9 @@ es-MX:
         gen_continues: "Generación Continua"
         number_of_generation: "Generación"
         years: "Años"
+      generic_family:
+        name: "Nombre"
+        code: "Código"
   date:
     abbr_day_names:
     - dom

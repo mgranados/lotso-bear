@@ -43,7 +43,7 @@ class GenericFamiliesController < ApplicationController
 
   private
     def required_params
-      params.require(:generic_family).permit(:code, spare_likelihoods_attributes:[:id, :generic_family_id, :generic_spare_id, generic_spare_attributes:[:name,:code]])
+      params.require(:generic_family).permit(:code,:name,spare_likelihoods_attributes:[:id, :generic_family_id, :generic_spare_id, generic_spare_attributes:[:name,:code]])
     end
 
     def set_family

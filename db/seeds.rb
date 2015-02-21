@@ -109,7 +109,7 @@ brands = [
     "VW",
     "VL"
   ]
-types = [['Hashback','3/5'],['Hashback','3'],['Hashback','5'],['Sedan','2'],['Sedan','4'],['Sedan','2/4'],['SUV'],['Minivan'],['Sedan/Hashback','4/5'],['Sedan/Hashback','3/4/5'],['Pick Up','2'],['Pick Up','4'],['Pick Up','2/4'],['Crossover'],['Van']]
+types = [['Hatchback','3/5'],['Hatchback','3'],['Hatchback','5'],['Sedan','2'],['Sedan','4'],['Sedan','2/4'],['SUV'],['Minivan'],['Sedan/Hatchback','4/5'],['Sedan/Hatchback','3/4/5'],['Pick Up','2'],['Pick Up','4'],['Pick Up','2/4'],['Crossover'],['Van']]
 types.each { |type|
   if type.count == 2
   CarType.create(name: type.first,doors: type.last)

@@ -5,7 +5,7 @@ LotsoBear::Application.routes.draw do
 
   resources :brands
 
-  resources :families
+  resources :generic_families
 
   resources :mold_spares
 

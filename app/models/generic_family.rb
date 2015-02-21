@@ -8,4 +8,7 @@ class GenericFamily < ActiveRecord::Base
 
 
   accepts_nested_attributes_for :spare_likelihoods
+
+  validates :name, presence: :true
+  validates :code, presence: :true
 end

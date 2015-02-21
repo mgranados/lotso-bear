@@ -1,7 +1,7 @@
 class CreateGenericFamilies < ActiveRecord::Migration
   def change
     create_table :generic_families do |t|
-      t.integer :generic_spare_id
+      t.string :name
       t.text :description
 
       t.timestamps

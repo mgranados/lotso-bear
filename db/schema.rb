@@ -66,7 +66,7 @@ ActiveRecord::Schema.define(version: 20150217073516) do
   end
 
   create_table "generic_families", force: true do |t|
-    t.integer  "generic_spare_id"
+    t.string   "name"
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
