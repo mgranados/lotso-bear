@@ -38,6 +38,7 @@ LotsoBear::Application.routes.draw do
   match '/proceso',            to: 'branches#process',    via: 'get'
   match '/almacen',             to: 'branches#warehouse', via: 'get'
 
+
   #client actions routes
   match '/consultar',            to: 'client_actions#home', via: 'get'
   match '/c/show',               to: 'client_actions#show', via: 'get'
@@ -61,6 +62,8 @@ LotsoBear::Application.routes.draw do
   match '/signout', to: 'sessions#destroy',     via: 'delete'
 
 
+  get '/assignation', to: 'generic_families#assignment'
+  match '/assign_families',         to: 'generic_families#assign', via: 'post'
 
 
   get '/build_spares/:id', to: 'generic_families#build_spares', as: 'build_spare'
