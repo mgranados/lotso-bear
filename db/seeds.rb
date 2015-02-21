@@ -12,6 +12,9 @@
 # User.create!(name:"Gerente",email:"gerente@gerente.com",password:"gerente", password_confirmation:"gerente", username: "Gerente", privileges:"gerente")
 # User.create!(name:"Ajustador",email:"ajustador@ajustador.com",password:"ajustador", password_confirmation:"ajustador", username: "Ajustador", privileges:"ajustador")
 
+for i in 0...10
+  GenericFamily.create!(id: "levom#{i}", code: "LE#{i}")
+end
 
 for i in 1900...2500
   Generation.create!(year:i)

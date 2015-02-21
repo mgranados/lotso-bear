@@ -36,6 +36,14 @@ class GenericFamiliesController < ApplicationController
   def update
   end
 
+  def assignment
+    @generic_families = GenericFamily.all
+    @car_types = CarType.all
+  end
+
+  def assign
+  end
+
   def build_spares
     build_spares_for_families(required_params)
   end
