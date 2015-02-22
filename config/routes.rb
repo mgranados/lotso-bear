@@ -62,7 +62,8 @@ LotsoBear::Application.routes.draw do
   match '/signout', to: 'sessions#destroy',     via: 'delete'
 
 
-  get '/assignation', to: 'generic_families#assignment'
+  get '/not_assigned_families', to: 'generic_families#not_assigned_families'
+  get '/assigned_families', to: 'generic_families#assigned_families'
   match '/assign_families',         to: 'generic_families#assign', via: 'post'
 
 

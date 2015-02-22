@@ -20,7 +20,6 @@ gem 'jquery-fileupload-rails'
 gem 'twitter-bootstrap-rails'
 
 #javascript tables
-gem 'jquery-datatables-rails', '~> 3.1.1'
 
 
 #Input Mask

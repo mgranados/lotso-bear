@@ -13,7 +13,7 @@
 # User.create!(name:"Ajustador",email:"ajustador@ajustador.com",password:"ajustador", password_confirmation:"ajustador", username: "Ajustador", privileges:"ajustador")
 
 for i in 0...10
-  GenericFamily.create!(id: "levom#{i}", code: "LE#{i}")
+  GenericFamily.create!(name: "levom#{i}", code: "LE#{i}")
 end
 
 for i in 1900...2500

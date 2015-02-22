@@ -1,6 +1,5 @@
 class GenericCar < ActiveRecord::Base
 
-  require 'carrierwave/orm/activerecord'
 
   # //Associations//
   has_many :stock_cars
@@ -11,18 +10,18 @@ class GenericCar < ActiveRecord::Base
   has_many :generic_car_generations
   has_many :generations, through: :generic_car_generations
 
-  has_many :type_likelihoods
-  has_many :car_types, through: :type_likelihoods
-
   has_many :car_likelihoods
-  has_many :generic_families, through: :car_likelihoods
+  has_many :car_types, through: :car_likelihoods
 
-  # //Image Uploader//
-  mount_uploader :generic_car_images, GenenericCarImageUploader
+  has_many :generic_car_images, dependent: :destroy
+  accepts_nested_attributes_for :generic_car_images
+
+
 
   # //Validations//
   validates :brand_id, presence: true
   validates :model, presence: true
+  validates :years, presence: true
   # validates :code, uniqueness: true
   # validates :year, inclusion: { in: 1900..(Date.today.year+50), message: "Invalido"}, presence: true
   # validates :first_generation_year,inclusion: { in: 1900..(Date.today.year+50), message: "Invalido"},presence: true
@@ -32,7 +31,6 @@ class GenericCar < ActiveRecord::Base
   before_save :generation_split
   before_save :upcase
 
-  attr_accessor :years
 
   def upcase
     self.model.upcase!
