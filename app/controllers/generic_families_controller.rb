@@ -1,5 +1,5 @@
 class GenericFamiliesController < ApplicationController
-  before_action :set_family, only: [:show]
+  before_action :set_family, only: [:show, :destroy]
 
 
 
@@ -31,6 +31,10 @@ class GenericFamiliesController < ApplicationController
   end
 
   def destroy
+    @generic_family.destroy
+    flash[:danger] = "#{@generic_family.name} borrada con éxito"
+    redirect_to action: 'index'
+
   end
 
   def update
