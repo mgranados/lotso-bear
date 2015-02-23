@@ -1,6 +1,6 @@
-<%= link_to "Nuevo Coche Generico", new_generic_car_path, class: "button button-primary" %>
-<%= link_to "Generaciones que Continuan", update_generation_path, class: "button button-primary" %>
-<%= link_to "Editar Iniciales", model_acronyms_path, class: "button button-primary" %>
+<%= link_to "Nuevo Coche Generico", new_generic_car_path, class: "btn btn-primary" %>
+<%= link_to "Generaciones que Continuan", update_generation_path, class: "btn btn-primary" %>
+<%= link_to "Editar Iniciales", model_acronyms_path, class: "btn btn-primary" %>
 
 <table id="genericCars">
   <thead>
@@ -23,13 +23,13 @@
         <% if !car.gen_continues %>
           <%= car.last_generation_year %>
         <% else %>
-          Año Actual
+          <p>Año Actual</p>
         <% end %>
        </td>
-      <td><%= convert_code(car.code.to_s) %></td>
-      <td><%= link_to "Ver", car, class: "" %></td>
-      <td><%= link_to 'Editar', edit_generic_car_path(car), class: "" %></td>
-      <td><%= link_to "Borrar", car, :confirm => '¿Seguro Que Deseas Borrarlo?', :method => :delete , class: ""%></td>
+      <td><%= car.code.to_s %></td>
+      <td><%= link_to "Ver", car, class: "btn btn-primary" %></td>
+      <td><%= link_to 'Editar', edit_generic_car_path(car), class: "btn btn-primary" %></td>
+      <td><%= link_to "Borrar", car, :confirm => '¿Seguro Que Deseas Borrarlo?', :method => :delete , class: "btn btn-primary"%></td>
     </tr>
   <% end %>
 </tbody>

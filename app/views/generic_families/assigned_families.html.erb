@@ -1,0 +1,42 @@
+<h1>Familias genéricas</h1>
+
+
+<%= form_tag assign_families_path do | f | %>
+
+	<table id="assignation_table" class="table big_table">
+	    <thead>
+	        <tr>
+	            <th>Nombre Familia</th>
+	            <% @car_types.each do | type | %>
+	            	<th> <%= type.name %> <%= type.doors %></th>
+	            <% end %>
+	        </tr>
+	    </thead>
+	    <tbody> 
+
+	    <!-- each family -->		
+			    <% @generic_families.each do | family | %>
+			    	<tr>
+
+			           <td><%= family.name %></td>
+			           <% for type in @car_types do %>
+
+			           	<% if type.generic_families.select { |fam| fam.id == family.id}.include? family  %>
+			           		<td><%= check_box_tag 'family_ids[]', "#{family.id},#{type.id}", checked: true %></td>
+			           	<% else %>
+			           		<td><%= check_box_tag 'family_ids[]', "#{family.id},#{type.id}"%></td>
+			           	<% end %>
+
+			           <% end %>
+		 		  </tr>
+			    <% end %>
+
+	       
+
+    	</tbody>
+	</table>    
+
+
+	<%= submit_tag %>
+<% end %>
+

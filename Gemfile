@@ -20,7 +20,6 @@ gem 'jquery-fileupload-rails'
 gem 'twitter-bootstrap-rails'
 
 #javascript tables
-gem 'jquery-datatables-rails', '~> 3.1.1'
 
 
 #Input Mask
@@ -53,8 +52,8 @@ group :development, :test do
 end
 
 group :production do
-  #postgres
   gem 'rails_12factor', '0.0.2'
+  gem 'puma',           '2.11.1'
 end
 
 group :doc do

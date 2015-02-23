@@ -2,6 +2,7 @@ class GenericCarsController < ApplicationController
   before_action :set_generic_car, only: [:show, :edit, :destroy, :update]
   def new
     @generic_car = GenericCar.new
+    @generic_car.generic_car_images.build
   end
 
   def show
@@ -25,7 +26,7 @@ class GenericCarsController < ApplicationController
       flash[:success]= "Guardado con éxito"
       redirect_to action: 'index'
     else
-      render new_generic_car_path
+      render :new
     end
   end
   def update
@@ -51,20 +52,22 @@ class GenericCarsController < ApplicationController
   def generic_car_params
     params.require(:generic_car).permit(
     :brand_id,
-    :type_of_car,
-    :year,
     :generation,
     :model,
-    :doors,
     :first_generation_year,
     :last_generation_year,
     :years,
     :gen_continues,
     :number_of_generation,
     :code,
-    :delete_image,
-    :photos,
-    :generic_car_images => {}
+    { :car_type_ids => [] },
+    generic_car_images_attributes: [
+       :image,
+       :generic_car_id, 
+       :id])
+
+
+
 
     # car_spare_alloys_attributes: [
     #   :generic_car_id,
@@ -78,7 +81,6 @@ class GenericCarsController < ApplicationController
     #     :description
     #   ]
     # ]
-    )
   end
 
   def set_generic_car

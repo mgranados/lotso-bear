@@ -114,6 +114,8 @@ GEM
       mime-types
     pg (0.15.1)
     polyglot (0.3.5)
+    puma (2.11.1)
+      rack (>= 1.1, < 2.0)
     pundit (0.3.0)
       activesupport (>= 3.0.0)
     rack (1.5.2)
@@ -231,6 +233,7 @@ DEPENDENCIES
   nilify_blanks
   paperclip (~> 4.2)
   pg (= 0.15.1)
+  puma (= 2.11.1)
   pundit
   railroady
   rails (= 4.0.5)

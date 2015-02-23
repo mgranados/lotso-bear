@@ -1,0 +1,61 @@
+
+
+<div class='row'>
+ <div class='col-md-12'>
+   <h1><%= GenericFamily.model_name.human(count:2) %></h1>
+ </div>
+ <div class="col-md-6">
+
+ </div>
+ <div class='col-md-6'>
+	<%= link_to "Nueva Familia", new_generic_family_path, class: "btn btn-primary"%>
+	<%= link_to "Asignar Nuevas Familias", not_assigned_families_path, class: "btn btn-primary"%>
+	<%= link_to "Ver Familias Asignadas", assigned_families_path, class: "btn btn-primary"%>
+ </div>
+
+ <div class='table-responsive'>
+   <table class="table table-condensed">
+     <thead>
+       <tr>
+         <th>
+           <%= t(:name) %>
+         </th>
+         <th>
+           <%= t(:code) %>
+         </th>
+         <th>
+           <%= t(:number_of_spares) %>
+         </th>
+         <th>
+           <%= t(:show) %>
+         </th>
+         <th>
+           <%= t(:edit) %>
+         </th>
+         <th>
+           <%= t(:delete) %>
+         </th>
+       </tr>
+     </thead>
+     <tbody>
+        <% @generic_families.each do |family| %>
+        <tr>
+          <td>
+            <%= family.name%>
+          </td>
+          <td>
+            <%= family.code%>
+          </td>
+          <td>
+            <%= family.generic_spares.count%>
+          </td>
+          <td><%= link_to t(:show), family, class: "" %></td>
+          <td><%= link_to t(:edit), edit_generic_family_path(family), class: "" %></td>
+          <td><%= link_to t(:delete), family, :confirm => '¿Seguro Que Deseas Borrarlo?', :method => :delete , class: ""%></td>
+        </tr>
+         </tr>
+        <% end %>
+     </tbody>
+   </table>
+ </div>
+</div>

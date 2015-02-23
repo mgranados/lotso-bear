@@ -1,5 +1,5 @@
 class GenericFamiliesController < ApplicationController
-  before_action :set_family, only: [:show]
+  before_action :set_family, only: [:show, :destroy]
 
 
 
@@ -31,17 +31,34 @@ class GenericFamiliesController < ApplicationController
   end
 
   def destroy
+    @generic_family.destroy
+    flash[:danger] = "#{@generic_family.name} borrada con éxito"
+    redirect_to action: 'index'
+
   end
 
   def update
   end
 
-  def assignment
-    @generic_families = GenericFamily.all
+  def not_assigned_families
+    @generic_families = GenericFamily.not_assigned_families
+    @car_types = CarType.all
+  end
+
+  def assigned_families
+    @generic_families = GenericFamily.assigned_families
     @car_types = CarType.all
   end
 
   def assign
+    family = params[:family_ids]
+    family.each do | f |
+      family_id = f.split(',')[0].to_i 
+      type_id = f.split(',')[1].to_i 
+      TypeLikelihood.create(generic_family_id: family_id, car_type_id:type_id)
+    end
+    flash[:success] = "Actualizado con exito"
+    redirect_to generic_families_path
   end
 
   def build_spares
@@ -49,9 +66,10 @@ class GenericFamiliesController < ApplicationController
   end
 
 
+
   private
     def required_params
-      params.require(:generic_family).permit(:code,:name,spare_likelihoods_attributes:[:id, :generic_family_id, :generic_spare_id, generic_spare_attributes:[:name,:code]])
+      params.require(:generic_family).permit(:code,:name, {:types => []},{:family_ids => []} ,spare_likelihoods_attributes:[:id, :generic_family_id, :generic_spare_id, generic_spare_attributes:[:name,:code]])
     end
 
     def set_family
