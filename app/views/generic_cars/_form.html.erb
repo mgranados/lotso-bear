@@ -5,8 +5,8 @@
   <%= f.fields_for :model_acronym do |model| %>
     <div class="col-md-4">
       <div class='form-group text-center'>
-        <%= f.label :brand_id %><br>
-        <%= f.select :brand_id, Brand.all.collect{|p| [ p.name, p.id ] }, {include_blank: '---'} %>
+        <%= model.label :brand_id %><br>
+        <%= model.select :brand_id, Brand.all.collect{|p| [ p.name, p.id ] }, {include_blank: '---'} %>
       </div>
     </div>
     <div class="col-md-4">
