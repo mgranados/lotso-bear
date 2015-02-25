@@ -68,7 +68,7 @@ private
     :years,
     :gen_continues,
     :number_of_generation,
-    :car_type,
+    :car_type_id,
     { :car_type_ids => [] },
     model_acronym_attributes:[
       :model,
