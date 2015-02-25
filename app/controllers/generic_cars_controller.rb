@@ -22,17 +22,18 @@ class GenericCarsController < ApplicationController
 
   def create
     @generic_car = GenericCar.new(generic_car_params)
-    if @generic_car.model_acronym.model_already_exists?
-      @generic_car.model_acronym = @generic_car.model_acronym.return_model_with_brand_if_exist
-    end
+    # if @generic_car.model_acronym.model_already_exists?
+    #   @generic_car.model_acronym = @generic_car.model_acronym.return_model_with_brand_if_exist
+    # end
     if @generic_car.save
       flash[:success]= "Guardado con éxito"
       redirect_to action: 'index'
     else
-      @generic_car.build_model_acronym
+      @generic_car.build_model_acronym if @generic_car.model_acronym.blank?
       render :new
     end
   end
+
   def update
     respond_to do |format|
       if @generic_car.update(generic_car_params)
@@ -61,18 +62,16 @@ private
 
   def generic_car_params
     params.require(:generic_car).permit(
-    :brand_id,
     :generation,
-    :model,
     :first_generation_year,
     :last_generation_year,
     :years,
     :gen_continues,
     :number_of_generation,
-    :code,
     { :car_type_ids => [] },
     model_acronym_attributes:[
       :model,
+      :brand_id,
       :id,
       :initials],
     generic_car_images_attributes: [

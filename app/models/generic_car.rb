@@ -16,22 +16,27 @@ class GenericCar < ActiveRecord::Base
   has_many :generic_car_generations
   has_many :generations, through: :generic_car_generations
 
-  has_many :car_likelihoods
-  has_many :car_types, through: :car_likelihoods
-
   has_many :generic_car_images, dependent: :destroy
   accepts_nested_attributes_for :generic_car_images
 
 
 
   # //Validations//
-  validates :brand_id, presence: true
-  validates :years, presence: true
-  validates :years, presence: true
-  validates :number_of_generation, presence: true
-  validates :model_acronym, presence: true
+  validates :brand_id,:years, :number_of_generation, :model_acronym, presence: true
+
+  #//Callbacks//
   before_save :generation_split
 
+  # //Queries//
+  def self.search(query)
+    where("model like ? OR brand like ? OR year like ?", "%#{query}%", "%#{query}%", "%#{query}%")
+  end
+
+  def self.gen_continues_search
+    where(gen_continues: true)
+  end
+
+  # //Functions//
   def code
     "#{brand.acronym}-#{number_of_generation}-#{model_acronym.initials}"
   end
@@ -46,16 +51,6 @@ class GenericCar < ActiveRecord::Base
     end
   end
 
-  # //Queries//
-  def self.search(query)
-    where("model like ? OR brand like ? OR year like ?", "%#{query}%", "%#{query}%", "%#{query}%")
-  end
-
-  def self.gen_continues_search
-    where(gen_continues: true)
-  end
-
-  # //Functions//
   private
   def retrieve_code
   end
