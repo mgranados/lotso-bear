@@ -1,0 +1,14 @@
+corolla:
+  brand: toyota
+  model: corolla
+  initials: CO
+
+corsa:
+  brand: toyota
+  model: corsa
+  initials: CR
+
+a3:
+  brand: bmw
+  model: A3
+  initials: A3

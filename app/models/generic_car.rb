@@ -1,11 +1,17 @@
 class GenericCar < ActiveRecord::Base
 
-
   # //Associations//
   has_many :stock_cars
   has_many :generic_fittables
 
   belongs_to :brand
+
+  belongs_to :model_acronym, inverse_of: :generic_cars
+
+  accepts_nested_attributes_for :model_acronym, reject_if: proc{|attributes| attributes[:model].blank? }
+  # validates_presence_of :model_acronym
+
+
 
   has_many :generic_car_generations
   has_many :generations, through: :generic_car_generations
@@ -20,20 +26,14 @@ class GenericCar < ActiveRecord::Base
 
   # //Validations//
   validates :brand_id, presence: true
-  validates :model, presence: true
   validates :years, presence: true
-  # validates :code, uniqueness: true
-  # validates :year, inclusion: { in: 1900..(Date.today.year+50), message: "Invalido"}, presence: true
-  # validates :first_generation_year,inclusion: { in: 1900..(Date.today.year+50), message: "Invalido"},presence: true
-  # validates :last_generation_year,inclusion: { in: 1900..(Date.today.year+50), message: "Invalido"},presence: true
-
-  before_save :generate_code
+  validates :years, presence: true
+  validates :number_of_generation, presence: true
+  validates :model_acronym, presence: true
   before_save :generation_split
-  before_save :upcase
 
-
-  def upcase
-    self.model.upcase!
+  def code
+    "#{brand.acronym}-#{number_of_generation}-#{model_acronym.initials}"
   end
 
   def years_split
@@ -48,7 +48,6 @@ class GenericCar < ActiveRecord::Base
 
   # //Queries//
   def self.search(query)
-    # where(:title, query) -> This would return an exact match of the query
     where("model like ? OR brand like ? OR year like ?", "%#{query}%", "%#{query}%", "%#{query}%")
   end
 
@@ -58,46 +57,9 @@ class GenericCar < ActiveRecord::Base
 
   # //Functions//
   private
-
-  def generate_code
-    self.code = ("#{self.brand_id}-#{self.number_of_generation.split(//).first(1).join}-#{generate_model_code}")
+  def retrieve_code
   end
 
-  def model_initials(model,originalModel,iteration,emer)
-    if emer < 9
-      modelInitials = "#{model.split(//)[0]}#{model.split(//)[iteration]}"
-    else
-      modelInitials = "#{('A'...'Z').to_a[rand(0...27)]}#{rand(0...10)}"
-    end
-    if ModelAcronym.where(brand_id:self.brand_id).where(initials: modelInitials).blank?
-      newAcronym = ModelAcronym.create(brand_id:self.brand_id,initials:modelInitials, model:originalModel)
-      newAcronym.save
-      return newAcronym.id
-    else
-        if iteration < model.length-1
-          return model_initials(model,originalModel,iteration+1,emer)
-        else
-          return model_initials("#{model}#{emer}",originalModel,iteration,emer+1)
-        end
-    end
-  end
-
-  def generate_model_code
-    return model_exist  unless model_exist.blank?
-    initials = self.model.split(//).first(2).join
-    if ModelAcronym.where(brand_id: self.brand_id).where(initials: initials).blank?
-      newAcronym = ModelAcronym.create(brand_id: self.brand_id, model: self.model, initials:initials)
-      newAcronym.save
-      return newAcronym.id
-    else
-      model_initials(self.model,self.model,1,0)
-    end
-  end
-
-  def model_exist
-    @modelCode = ModelAcronym.where(brand_id: self.brand_id).where(model: self.model).first
-    @modelCode.try(:initials)
-  end
 
   def generation_split
     years_split
