@@ -3,6 +3,7 @@ class GenericCarsController < ApplicationController
   def new
     @generic_car = GenericCar.new
     @generic_car.generic_car_images.build
+    @generic_car.build_model_acronym
   end
 
   def show
@@ -21,11 +22,14 @@ class GenericCarsController < ApplicationController
 
   def create
     @generic_car = GenericCar.new(generic_car_params)
+    if @generic_car.model_acronym.model_already_exists?
+      @generic_car.model_acronym = @generic_car.model_acronym.return_model_with_brand_if_exist
+    end
     if @generic_car.save
-
       flash[:success]= "Guardado con éxito"
       redirect_to action: 'index'
     else
+      @generic_car.build_model_acronym
       render :new
     end
   end
@@ -61,9 +65,13 @@ class GenericCarsController < ApplicationController
     :number_of_generation,
     :code,
     { :car_type_ids => [] },
+    model_acronym_attributes:[
+      :model,
+      :id,
+      :initials],
     generic_car_images_attributes: [
        :image,
-       :generic_car_id, 
+       :generic_car_id,
        :id])
 
 

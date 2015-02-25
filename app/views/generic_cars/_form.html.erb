@@ -7,19 +7,21 @@
       <%= f.label :brand_id %><br>
       <%= f.select :brand_id, Brand.all.collect{|p| [ p.name, p.id ] }, {include_blank: '---'} %>
     </div>
- 
+
     <div class="col-md-4 col-xs-6 form-group text-center">
       <%= f.label :number_of_generation %><br>
       <%= f.select(:number_of_generation, %w[1er 2da 3ra 4ta 5ta 6ta], {class: "input-group"}) %>
     </div>
 
 
-
+ <%= f.fields_for :model_acronym do |model| %>
     <div class="col-md-4 col-xs-6 form-group text-center">
-      <%= f.label :model %>
-      <%= f.text_field :model, class: "form-control text-center" %>
+      <%= model.hidden_field :brand_id %>
+      <%= model.label :model %>
+      <%= model.text_field :model, class: "form-control text-center" %>
       <p class="text-muted note ">Ejemplo: Corolla</p>
     </div>
+  <% end %>
 
 
     <div class="col-md-4 col-xs-6 form-group text-center">
@@ -34,8 +36,8 @@
 
     <div class="col-md-4 col-xs-6 form-group pull-right">
       <%= f.label :car_type %><br>
-      <%= f.collection_check_boxes :car_type_ids, CarType.all, :id, :full_name, {} do |b| %>
-        <%= b.label { b.check_box + b.text} %> <br>
+      <%= f.collection_radio_buttons :car_type_ids, CarType.all, :id, :full_name, {} do |b| %>
+        <%= b.label { b.radio_button + b.text} %> <br>
     <% end %>      <p class="text-muted note ">Tipo Coche</p>
     </div>
 

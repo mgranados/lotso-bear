@@ -1,0 +1,15 @@
+toyota:
+  name: Toyota
+  acronym: TY
+
+acura:
+  name: Acura
+  acronym: AC
+
+Audi:
+  name: Audi
+  acronym: AU
+
+bmw:
+  name: BMW
+  acronym: BM

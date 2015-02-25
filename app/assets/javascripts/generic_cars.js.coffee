@@ -1,6 +1,5 @@
 $ ->
   val = $("#generic_car_years").val()
-  console.log val
 
   # Masks
   $.mask.definitions['0']='[12]';
@@ -36,6 +35,10 @@ $ ->
       $(".continua").html("Ejemplo: 2001-2004")
       $(".title-change").html("Años")
 
+  #Hidden Tag for model -> brand_id
+  $("#generic_car_model_acronym_attributes_brand_id").val $("#generic_car_brand_id").val()
+  $("#generic_car_brand_id").change ->
+    $("#generic_car_model_acronym_attributes_brand_id").val $(this).val()
 
   # Start DataTables
   $('#genericCars').dataTable()
