@@ -22,7 +22,7 @@ class GenericCar < ActiveRecord::Base
 
 
   # //Validations//
-  validates :brand_id,:years, :number_of_generation, :model_acronym, presence: true
+  validates :years, :number_of_generation, :model_acronym, presence: true
 
   #//Callbacks//
   before_save :generation_split
