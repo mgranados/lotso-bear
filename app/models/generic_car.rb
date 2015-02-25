@@ -5,11 +5,10 @@ class GenericCar < ActiveRecord::Base
   has_many :generic_fittables
 
   belongs_to :brand
-
+  belongs_to :car_type
   belongs_to :model_acronym, inverse_of: :generic_cars
 
   accepts_nested_attributes_for :model_acronym, reject_if: proc{|attributes| attributes[:model].blank? }
-  # validates_presence_of :model_acronym
 
 
 
@@ -22,7 +21,7 @@ class GenericCar < ActiveRecord::Base
 
 
   # //Validations//
-  validates :years, :number_of_generation, :model_acronym, presence: true
+  validates :years, :number_of_generation, :model_acronym, :car_type, presence: true
 
   #//Callbacks//
   before_save :generation_split
@@ -38,7 +37,7 @@ class GenericCar < ActiveRecord::Base
 
   # //Functions//
   def code
-    "#{brand.acronym}-#{number_of_generation}-#{model_acronym.initials}"
+    "#{model_acronym.brand.acronym}-#{number_of_generation}-#{model_acronym.initials}"
   end
 
   def years_split
@@ -52,9 +51,6 @@ class GenericCar < ActiveRecord::Base
   end
 
   private
-  def retrieve_code
-  end
-
 
   def generation_split
     years_split

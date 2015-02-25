@@ -9,6 +9,9 @@
       <th> Modelo </th>
       <th> Generación </th>
       <th> Codigo</th>
+      <th>
+        Typo
+      </th>
       <th>Ver</th>
       <th>Editar</th>
       <th>Borrar</th>
@@ -17,8 +20,8 @@
   <tbody>
 <% for car in @generic_cars %>
     <tr>
-      <td><%= car.brand.name %></td>
-      <td><%= car.model %></td>
+      <td><%= car.model_acronym.brand.name %></td>
+      <td><%= car.model_acronym.model %></td>
       <td><%= car.first_generation_year %> -
         <% if !car.gen_continues %>
           <%= car.last_generation_year %>
@@ -26,7 +29,10 @@
           <p>Año Actual</p>
         <% end %>
        </td>
-      <td><%= car.code.to_s %></td>
+      <td><%= car.code %></td>
+      <td>
+        <%= car.car_type.name %>
+      </td>
       <td><%= link_to "Familias", assign_families_path(car), class: "btn btn-primary" %></td>
       <td><%= link_to "Ver", car, class: "btn btn-primary" %></td>
       <td><%= link_to 'Editar', edit_generic_car_path(car), class: "btn btn-primary" %></td>

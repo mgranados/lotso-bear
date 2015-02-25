@@ -7,6 +7,7 @@ corolla:
   years: 2001-2004
   gen_continues: false
   model_acronym: corolla
+  car_type: suv
 
 
 corsa:
@@ -18,3 +19,4 @@ corsa:
   years: 2001-2004
   gen_continues: false
   model_acronym: corsa
+  car_type: suv

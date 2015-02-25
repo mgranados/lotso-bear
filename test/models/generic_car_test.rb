@@ -7,6 +7,12 @@ class GenericCarTest < ActiveSupport::TestCase
     assert_not generic_car.save
   end
 
+  test "should not save car without car_type" do
+    generic_car = generic_cars(:corolla)
+    generic_car.car_type = nil
+    assert_not generic_car.save
+  end
+
   test "should not save car without years" do
     generic_car = generic_cars(:corolla)
     generic_car.years = nil
