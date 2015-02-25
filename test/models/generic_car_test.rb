@@ -1,13 +1,6 @@
 class GenericCarTest < ActiveSupport::TestCase
   require 'test_helper'
 
-
-  test "should not save car without brand" do
-    generic_car = generic_cars(:corolla)
-    generic_car.brand = nil
-    assert_not generic_car.save
-  end
-
   test "should not save car without model_acronym" do
     generic_car = generic_cars(:corolla)
     generic_car.model_acronym = nil

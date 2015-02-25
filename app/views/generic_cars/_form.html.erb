@@ -1,62 +1,65 @@
-<div class="container">
 <%= form_for @generic_car, :html => { :multipart => true, :id => "fileupload" } do |f|%>
   <%= render 'shared/error_messages', model: @generic_car %>
 
   <div class="row">
-    <div class="col-md-4 col-xs-6 form-group text-center">
-      <%= f.label :brand_id %><br>
-      <%= f.select :brand_id, Brand.all.collect{|p| [ p.name, p.id ] }, {include_blank: '---'} %>
+  <%= f.fields_for :model_acronym do |model| %>
+    <div class="col-md-4">
+      <div class='form-group text-center'>
+        <%= f.label :brand_id %><br>
+        <%= f.select :brand_id, Brand.all.collect{|p| [ p.name, p.id ] }, {include_blank: '---'} %>
+      </div>
     </div>
+    <div class="col-md-4">
+      <div class='form-group'>
+        <%= model.label :model %>
+        <%= model.text_field :model, class: "form-control text-center" %>
+        <p class="text-muted note ">Ejemplo: Corolla</p>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class='form-group'>
+        <%= model.label :initials %>
+        <%= model.text_field :initials, class: "form-control text-center" %>
+        <p class="text-muted note ">Ejemplo: CO</p>
+      </div>
+    </div>
+  <% end %>
 
     <div class="col-md-4 col-xs-6 form-group text-center">
       <%= f.label :number_of_generation %><br>
       <%= f.select(:number_of_generation, %w[1er 2da 3ra 4ta 5ta 6ta], {class: "input-group"}) %>
     </div>
 
-
- <%= f.fields_for :model_acronym do |model| %>
-    <div class="col-md-4 col-xs-6 form-group text-center">
-      <%= model.hidden_field :brand_id %>
-      <%= model.label :model %>
-      <%= model.text_field :model, class: "form-control text-center" %>
-      <p class="text-muted note ">Ejemplo: Corolla</p>
-    </div>
-  <% end %>
-
-
     <div class="col-md-4 col-xs-6 form-group text-center">
       <%= f.label :gen_continues %><br>
       <%= f.check_box :gen_continues %>
-    </div>
-    <div class="col-md-4 col-xs-6 form-group text-center">
+      </div>
+      <div class="col-md-4 col-xs-6 form-group text-center">
       <%= f.label :years , class:"title-change"%><br>
       <%= f.text_field :years, class: "form-control years" %>
       <p class="text-muted note continua"></p>
     </div>
 
     <div class="col-md-4 col-xs-6 form-group pull-right">
-      <%= f.label :car_type %><br>
-      <%= f.collection_radio_buttons :car_type_ids, CarType.all, :id, :full_name, {} do |b| %>
-        <%= b.label { b.radio_button + b.text} %> <br>
-    <% end %>      <p class="text-muted note ">Tipo Coche</p>
+      <%= f.label :car_type_id %><br>
+      <%= f.select :car_type_id, CarType.all.collect {|p| [ p.full_name, p.id ] }, {include_blank: '---'} %>
+      <p class="text-muted note ">Tipo Coche</p>
     </div>
-
-    </div>
-    <div class="divider"></div>
-    <div class="row">
-      <div id='generic_images'>
-         <div id="image_fields">
-           <%= f.fields_for :generic_car_images do |generic_car_images| %>
-             <%= render 'generic_car_image_fields', :f => generic_car_images %>
-           <% end %>
-         </div>
-         <div class="row">
-           <div class="col-md-12 text-center">
-             <%= link_to_add_association 'Añadir Imagen', f, :generic_car_images,:partial => 'generic_car_image_fields', class: 'btn btn-default'%>
-           </div>
-         </div>
+  </div>
+  <div class="divider"></div>
+  <div class="row">
+    <div id='generic_images'>
+      <div id="image_fields">
+        <%= f.fields_for :generic_car_images do |generic_car_images| %>
+          <%= render 'generic_car_image_fields', :f => generic_car_images %>
+        <% end %>
       </div>
-   </div>
+      <div class="row">
+        <div class="col-md-12 text-center">
+          <%= link_to_add_association 'Añadir Imagen', f, :generic_car_images,:partial => 'generic_car_image_fields', class: 'btn btn-default'%>
+        </div>
+      </div>
+    </div>
+  </div>
   <%= f.submit nil,  class: "btn btn-primary pull-right" %>
-<% end %>
-</div>
+  <% end %>
