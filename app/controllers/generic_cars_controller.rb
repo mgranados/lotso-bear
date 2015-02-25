@@ -51,7 +51,13 @@ class GenericCarsController < ApplicationController
     redirect_to action: 'index'
   end
 
+  def assign_families
+    @title = "Familias que le quedan"
+    @car  = GenericCar.find(params[:id])
+    @families = @car.car_likelihoods.car_types.type_likelihoods.generic_families
+  end
 
+private
 
   def generic_car_params
     params.require(:generic_car).permit(

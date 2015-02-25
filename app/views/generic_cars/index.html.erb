@@ -27,6 +27,7 @@
         <% end %>
        </td>
       <td><%= car.code.to_s %></td>
+      <td><%= link_to "Familias", assign_families_path(car), class: "btn btn-primary" %></td>
       <td><%= link_to "Ver", car, class: "btn btn-primary" %></td>
       <td><%= link_to 'Editar', edit_generic_car_path(car), class: "btn btn-primary" %></td>
       <td><%= link_to "Borrar", car, :confirm => '¿Seguro Que Deseas Borrarlo?', :method => :delete , class: "btn btn-primary"%></td>

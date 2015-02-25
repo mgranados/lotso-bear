@@ -23,12 +23,19 @@ LotsoBear::Application.routes.draw do
   resources :generic_cars, only: [:index, :new, :create, :show, :edit ,:destroy, :update]
   resources :generic_spares, only: [:index, :new, :create, :show, :edit ,:destroy, :update]
 
+   resources :generic_cars do
+    member do
+      get :assign_families
+    end
+  end
+
   match '/new_generic_spare_from_template', to: 'generic_spares#template', via: 'get'
   match '/new_generic_car', to: 'generic_cars#new',  via: 'get'
   match '/update_generation', to: 'generic_cars#update_generation',  via: 'get'
 
+
   match '/busqueda', to: 'generic_cars#search',  via: 'get'
-  match '/new_pre_valuations', to: 'prevaluations#new',  via: 'get'
+  match '/new_pre_valuations', to: 'prevaluations#new',   via: 'get'
   match '/login',              to: 'sessions#new',        via: 'get'
   match '/admin',              to: 'branches#admin',      via: 'get'
   match '/gerente',            to: 'branches#manager',    via: 'get'
@@ -36,7 +43,7 @@ LotsoBear::Application.routes.draw do
   match '/operador',           to: 'branches#operative',  via: 'get'
   match '/capturista',         to: 'branches#capturist',  via: 'get'
   match '/proceso',            to: 'branches#process',    via: 'get'
-  match '/almacen',             to: 'branches#warehouse', via: 'get'
+  match '/almacen',            to: 'branches#warehouse',  via: 'get'
 
 
   #client actions routes
@@ -65,6 +72,8 @@ LotsoBear::Application.routes.draw do
   get '/not_assigned_families', to: 'generic_families#not_assigned_families'
   get '/assigned_families', to: 'generic_families#assigned_families'
   match '/assign_families',         to: 'generic_families#assign', via: 'post'
+
+  get '/generic_car_assignation', to: 'generic_car#r'
 
 
   get '/build_spares/:id', to: 'generic_families#build_spares', as: 'build_spare'
