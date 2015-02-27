@@ -1,0 +1,26 @@
+ <table class="table table-striped">
+ 	<thead>
+        <tr>
+          <th>Marca</th>
+          <th>Modelo</th>
+          <th>Años</th>
+          <th>Código</th>
+          <th>Tipo</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><%= car.model_acronym.brand.name %></td>
+          <td><%= car.model_acronym.model %></td>
+          <td><%= car.formatted_year %></td>
+          <td><%= car.code %></td>
+          <td><%= car.car_type.full_name %></td>
+        </tr>
+      </tbody>
+</table>
+
+	<h2>Familias relacionadas</h2>
+	
+
+
+	<h2>Más familias</h2>

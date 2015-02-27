@@ -1,5 +1,5 @@
 class GenericCarsController < ApplicationController
-  before_action :set_generic_car, only: [:show, :edit, :destroy, :update]
+  before_action :set_generic_car, only: [:show, :edit, :destroy, :update, :assignation]
   def new
     @generic_car = GenericCar.new
     @generic_car.generic_car_images.build
@@ -52,10 +52,9 @@ class GenericCarsController < ApplicationController
     redirect_to action: 'index'
   end
 
-  def assign_families
+  def assignation
     @title = "Familias que le quedan"
-    @car  = GenericCar.find(params[:id])
-    @families = @car.car_likelihoods.car_types.type_likelihoods.generic_families
+    set_generic_car
   end
 
 private

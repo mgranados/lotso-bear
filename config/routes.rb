@@ -25,7 +25,7 @@ LotsoBear::Application.routes.draw do
 
    resources :generic_cars do
     member do
-      get :assign_families
+      get :assignation
     end
   end
 

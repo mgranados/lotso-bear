@@ -50,6 +50,10 @@ class GenericCar < ActiveRecord::Base
     end
   end
 
+  def formatted_year
+    gen_continues ? "#{first_generation_year} - Año Actual" : "#{years}"
+  end
+
   private
 
   def generation_split

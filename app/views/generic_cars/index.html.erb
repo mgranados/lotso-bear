@@ -10,8 +10,9 @@
       <th> Generación </th>
       <th> Codigo</th>
       <th>
-        Typo
+        Tipo
       </th>
+      <th>Familias</th>
       <th>Ver</th>
       <th>Editar</th>
       <th>Borrar</th>
@@ -33,7 +34,7 @@
       <td>
         <%= car.car_type.name %>
       </td>
-      <td><%= link_to "Familias", assign_families_path(car), class: "btn btn-primary" %></td>
+      <td><%= link_to "Familias", assignation_generic_car_path(car), class: "btn btn-primary" %></td>
       <td><%= link_to "Ver", car, class: "btn btn-primary" %></td>
       <td><%= link_to 'Editar', edit_generic_car_path(car), class: "btn btn-primary" %></td>
       <td><%= link_to "Borrar", car, :confirm => '¿Seguro Que Deseas Borrarlo?', :method => :delete , class: "btn btn-primary"%></td>
