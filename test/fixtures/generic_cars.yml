@@ -1,9 +1,7 @@
 corolla:
-  brand: toyota
-  model: corolla
   first_generation_year: 2001
   last_generation_year: 2004
-  number_of_generation: 1
+  number_of_generation: 1er
   years: 2001-2004
   gen_continues: false
   model_acronym: corolla
@@ -11,11 +9,9 @@ corolla:
 
 
 corsa:
-  brand: toyota
-  model: corsa
   first_generation_year: 2002
   last_generation_year: 2006
-  number_of_generation: 1
+  number_of_generation: 2nd
   years: 2001-2004
   gen_continues: false
   model_acronym: corsa

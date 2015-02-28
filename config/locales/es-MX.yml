@@ -16,6 +16,12 @@ es-MX:
       generic_car:
         one: "Coche Generico"
         other: "Coches Genericos"
+      model_acronym:
+        one: "Modelo"
+        other: "Modelos"
+      brand:
+        one: "Marca"
+        other: "Marcas"
       spare:
         one: "Pieza"
         other: "Piezas"
@@ -25,15 +31,17 @@ es-MX:
     attributes:
       generic_car:
         year: "Año"
-        brand_id: "Marca"
-        type_of_car: "Tipo"
-        model: "Modelo"
-        doors: "Puertas"
+        car_type: "Tipo"
         first_generation_year: "Primer Año de Generación"
         last_generation_year: "Ultimo Año de Generación"
         gen_continues: "Generación Continua"
         number_of_generation: "Generación"
         years: "Años"
+        model_acronym: "Modelo"
+      model_acronym:
+        model: "Modelo"
+        initials: "Iniciales"
+        brand: "Marca"
       generic_family:
         name: "Nombre"
         code: "Código"

@@ -31,7 +31,14 @@ class GenericCarTest < ActiveSupport::TestCase
     assert_not generic_car.save
   end
 
+  test "car should be valid" do
+    generic_car = generic_cars(:corsa)
+    generic_car.model_acronym.initials = 'ZY'
+    assert generic_car.valid?, "#{generic_car.errors.first}"
+  end
+
   test "should save correct car" do
-    assert generic_cars(:corolla).save
+    generic_car = generic_cars(:corolla)
+    assert generic_car.save
   end
 end
