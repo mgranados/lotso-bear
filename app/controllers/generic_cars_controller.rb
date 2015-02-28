@@ -22,9 +22,9 @@ class GenericCarsController < ApplicationController
 
   def create
     @generic_car = GenericCar.new(generic_car_params)
-    # if @generic_car.model_acronym.model_already_exists?
-    #   @generic_car.model_acronym = @generic_car.model_acronym.return_model_with_brand_if_exist
-    # end
+    if !@generic_car.model_acronym.blank? && @generic_car.model_acronym.model_already_exists?
+      @generic_car.model_acronym = ModelAcronym.return_model(@generic_car.model_acronym.brand_id,@generic_car.model_acronym.model)
+    end
     if @generic_car.save
       flash[:success]= "Guardado con éxito"
       redirect_to action: 'index'
@@ -52,49 +52,10 @@ class GenericCarsController < ApplicationController
     redirect_to action: 'index'
   end
 
-  def assign_families
-    @title = "Familias que le quedan"
-    @car  = GenericCar.find(params[:id])
-    @families = @car.car_likelihoods.car_types.type_likelihoods.generic_families
-  end
-
 private
 
   def generic_car_params
-    params.require(:generic_car).permit(
-    :generation,
-    :first_generation_year,
-    :last_generation_year,
-    :years,
-    :gen_continues,
-    :number_of_generation,
-    :car_type_id,
-    { :car_type_ids => [] },
-    model_acronym_attributes:[
-      :model,
-      :brand_id,
-      :id,
-      :initials],
-    generic_car_images_attributes: [
-       :image,
-       :generic_car_id,
-       :id])
-
-
-
-
-    # car_spare_alloys_attributes: [
-    #   :generic_car_id,
-    #   :generic_spare_id,
-    #   :relation,
-    #   generic_spare_attributes:[
-    #     :type_of_spare,
-    #     :brand,
-    #     :name,
-    #     :region,
-    #     :description
-    #   ]
-    # ]
+      params.require(:generic_car).permit(:generation,:first_generation_year,:last_generation_year,:years,:gen_continues,:number_of_generation,:car_type_id,{ :car_type_ids => [] },model_acronym_attributes:[:model,:brand_id,:id,:initials],generic_car_images_attributes: [:image,:generic_car_id,:id,:_destroy])
   end
 
   def set_generic_car

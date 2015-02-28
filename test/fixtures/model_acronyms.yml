@@ -1,11 +1,11 @@
 corolla:
   brand: toyota
-  model: corolla
+  model: COROLLA
   initials: CO
 
 corsa:
   brand: toyota
-  model: corsa
+  model: CORSA
   initials: CR
 
 a3:
