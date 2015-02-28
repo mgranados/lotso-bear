@@ -34,9 +34,11 @@ class ModelAcronym < ActiveRecord::Base
     end
 
     def brand_with_initials_uniqueness
-       if ModelAcronym.exists?(:brand_id => brand_id, :initials => initials)
-         errors.add(:initials, "Ya Existen")
-       end
+      if ModelAcronym.exists?(:brand_id => brand_id, model: model,:initials => initials)
+        return false
+      elsif ModelAcronym.exists?(:brand_id => brand_id,:initials => initials)
+        errors.add(:initials, "Ya Existen")
+      end
     end
 
 end

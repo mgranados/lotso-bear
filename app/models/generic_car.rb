@@ -41,12 +41,11 @@ class GenericCar < ActiveRecord::Base
   end
 
   def find_model
-     if existing_model = ModelAcronym.where(:brand_id => brand_id, model: model).first
-       self.model_acronym << existing_model
-       return true
-     else
+    existing_model = ModelAcronym.where(:brand_id => brand_id, model: model).first
+    if existing_model.exist?
+      self.model_acronym << existing_model
       return false
-     end
+    end
   end
 
   def years_split
