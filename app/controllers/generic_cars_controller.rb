@@ -55,6 +55,7 @@ class GenericCarsController < ApplicationController
   def assignation
     @title = "Familias que le quedan"
     set_generic_car
+    set_other_families
   end
 
 private
@@ -98,6 +99,10 @@ private
 
   def set_generic_car
     @generic_car = GenericCar.find(params[:id])
+  end
+
+  def set_other_families
+    @other_families =  GenericFamily.where.not(name: @generic_car.car_type.generic_families.name)
   end
 
   def search

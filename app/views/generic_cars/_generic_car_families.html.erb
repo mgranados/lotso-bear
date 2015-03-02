@@ -1,0 +1,24 @@
+  <h2>Familias relacionadas</h2>
+
+ <table class="table table-striped">
+ 	<thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Habilitado</th>
+          <th>Modelos</th>
+          <th>Código</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+      <% car.car_type.generic_families.each do |family| %>
+        <tr>
+          <td><%= family.name %></td>
+          <td><%= check_box_tag 'active', 'yes', true %></td>
+          <td><%= text_field_tag 'años', nil, placeholder: car.formatted_year %></td>
+          <td><%= family.code %></td>
+          <td><%= button_tag '+', class: "btn btn-primary" %></td> 
+        </tr>
+      <% end %>
+      </tbody>
+</table>

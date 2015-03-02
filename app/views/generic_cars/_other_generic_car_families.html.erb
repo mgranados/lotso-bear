@@ -1,0 +1,20 @@
+  <h3>Más familias</h3>
+
+ <table class="table table-striped">
+ 	<thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Código</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+      <% @other_families.each do |family| %>
+        <tr>
+          <td><%= family.name %></td>
+          <td><%= family.code %></td>
+          <td><%= button_tag 'Agregar', class: "btn btn-primary" %></td> 
+        </tr>
+      <% end %>
+      </tbody>
+</table>

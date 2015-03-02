@@ -32,7 +32,7 @@
        </td>
       <td><%= car.code %></td>
       <td>
-        <%= car.car_type.name %>
+        <%= car.car_type.full_name %>
       </td>
       <td><%= link_to "Familias", assignation_generic_car_path(car), class: "btn btn-primary" %></td>
       <td><%= link_to "Ver", car, class: "btn btn-primary" %></td>

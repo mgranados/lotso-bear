@@ -1,3 +1,12 @@
 
+	<h1>Carro genérico | Asignación de Familias </h1>
+
 	<%= render 'shared/generic_car' , car: @generic_car%>
 
+	<%= render 'generic_car_families', car: @generic_car %>
+
+	<%= render 'other_generic_car_families', car: @generic_car %>
+
+	<%= button_tag "Cancel", class: "btn " %>
+
+	<%= submit_tag "Guardar Coche", class: "btn btn-primary" %>
