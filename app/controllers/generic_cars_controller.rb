@@ -52,14 +52,11 @@ class GenericCarsController < ApplicationController
     redirect_to action: 'index'
   end
 
-<<<<<<< HEAD
   def assignation
     @title = "Familias que le quedan"
     set_generic_car
     set_other_families
   end
-=======
->>>>>>> a709d8e657fbe92ae89743e8dc31ee3b51309fe8
 
 private
 
