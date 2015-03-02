@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150225192906) do
+ActiveRecord::Schema.define(version: 20150227211644) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -54,8 +54,6 @@ ActiveRecord::Schema.define(version: 20150225192906) do
   end
 
   create_table "generic_cars", force: true do |t|
-    t.string   "brand_id"
-    t.string   "model"
     t.integer  "first_generation_year"
     t.integer  "last_generation_year"
     t.string   "number_of_generation"

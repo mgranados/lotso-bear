@@ -6,15 +6,15 @@ class ModelAcronym < ActiveRecord::Base
   #Validations
   validates :model, :initials, :brand_id, presence: true
 
-  validate :brand_with_model_uniqueness
+  # validate :brand_with_model_uniqueness
   validate :brand_with_initials_uniqueness
 
   #CallBakcks
   before_save :upcase
 
   #Methods
-  def return_model_with_brand_if_exist
-      where(:brand_id => brand_id, model: model)
+  def self.return_model(brand_id,model)
+    where(:brand_id => brand_id, model: model).first
   end
 
   def model_already_exists?
@@ -34,9 +34,11 @@ class ModelAcronym < ActiveRecord::Base
     end
 
     def brand_with_initials_uniqueness
-       if ModelAcronym.exists?(:brand_id => brand_id, :initials => initials)
-         errors.add(:initials, "Ya Existen")
-       end
+      if ModelAcronym.exists?(:brand_id => brand_id, model: model,:initials => initials)
+        return false
+      elsif ModelAcronym.exists?(:brand_id => brand_id,:initials => initials)
+        errors.add(:initials, "Ya Existen")
+      end
     end
 
 end

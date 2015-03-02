@@ -4,11 +4,11 @@ class GenericCar < ActiveRecord::Base
   has_many :stock_cars
   has_many :generic_fittables
 
-  belongs_to :brand
   belongs_to :car_type
   belongs_to :model_acronym, inverse_of: :generic_cars
 
-  accepts_nested_attributes_for :model_acronym, reject_if: proc{|attributes| attributes[:model].blank? }
+  accepts_nested_attributes_for :model_acronym
+  # , reject_if: proc{|attributes| :find_model}
 
 
 
@@ -21,8 +21,8 @@ class GenericCar < ActiveRecord::Base
 
 
   # //Validations//
-  validates :years, :number_of_generation, :model_acronym, :car_type, presence: true
-
+  validates :years, :number_of_generation, :car_type, :model_acronym, presence: true
+  # validates_associated :model_acronym
   #//Callbacks//
   before_save :generation_split
 
@@ -37,7 +37,15 @@ class GenericCar < ActiveRecord::Base
 
   # //Functions//
   def code
-    "#{model_acronym.brand.acronym}-#{number_of_generation}-#{model_acronym.initials}"
+    "#{model_acronym.brand.acronym}-#{number_of_generation.split(//).first}-#{model_acronym.initials}"
+  end
+
+  def find_model
+    existing_model = ModelAcronym.where(:brand_id => brand_id, model: model).first
+    if existing_model.exist?
+      self.model_acronym << existing_model
+      return false
+    end
   end
 
   def years_split

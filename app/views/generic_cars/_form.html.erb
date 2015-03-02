@@ -5,7 +5,7 @@
   <%= f.fields_for :model_acronym do |model| %>
     <div class="col-md-4">
       <div class='form-group text-center'>
-        <%= model.label :brand_id %><br>
+        <%= model.label :brand %><br>
         <%= model.select :brand_id, Brand.all.collect{|p| [ p.name, p.id ] }, {include_blank: '---'} %>
       </div>
     </div>
@@ -41,7 +41,7 @@
     </div>
 
     <div class="col-md-4 col-xs-6 form-group pull-right">
-      <%= f.label :car_type_id %><br>
+      <%= f.label :car_type %><br>
       <%= f.select :car_type_id, CarType.all.collect {|p| [ p.full_name, p.id ] }, {include_blank: '---'} %>
       <p class="text-muted note ">Tipo Coche</p>
     </div>
