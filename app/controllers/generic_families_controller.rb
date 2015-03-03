@@ -1,5 +1,5 @@
 class GenericFamiliesController < ApplicationController
-  before_action :set_family, only: [:show, :destroy]
+  before_action :set_family, only: [:show, :destroy, :edit]
 
 
 
@@ -57,7 +57,7 @@ class GenericFamiliesController < ApplicationController
       type_id = f.split(',')[1].to_i 
       TypeLikelihood.create(generic_family_id: family_id, car_type_id:type_id)
     end
-    flash[:success] = "Actualizado con exito"
+    flash[:success] = "Actualizado con éxito"
     redirect_to generic_families_path
   end
 
