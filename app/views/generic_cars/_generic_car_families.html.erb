@@ -17,7 +17,7 @@
           <td><%= check_box_tag 'active', 'yes', true %></td>
           <td><%= text_field_tag 'años', nil, placeholder: car.formatted_year %></td>
           <td><%= family.code %></td>
-          <td><%= button_tag '+', class: "btn btn-primary" %></td> 
+          <td><%= button_tag '+', class: "btn btn-primary", value: family.id %></td> 
         </tr>
       <% end %>
       </tbody>

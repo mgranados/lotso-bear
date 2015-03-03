@@ -15,7 +15,6 @@
 # for i in 0...10
 #   GenericFamily.create!(name: "levom#{i}", code: "LE#{i}")
 # end
-
 for i in 1900...2500
   Generation.create!(year:i)
 end
@@ -112,6 +111,10 @@ brands = [
     "VW",
     "VL"
   ]
+
+  for i in 0...brands.length
+    Brand.create(name: brands[i], acronym:acronyms[i])
+  end
 types = [['Hatchback','3/5'],['Hatchback','3'],['Hatchback','5'],['Sedan','2'],['Sedan','4'],['Sedan','2/4'],['SUV'],['Minivan'],['Sedan/Hatchback','4/5'],['Sedan/Hatchback','3/4/5'],['Pick Up','2'],['Pick Up','4'],['Pick Up','2/4'],['Crossover'],['Van']]
 types.each { |type|
   if type.count == 2
@@ -122,6 +125,12 @@ types.each { |type|
 }
 
 
-for i in 0...brands.length
-  Brand.create(name: brands[i], acronym:acronyms[i])
-end
+@model = ModelAcronym.new(initials:'CO', model: 'COROLLA')
+@model.brand = Brand.first
+@model.save!
+@genericCar = GenericCar.new(first_generation_year: 2001, last_generation_year: 2003, number_of_generation: '1er', years: '2001-2003', gen_continues: false)
+@genericCar.car_type = CarType.first
+@genericCar.model_acronym = ModelAcronym.first
+@genericCar.save!
+
+GenericFamily.create(name: 'Puerta Derecha', code: 'FA')

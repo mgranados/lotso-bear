@@ -21,4 +21,12 @@ class GenericFamily < ActiveRecord::Base
     where(:id  => TypeLikelihood.select(:generic_family_id) )
   end
 
+  def self.other_families(generic_car)
+    if generic_car.car_type.generic_families.empty?
+      all
+    else
+      where('id not in (?)', generic_car.car_type.generic_families.pluck(:id))
+    end
+  end
+
 end

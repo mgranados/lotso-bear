@@ -63,6 +63,11 @@ LotsoBear::Application.routes.draw do
   match '/nuevaTemplate',            to: 'generic_spares#newtemplate', via: 'get'
 
 
+  # Route to a funciton that relates families to generic cars
+  get '/relate_generic_family_to_generic_car/:id', to: 'generic_cars#relate_generic_family_to_generic_car', as: 'relate_generic_family_to_generic_car'
+
+
+
   #Signin Trabajadores
   match '/signin',  to: 'sessions#new',         via: 'get'
   #Salir

@@ -1,5 +1,5 @@
 class GenericCarsController < ApplicationController
-  before_action :set_generic_car, only: [:show, :edit, :destroy, :update, :assignation]
+  before_action :set_generic_car, only: [:show, :edit, :destroy, :update, :assignation, :relate_generic_family_to_generic_car]
   def new
     @generic_car = GenericCar.new
     @generic_car.generic_car_images.build
@@ -46,6 +46,13 @@ class GenericCarsController < ApplicationController
     end
   end
 
+  def relate_generic_family_to_generic_car
+    @generic_family = GenericFamily.find(params[:id])
+    @generic_car.car_type.generic_families << @generic_family
+    @generic_car.save
+    redirect_to assignation_generic_car_path(@generic_car.id)
+  end
+
   def destroy
     @generic_car.destroy
     flash[:notice] = "Borrado Exitosamente."
@@ -54,22 +61,17 @@ class GenericCarsController < ApplicationController
 
   def assignation
     @title = "Familias que le quedan"
-    set_generic_car
-    set_other_families
+    @other_families =  GenericFamily.other_families(@generic_car)
   end
 
 private
 
   def generic_car_params
-      params.require(:generic_car).permit(:generation,:first_generation_year,:last_generation_year,:years,:gen_continues,:number_of_generation,:car_type_id,{ :car_type_ids => [] },model_acronym_attributes:[:model,:brand_id,:id,:initials],generic_car_images_attributes: [:image,:generic_car_id,:id,:_destroy])
+params.require(:generic_car).permit(:generation,:first_generation_year,:last_generation_year,:years,:gen_continues,:number_of_generation,:car_type_id,{ :car_type_ids => [] },model_acronym_attributes:[:model,:brand_id,:id,:initials],generic_car_images_attributes: [:image,:generic_car_id,:id,:_destroy])
   end
 
   def set_generic_car
     @generic_car = GenericCar.find(params[:id])
-  end
-
-  def set_other_families
-    @other_families =  GenericFamily.where.not(name: @generic_car.car_type.generic_families.name)
   end
 
   def search
@@ -78,6 +80,7 @@ private
     else
     end
   end
+
 
 
 
