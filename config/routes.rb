@@ -1,6 +1,8 @@
 LotsoBear::Application.routes.draw do
 
 
+  get "inventories/entrance"
+  get "inventories/departure"
   resources :model_acronyms
 
   resources :brands
@@ -23,11 +25,21 @@ LotsoBear::Application.routes.draw do
   resources :generic_cars, only: [:index, :new, :create, :show, :edit ,:destroy, :update]
   resources :generic_spares, only: [:index, :new, :create, :show, :edit ,:destroy, :update]
 
-   resources :generic_cars do
+  resources :generic_cars do
     member do
       get :assignation
     end
   end
+
+  resources :inventories do
+    collection do
+      get :entrance
+      get :departure
+    end
+  end
+
+
+
 
   match '/new_generic_spare_from_template', to: 'generic_spares#template', via: 'get'
   match '/new_generic_car', to: 'generic_cars#new',  via: 'get'
