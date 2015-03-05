@@ -17,6 +17,14 @@ class GenericFamily < ActiveRecord::Base
     where.not(:id  => TypeLikelihood.select(:generic_family_id) )
   end
 
+  def clone
+    clone = self.dup
+    clone.save
+    self.generic_spares.each {|spare| clone.generic_spares << spare.dup}
+    clone.save
+    clone
+  end
+
   def self.assigned_families
     where(:id  => TypeLikelihood.select(:generic_family_id) )
   end

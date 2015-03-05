@@ -1,6 +1,6 @@
 LotsoBear::Application.routes.draw do
 
-
+  resources :car_type
   resources :model_acronyms
 
   resources :brands

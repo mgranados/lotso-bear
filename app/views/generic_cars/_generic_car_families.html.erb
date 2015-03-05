@@ -1,24 +1,32 @@
   <h2>Familias relacionadas</h2>
 
- <table class="table table-striped">
+ <table id="familyTable" class="table table-striped">
  	<thead>
         <tr>
           <th>Nombre</th>
-          <th>Habilitado</th>
-          <th>Modelos</th>
           <th>Código</th>
+          <th>Habilitado</th>
+          <th>Años</th>
           <th></th>
+          <th>
+          </th>
         </tr>
       </thead>
       <tbody>
-      <% car.car_type.generic_families.each do |family| %>
-        <tr>
-          <td><%= family.name %></td>
-          <td><%= check_box_tag 'active', 'yes', true %></td>
-          <td><%= text_field_tag 'años', nil, placeholder: car.formatted_year %></td>
-          <td><%= family.code %></td>
-          <td><%= button_tag '+', class: "btn btn-primary", value: family.id %></td> 
-        </tr>
-      <% end %>
+        <% cont = 0 %>
+          <%= f.fields_for :type_likelihoods do |type| %>
+          <tr>
+            <%= type.fields_for :generic_family do |family| %>
+              <td><%= family.text_field :name , disabled: true%></td>
+              <td><%= family.text_field :code , disabled: true%></td>
+              <td><%= check_box_tag 'active', 'yes', true %></td>
+              <td><%= type.text_field :years, placeholder: car.formatted_year %></td>
+              <td> <%= link_to '+', '#', id:cont, name: 'helper'%></td>
+              <td><%= family.hidden_field :name ,{id:"nameHelper#{cont}" , name:"helper#{cont}"} %><%= family.hidden_field :code ,{id:"codeHelper#{cont}" , name:"helper#{cont}"} %></td>
+
+            </tr>
+            <% cont+=1 %>
+            <% end %>
+          <% end %>
       </tbody>
 </table>
