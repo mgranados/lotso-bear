@@ -45,6 +45,7 @@ LotsoBear::Application.routes.draw do
   match '/proceso',            to: 'branches#process',    via: 'get'
   match '/almacen',            to: 'branches#warehouse',  via: 'get'
 
+  match '/count_spares/:id', to:"generic_families#count_spares", via: 'get'
 
   #client actions routes
   match '/consultar',            to: 'client_actions#home', via: 'get'

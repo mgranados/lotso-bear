@@ -1,5 +1,5 @@
 class GenericCarsController < ApplicationController
-  before_action :set_generic_car, only: [:show, :edit, :destroy, :update, :assignation, :relate_generic_family_to_generic_car]
+  before_action :set_generic_car, only: [:show, :edit, :destroy, :update, :assignation]
   def new
     @generic_car = GenericCar.new
     @generic_car.generic_car_images.build
@@ -47,9 +47,12 @@ class GenericCarsController < ApplicationController
   end
 
   def relate_generic_family_to_generic_car
-    @generic_family = GenericFamily.find(params[:id]).clone
-    @generic_car.car_type.generic_families << @generic_family
+    @generic_car = GenericCar.find(params[:generic_car])
+    @generic_family = GenericFamily.find(params[:generic_family])
+    @generic_family_clone = @generic_family.clone_generic_family_with_generic_spares
+    @generic_car.car_type.generic_families << @generic_family_clone
     @generic_car.save
+
     redirect_to assignation_generic_car_path(@generic_car.id)
   end
 

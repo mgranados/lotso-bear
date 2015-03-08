@@ -124,13 +124,25 @@ types.each { |type|
   end
 }
 
-
+# Model Acronym
 @model = ModelAcronym.new(initials:'CO', model: 'COROLLA')
 @model.brand = Brand.first
 @model.save!
+# Generic Car
 @genericCar = GenericCar.new(first_generation_year: 2001, last_generation_year: 2003, number_of_generation: '1er', years: '2001-2003', gen_continues: false)
 @genericCar.car_type = CarType.first
 @genericCar.model_acronym = ModelAcronym.first
 @genericCar.save!
 
-GenericFamily.create(name: 'Puerta Derecha', code: 'FA')
+# Generic Family Mold with spares
+@generic_family_mold = GenericFamily.new(name: 'Puerta Derecha Molde', code: 'FA', mold:true)
+@generic_family_mold.generic_spares << GenericSpare.create(name: "Manija",code:"A0")
+@generic_family_mold.generic_spares << GenericSpare.create(name: "Manivela",code:"A1")
+@generic_family_mold.save!
+
+#Generic family, non mold, with spares
+@generic_family = GenericFamily.new(name: 'Puerta Izquierda No Molde', code: 'FA', mold:false)
+@generic_family.father = @generic_family_mold
+@generic_family.generic_spares << GenericSpare.create(name: "Vidrio",code:"A0")
+@generic_family.generic_spares << GenericSpare.create(name: "Port",code:"A1")
+@generic_family.save!

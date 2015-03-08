@@ -1,5 +1,5 @@
 class GenericFamiliesController < ApplicationController
-  before_action :set_family, only: [:show, :destroy]
+  before_action :set_family, only: [:show, :destroy, :edit, :count_spares]
 
 
 
@@ -17,6 +17,12 @@ class GenericFamiliesController < ApplicationController
       flash[:success] = "Familia Creada con éxito"
     else
       render 'new'
+    end
+  end
+
+  def count_spares
+    respond_to do |format|  ## Add this
+      format.json { render json: {:count => @generic_family.generic_spares.count+1} }
     end
   end
 
@@ -53,8 +59,8 @@ class GenericFamiliesController < ApplicationController
   def assign
     family = params[:family_ids]
     family.each do | f |
-      family_id = f.split(',')[0].to_i 
-      type_id = f.split(',')[1].to_i 
+      family_id = f.split(',')[0].to_i
+      type_id = f.split(',')[1].to_i
       TypeLikelihood.create(generic_family_id: family_id, car_type_id:type_id)
     end
     flash[:success] = "Actualizado con exito"
@@ -69,7 +75,7 @@ class GenericFamiliesController < ApplicationController
 
   private
     def required_params
-      params.require(:generic_family).permit(:code,:name, {:types => []},{:family_ids => []} ,spare_likelihoods_attributes:[:id, :generic_family_id, :generic_spare_id, generic_spare_attributes:[:name,:code]])
+      params.require(:generic_family).permit(:code,:name, :mold, {:types => []},{:family_ids => []} ,spare_likelihoods_attributes:[:id, :generic_family_id, :generic_spare_id, generic_spare_attributes:[:name,:code]])
     end
 
     def set_family
