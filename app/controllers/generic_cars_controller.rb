@@ -13,6 +13,8 @@ class GenericCarsController < ApplicationController
   end
 
   def index
+    GenericCar.fix_generic_car_families
+
     @generic_cars = GenericCar.all
   end
 

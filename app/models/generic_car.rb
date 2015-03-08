@@ -62,6 +62,17 @@ class GenericCar < ActiveRecord::Base
     gen_continues ? "#{first_generation_year} - Año Actual" : "#{years}"
   end
 
+  def self.fix_generic_car_families
+    all.each do |generic_car|
+      generic_car.car_type.generic_families.each do |generic_family|
+        generic_car.car_type.generic_families << generic_family.clone_generic_family_with_generic_spares
+        generic_family.type_likelihoods.destroy_all
+      end
+      generic_car.save!
+    end
+  end
+
+
   private
 
   def generation_split

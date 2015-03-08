@@ -140,9 +140,12 @@ types.each { |type|
 @generic_family_mold.generic_spares << GenericSpare.create(name: "Manivela",code:"A1")
 @generic_family_mold.save!
 
+@genericCar.car_type.generic_families << @generic_family_mold
+@genericCar.save!
+
 #Generic family, non mold, with spares
 @generic_family = GenericFamily.new(name: 'Puerta Izquierda No Molde', code: 'FA', mold:false)
-@generic_family.father = @generic_family_mold
+# @generic_family.father = @generic_family_mold
 @generic_family.generic_spares << GenericSpare.create(name: "Vidrio",code:"A0")
 @generic_family.generic_spares << GenericSpare.create(name: "Port",code:"A1")
 @generic_family.save!

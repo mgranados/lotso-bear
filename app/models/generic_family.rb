@@ -37,7 +37,7 @@ class GenericFamily < ActiveRecord::Base
     if generic_car.car_type.generic_families.empty?
       all
     else
-      where('id not in (?)', generic_car.car_type.generic_families.pluck(:id).concat(generic_car.car_type.generic_families.pluck(:father_id)))
+      where('id not in (?)', generic_car.car_type.generic_families.pluck(:id).concat(generic_car.car_type.generic_families.pluck(:father_id)).compact)
 
     end
   end
