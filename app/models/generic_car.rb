@@ -68,6 +68,7 @@ class GenericCar < ActiveRecord::Base
         generic_car.car_type.generic_families << generic_family.clone_generic_family_with_generic_spares
         generic_family.type_likelihoods.destroy_all
       end
+      generic_car.save!
     end
   end
 

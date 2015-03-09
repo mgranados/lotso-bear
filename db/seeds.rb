@@ -1,11 +1,11 @@
-# # This file should contain all the record creation needed to seed the database with its default values.
-# # The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
+# # # This file should contain all the record creation needed to seed the database with its default values.
+# # # The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
+# # #
+# # # Examples:
+# # #
+# # #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
+# # #   Mayor.create(name: 'Emanuel', city: cities.first)
 # #
-# # Examples:
-# #
-# #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-# #   Mayor.create(name: 'Emanuel', city: cities.first)
-#
 # # User.create!(name:"Administrador", email:"admin@admin.com",password:"admin", password_confirmation:"admin", username: "Administrador", privileges:"admin")
 # # User.create!(name:"Operador",email:"operador@operador.com",password:"operador", password_confirmation:"operador", username: "Operador", privileges:"operador")
 # # User.create!(name:"Capturista",email:"capturista@capturista.com",password:"capturista", password_confirmation:"capturista", username: "Capturista", privileges:"capturista")
@@ -149,4 +149,6 @@
 # @generic_family.generic_spares << GenericSpare.create(name: "Vidrio",code:"A0")
 # @generic_family.generic_spares << GenericSpare.create(name: "Port",code:"A1")
 # @generic_family.save!
+
+
 GenericCar.fix_generic_car_families
