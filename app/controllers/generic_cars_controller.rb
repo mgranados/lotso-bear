@@ -7,7 +7,6 @@ class GenericCarsController < ApplicationController
   end
 
   def show
-    GenericCar.fix_generic_car_families
   end
 
   def edit
