@@ -22,10 +22,12 @@ class GenericFamily < ActiveRecord::Base
   end
 
   def clone_generic_family_with_generic_spares
+    puts "Cloning: #{self.name}"
     clone = self.dup
     self.generic_spares.each {|spare| clone.generic_spares << spare.dup}
     clone.father = self
     clone.save
+    puts "Cloned: #{clone.name}"
     clone
   end
 

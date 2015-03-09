@@ -64,11 +64,14 @@ class GenericCar < ActiveRecord::Base
 
   def self.fix_generic_car_families
     all.each do |generic_car|
+      puts "Generic Car - Model:#{generic_car.model_acronym.model} #Families: #{generic_car.car_type.generic_families.count}"
       generic_car.car_type.generic_families.each do |generic_family|
         generic_car.car_type.generic_families << generic_family.clone_generic_family_with_generic_spares
         generic_family.type_likelihoods.destroy_all
       end
       generic_car.save!
+      puts "Generic Car - Model:#{generic_car.model_acronym.model} #Families: #{generic_car.car_type.generic_families.count}"
+      puts "Next Record --------------------------------------------------------------"
     end
   end
 
