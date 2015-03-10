@@ -1,8 +1,12 @@
 LotsoBear::Application.routes.draw do
 
+<<<<<<< HEAD
 
   get "inventories/entrance"
   get "inventories/departure"
+=======
+  resources :car_type
+>>>>>>> 4904748c39d999b6f4664dd38aea08a1ab62af2e
   resources :model_acronyms
 
   resources :brands

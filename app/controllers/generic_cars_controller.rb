@@ -47,7 +47,7 @@ class GenericCarsController < ApplicationController
   end
 
   def relate_generic_family_to_generic_car
-    @generic_family = GenericFamily.find(params[:id])
+    @generic_family = GenericFamily.find(params[:id]).clone
     @generic_car.car_type.generic_families << @generic_family
     @generic_car.save
     redirect_to assignation_generic_car_path(@generic_car.id)
@@ -61,6 +61,7 @@ class GenericCarsController < ApplicationController
 
   def assignation
     @title = "Familias que le quedan"
+    @carType = @generic_car.car_type
     @other_families =  GenericFamily.other_families(@generic_car)
   end
 
