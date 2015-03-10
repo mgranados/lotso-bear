@@ -30,6 +30,14 @@ ActiveRecord::Schema.define(version: 20150305181843) do
     t.datetime "updated_at"
   end
 
+  create_table "family_likelihoods", force: true do |t|
+    t.integer  "generic_car_id"
+    t.integer  "generic_family_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "years"
+  end
+
   create_table "generations", force: true do |t|
     t.integer  "year"
     t.datetime "created_at"

@@ -52,8 +52,7 @@ class GenericCarsController < ApplicationController
     @generic_car = GenericCar.find(params[:generic_car])
     @generic_family = GenericFamily.find(params[:generic_family])
     @generic_family_clone = @generic_family.clone_generic_family_with_generic_spares
-    @generic_car.car_type.generic_families << @generic_family_clone
-    @generic_car.save
+    @generic_car.generic_families << @generic_family_clone
 
     redirect_to assignation_generic_car_path(@generic_car.id)
   end

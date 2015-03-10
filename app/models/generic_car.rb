@@ -2,17 +2,8 @@ class GenericCar < ActiveRecord::Base
 
   # //Associations//
   has_many :stock_cars
+
   has_many :generic_fittables
-
-  belongs_to :car_type
-  belongs_to :model_acronym, inverse_of: :generic_cars
-
-  accepts_nested_attributes_for :model_acronym
-  accepts_nested_attributes_for :car_type
-
-  # , reject_if: proc{|attributes| :find_model}
-
-
 
   has_many :generic_car_generations
   has_many :generations, through: :generic_car_generations
@@ -20,6 +11,15 @@ class GenericCar < ActiveRecord::Base
   has_many :generic_car_images, dependent: :destroy
   accepts_nested_attributes_for :generic_car_images
 
+  belongs_to :car_type
+
+  belongs_to :model_acronym, inverse_of: :generic_cars
+  accepts_nested_attributes_for :model_acronym
+
+  has_many :family_likelihoods
+  has_many :generic_families, through: :family_likelihoods
+
+  accepts_nested_attributes_for :family_likelihoods
 
 
   # //Validations//
@@ -65,15 +65,18 @@ class GenericCar < ActiveRecord::Base
   end
 
   def self.fix_generic_car_families
-    all.each do |generic_car|
-      puts "Generic Car - Model:#{generic_car.model_acronym.model} #Families: #{generic_car.car_type.generic_families.count}"
-      generic_car.car_type.generic_families.each do |generic_family|
-        generic_car.car_type.generic_families << generic_family.clone_generic_family_with_generic_spares
-        generic_family.type_likelihoods.destroy_all
+    all.each do |generic_car_m|
+      puts "Generic Car - Model:#{generic_car_m.model_acronym.model} #Families: #{generic_car_m.car_type.generic_families.count}"
+      generic_car_m.car_type.generic_families.each do |generic_family_m|
+        puts "Generic Family: #{generic_family_m.name}"
+        generic_car_m.car_type.generic_families << generic_family_m.clone_generic_family_with_generic_spares
       end
-      generic_car.save!
-      puts "Generic Car - Model:#{generic_car.model_acronym.model} #Families: #{generic_car.car_type.generic_families.count}"
+      puts "Generic Car - Model:#{generic_car_m.model_acronym.model} #Families: #{generic_car_m.car_type.generic_families.count}"
       puts "Next Record --------------------------------------------------------------"
+    end
+    @generic_families = GenericFamily.where(father_id: nil)
+    @generic_families.each do |generic_family|
+      generic_family.type_likelihoods.destroy_all
     end
   end
 
