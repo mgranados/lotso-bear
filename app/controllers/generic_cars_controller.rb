@@ -65,8 +65,6 @@ class GenericCarsController < ApplicationController
   end
 
   def assignation
-    @title = "Familias que le quedan"
-    @carType = @generic_car.car_type
     @other_families =  GenericFamily.other_families(@generic_car)
   end
 

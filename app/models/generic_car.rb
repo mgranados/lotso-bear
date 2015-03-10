@@ -8,6 +8,8 @@ class GenericCar < ActiveRecord::Base
   belongs_to :model_acronym, inverse_of: :generic_cars
 
   accepts_nested_attributes_for :model_acronym
+  accepts_nested_attributes_for :car_type
+
   # , reject_if: proc{|attributes| :find_model}
 
 
