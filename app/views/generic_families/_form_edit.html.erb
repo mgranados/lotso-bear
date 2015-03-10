@@ -1,0 +1,51 @@
+<%= form_for @generic_family do |f| %>
+	<%= render 'shared/error_messages' , model: @generic_family %>
+	<div class="row">
+		<div class='col-md-4'>
+			<div class='form-group'>
+				<%= f.label :name%>
+				<%= f.text_field :name, :class =>"form-control"%>
+			</div>
+		</div>
+		<div class='col-md-4'>
+			<div class='form-group'>
+				<%= f.label :code %>
+				<%= f.text_field :code, class:"form-control"%>
+			</div>
+		</div>
+
+		<div class='col-md-4'>
+			<div class='col-md-6'>
+				<%= label_tag t(:number_spares)%>
+				<%= number_field_tag :number_spares, 2, min: 1, max: 50 , class: "form-control"%>
+			</div>
+			<div class='col-md-6'>
+				<br>
+				<a id="creator" class="btn btn-success"><%= t(:add)%> </a>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<h2>Piezas</h2>
+
+		<%= f.fields_for :spare_likelihoods do | likelihood | %>
+			<%= likelihood.fields_for :generic_spare do | spare | %>
+					<div class="col-md-12">
+						<div id="family_members" class="col-md-8">
+						<%= spare.text_field :name %>
+						<%= spare.text_field :code %>
+						</div>
+					</div>
+			<% end %>
+		<% end %>
+	</div>
+<div class="row">
+	<div class="col-md-6"></div>
+	<div class="col-md-3"><%= link_to t(:cancel), generic_families_path, class: "btn btn-default" %>
+</div>
+	<div class="col-md-3"><%= f.submit class: "btn btn-primary"%>
+</div>
+
+
+</div>
+<% end %>
