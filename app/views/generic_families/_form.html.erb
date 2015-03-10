@@ -1,5 +1,7 @@
 <%= form_for @generic_family do |f| %>
 	<%= render 'shared/error_messages' , model: @generic_family %>
+
+	<%= f.hidden_field :id%>
 	<div class="row">
 		<div class='col-md-4'>
 			<div class='form-group'>
@@ -15,6 +17,13 @@
 		</div>
 
 		<div class='col-md-4'>
+			<div class='form-group'>
+				<%= f.label :mold %>
+				<%= f.check_box :mold, class:"form-control"%>
+			</div>
+		</div>
+
+		<div class='col-md-4'>
 			<div class='col-md-6'>
 				<%= label_tag t(:number_spares)%>
 				<%= number_field_tag :number_spares, 2, min: 1, max: 50 , class: "form-control"%>
@@ -26,15 +35,31 @@
 		</div>
 	</div>
 	<div class="row">
+		<div class="col-md-12">
+			<h2>Piezas</h2>
+			<div id="family_members" class="col-md-8">
 		<%= f.fields_for :spare_likelihoods do | likelihood | %>
 			<%= likelihood.fields_for :generic_spare do | spare | %>
-					<div class="col-md-12">
-						<h2>Piezas</h2>
-						<div id="family_members" class="col-md-8">
-						</div>
-					</div>
+
+			<div class="col-md-6">
+				<div class="form-group">
+				<%= spare.label :name %>
+				<%= spare.text_field :name, class:'form-control' %>
+				</div>
+			</div>
+			<div class="col-md-3">
+				<div class="form-group">
+					<%= spare.label :code %>
+					<%= spare.text_field :code, class:'form-control' %>
+				</div>
+			</div>
+
 			<% end %>
+
 		<% end %>
+	</div>
+
+	</div>
 	</div>
 <div class="row">
 	<div class="col-md-6"></div>

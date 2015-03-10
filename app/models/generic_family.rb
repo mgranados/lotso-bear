@@ -1,5 +1,9 @@
 class GenericFamily < ActiveRecord::Base
 
+  has_many :childs, class_name: 'GenericFamily', foreign_key: 'father_id'
+  belongs_to :father, class_name: 'GenericFamily'
+
+
   has_many :spare_likelihoods
   has_many :generic_spares, through: :spare_likelihoods
   has_many :stock_families
@@ -17,11 +21,13 @@ class GenericFamily < ActiveRecord::Base
     where.not(:id  => TypeLikelihood.select(:generic_family_id) )
   end
 
-  def clone
+  def clone_generic_family_with_generic_spares
+    puts "Cloning: #{self.name}"
     clone = self.dup
-    clone.save
     self.generic_spares.each {|spare| clone.generic_spares << spare.dup}
+    clone.father = self
     clone.save
+    puts "Cloned: #{clone.name}"
     clone
   end
 
@@ -33,7 +39,8 @@ class GenericFamily < ActiveRecord::Base
     if generic_car.car_type.generic_families.empty?
       all
     else
-      where('id not in (?)', generic_car.car_type.generic_families.pluck(:id))
+      where('id not in (?)', generic_car.car_type.generic_families.pluck(:id).concat(generic_car.car_type.generic_families.pluck(:father_id)).compact)
+
     end
   end
 

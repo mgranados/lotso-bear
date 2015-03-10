@@ -8,6 +8,8 @@ class GenericCar < ActiveRecord::Base
   belongs_to :model_acronym, inverse_of: :generic_cars
 
   accepts_nested_attributes_for :model_acronym
+  accepts_nested_attributes_for :car_type
+
   # , reject_if: proc{|attributes| :find_model}
 
 
@@ -61,6 +63,20 @@ class GenericCar < ActiveRecord::Base
   def formatted_year
     gen_continues ? "#{first_generation_year} - Año Actual" : "#{years}"
   end
+
+  def self.fix_generic_car_families
+    all.each do |generic_car|
+      puts "Generic Car - Model:#{generic_car.model_acronym.model} #Families: #{generic_car.car_type.generic_families.count}"
+      generic_car.car_type.generic_families.each do |generic_family|
+        generic_car.car_type.generic_families << generic_family.clone_generic_family_with_generic_spares
+        generic_family.type_likelihoods.destroy_all
+      end
+      generic_car.save!
+      puts "Generic Car - Model:#{generic_car.model_acronym.model} #Families: #{generic_car.car_type.generic_families.count}"
+      puts "Next Record --------------------------------------------------------------"
+    end
+  end
+
 
   private
 

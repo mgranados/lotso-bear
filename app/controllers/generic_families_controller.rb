@@ -1,5 +1,9 @@
 class GenericFamiliesController < ApplicationController
+<<<<<<< HEAD
   before_action :set_family, only: [:show, :destroy, :edit]
+=======
+  before_action :set_family, only: [:show, :destroy, :edit, :count_spares]
+>>>>>>> c22ad832f4ebb1de8b816fdde919a896c68a2cc5
 
 
 
@@ -20,7 +24,14 @@ class GenericFamiliesController < ApplicationController
     end
   end
 
+  def count_spares
+    respond_to do |format|  ## Add this
+      format.json { render json: {:count => @generic_family.generic_spares.count+1} }
+    end
+  end
+
   def show
+    GenericCar.fix_generic_car_families
   end
 
   def index
@@ -53,8 +64,8 @@ class GenericFamiliesController < ApplicationController
   def assign
     family = params[:family_ids]
     family.each do | f |
-      family_id = f.split(',')[0].to_i 
-      type_id = f.split(',')[1].to_i 
+      family_id = f.split(',')[0].to_i
+      type_id = f.split(',')[1].to_i
       TypeLikelihood.create(generic_family_id: family_id, car_type_id:type_id)
     end
     flash[:success] = "Actualizado con éxito"
@@ -69,7 +80,7 @@ class GenericFamiliesController < ApplicationController
 
   private
     def required_params
-      params.require(:generic_family).permit(:code,:name, {:types => []},{:family_ids => []} ,spare_likelihoods_attributes:[:id, :generic_family_id, :generic_spare_id, generic_spare_attributes:[:name,:code]])
+      params.require(:generic_family).permit(:code,:name, :mold, {:types => []},{:family_ids => []} ,spare_likelihoods_attributes:[:id, :generic_family_id, :generic_spare_id, generic_spare_attributes:[:name,:code]])
     end
 
     def set_family

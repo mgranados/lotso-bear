@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150303013428) do
+ActiveRecord::Schema.define(version: 20150305181843) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -71,6 +71,9 @@ ActiveRecord::Schema.define(version: 20150303013428) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "code"
+    t.boolean  "mold"
+    t.integer  "father_id"
+    t.boolean  "active"
   end
 
   create_table "generic_fittables", force: true do |t|
