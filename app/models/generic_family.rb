@@ -35,7 +35,7 @@ class GenericFamily < ActiveRecord::Base
   end
 
   def self.assigned_families
-    where(:id  => FamilyLikelihood.select(:generic_family_id) )
+    where(:id  => TypeLikelihood.select(:generic_family_id) )
   end
 
   def self.other_families(generic_car)
