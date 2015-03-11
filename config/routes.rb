@@ -3,7 +3,7 @@ LotsoBear::Application.routes.draw do
 
   get "inventories/entrance"
   get "inventories/departure"
-  
+
   resources :model_acronyms
 
   resources :brands
