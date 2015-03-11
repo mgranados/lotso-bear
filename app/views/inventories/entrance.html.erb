@@ -1,2 +1,32 @@
-<h1>Inventories#entrance</h1>
-<p>Find me in app/views/inventories/entrance.html.erb</p>
+<h1>Almacén</h1>
+
+<h2>Busca el modelo</h2>
+<%= form_tag search_for_generic_car_path, remote: true, method: :get do  %>
+	<%= text_field_tag :model , nil, class: "form-control"  %>
+	<%= submit_tag 'Buscar', class: "btn btn-primary" %>
+<% end %>
+
+<div id="genericCarsFound"></div>
+
+<div class="related_families">
+  <h2>Familias relacionadas</h2>
+
+ <table id="familyTable" class="table table-striped">
+	 	<thead>
+	        <tr>
+	          <th>Nombre</th>
+	          <th>Código</th>
+	          <th>Habilitado</th>
+	          <th>Años</th>
+	          <th></th>
+	          <th>
+	          </th>
+	        </tr>
+	      </thead>
+	      <tbody>
+	       
+	      </tbody>
+	</table>
+</div>
+
+

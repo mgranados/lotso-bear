@@ -5,7 +5,7 @@ class GenericCar < ActiveRecord::Base
   has_many :generic_fittables
 
   belongs_to :car_type
-  belongs_to :model_acronym, inverse_of: :generic_cars
+  belongs_to :model_acronym
 
   accepts_nested_attributes_for :model_acronym
   accepts_nested_attributes_for :car_type

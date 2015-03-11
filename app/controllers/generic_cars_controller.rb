@@ -68,10 +68,20 @@ class GenericCarsController < ApplicationController
     @other_families =  GenericFamily.other_families(@generic_car)
   end
 
+  def show_found_cars
+    @generic_cars = ModelAcronym.find_by_model(params[:model].upcase).generic_cars
+      unless @generic_cars.blank?
+      respond_to do |format|
+          format.js { }
+        #  format.json { render json: {generic_cars_found: }, status: :done }
+      end
+    end
+  end
+
 private
 
   def generic_car_params
-params.require(:generic_car).permit(:generation,:first_generation_year,:last_generation_year,:years,:gen_continues,:number_of_generation,:car_type_id,{ :car_type_ids => [] },model_acronym_attributes:[:model,:brand_id,:id,:initials],generic_car_images_attributes: [:image,:generic_car_id,:id,:_destroy])
+    params.require(:generic_car).permit(:generation,:first_generation_year,:last_generation_year,:years,:gen_continues,:number_of_generation,:car_type_id,{ :car_type_ids => [] },model_acronym_attributes:[:model,:brand_id,:id,:initials],generic_car_images_attributes: [:image,:generic_car_id,:id,:_destroy])
   end
 
   def set_generic_car
@@ -84,10 +94,5 @@ params.require(:generic_car).permit(:generation,:first_generation_year,:last_gen
     else
     end
   end
-
-
-
-
-
 
 end

@@ -1,4 +1,5 @@
 class InventoriesController < ApplicationController
+
   def entrance
   end
 
@@ -7,4 +8,7 @@ class InventoriesController < ApplicationController
 
   def index
   end
+
+	
+
 end
