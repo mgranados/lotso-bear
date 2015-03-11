@@ -141,4 +141,4 @@ types.each { |type|
 # @generic_family.save!
 
 
-GenericCar.fix_generic_car_families
+#GenericCar.fix_generic_car_families

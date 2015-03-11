@@ -64,21 +64,21 @@ class GenericCar < ActiveRecord::Base
     gen_continues ? "#{first_generation_year} - Año Actual" : "#{years}"
   end
 
-  def self.fix_generic_car_families
-    all.each do |generic_car_m|
-      puts "Generic Car - Model:#{generic_car_m.model_acronym.model} #Families: #{generic_car_m.car_type.generic_families.count}"
-      generic_car_m.car_type.generic_families.each do |generic_family_m|
-        puts "Generic Family: #{generic_family_m.name}"
-        generic_car_m.car_type.generic_families << generic_family_m.clone_generic_family_with_generic_spares
-      end
-      puts "Generic Car - Model:#{generic_car_m.model_acronym.model} #Families: #{generic_car_m.car_type.generic_families.count}"
-      puts "Next Record --------------------------------------------------------------"
-    end
-    @generic_families = GenericFamily.where(father_id: nil)
-    @generic_families.each do |generic_family|
-      generic_family.type_likelihoods.destroy_all
-    end
-  end
+  # def self.fix_generic_car_families
+  #   all.each do |generic_car_m|
+  #     puts "Generic Car - Model:#{generic_car_m.model_acronym.model} #Families: #{generic_car_m.car_type.generic_families.count}"
+  #     generic_car_m.car_type.generic_families.each do |generic_family_m|
+  #       puts "Generic Family: #{generic_family_m.name}"
+  #       generic_car_m.car_type.generic_families << generic_family_m.clone_generic_family_with_generic_spares
+  #     end
+  #     puts "Generic Car - Model:#{generic_car_m.model_acronym.model} #Families: #{generic_car_m.car_type.generic_families.count}"
+  #     puts "Next Record --------------------------------------------------------------"
+  #   end
+  #   @generic_families = GenericFamily.where(father_id: nil)
+  #   @generic_families.each do |generic_family|
+  #     generic_family.type_likelihoods.destroy_all
+  #   end
+  # end
 
 
   private
