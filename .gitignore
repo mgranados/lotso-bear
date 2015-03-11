@@ -17,6 +17,14 @@
 
 /.DS_Store
 
+# Ignore Documentation
+/doc/*
+
+# Ignore Dump
+/latest.dump
+
+# Ignore Schema
+/db/schema.rb
 
   *.rbc
 capybara-*.html
