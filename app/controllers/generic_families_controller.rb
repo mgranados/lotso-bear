@@ -2,6 +2,12 @@ class GenericFamiliesController < ApplicationController
 
   before_action :set_family, only: [:show, :destroy, :edit, :count_spares]
 
+
+  def duplicate
+    @generic_families = GenericFamily.all
+    @type_likelihoods = TypeLikelihood.all
+  end
+
   def new
     @generic_family = GenericFamily.new
     # 5.times{@generic_family.spare_likelihoods.build.build_generic_spare}
@@ -65,12 +71,6 @@ class GenericFamiliesController < ApplicationController
     flash[:success] = "Actualizado con éxito"
     redirect_to generic_families_path
   end
-
-  def build_spares
-    build_spares_for_families(required_params)
-  end
-
-
 
   private
     def required_params

@@ -1,7 +1,7 @@
 <h1>Familias genéricas</h1>
 
 
-<%= form_tag assign_families_path do | f | %>
+<%= form_tag assign_generic_families_path do | f | %>
 
 	<table id="assignation_table" class="table big_table">
 	    <thead>
@@ -12,9 +12,9 @@
 	            <% end %>
 	        </tr>
 	    </thead>
-	    <tbody> 
+	    <tbody>
 
-	    <!-- each family -->		
+	    <!-- each family -->
 			    <% @generic_families.each do | family | %>
 			    	<tr>
 
@@ -25,12 +25,11 @@
 		 		  </tr>
 			    <% end %>
 
-	       
+
 
     	</tbody>
-	</table>    
+	</table>
 
 
 	<%= submit_tag "Actualizar Familias", class: "btn btn-primary" %>
 <% end %>
-

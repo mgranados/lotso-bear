@@ -23,7 +23,7 @@
             <% end %>
           </td>
 
-          <td><%= link_to :add, relate_generic_family_to_generic_car_path(generic_family:family.id, generic_car: @generic_car.id), class: "btn btn-primary", confirm: 'Tus cambios podran perderse?'  %>  </td> </tr>
+          <td><%= link_to :add, relate_generic_family_generic_car_path(generic_family:family.id, generic_car: @generic_car.id), class: "btn btn-primary", confirm: 'Tus cambios podran perderse?'  %>  </td> </tr>
       <% end %>
       </tbody>
 </table>

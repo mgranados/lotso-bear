@@ -1,0 +1,84 @@
+
+
+<div class='row'>
+ <div class='col-md-12'>
+   <h1><%= GenericFamily.model_name.human(count:2) %></h1>
+ </div>
+
+ <div class='table-responsive'>
+   <table class="table table-condensed">
+     <thead>
+       <tr>
+         <th>
+           <%= t(:name) %>
+         </th>
+         <th>
+           <%= t(:code) %>
+         </th>
+         <th>
+           <%= t(:number_of_spares) %>
+         </th>
+       </tr>
+     </thead>
+     <tbody>
+        <% @generic_families.each do |family| %>
+        <tr>
+          <td>
+            <%= family.name%>
+          </td>
+          <td>
+            <%= family.code%>
+          </td>
+          <td>
+            <%= family.generic_spares.count%>
+          </td>
+        </tr>
+         </tr>
+        <% end %>
+     </tbody>
+   </table>
+
+
+   <div class='table-responsive'>
+     <table class="table table-condensed">
+       <thead>
+         <tr>
+           <th>
+             <%= t(:generic_family_id) %>
+           </th>
+           <th>
+             <%= t(:type_id) %>
+           </th>
+           <th>
+             <%= t(:generic_family_name) %>
+           </th>
+           <th>
+             <%= t(:type_name) %>
+           </th>
+           <th>
+             <%= t(:delete) %>
+           </th>
+         </tr>
+       </thead>
+       <tbody>
+          <% @type_likelihoods.each do |type| %>
+          <tr>
+            <td>
+              <%= type.generic_family_id%>
+            </td>
+            <td>
+              <%= type.generic_family%>
+            </td>
+            <td>
+              <%= type.car_type_id%>
+            </td>
+            <td>
+              <%= type.car_type.name%>
+            </td>
+          </tr>
+           </tr>
+          <% end %>
+       </tbody>
+     </table>
+ </div>
+</div>
