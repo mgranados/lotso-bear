@@ -1,9 +1,6 @@
 class GenericFamiliesController < ApplicationController
-<<<<<<< HEAD
-  before_action :set_family, only: [:show, :destroy, :edit]
-=======
+
   before_action :set_family, only: [:show, :destroy, :edit, :count_spares]
->>>>>>> c22ad832f4ebb1de8b816fdde919a896c68a2cc5
 
 
 

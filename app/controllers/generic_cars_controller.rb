@@ -70,12 +70,12 @@ class GenericCarsController < ApplicationController
 
   def show_found_cars
     @generic_cars = ModelAcronym.find_by_model(params[:model].upcase).generic_cars
+
       unless @generic_cars.blank?
-      respond_to do |format|
+        respond_to do |format|
           format.js { }
-        #  format.json { render json: {generic_cars_found: }, status: :done }
+        end
       end
-    end
   end
 
 private

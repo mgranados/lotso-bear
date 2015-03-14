@@ -35,9 +35,6 @@ LotsoBear::Application.routes.draw do
     end
   end
 
-
-
-
   match '/search_for_generic_car', to: 'generic_cars#show_found_cars', via: 'get'
 
   match '/new_generic_spare_from_template', to: 'generic_spares#template', via: 'get'
@@ -94,6 +91,8 @@ LotsoBear::Application.routes.draw do
 
 
   get '/build_spares/:id', to: 'generic_families#build_spares', as: 'build_spare'
+
+  get '/select_generic_families/:id', to: 'inventories#show_generic_car_generic_families', as: 'family_selection'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
