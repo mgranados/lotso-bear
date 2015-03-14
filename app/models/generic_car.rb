@@ -5,6 +5,16 @@ class GenericCar < ActiveRecord::Base
 
   has_many :generic_fittables
 
+  belongs_to :car_type
+  belongs_to :model_acronym
+
+  accepts_nested_attributes_for :model_acronym
+  accepts_nested_attributes_for :car_type
+
+  # , reject_if: proc{|attributes| :find_model}
+
+
+
   has_many :generic_car_generations
   has_many :generations, through: :generic_car_generations
 
