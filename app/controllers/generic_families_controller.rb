@@ -35,7 +35,7 @@ class GenericFamiliesController < ApplicationController
   end
 
   def index
-    @generic_families = GenericFamily.all
+    @generic_families = GenericFamily.all.where(father_id: nil)
   end
 
   def edit
@@ -67,9 +67,9 @@ class GenericFamiliesController < ApplicationController
       family_id = f.split(',')[0].to_i
       type_id = f.split(',')[1].to_i
       @type_likelihood = TypeLikelihood.new(generic_family_id: family_id, car_type_id:type_id)
-      @type_likelihood.save
-      GenericFamily.add_to_corresponding_cars(@type_likelihood)
-      puts "WOLA"
+      if @type_likelihood.save
+        GenericFamily.add_to_corresponding_cars(@type_likelihood)
+      end
     end
     flash[:success] = "Actualizado con éxito"
     redirect_to generic_families_path

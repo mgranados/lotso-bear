@@ -23,7 +23,10 @@ class GenericFamily < ActiveRecord::Base
 
   def self.add_to_corresponding_cars (type_likelihood)
     @generic_cars = GenericCar.where(car_type_id:type_likelihood.car_type_id)
-    @generic_cars.each { |generic_car| FamilyLikelihood.create(generic_car_id:generic_car.id, generic_family_id:type_likelihood.generic_family_id) }
+    @generic_cars.each do |generic_car|
+      family = type_likelihood.generic_family
+      generic_car.generic_families << family.clone_generic_family_with_generic_spares
+    end
   end
 
   def self.copy_families_to_generic_cars
@@ -66,8 +69,8 @@ class GenericFamily < ActiveRecord::Base
     if generic_car.generic_families.empty?
       all
     else
-      where('id not in (?)', generic_car.generic_families.pluck(:id).concat(generic_car.generic_families.pluck(:father_id)).compact)
-
+      where('id not in (?)', generic_car.generic_families.pluck(:id)).where(father_id: nil)
+      # .concat(generic_car.generic_families.where(father_id: nil).pluck(:id)).compact)
     end
   end
 
