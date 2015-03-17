@@ -1,33 +1,35 @@
-<table id="genericCarsFoundTable">
-  <thead>
-    <tr>
-      <th> Marca </th>
-      <th> Modelo </th>
-      <th> Generación </th>
-      <th> Codigo</th>
-      <th> Tipo</th>
-      <th> Selección</th>
 
-    </tr>
-  </thead>
-  <tbody>
-	<% for car in generic_cars_found %>
+	<table id="genericCarsFoundTable">
+	  <thead>
 	    <tr>
-	      <td><%= car.model_acronym.brand.name %></td>
-	      <td><%= car.model_acronym.model %></td>
-	      <td><%= car.first_generation_year %> -
-	        <% if !car.gen_continues %>
-	          <%= car.last_generation_year %>
-	        <% else %>
-	          <p>Año Actual</p>
-	        <% end %>
-	       </td>
-	      <td><%= car.code %></td>
-	      <td>
-	        <%= car.car_type.full_name %>
-	      </td>
-	      <td><%= link_to "Seleccionar", family_selection_path(car), class: "btn btn-primary", remote: true %></td>
+	      <th> Marca </th>
+	      <th> Modelo </th>
+	      <th> Generación </th>
+	      <th> Codigo</th>
+	      <th> Tipo</th>
+	      <th> Selección</th>
+
 	    </tr>
-	<% end %>
-	</tbody>
-</table>
+	  </thead>
+	  <tbody>
+		<% for car in generic_cars_found %>
+		    <tr>
+		      <td><%= car.model_acronym.brand.name %></td>
+		      <td><%= car.model_acronym.model %></td>
+		      <td><%= car.first_generation_year %> -
+		        <% if !car.gen_continues %>
+		          <%= car.last_generation_year %>
+		        <% else %>
+		          <p>Año Actual</p>
+		        <% end %>
+		       </td>
+		      <td><%= car.code %></td>
+		      <td>
+		        <%= car.car_type.full_name %>
+		      </td>
+		      <td><%= link_to "Seleccionar", family_selection_path(car), class: "btn btn-primary", remote: true %></td>
+		    </tr>
+		<% end %>
+		</tbody>
+	</table>
+

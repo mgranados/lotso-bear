@@ -36,6 +36,8 @@ LotsoBear::Application.routes.draw do
   end
 
   match '/search_for_generic_car', to: 'generic_cars#show_found_cars', via: 'get'
+  match '/add_to_inventory', to: 'inventories#save_to_inventory', via: 'get'
+
 
   match '/new_generic_spare_from_template', to: 'generic_spares#template', via: 'get'
   match '/new_generic_car', to: 'generic_cars#new',  via: 'get'
