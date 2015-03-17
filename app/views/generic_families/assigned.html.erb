@@ -1,7 +1,7 @@
 <h1>Familias genéricas</h1>
 
 
-<%= form_tag assign_families_path do | f | %>
+<%= form_tag assign_generic_families_path do | f | %>
 
 	<table id="assignation_table" class="table big_table">
 	    <thead>
@@ -12,25 +12,30 @@
 	            <% end %>
 	        </tr>
 	    </thead>
-	    <tbody> 
+	    <tbody>
 
-	    <!-- each family -->		
+	    <!-- each family -->
 			    <% @generic_families.each do | family | %>
 			    	<tr>
 
 			           <td><%= family.name %></td>
 			           <% for type in @car_types do %>
-			           	<td><%= check_box_tag 'family_ids[]', "#{family.id},#{type.id}"%></td>
+
+			           	<% if type.generic_families.select { |fam| fam.id == family.id}.include? family  %>
+			           		<td><%= check_box_tag 'family_ids[]', "#{family.id},#{type.id}", checked: true %></td>
+			           	<% else %>
+			           		<td><%= check_box_tag 'family_ids[]', "#{family.id},#{type.id}"%></td>
+			           	<% end %>
+
 			           <% end %>
 		 		  </tr>
 			    <% end %>
 
-	       
+
 
     	</tbody>
-	</table>    
+	</table>
 
 
-	<%= submit_tag "Actualizar Familias", class: "btn btn-primary" %>
+	<%= submit_tag "Guardar Cambios", class: "btn btn-primary"  %>
 <% end %>
-

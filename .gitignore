@@ -24,7 +24,7 @@
 /latest.dump
 
 # Ignore Schema
-/db/schema.rb
+#/db/schema.rb
 
   *.rbc
 capybara-*.html

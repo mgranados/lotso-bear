@@ -1,30 +1,35 @@
 LotsoBear::Application.routes.draw do
-
-  resources :model_acronyms
-
-  resources :brands
-
-  resources :generic_families
-
-  resources :mold_spares
-
-  get "admin/home"
-  # root to: 'sessions#new'
   root 'sessions#new'
 
-  resources :users
-  resources :generic_families, only: [:index, :new, :create, :show, :destroy]
-  resources :spares, only: [:index, :new, :create, :show, :edit ,:destroy, :update]
-
+  resources :model_acronyms
+  resources :brands
+  resources :mold_spares
   resources :sessions, only: [:new, :create, :destroy]
   resources :prevaluations, only: [:new, :create, :show]
   resources :valuations, only: [:index, :new, :create, :show]
-  resources :generic_cars, only: [:index, :new, :create, :show, :edit ,:destroy, :update]
+  resources :spares, only: [:index, :new, :create, :show, :edit ,:destroy, :update]
   resources :generic_spares, only: [:index, :new, :create, :show, :edit ,:destroy, :update]
 
-  resources :generic_cars do
+  resources :generic_families, only: [:index, :new, :create, :show, :destroy, :edit] do
+    collection do
+      get :duplicate
+      get :not_assigned
+      get :assigned
+      post :assign
+    end
+    member do
+      get :count_spares
+    end
+  end
+
+  resources :generic_cars, only: [:index, :new, :create, :show, :edit ,:destroy, :update] do
     member do
       get :assignation
+      get :relate_generic_family
+    end
+    collection do
+      get :update_generation
+      get :search
     end
   end
 
@@ -35,8 +40,26 @@ LotsoBear::Application.routes.draw do
     end
   end
 
-  match '/search_for_generic_car', to: 'generic_cars#show_found_cars', via: 'get'
-  match '/add_to_inventory', to: 'inventories#save_to_inventory', via: 'get'
+  # match '/login',              to: 'sessions#new',        via: 'get'
+  # match '/admin',              to: 'branches#admin',      via: 'get'
+  # match '/gerente',            to: 'branches#manager',    via: 'get'
+  # match '/ajustador',          to: 'branches#adjuster',   via: 'get'
+  # match '/operador',           to: 'branches#operative',  via: 'get'
+  # match '/capturista',         to: 'branches#capturist',  via: 'get'
+  # match '/proceso',            to: 'branches#process',    via: 'get'
+  # match '/almacen',            to: 'branches#warehouse',  via: 'get'
+  # match '/consultar',            to: 'client_actions#home', via: 'get'
+  # match '/c/show',               to: 'client_actions#show', via: 'get'
+  # match '/reports',              to: 'reports#index', via: 'get'
+  # match '/reports/repair',       to: 'reports#repair', via: 'get'
+  # match '/reports/insurance',    to: 'reports#insurance', via: 'get'
+  # match '/reports/cars',         to: 'reports#cars', via: 'get'
+  # match '/roster',              to: 'roster#index', via: 'get'
+  # match '/roster/employeePerformance', to: 'roster#employeePerformance', via: 'get'
+  # match '/roster/attendance',          to: 'roster#attendance', via: 'get'
+  # match '/invoices',            to: 'invoices#home', via: 'get'
+  # match '/signin',  to: 'sessions#new',         via: 'get'
+  # match '/signout', to: 'sessions#destroy',     via: 'delete'
 
 
   match '/new_generic_spare_from_template', to: 'generic_spares#template', via: 'get'

@@ -48,7 +48,7 @@ class GenericCarsController < ApplicationController
     end
   end
 
-  def relate_generic_family_to_generic_car
+  def relate_generic_family
     @generic_car = GenericCar.find(params[:generic_car])
     @generic_family = GenericFamily.find(params[:generic_family])
     @generic_family_clone = @generic_family.clone_generic_family_with_generic_spares

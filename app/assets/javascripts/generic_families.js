@@ -13,7 +13,7 @@ $( document ).ready(function() {
 
 
 	$.ajax({
-		url: "/count_spares/"+$("#generic_family_id").val(),
+		url: "/generic_families/"+$("#generic_family_id").val()+"/count_spares",
 	}).done(function(number_of_spares) {
 		console.log(number_of_spares.count);
 

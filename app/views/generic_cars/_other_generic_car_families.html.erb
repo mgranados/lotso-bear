@@ -5,7 +5,7 @@
         <tr>
           <th>Nombre</th>
           <th>Código</th>
-          <th>Molde</th>
+          <th>Father</th>
           <th></th>
           <th></th>
         </tr>
@@ -16,14 +16,11 @@
           <td><%= family.name %></td>
           <td><%= family.code %></td>
           <td>
-            <% if family.mold %>
-            <%= :si %>
-            <% else %>
-            <%= :no %>
-            <% end %>
+            <%= family.father_id %>
+
           </td>
 
-          <td><%= link_to :add, relate_generic_family_to_generic_car_path(generic_family:family.id, generic_car: @generic_car.id), class: "btn btn-primary", confirm: 'Tus cambios podran perderse?'  %>  </td> </tr>
+          <td><%= link_to :add, relate_generic_family_generic_car_path(generic_family:family.id, generic_car: @generic_car.id), class: "btn btn-primary", confirm: 'Tus cambios podran perderse?'  %>  </td> </tr>
       <% end %>
       </tbody>
 </table>

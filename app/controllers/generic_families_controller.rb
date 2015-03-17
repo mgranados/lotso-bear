@@ -1,6 +1,10 @@
 class GenericFamiliesController < ApplicationController
-
   before_action :set_family, only: [:show, :destroy, :edit, :count_spares]
+
+  def duplicate
+    @generic_families = GenericFamily.all
+    @type_likelihoods = TypeLikelihood.all.order(generic_family_id: :asc, car_type_id: :asc)
+  end
 
   def new
     @generic_family = GenericFamily.new
@@ -11,17 +15,19 @@ class GenericFamiliesController < ApplicationController
   def create
     @generic_family = GenericFamily.new(required_params)
     if @generic_family.save
-      SpareLikelihood.where("generic_spare_id is null").delete_all
+      SpareLikelihood.where('generic_spare_id is null').delete_all
       redirect_to generic_families_path
-      flash[:success] = "Familia Creada con éxito"
+      flash[:success] = 'Familia Creada con éxito'
     else
       render 'new'
     end
   end
 
   def count_spares
-    respond_to do |format|  ## Add this
-      format.json { render json: {:count => @generic_family.generic_spares.count+1} }
+    unless @generic_family.blank?
+      respond_to do |format|  ## Add this
+        format.json { render json: { :count => @generic_family.generic_spares.count+1} }
+      end
     end
   end
 
@@ -29,7 +35,7 @@ class GenericFamiliesController < ApplicationController
   end
 
   def index
-    @generic_families = GenericFamily.all
+    @generic_families = GenericFamily.all.where(father_id: nil)
   end
 
   def edit
@@ -45,12 +51,12 @@ class GenericFamiliesController < ApplicationController
   def update
   end
 
-  def not_assigned_families
+  def not_assigned
     @generic_families = GenericFamily.not_assigned_families
     @car_types = CarType.all
   end
 
-  def assigned_families
+  def assigned
     @generic_families = GenericFamily.assigned_families
     @car_types = CarType.all
   end
@@ -60,17 +66,14 @@ class GenericFamiliesController < ApplicationController
     family.each do | f |
       family_id = f.split(',')[0].to_i
       type_id = f.split(',')[1].to_i
-      TypeLikelihood.create(generic_family_id: family_id, car_type_id:type_id)
+      @type_likelihood = TypeLikelihood.new(generic_family_id: family_id, car_type_id:type_id)
+      if @type_likelihood.save
+        GenericFamily.add_to_corresponding_cars(@type_likelihood)
+      end
     end
     flash[:success] = "Actualizado con éxito"
     redirect_to generic_families_path
   end
-
-  def build_spares
-    build_spares_for_families(required_params)
-  end
-
-
 
   private
     def required_params
