@@ -41,7 +41,7 @@ class GenericCar < ActiveRecord::Base
   def add_families
     @type_likelihoods = TypeLikelihood.where(car_type_id: self.car_type_id)
     @type_likelihoods.each do |type_likelihood|
-      self.generic_families << type_likelihood.generic_family
+      self.generic_families << type_likelihood.generic_family.clone_generic_family_with_generic_spares
     end
   end
 
