@@ -1,6 +1,5 @@
 LotsoBear::Application.routes.draw do
   root 'sessions#new'
-
   resources :model_acronyms
   resources :brands
   resources :mold_spares
