@@ -55,6 +55,9 @@ class GenericFamily < ActiveRecord::Base
       @spare.father_id = spare.id
       clone.generic_spares << @spare
     end
+    self.car_types.each do | type |
+      clone.car_types << type
+    end
     clone.father = self
     # clone.save
     # puts "Cloned: #{clone.name}"
@@ -69,8 +72,9 @@ class GenericFamily < ActiveRecord::Base
     if generic_car.generic_families.empty?
       all
     else
-      where('id not in (?)', generic_car.generic_families.pluck(:id)).where(father_id: nil)
-      # .concat(generic_car.generic_families.where(father_id: nil).pluck(:id)).compact)
+      where('id not in (?)', generic_car.generic_families.pluck(:id).concat(generic_car.generic_families.pluck(:father_id)).compact).where(father_id: nil)
+
+      # .where(father_id: nil)
     end
   end
 

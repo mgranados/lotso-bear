@@ -2,7 +2,6 @@ class GenericCar < ActiveRecord::Base
 
   # //Associations//
   has_many :stock_cars
-
   has_many :generic_fittables
 
   belongs_to :car_type
@@ -37,6 +36,14 @@ class GenericCar < ActiveRecord::Base
   # validates_associated :model_acronym
   #//Callbacks//
   before_save :generation_split
+
+
+  def add_families
+    @type_likelihoods = TypeLikelihood.where(car_type_id: self.car_type_id)
+    @type_likelihoods.each do |type_likelihood|
+      self.generic_families << type_likelihood.generic_family.clone_generic_family_with_generic_spares
+    end
+  end
 
   # //Queries//
   def self.search(query)

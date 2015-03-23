@@ -28,6 +28,7 @@ class GenericCarsController < ApplicationController
       @generic_car.model_acronym = ModelAcronym.return_model(@generic_car.model_acronym.brand_id,@generic_car.model_acronym.model)
     end
     if @generic_car.save
+      @generic_car.add_families
       flash[:success]= "Guardado con éxito"
       redirect_to action: 'index'
     else
