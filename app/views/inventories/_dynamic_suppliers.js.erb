@@ -1,0 +1,26 @@
+var suppliers = new Array();
+
+<% for supplier in suppliers do%>
+	suppliers.push(new Array(<%= supplier.supplier_type_id %>, '<%=h supplier.name %>', <%= supplier.id %>));
+<% end %>
+
+function supplierSelected() {
+  supplier_id = $('#supplier_type_id').getValue();
+  options = $('#stock_family_supplier').options;
+  options.length = 1;
+  suppliers.each(function(supplier) {
+    if (supplier[0] == supplier_type_id) {
+      options[options.length] = new Option(supplier[1], supplier[2]);
+    }
+  });
+  if (options.length == 1) {
+    $('#supplier_field').hide();
+  } else {
+    $('#supplier_field').show();
+  }
+}
+
+document.observe('dom:loaded', function() {
+  countrySelected();
+  $('#stock_family_supplier_type').observe('change', supplierSelected);
+});

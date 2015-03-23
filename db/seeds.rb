@@ -141,5 +141,12 @@
 # @generic_family.save!
 
 
-TypeLikelihood.dedupe
-GenericFamily.copy_families_to_generic_cars
+#TypeLikelihood.dedupe
+#GenericFamily.copy_families_to_generic_cars
+
+
+#Type of Suppliers
+SupplierType.create(name: "Desmontado Original") 
+SupplierType.create(name: "Original") 
+SupplierType.create(name: "Taiwan") 
+

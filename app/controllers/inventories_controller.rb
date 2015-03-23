@@ -1,6 +1,8 @@
 class InventoriesController < ApplicationController
 
   def entrance
+    @supplier_types = SupplierType.all
+    @suppliers = Supplier.all
   end
 
   def departure
@@ -13,7 +15,7 @@ class InventoriesController < ApplicationController
   	 @generic_families_found = GenericCar.find_by_id(params[:id]).generic_families
       respond_to do |format|
           format.js { }
-        #  format.json { render json: {generic_cars_found: }, status: :done }
+        # format.json { render json: {generic_cars_found: }, status: :done }
       end
     end
   	respond_to do |format|

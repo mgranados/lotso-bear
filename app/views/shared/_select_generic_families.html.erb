@@ -18,17 +18,19 @@
           <td><%= generic_family.name %></td>
           <td><%= check_box_tag 'Completa' %></td>
           <td><%= generic_family.code %></td>
-          <td>Tipos de proveedor</td>
-          <td>Proveedor</td>
+          <td>
+          <%= collection_select :stock_family_supplier_type, :supplier_type_id, SupplierType.all, :id, :name,
+          include_blank: true %>
+          </td>
+          <td><%= collection_select :stock_family_supplier, :supplier_id, Supplier.all, :id, :name, :include_blank => true %></td>
           <td>$<%= number_field_tag 'Precio', nil, min: 0 %></td>
           <td><%= number_field_tag 'Cantidad', nil, min: 0 %></td>
         </tr>
-
       <% end %>
       </tbody>
 
 </table>
 
-
+<%= render 'dynamic_suppliers', :suppliers => Supplier.all %>
   <%= submit_tag "Recibir piezas", class: "btn btn-primary pull-right" %>
 <% end %>
