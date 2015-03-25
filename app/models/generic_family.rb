@@ -78,4 +78,8 @@ class GenericFamily < ActiveRecord::Base
     end
   end
 
+  def name_with_code
+    "#{self.name},#{self.code}"
+  end
+
 end
