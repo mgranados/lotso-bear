@@ -37,10 +37,21 @@ class GenericCar < ActiveRecord::Base
   #//Callbacks//
   before_save :generation_split
 
+  def save_and_add_families
+    GenericCar.transaction do
+      self.save!
+      self.add_families
+    end
+  end
 
   def add_families
-    @type_likelihoods = TypeLikelihood.where(car_type_id: self.car_type_id)
+    @type_likelihoods = TypeLikelihood.joins(:generic_family).where(car_type_id:self.car_type_id, generic_families: {father_id: nil} )
+
+    # TypeLikelihood.where(car_type_id: self.car_type_id).where(generic_family)
+    # puts "TYPELIKELIHOODS: #{@type_likelihoods.length}"
+     # i = 0
     @type_likelihoods.each do |type_likelihood|
+    # puts "i: #{i+=1}"
       self.generic_families << type_likelihood.generic_family.clone_generic_family_with_generic_spares
     end
   end

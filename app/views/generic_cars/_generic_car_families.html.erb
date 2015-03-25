@@ -21,9 +21,10 @@
               <td><%= family.text_field :code , disabled: true%></td>
               <td><%= check_box_tag 'active', 'yes', true %></td>
               <td><%= family_likelihood.text_field :years, placeholder: car.formatted_year %></td>
-              <td> <%= link_to '+', '#', id:cont, name: 'helper'%></td>
+              
+<!--               <td> <%= link_to '+', '#', id:cont, name: 'helper'%></td>
               <td><%= family.hidden_field :name ,{id:"nameHelper#{cont}" , name:"helper#{cont}"} %><%= family.hidden_field :code ,{id:"codeHelper#{cont}" , name:"helper#{cont}"} %></td>
-            </tr>
+ -->            </tr>
             <% cont+=1 %>
             <% end %>
           <% end %>

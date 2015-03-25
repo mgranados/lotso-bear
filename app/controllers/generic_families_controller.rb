@@ -7,8 +7,9 @@ class GenericFamiliesController < ApplicationController
   end
 
   def new
+
+    
     @generic_family = GenericFamily.new
-    # 5.times{@generic_family.spare_likelihoods.build.build_generic_spare}
     @generic_family.spare_likelihoods.build.build_generic_spare
   end
 

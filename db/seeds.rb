@@ -141,5 +141,5 @@
 # @generic_family.save!
 
 
-TypeLikelihood.dedupe
-GenericFamily.copy_families_to_generic_cars
+# TypeLikelihood.dedupe
+# GenericFamily.copy_families_to_generic_cars
