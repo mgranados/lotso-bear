@@ -1,26 +1,23 @@
+<%= form_for @generic_car, url: {action: :relate_generic_family} do |f| %>
   <h3>Más familias</h3>
-
- <table class="table table-striped">
- 	<thead>
-        <tr>
-          <th>Nombre</th>
-          <th>Código</th>
-          <th>Father</th>
-          <th></th>
-          <th></th>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+      <th>Nombre</th>
+      <th>Codigo</th>
+      <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <%=  f.collection_check_boxes :generic_family_ids, @other_families, :id, :name_with_code do |b| %>
+       <tr>
+        <td><%= b.text.split(',').first %></td>
+        <td><%= b.text.split(',').last %></td>
+        <td><%=  b.check_box %></td>
         </tr>
-      </thead>
-      <tbody>
-      <% @other_families.each do |family| %>
-        <tr>
-          <td><%= family.name %></td>
-          <td><%= family.code %></td>
-          <td>
-            <%= family.father_id %>
-
-          </td>
-
-          <td><%= link_to :add, relate_generic_family_generic_car_path(generic_family:family.id, generic_car: @generic_car.id), class: "btn btn-primary", confirm: 'Tus cambios podran perderse?'  %>  </td> </tr>
       <% end %>
-      </tbody>
-</table>
+    </tbody>
+  </table>
+  <%= f.submit "Añadir Familias" %>
+<% end %>
+
