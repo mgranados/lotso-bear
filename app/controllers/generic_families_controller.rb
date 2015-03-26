@@ -7,15 +7,16 @@ class GenericFamiliesController < ApplicationController
   end
 
   def new
+
+    
     @generic_family = GenericFamily.new
-    # 5.times{@generic_family.spare_likelihoods.build.build_generic_spare}
     @generic_family.spare_likelihoods.build.build_generic_spare
   end
 
   def create
     @generic_family = GenericFamily.new(required_params)
     if @generic_family.save
-      SpareLikelihood.where('generic_spare_id is null').delete_all
+      # SpareLikelihood.where('generic_spare_id is null').delete_all
       redirect_to generic_families_path
       flash[:success] = 'Familia Creada con éxito'
     else
@@ -66,9 +67,12 @@ class GenericFamiliesController < ApplicationController
     family.each do | f |
       family_id = f.split(',')[0].to_i
       type_id = f.split(',')[1].to_i
-      @type_likelihood = TypeLikelihood.new(generic_family_id: family_id, car_type_id:type_id)
-      if @type_likelihood.save
-        GenericFamily.add_to_corresponding_cars(@type_likelihood)
+
+      type_likelihood = TypeLikelihood.new(generic_family_id: family_id, car_type_id:type_id)
+
+      puts "GF: #{type_likelihood.generic_family_id} CT: #{type_likelihood.car_type_id}"
+      if type_likelihood.save
+        GenericFamily.add_to_corresponding_cars(type_likelihood)
       end
     end
     flash[:success] = "Actualizado con éxito"

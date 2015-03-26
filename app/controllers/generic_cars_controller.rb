@@ -27,8 +27,7 @@ class GenericCarsController < ApplicationController
     if !@generic_car.model_acronym.blank? && @generic_car.model_acronym.model_already_exists?
       @generic_car.model_acronym = ModelAcronym.return_model(@generic_car.model_acronym.brand_id,@generic_car.model_acronym.model)
     end
-    if @generic_car.save
-      @generic_car.add_families
+    if @generic_car.save_and_add_families
       flash[:success]= "Guardado con éxito"
       redirect_to action: 'index'
     else
@@ -50,12 +49,18 @@ class GenericCarsController < ApplicationController
   end
 
   def relate_generic_family
-    @generic_car = GenericCar.find(params[:generic_car])
-    @generic_family = GenericFamily.find(params[:generic_family])
-    @generic_family_clone = @generic_family.clone_generic_family_with_generic_spares
-    @generic_car.generic_families << @generic_family_clone
+    generic_family_ids = params[:generic_car][:generic_family_ids].reject(&:empty?)
+    generic_car = GenericCar.find(params[:id])
+    unless generic_family_ids.empty?
+      generic_family_ids.each do |id|
+        generic_family = GenericFamily.find(id)
+        generic_family_clone = generic_family.clone_generic_family_with_generic_spares
+        generic_car.generic_families << generic_family_clone
+      end
+    end
 
-    redirect_to assignation_generic_car_path(@generic_car.id)
+    redirect_to assignation_generic_car_path(generic_car.id)
+
   end
 
   def destroy
@@ -80,7 +85,19 @@ class GenericCarsController < ApplicationController
 private
 
   def generic_car_params
-    params.require(:generic_car).permit(:generation,:first_generation_year,:last_generation_year,:years,:gen_continues,:number_of_generation,:car_type_id,{ :car_type_ids => [] },model_acronym_attributes:[:model,:brand_id,:id,:initials],generic_car_images_attributes: [:image,:generic_car_id,:id,:_destroy])
+    params.require(:generic_car).permit(:generation,
+       :first_generation_year,
+       :last_generation_year,
+       :years,
+       :gen_continues,
+       :number_of_generation,
+       :generic_family_ids,
+       :car_type_id,
+       :car_type_ids => [],
+       model_acronym_attributes:[:model,:brand_id,:id,:initials],
+       generic_car_images_attributes: [:image,:generic_car_id,:id,:_destroy],
+      family_likelihoods_attributes:[:id, generic_family_attributes:[:id,:name, :code, spare_likelihoods_attributes:[:id, generic_spare_attributes:[:id,:name,:code]]]],
+)
   end
 
   def set_generic_car
@@ -94,5 +111,4 @@ private
 
     end
   end
-
 end

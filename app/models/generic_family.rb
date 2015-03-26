@@ -13,7 +13,6 @@ class GenericFamily < ActiveRecord::Base
   has_many :car_types, through: :type_likelihoods
 
   has_many :family_likelihoods
-  # , :uniq => true
   has_many :generic_cars, through: :family_likelihoods
 
   accepts_nested_attributes_for :spare_likelihoods
@@ -25,47 +24,74 @@ class GenericFamily < ActiveRecord::Base
     @generic_cars = GenericCar.where(car_type_id:type_likelihood.car_type_id)
     @generic_cars.each do |generic_car|
       family = type_likelihood.generic_family
-      generic_car.generic_families << family.clone_generic_family_with_generic_spares
+      clone = family.clone_generic_family_with_generic_spares
+      generic_car.generic_families << clone
+      puts "Clone Name: #{clone.name} ID: #{clone.id} "
+      clone.car_types.each {|type| puts "Type:  id: #{type.id} name: #{type.full_name}"}
     end
   end
 
-  def self.copy_families_to_generic_cars
-    where(father_id: nil).each do |family|
-      puts "Family: #{family.name} Code: #{family.code} Father: #{family.father_id}"
-      family.car_types.each do |type|
-      @genericCars = GenericCar.where(car_type_id: type.id)
-        @genericCars.each do |car|
-          car.generic_families << family.clone_generic_family_with_generic_spares
-          puts "Car #{car.model_acronym.model} Years: #{car.years}"
+  # def self.copy_families_to_generic_cars
+  #   where(father_id: nil).order(:id).each do |family|
+  #     # puts "ID:#{family.id} Name: #{family.name}"
+  #     family.car_types.each do |type|
+  #       # puts "\t ID: #{type.id} Name: #{type.full_name}"
+  #       @genericCars = GenericCar.where(car_type_id: type.id).distinct.order(:id)
+  #       @genericCars.find_each do |car|
+  #         # puts "\t \tID:#{car.id} Name: #{car.model_acronym.model}"
+  #         car.generic_families << family.clone_generic_family_with_generic_spares
+  #       end
+  #     end
+  #   end
+  # end
+
+  def self.copy_families_final_fantasy
+    GenericCar.find_each do |car|
+        car.car_type.generic_families.each do |family|
+          family_clone = family.clone_generic_family_with_generic_spares
+          family_clone.car_types.each {|type| puts "Type: #{type.id} Name: #{type.full_name}"}
         end
-      end
     end
-
   end
+    # where(father_id: nil).each do |family|
+    #   puts "Family: #{family.name} Code: #{family.code} Father: #{family.father_id}"
+    #   family.car_types.each do |type|
+    #   @genericCars = GenericCar.where(car_type_id: type.id).distinct
+    #     @genericCars.each do |car|
+    #       car.generic_families << family.clone_generic_family_with_generic_spares
+    #       puts "Car #{car.model_acronym.model} Years: #{car.years}"
+    #     end
+    #   end
+    # end
 
   def self.not_assigned_families
     where.not(:id  => TypeLikelihood.select(:generic_family_id)).where(father_id: nil)
   end
 
   def clone_generic_family_with_generic_spares
-    # puts "Cloning: #{self.name}"
+    puts "Name: #{self.name} Code: #{self.code}"
     clone = self.dup
-    self.generic_spares.each do |spare|
-      @spare = spare.dup
-      @spare.father_id = spare.id
-      clone.generic_spares << @spare
+    self.generic_spares.each do | spare|
+      puts "Original ID: @#{spare.id} Name: #{spare.name}"
+      clone_spare = spare.dup
+      puts "clone    ID: @#{clone_spare.id} Name: #{clone_spare.name}"
+      clone_spare.father_id = spare.id
+      clone.generic_spares << clone_spare
     end
-    self.car_types.each do | type |
-      clone.car_types << type
-    end
+    # cont = 0
+    # self.car_types.each do | type |
+    #   puts "Orginal: #{type} WAZA"
+    #   clone.car_types << type
+    #   puts "Clone: #{type}"
+    #   puts "Ronda #{cont+=1}"
+    # end
+
     clone.father = self
-    # clone.save
-    # puts "Cloned: #{clone.name}"
     clone
   end
 
   def self.assigned_families
-    where(:id  => TypeLikelihood.select(:generic_family_id) )
+    where(:id  => TypeLikelihood.select(:generic_family_id) ).where(father_id: nil)
   end
 
   def self.other_families(generic_car)
@@ -82,6 +108,10 @@ class GenericFamily < ActiveRecord::Base
     stockFam = StockFamily.new 
     stockFam.generic_family_id = self.id
     stockFam
+  end
+
+  def name_with_code
+    "#{self.name},#{self.code}"
   end
 
 end
