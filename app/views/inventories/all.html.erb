@@ -1,0 +1,48 @@
+<h1>Todas las piezas</h1>
+
+	<% if !@all_stock.blank? %>
+		<table id="allStockTable">
+		  <thead>
+		    <tr>
+		      <th> Nombre </th>
+		      <th> Precio Entrada</th>
+		    	<th> Precio Salida</th>
+		      <th> Proveedor </th>
+		      <th> Orden</th>
+		      <th> Borrar</th>
+
+		    </tr>
+		  </thead>
+		  <tbody>
+			<% for stock in @all_stock %>
+			    <tr>
+			      <td><%= stock.generic_family.name %></td>
+			      <td>	<% if !stock.price.blank? %>
+			     			 <%= stock.price.entrance %>
+			     		<% end %>
+			      </td>
+			      <td> <% if !stock.price.blank? %>
+			      <%= stock.price.departure %>
+			      <% end %></td>
+			      <td>
+					<% if !stock.supplier.blank? %>
+			      <%= stock.supplier %>
+			      <% end %></td>
+			      <td>
+					<% if !stock.order.blank? %>
+			      		<%= stock.order.id %>
+			      		<% end %></td>
+			      <td>
+      		<%= link_to "Borrar", stock, :confirm => '¿Seguro Que Deseas Borrarlo?', :method => :delete , class: "btn btn-primary"%>
+			      </td>
+			    </tr>
+			<% end %>
+			</tbody>
+		</table>
+	<% else %>
+	<h2>No hay stock</h2>
+	<% end %>
+<script>
+	$('#allStockTable').dataTable();
+
+</script>

@@ -78,4 +78,10 @@ class GenericFamily < ActiveRecord::Base
     end
   end
 
+  def generate_stock_family
+    stockFam = StockFamily.new 
+    stockFam.generic_family_id = self.id
+    stockFam
+  end
+
 end

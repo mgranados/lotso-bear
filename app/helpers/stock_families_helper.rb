@@ -1,0 +1,2 @@
+module StockFamiliesHelper
+end

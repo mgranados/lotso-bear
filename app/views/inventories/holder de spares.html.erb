@@ -1,0 +1,16 @@
+<% generic_family.generic_spares.each do |spare| %>
+
+          <tr id="<%= generic_family.name %> <%= spare.name %>" class="generic_family_spare_childs <%= generic_family.id %>_show">
+          <td> <%= check_box_tag "generic_family_ids[]", spare.id %></td>
+          <td><%= generic_family.name %> <%= spare.name %></td>
+            <td><%= spare.name %></td>
+            <td><%= spare.code %></td>
+            <td>
+            <%= collection_select :stock_family_supplier_type, :supplier_type_id, SupplierType.all, :id, :name,
+            include_blank: true %>
+            </td>
+            <td><%= grouped_collection_select :stock_family_supplier, :supplier_id, SupplierType.all, :suppliers, :name, :id, :name, :include_blank => true %></td>
+            <td><%= number_field_tag 'Precio', nil, min: 0, placeholder: '$' %></td>
+            <td><%= number_field_tag 'Cantidad', nil, min: 0 %></td>
+          </tr>
+          <% end %>

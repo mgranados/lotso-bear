@@ -1,36 +1,48 @@
- <%= form_tag add_to_inventory_path do %>
+ <%= form_tag add_to_inventory_inventories_path do %>
 
  <table id="genericCarRelatedFamiliesTable" class="table table-striped">
  	<thead>
         <tr>
+          <th> </th>
           <th> Nombre</th>
           <th> </th>
           <th> Código</th>
-          <th> Tipo Proveedor</th>
-          <th> Proveedor</th>
+<!--           <th> Tipo Proveedor</th>
+ -->      <th> Proveedor</th>
           <th> Precio</th>
           <th> Cantidad</th>
         </tr>
       </thead>
       <tbody>
-      <% for generic_family in generic_families_found do%>
-        <tr>
+      <% cont = 0 %>
+      <% for generic_family in generic_families_found do %>
+
+        <tr id="generic_family_complete">
+          <td> <%= check_box_tag "order[generic_family_#{cont}][][id]", generic_family.id %></td>
           <td><%= generic_family.name %></td>
-          <td><%= check_box_tag 'Completa' %></td>
+          <td><input value='Completa' type="button" id="<%= generic_family.id %>_show" class="show_childs"</td>
           <td><%= generic_family.code %></td>
-          <td>
-          <%= collection_select :stock_family_supplier_type, :supplier_type_id, SupplierType.all, :id, :name,
-          include_blank: true %>
-          </td>
-          <td><%= collection_select :stock_family_supplier, :supplier_id, Supplier.all, :id, :name, :include_blank => true %></td>
-          <td>$<%= number_field_tag 'Precio', nil, min: 0 %></td>
-          <td><%= number_field_tag 'Cantidad', nil, min: 0 %></td>
+          <td><%= grouped_collection_select "order[generic_family_#{cont}][][supplier_id]", nil,  SupplierType.all, :suppliers, :name, :id, :name, :include_blank => true %></td>
+          <td><%= number_field_tag "order[generic_family_#{cont}][][entrance_price]", nil, min: 0, placeholder: '$' %></td>
+          <td><%= number_field_tag "order[generic_family_#{cont}][][quantity]", nil, min: 0 %></td>
         </tr>
+        
+        <% cont += 1 %>
       <% end %>
       </tbody>
 
 </table>
 
-<%= render 'dynamic_suppliers', :suppliers => Supplier.all %>
   <%= submit_tag "Recibir piezas", class: "btn btn-primary pull-right" %>
 <% end %>
+
+<script>
+  $('.show_childs').click(function () {
+    console.log($(this).attr("id"));
+    $('.'+$(this).attr( "id" )).css("background-color: red");
+    });
+
+
+
+    //$('.generic_family_spare_childs').hide();
+</script>

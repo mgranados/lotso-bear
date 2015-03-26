@@ -1,15 +1,18 @@
 LotsoBear::Application.routes.draw do
+
   resources :suppliers
 
   root 'sessions#new'
   resources :model_acronyms
   resources :brands
+  resources :orders
   resources :mold_spares
   resources :sessions, only: [:new, :create, :destroy]
   resources :prevaluations, only: [:new, :create, :show]
   resources :valuations, only: [:index, :new, :create, :show]
   resources :spares, only: [:index, :new, :create, :show, :edit ,:destroy, :update]
   resources :generic_spares, only: [:index, :new, :create, :show, :edit ,:destroy, :update]
+  resources :stock_families, only: [:index, :new, :show, :edit ,:destroy, :update]
 
   resources :generic_families, only: [:index, :new, :create, :show, :destroy, :edit] do
     collection do
@@ -38,6 +41,12 @@ LotsoBear::Application.routes.draw do
     collection do
       get :entrance
       get :departure
+      get :receive_order
+      get :all
+      get :orders
+      get :add_new_stock
+      post :add_to_inventory, to: 'stock_families#create'
+      resources :stock_families, only: [:create]
     end
   end
 
@@ -102,7 +111,7 @@ LotsoBear::Application.routes.draw do
   # Route to a funciton that relates families to generic cars
   get '/relate_generic_family_to_generic_car/:id', to: 'generic_cars#relate_generic_family_to_generic_car', as: 'relate_generic_family_to_generic_car'
 
-  get '/add_to_inventory', to: 'stock_families#new', via: 'get'
+  get '/add_to_inventory', to: 'stock_families#new', via: 'post'
 
   #Signin Trabajadores
   match '/signin',  to: 'sessions#new',         via: 'get'
@@ -114,7 +123,7 @@ LotsoBear::Application.routes.draw do
   get '/assigned_families', to: 'generic_families#assigned_families'
   match '/assign_families',         to: 'generic_families#assign', via: 'post'
 
-  match '/search_for_generic_car', to: 'generic_cars#show_found_cars', via: 'get'
+  match '/search_for_generic_car', to: 'generic_cars#show_found_cars', via: 'post'
 
 
   get '/build_spares/:id', to: 'generic_families#build_spares', as: 'build_spare'

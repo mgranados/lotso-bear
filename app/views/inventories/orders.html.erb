@@ -1,0 +1,29 @@
+<h1>Todas las ordenes</h1>
+
+	<% if !@all_orders.blank? %>
+		<table id="allStockTable">
+		  <thead>
+		    <tr>
+		      <th> Nombre </th>
+		      <th> Borrar</th>
+
+		    </tr>
+		  </thead>
+		  <tbody>
+			<% for order in @all_orders %>
+			    <tr>
+			      <td><%= order.created_at %></td>
+			      <td>
+      		<%= link_to "Borrar", order, :confirm => '¿Seguro Que Deseas Borrarlo?', :method => :delete , class: "btn btn-primary"%>
+			      </td>
+			    </tr>
+			<% end %>
+			</tbody>
+		</table>
+	<% else %>
+	<h2>No hay stock</h2>
+	<% end %>
+<script>
+	$('#allStockTable').dataTable();
+
+</script>

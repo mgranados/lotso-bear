@@ -1,7 +1,8 @@
-	
-// $(document).ready(function() {
-// 	$(".supplier_type_id").click(function () {
-// 		alert("suppliers_by_type"+$(this).id);
-// 		$("suppliers_by_type"+$(this).id).html("sup");
-// 	});
-// });
+$(function() {
+	console.log($('.show_childs'));
+	$('.show_childs').click(function () {
+		console.log($('.show_childs').attr("id"));
+  	});
+
+  	$('.generic_family_spare_childs').remove();
+});

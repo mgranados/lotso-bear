@@ -8,7 +8,7 @@
 
 
     def index
-      @suppliers = Supplier.where(:supplier_type_id => params[:supplier_type_id])
+      @suppliers = Supplier.all
       respond_to do |format|
         format.json {@suppliers}
         format.html {}
