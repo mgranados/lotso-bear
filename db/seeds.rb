@@ -142,4 +142,6 @@
 
 
 TypeLikelihood.dedupe
-GenericFamily.copy_families_to_generic_cars
+GenericFamily.copy_families_final_fantasy
+# FamilyLikelihood.dedupe
+

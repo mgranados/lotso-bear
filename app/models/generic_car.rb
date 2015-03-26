@@ -1,5 +1,4 @@
 class GenericCar < ActiveRecord::Base
-
   # //Associations//
   has_many :stock_cars
   has_many :generic_fittables
@@ -9,10 +8,6 @@ class GenericCar < ActiveRecord::Base
 
   accepts_nested_attributes_for :model_acronym
   accepts_nested_attributes_for :car_type
-
-  # , reject_if: proc{|attributes| :find_model}
-
-
 
   has_many :generic_car_generations
   has_many :generations, through: :generic_car_generations
@@ -30,17 +25,22 @@ class GenericCar < ActiveRecord::Base
 
   accepts_nested_attributes_for :family_likelihoods
 
-
   # //Validations//
   validates :years, :number_of_generation, :car_type, :model_acronym, presence: true
   # validates_associated :model_acronym
   #//Callbacks//
   before_save :generation_split
 
+  def save_and_add_families
+    self.transaction do
+      self.save!
+      self.add_families
+    end
+  end
 
   def add_families
-    @type_likelihoods = TypeLikelihood.where(car_type_id: self.car_type_id)
-    @type_likelihoods.each do |type_likelihood|
+    type_likelihoods = TypeLikelihood.where(car_type_id: self.car_type_id)
+    type_likelihoods.each do |type_likelihood|
       self.generic_families << type_likelihood.generic_family.clone_generic_family_with_generic_spares
     end
   end

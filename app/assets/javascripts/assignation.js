@@ -8,5 +8,14 @@ var contID = 1000;
     contID++;
   });
 
+  $(".hide_spares").click(function (){
+  	var spares = $(this).attr("id"); 
+  	if ($("." + spares).hasClass("hidden"))
+  		$("." + spares).removeClass("hidden");
+  	else
+  		$("." + spares).addClass("hidden");
+
+  });
+
 
 });
