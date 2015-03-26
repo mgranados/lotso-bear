@@ -146,9 +146,9 @@
 
 
 #Type of Suppliers
-SupplierType.create(name: "Desmontado Original") 
-SupplierType.create(name: "Original") 
-SupplierType.create(name: "Taiwan") 
+# SupplierType.create(name: "Desmontado Original") 
+# SupplierType.create(name: "Original") 
+# SupplierType.create(name: "Taiwan") 
 
-TypeLikelihood.all.destroy_all
+#TypeLikelihood.all.destroy_all
 
