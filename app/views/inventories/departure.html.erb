@@ -1,2 +1,9 @@
-<h1>Inventories#departure</h1>
-<p>Find me in app/views/inventories/departure.html.erb</p>
+<h1>Salidas</h1>
+<h2>Ingresa el código de la pieza</h2>
+<%= form_tag '#', remote: true, class: "form-inline", method: :get do  %>
+	<%= text_field_tag :model , nil, class: "form-control"  %>
+	<%= submit_tag 'Buscar', class: "btn btn-primary" %>
+<% end %>
+
+<h2 id="stockFamiliesFoundTitle">Pieza para envío:</h2>
+<div id="stockFamiliesFound"></div>

@@ -1,3 +1,5 @@
+ <%= form_tag add_to_inventory_path do %>
+
  <table id="genericCarRelatedFamiliesTable" class="table table-striped">
  	<thead>
         <tr>
@@ -11,15 +13,24 @@
         </tr>
       </thead>
       <tbody>
+      <% for generic_family in generic_families_found do%>
         <tr>
-          <td><%= generic_families_found.first.name %></td>
-          <td><%= generic_families_found.last.name %></td>
-          <td><%= generic_families_found.last.name %></td>
-          <td><%= generic_families_found.last.name %></td>
-          <td><%= generic_families_found.last.name %></td>
-          <td><%= generic_families_found.last.name %></td>
-          <td><%= generic_families_found.last.name %></td>
-          </tr>
+          <td><%= generic_family.name %></td>
+          <td><%= check_box_tag 'Completa' %></td>
+          <td><%= generic_family.code %></td>
+          <td>
+          <%= collection_select :stock_family_supplier_type, :supplier_type_id, SupplierType.all, :id, :name,
+          include_blank: true %>
+          </td>
+          <td><%= collection_select :stock_family_supplier, :supplier_id, Supplier.all, :id, :name, :include_blank => true %></td>
+          <td>$<%= number_field_tag 'Precio', nil, min: 0 %></td>
+          <td><%= number_field_tag 'Cantidad', nil, min: 0 %></td>
+        </tr>
+      <% end %>
       </tbody>
+
 </table>
 
+<%= render 'dynamic_suppliers', :suppliers => Supplier.all %>
+  <%= submit_tag "Recibir piezas", class: "btn btn-primary pull-right" %>
+<% end %>

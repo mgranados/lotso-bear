@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150316214530) do
+ActiveRecord::Schema.define(version: 20150319022206) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -165,6 +165,13 @@ ActiveRecord::Schema.define(version: 20150316214530) do
     t.datetime "updated_at"
   end
 
+  create_table "prices", force: true do |t|
+    t.string   "entrance"
+    t.string   "departure"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "spare_likelihoods", force: true do |t|
     t.integer  "generic_spare_id"
     t.integer  "generic_family_id"
@@ -198,6 +205,8 @@ ActiveRecord::Schema.define(version: 20150316214530) do
     t.integer  "generic_family_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "price_id"
+    t.integer  "supplier_id"
   end
 
   create_table "stock_spare_images", force: true do |t|
@@ -217,6 +226,19 @@ ActiveRecord::Schema.define(version: 20150316214530) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "stock_family_id"
+  end
+
+  create_table "supplier_types", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "suppliers", force: true do |t|
+    t.string   "name"
+    t.string   "supplier_type_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "type_likelihoods", force: true do |t|

@@ -1,4 +1,5 @@
 	
 
 	$('#genericCarRelatedFamilies').html("<%=j render partial:'shared/select_generic_families', :locals => {:generic_families_found => @generic_families_found } %>");
-	$('#genericCarRelatedFamiliesTable').dataTable()
+	$('#genericCarRelatedFamiliesTable').dataTable();
+	$('#genericCarRelatedFamiliesTitle').css("display", "block");

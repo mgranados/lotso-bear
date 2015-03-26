@@ -1,3 +1,5 @@
 
 	$('#genericCarsFound').html("<%=j render partial:'shared/select_generic_car', :locals => {:generic_cars_found => @generic_cars } %>");
-	$('#genericCarsFoundTable').dataTable()
+	$('#genericCarsFoundTable').dataTable();
+	
+	$('#genericCarsFoundTitle').css("display", "block");
