@@ -157,11 +157,6 @@ ActiveRecord::Schema.define(version: 20150324193407) do
 
   add_index "orders", ["warehouse_id"], name: "index_orders_on_warehouse_id", using: :btree
 
-  create_table "orders_suppliers", id: false, force: true do |t|
-    t.integer "order_id",    null: false
-    t.integer "supplier_id", null: false
-  end
-
   create_table "prevaluation_images", force: true do |t|
     t.string   "prevaluation_id"
     t.datetime "created_at"

@@ -7,7 +7,7 @@ gem 'turbolinks'
 gem "jquery-turbolinks"
 gem 'jbuilder', '~> 1.2'
 gem 'bcrypt-ruby', '3.1.2' #passwords hasheados
-gem 'pundit' #authorizations
+gem 'pundit'
 
 # Image Uploaders
 gem "paperclip", "~> 4.2"
@@ -53,9 +53,9 @@ end
 
 group :production do
   gem 'rails_12factor', '0.0.2'
-  gem 'puma',           '2.11.1'
 end
 
+ gem 'puma', '2.11.1'
 group :doc do
   gem 'sdoc', require: false
 end
