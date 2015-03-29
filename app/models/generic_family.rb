@@ -25,9 +25,11 @@ class GenericFamily < ActiveRecord::Base
     @generic_cars.each do |generic_car|
       family = type_likelihood.generic_family
       clone = family.clone_generic_family_with_generic_spares
-      generic_car.generic_families << clone
-      puts "Clone Name: #{clone.name} ID: #{clone.id} "
-      clone.car_types.each {|type| puts "Type:  id: #{type.id} name: #{type.full_name}"}
+      unless clone.blank?
+        generic_car.generic_families << clone
+        puts "Clone Name: #{clone.name} ID: #{clone.id} "
+        clone.car_types.each {|type| puts "Type:  id: #{type.id} name: #{type.full_name}"}
+      end
     end
   end
 

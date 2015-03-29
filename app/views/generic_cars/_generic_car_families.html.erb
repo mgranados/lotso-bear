@@ -3,7 +3,6 @@
 <% cont = 0 %>
 <table class="table table-striped">
   <thead>
-    <th>id</th>
     <th>Nombre</th>
     <th>Codigo</th>
     <th>Habilitado</th>
@@ -15,13 +14,13 @@
   <%= f.fields_for :family_likelihoods do |family_likelihood| %>
     <%= family_likelihood.fields_for :generic_family do |family| %>
       <tr>
-        <td><%= family.text_field :id , disabled: true%></td>
         <td><input value="Spares" type="button" id="hidden<%= cont %>" class="hide_spares"/></td>
         <td><%= family.text_field :name , disabled: true%></td>
         <td><%= family.text_field :code , disabled: true%></td>
         <td><%= check_box_tag 'active', 'yes', true %></td>
         <td><%= family_likelihood.text_field :years, placeholder: car.formatted_year %></td>
         <td><%= link_to '+', '#', id:cont, name: 'helper'%></td>
+
         <td><%= family.hidden_field :name ,{id:"nameHelper#{cont}" , name:"helper#{cont}"} %><%= family.hidden_field :code ,{id:"codeHelper#{cont}" , name:"helper#{cont}"} %></td>
         <%= family.fields_for :spare_likelihoods do |spare_likelihood| %>
           <tr class="hidden<%= cont %> hidden spares">
