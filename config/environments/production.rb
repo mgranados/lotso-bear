@@ -3,7 +3,7 @@ LotsoBear::Application.configure do
 
   # Code is not reloaded between requests.
   config.cache_classes = true
-
+  config.threadsafe!
   # Eager load code on boot. This eager loads most of Rails and
   # your application in memory, allowing both thread web servers
   # and those relying on copy on write to perform better.
@@ -21,7 +21,7 @@ LotsoBear::Application.configure do
 
   config.assets.compile = true
   # Disable Rails's static asset server (Apache or nginx will already do this).
-  config.serve_static_assets = false
+  config.serve_static_assets = true
 
   # Compress JavaScripts and CSS.
   config.assets.js_compressor = :uglifier
@@ -41,7 +41,7 @@ LotsoBear::Application.configure do
   # config.action_dispatch.x_sendfile_header = 'X-Accel-Redirect' # for nginx
 
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
-  config.force_ssl = true
+  config.force_ssl = false
 
   # Set to :debug to see everything in the log.
   config.log_level = :info

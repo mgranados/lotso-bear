@@ -6,9 +6,11 @@ class GenericFamiliesController < ApplicationController
     @type_likelihoods = TypeLikelihood.all.order(generic_family_id: :asc, car_type_id: :asc)
   end
 
-  def new
+  def 
 
-    
+  end
+
+  def new
     @generic_family = GenericFamily.new
     @generic_family.spare_likelihoods.build.build_generic_spare
   end
@@ -64,18 +66,21 @@ class GenericFamiliesController < ApplicationController
 
   def assign
     family = params[:family_ids]
-    family.each do | f |
-      family_id = f.split(',')[0].to_i
-      type_id = f.split(',')[1].to_i
 
-      type_likelihood = TypeLikelihood.new(generic_family_id: family_id, car_type_id:type_id)
+    unless family.blank?
+      family.each do | f |
+        family_id = f.split(',')[0].to_i
+        type_id = f.split(',')[1].to_i
 
-      puts "GF: #{type_likelihood.generic_family_id} CT: #{type_likelihood.car_type_id}"
-      if type_likelihood.save
-        GenericFamily.add_to_corresponding_cars(type_likelihood)
+        type_likelihood = TypeLikelihood.new(generic_family_id: family_id, car_type_id:type_id)
+
+        puts "GF: #{type_likelihood.generic_family_id} CT: #{type_likelihood.car_type_id}"
+        if type_likelihood.save
+          GenericFamily.add_to_corresponding_cars(type_likelihood)
+        end
       end
+      flash[:success] = "Actualizado con éxito"
     end
-    flash[:success] = "Actualizado con éxito"
     redirect_to generic_families_path
   end
 
