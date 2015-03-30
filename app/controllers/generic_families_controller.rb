@@ -6,9 +6,7 @@ class GenericFamiliesController < ApplicationController
     @type_likelihoods = TypeLikelihood.all.order(generic_family_id: :asc, car_type_id: :asc)
   end
 
-  def 
 
-  end
 
   def new
     @generic_family = GenericFamily.new
@@ -85,6 +83,7 @@ class GenericFamiliesController < ApplicationController
   end
 
   private
+
     def required_params
       params.require(:generic_family).permit(:code,:name, :mold, {:types => []},{:family_ids => []} ,spare_likelihoods_attributes:[:id, :generic_family_id, :generic_spare_id, generic_spare_attributes:[:name,:code]])
     end
@@ -92,7 +91,5 @@ class GenericFamiliesController < ApplicationController
     def set_family
       @generic_family = GenericFamily.find_by_id(params[:id])
     end
-
-
 
 end
