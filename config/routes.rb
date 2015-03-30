@@ -46,6 +46,7 @@ LotsoBear::Application.routes.draw do
       get :orders
       get :add_new_stock
       post :add_to_inventory, to: 'stock_families#create'
+      post :departure_stock_family
       resources :stock_families, only: [:create]
     end
   end

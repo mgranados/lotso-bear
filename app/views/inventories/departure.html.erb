@@ -1,9 +1,8 @@
 <h1>Salidas</h1>
 <h2>Ingresa el código de la pieza</h2>
-<%= form_tag '#', remote: true, class: "form-inline", method: :get do  %>
-	<%= text_field_tag :model , nil, class: "form-control"  %>
-	<%= submit_tag 'Buscar', class: "btn btn-primary" %>
+<%= form_tag action: :departure_stock_family, class: "form-inline", method: :get do  %>
+	<%= text_field_tag :code , nil, class: "form-control"  %>
+	<%= select_tag "status", options_for_select([ "Instalada", "Vendida Externo", "Envio Propio" ], "Instalada") %>
+	<%= submit_tag 'Sacar Pieza', class: "btn btn-primary" %>
 <% end %>
 
-<h2 id="stockFamiliesFoundTitle">Pieza para envío:</h2>
-<div id="stockFamiliesFound"></div>

@@ -25,6 +25,7 @@ class StockFamiliesController < ApplicationController
           p "#{stock_family.generic_family_id}"
           p "#{price.entrance}"
           stock_family.price = price
+          stock_family.supplier_id = stock_family_to_create[1][0][:supplier_id].first.to_i
           quantity = stock_family_to_create[1][0][:quantity].to_i
           quantity.times{ order.stock_families << stock_family.dup }
         end
