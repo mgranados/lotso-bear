@@ -1,4 +1,4 @@
- <%= form_tag add_to_inventory_inventories_path do %>
+ <%= form_tag({:controller => :stock_families, :action => :create}, {:multipart => true}) do %>
 
  <table id="genericCarRelatedFamiliesTable" class="table table-striped">
  	<thead>
@@ -11,6 +11,7 @@
  -->      <th> Proveedor</th>
           <th> Precio</th>
           <th> Cantidad</th>
+          <th> Imagen </th>
         </tr>
       </thead>
       <tbody>
@@ -25,6 +26,8 @@
           <td><%= grouped_collection_select "order[generic_family_#{cont}][][supplier_id]", nil,  SupplierType.all, :suppliers, :name, :id, :name, :include_blank => true %></td>
           <td><%= number_field_tag "order[generic_family_#{cont}][][entrance_price]", nil, min: 0, placeholder: '$' %></td>
           <td><%= number_field_tag "order[generic_family_#{cont}][][quantity]", nil, min: 0 %></td>
+          <td>   <%= file_field "order[generic_family_#{cont}][][image]", nil %></td>
+
         </tr>
         
         <% cont += 1 %>

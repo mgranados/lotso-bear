@@ -9,7 +9,6 @@ class StockFamiliesController < ApplicationController
     generic_families = Array.new()
 
     order_array = params[:order]
-    p "maricas"
     p order_array
     # METER SUPPLIERS
     unless order_array.empty?
@@ -25,13 +24,22 @@ class StockFamiliesController < ApplicationController
           p "#{stock_family.generic_family_id}"
           p "#{price.entrance}"
           stock_family.price = price
-          stock_family.supplier_id = stock_family_to_create[1][0][:supplier_id].first.to_i
-          quantity = stock_family_to_create[1][0][:quantity].to_i
-          quantity.times{ order.stock_families << stock_family.dup }
-        end
-      
+          p "QUE ES: #{stock_family_to_create[1][0][:image][0].class.name}"
 
+          stock_family.supplier_id = stock_family_to_create[1][0][:supplier_id].first.to_i
+          image = StockFamilyImage.new(image: stock_family_to_create[1][0][:image][0])
+
+          quantity = stock_family_to_create[1][0][:quantity].to_i
+          quantity.times do
+            clone = stock_family.dup 
+            clone.stock_family_images << image
+
+            order.stock_families << clone
+          end
+
+        end
       end
+
     end
       if order.save
         flash[:success] = "Orden guardada con éxito"

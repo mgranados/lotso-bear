@@ -3,6 +3,7 @@ class StockFamily < ActiveRecord::Base
   belongs_to :price
   belongs_to :supplier
   belongs_to :order
+  has_many :stock_family_images
 
   after_create :create_code
 

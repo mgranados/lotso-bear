@@ -10,6 +10,7 @@
 		      <th> Proveedor </th>
 		      <th> Orden</th>
 		      <th> Borrar</th>
+		      <th>Imagen</th>
 
 		    </tr>
 		  </thead>
@@ -31,6 +32,11 @@
 			      <td>
 					<% if !stock.order.blank? %>
 			      		<%= stock.order.id %>
+			      		<% end %></td>
+			      <td>
+			         <td>
+					<% if !stock.stock_family_images.first.blank? %>
+			      <%= image_tag stock.stock_family_images.first.image.url(:medium) %>
 			      		<% end %></td>
 			      <td>
       		<%= link_to "Borrar", stock, :confirm => '¿Seguro Que Deseas Borrarlo?', :method => :delete , class: "btn btn-primary"%>

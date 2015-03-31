@@ -145,10 +145,12 @@
 #GenericFamily.copy_families_to_generic_cars
 
 
-#Type of Suppliers
+# Type of Suppliers
 # SupplierType.create(name: "Desmontado Original") 
 # SupplierType.create(name: "Original") 
 # SupplierType.create(name: "Taiwan") 
 
 #TypeLikelihood.all.destroy_all
+
+FamilyLikelihood.all.destroy_all
 
