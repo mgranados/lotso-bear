@@ -11,10 +11,26 @@ class StockFamiliesController < ApplicationController
     order_array = params[:order]
     p order_array
     # METER SUPPLIERS
+    flag = false
     unless order_array.empty?
-      order_array.each_with_index do |stock_family_to_create, index|
 
-        if (stock_family_to_create[1][0].has_key?(:id))
+
+      new_order_array = Array.new()
+
+      order_array.each do |stock_family_to_create| 
+       p "#{stock_family_to_create[1][0].has_key?(:id)}"
+        if stock_family_to_create[1][0].has_key?(:id) 
+         new_order_array.push(stock_family_to_create)
+        end
+      end
+
+      new_order_array.each_with_index do |stock_family_to_create, index|
+                  p "#{stock_family_to_create[1][0][:supplier_id] }"
+          p "#{stock_family_to_create[1][0][:entrance_price] }"
+          p "#{stock_family_to_create[1][0][:quantity] }"
+
+        if (!stock_family_to_create[1][0][:entrance_price].blank? && !stock_family_to_create[1][0][:quantity].blank? && !stock_family_to_create[1][0][:supplier_id].blank? )
+
           p "corrida #{index}"
           p "#{stock_family_to_create[1][0][:id] }"
 
@@ -24,24 +40,35 @@ class StockFamiliesController < ApplicationController
           p "#{stock_family.generic_family_id}"
           p "#{price.entrance}"
           stock_family.price = price
-          p "QUE ES: #{stock_family_to_create[1][0][:image][0].class.name}"
 
           stock_family.supplier_id = stock_family_to_create[1][0][:supplier_id].first.to_i
-          image = StockFamilyImage.new(image: stock_family_to_create[1][0][:image][0])
+
+          if !stock_family_to_create[1][0][:image].blank?
+            image = StockFamilyImage.new(image: stock_family_to_create[1][0][:image][0])  
+          end 
 
           quantity = stock_family_to_create[1][0][:quantity].to_i
           quantity.times do
             clone = stock_family.dup 
-            clone.stock_family_images << image
+
+            if !stock_family_to_create[1][0][:image].blank?
+              clone.stock_family_images << image
+            end
 
             order.stock_families << clone
           end
-
+        else
+          flag = true
         end
+
       end
 
     end
-      if order.save
+
+      if flag == true
+          flash[:danger] = "Un campo estaba vacío"
+          render add_new_stock_inventories_path
+      elsif order.save
         flash[:success] = "Orden guardada con éxito"
         redirect_to entrance_inventories_path   
 

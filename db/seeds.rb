@@ -152,5 +152,5 @@
 
 #TypeLikelihood.all.destroy_all
 
-FamilyLikelihood.all.destroy_all
+#FamilyLikelihood.all.destroy_all
 
