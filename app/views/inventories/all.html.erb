@@ -1,46 +1,52 @@
 <h1>Todas las piezas</h1>
 
 	<% if !@all_stock.blank? %>
-		<table id="allStockTable">
+		<table id="allStockTable" class="display" >
 		  <thead>
 		    <tr>
 		      <th> Nombre </th>
+				<th> Modelo Coche </th>		
+				<th> Generación Coche </th>		
+				<th> Año Coche </th>		            
 		      <th> Precio Entrada</th>
-		    	<th> Precio Salida</th>
+		      <th> Precio Salida</th>
 		      <th> Proveedor </th>
-		      <th> Orden</th>
-		      <th> Borrar</th>
-		      <th>Imagen</th>
 
 		    </tr>
 		  </thead>
 		  <tbody>
 			<% for stock in @all_stock %>
 			    <tr>
+
 			      <td><%= stock.generic_family.name %></td>
-			      <td>	<% if !stock.price.blank? %>
-			     			 <%= stock.price.entrance %>
-			     		<% end %>
+			      <td><%= stock.generic_family.family_likelihoods.first.generic_car.model_acronym.model %></td>
+			      <td><%= stock.generic_family.family_likelihoods.first.generic_car.number_of_generation %></td>
+			      <td><%= stock.generic_family.family_likelihoods.first.generic_car.years %></td>
+
+			      <td>
+  			      	<% if !stock.price.blank? %>
+		     			 <%= stock.price.entrance %>
+		     		<% else %>
+			     			<h3>---</h3>
+		     		<% end %>
 			      </td>
-			      <td> <% if !stock.price.blank? %>
-			      <%= stock.price.departure %>
-			      <% end %></td>
+
+			      <td>
+			      	<% if !stock.price.blank? %>
+		     			 <%= stock.price.departure %>
+		     		<% else %>
+			     			 ---
+
+			      <% end %>
+			      </td>
+
 			      <td>
 					<% if !stock.supplier.blank? %>
-			      <%= stock.supplier %>
-			      <% end %></td>
-			      <td>
-					<% if !stock.order.blank? %>
-			      		<%= stock.order.id %>
-			      		<% end %></td>
-			      <td>
-			         <td>
-					<% if !stock.stock_family_images.first.blank? %>
-			      <%= image_tag stock.stock_family_images.first.image.url(:medium) %>
-			      		<% end %></td>
-			      <td>
-      		<%= link_to "Borrar", stock, :confirm => '¿Seguro Que Deseas Borrarlo?', :method => :delete , class: "btn btn-primary"%>
-			      </td>
+			     		<%= stock.supplier.name %>
+			     	<% end %>
+			    	 </td>
+
+
 			    </tr>
 			<% end %>
 			</tbody>
@@ -48,7 +54,4 @@
 	<% else %>
 	<h2>No hay stock</h2>
 	<% end %>
-<script>
-	$('#allStockTable').dataTable();
 
-</script>

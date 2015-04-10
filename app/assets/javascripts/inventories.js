@@ -5,4 +5,9 @@ $(function() {
   	});
 
   	$('.generic_family_spare_childs').remove();
+
+
+  	//datatable de all
+	$('#allStockTable').dataTable();
+  	
 });
