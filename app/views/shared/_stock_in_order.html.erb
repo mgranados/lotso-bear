@@ -1,0 +1,10 @@
+<tr id="generic_family_complete">
+  <td> <%= check_box_tag "order[generic_family_#{cont}][][id]", generic_family.id %></td>
+  <td><%= generic_family.name %></td>
+  <td><input value='Completa' type="button" id="<%= generic_family.id %>_show" class="show_childs"</td>
+  <td><%= generic_family.code %></td>
+  <td><%= grouped_collection_select "order[generic_family_#{cont}][][supplier_id]", nil,  SupplierType.all, :suppliers, :name, :id, :name, :include_blank => true %></td>
+  <td><%= number_field_tag "order[generic_family_#{cont}][][entrance_price]", nil, min: 0, placeholder: '$' %></td>
+  <td><%= number_field_tag "order[generic_family_#{cont}][][quantity]", nil, min: 0 %></td>
+  <td>   <%= file_field "order[generic_family_#{cont}][][image]", nil %></td>
+</tr>

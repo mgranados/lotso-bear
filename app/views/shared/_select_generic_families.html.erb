@@ -1,46 +1,37 @@
- <%= form_tag({:controller => :stock_families, :action => :create}, {:multipart => true}) do %>
 
  <table id="genericCarRelatedFamiliesTable" class="table table-striped">
  	<thead>
         <tr>
-          <th> </th>
           <th> Nombre</th>
-          <th> </th>
           <th> Código</th>
-<!--           <th> Tipo Proveedor</th>
- -->      <th> Proveedor</th>
-          <th> Precio</th>
-          <th> Cantidad</th>
-          <th> Imagen </th>
+          <th> Añadir</th>
         </tr>
       </thead>
       <tbody>
-      <% cont = 0 %>
       <% for generic_family in generic_families_found do %>
 
         <tr id="generic_family_complete">
-          <td> <%= check_box_tag "order[generic_family_#{cont}][][id]", generic_family.id %></td>
           <td><%= generic_family.name %></td>
-          <td><input value='Completa' type="button" id="<%= generic_family.id %>_show" class="show_childs"</td>
+          <td><%= generic_family.generic_cars.first.model_acronym.model %></td>
           <td><%= generic_family.code %></td>
-          <td><%= grouped_collection_select "order[generic_family_#{cont}][][supplier_id]", nil,  SupplierType.all, :suppliers, :name, :id, :name, :include_blank => true %></td>
-          <td><%= number_field_tag "order[generic_family_#{cont}][][entrance_price]", nil, min: 0, placeholder: '$' %></td>
-          <td><%= number_field_tag "order[generic_family_#{cont}][][quantity]", nil, min: 0 %></td>
-          <td>   <%= file_field "order[generic_family_#{cont}][][image]", nil %></td>
+          <td><input value='Añadir a Orden' type="button" family-code="<%= generic_family.code %>" family-name="<%= generic_family.name %>" family-id="<%= generic_family.id %>" family-model="<%= generic_family.generic_cars.first.model_acronym.model %>" class="show_childs"></td>
 
         </tr>
         
-        <% cont += 1 %>
       <% end %>
       </tbody>
 
 </table>
 
-  <%= submit_tag "Recibir piezas", class: "btn btn-primary pull-right" %>
-<% end %>
 
 <script>
+// $(function() {
 
+$('.show_childs').click(function () {
+  $('#orderStockFamiliesToAdd').append('<tr><td style="display:none;"><input value="'+$(this).attr('family-id')+'"></td><td>'+$(this).attr('family-model')+'</td><td>'+$(this).attr('family-name')+'</td><td>'+$(this).attr('family-code')+'</td><td><%=j grouped_collection_select "order[generic_family][][supplier_id]", nil,  SupplierType.all,:suppliers, :name, :id, :name, :include_blank => true %></td><td><input></td><td><input></td></tr>');
+
+});
+// });
 
 
 

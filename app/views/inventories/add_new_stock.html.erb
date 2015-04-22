@@ -11,4 +11,29 @@
 
 	<h2 id="genericCarRelatedFamiliesTitle" >Familias relacionadas:</h2>
 	<div id="genericCarRelatedFamilies"></div>
+ 	<h1>sup</h1>
+	 <%= form_tag({:controller => :stock_families, :action => :create}, {:multipart => true}) do %>
 
+	 <table id="genericCarRelatedFamiliesTable" class="table table-striped">
+	 	<thead>
+	        <tr>
+	          <th> </th>
+	          <th> Nombre</th>
+	          <th> </th>
+	          <th> Código</th>
+			  <th> Proveedor</th>
+	          <th> Precio</th>
+	          <th> Cantidad</th>
+	          <th> Imagen </th>
+	        </tr>
+	      </thead>
+	      <tbody>
+			 <div id="orderStockFamiliesToAdd"></div>
+
+	      </tbody>
+	   </table>
+
+  		<%= submit_tag "Recibir piezas", class: "btn btn-primary pull-right" %>
+	<% end %>
+
+	 
