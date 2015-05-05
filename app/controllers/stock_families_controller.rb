@@ -5,6 +5,22 @@ class StockFamiliesController < ApplicationController
 
   def create
     order = Order.new
+    order.entrance_date = Time.new
+
+    order_info = params[:stocks]
+    
+    order_info.each do |sub_order|
+      order.stock_families << StockFamily.create_stocks_from_generics(sub_order[:id])
+    end
+    
+    if order.save!
+      flash[:success] = "Orden Guardada Con Exíto"
+      render orders_inventories_path
+    end
+  end
+
+  def create2
+    order = Order.new
 
     generic_families = Array.new()
 

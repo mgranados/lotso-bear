@@ -1,4 +1,5 @@
-
+<% if !@models.blank?%>
+	<h2>Modelos encontrados:</h2>
 	<table id="genericCarsFoundTable">
 	  <thead>
 	    <tr>
@@ -8,11 +9,10 @@
 	      <th> Codigo</th>
 	      <th> Tipo</th>
 	      <th> Selección</th>
-
 	    </tr>
 	  </thead>
 	  <tbody>
-		<% for car in generic_cars_found %>
+		<% for car in @models.generic_cars %>
 		    <tr>
 		      <td><%= car.model_acronym.brand.name %></td>
 		      <td><%= car.model_acronym.model %></td>
@@ -32,4 +32,9 @@
 		<% end %>
 		</tbody>
 	</table>
+<% else %>
+	<h2>No se encontraron Modelos</h2>
+<% end %>
+
+
 

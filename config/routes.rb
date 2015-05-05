@@ -5,7 +5,6 @@ LotsoBear::Application.routes.draw do
   root 'sessions#new'
   resources :model_acronyms
   resources :brands
-  resources :orders
   resources :mold_spares
   resources :sessions, only: [:new, :create, :destroy]
   resources :prevaluations, only: [:new, :create, :show]
@@ -38,6 +37,9 @@ LotsoBear::Application.routes.draw do
   end
 
   resources :inventories do
+    member do
+      get :add_family_with_spares_to_order
+    end
     collection do
       get :entrance
       get :departure

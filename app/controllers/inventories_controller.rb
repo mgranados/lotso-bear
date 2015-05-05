@@ -11,15 +11,19 @@ class InventoriesController < ApplicationController
   def index
   end
 
+  def add_family_with_spares_to_order
+    @generic_family = GenericFamily.find_by_id(params[:id])
+    respond_to do |format|
+      format.js {}
+    end
+  end
+
   def show_generic_car_generic_families
   	 @generic_families_found = GenericCar.find_by_id(params[:id]).generic_families
       respond_to do |format|
           format.js { }
         # format.json { render json: {generic_cars_found: }, status: :done }
       end
-    end
-  	respond_to do |format|
-	  format.js { }
   end
 
   def receive_order
@@ -39,7 +43,7 @@ class InventoriesController < ApplicationController
   end
 
   def orders
-    @all_orders = Order.all
+    @all_orders = Order.all.order(created_at: :desc)
   end
 
   def departure_stock_family

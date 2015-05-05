@@ -14,7 +14,8 @@
           <td><%= generic_family.name %></td>
           <td><%= generic_family.generic_cars.first.model_acronym.model %></td>
           <td><%= generic_family.code %></td>
-          <td><input value='Añadir a Orden' type="button" family-code="<%= generic_family.code %>" family-name="<%= generic_family.name %>" family-id="<%= generic_family.id %>" family-model="<%= generic_family.generic_cars.first.model_acronym.model %>" class="show_childs"></td>
+          <td><input value='Añadir a Orden' type="button" family-id="<%= generic_family.id %>" class="show_childs">
+          </td>
 
         </tr>
         
@@ -23,18 +24,13 @@
 
 </table>
 
-
-<script>
-// $(function() {
-
-$('.show_childs').click(function () {
-  $('#orderStockFamiliesToAdd').append('<tr><td style="display:none;"><input value="'+$(this).attr('family-id')+'"></td><td>'+$(this).attr('family-model')+'</td><td>'+$(this).attr('family-name')+'</td><td>'+$(this).attr('family-code')+'</td><td><%=j grouped_collection_select "order[generic_family][][supplier_id]", nil,  SupplierType.all,:suppliers, :name, :id, :name, :include_blank => true %></td><td><input></td><td><input></td></tr>');
-
-});
-// });
-
-
-
-
-    //$('.generic_family_spare_childs').hide();
+<script type="text/javascript">
+  $('.show_childs').click(function () {
+    $.ajax({
+      url: "/inventories/"+$(this).attr("family-id")+"/add_family_with_spares_to_order/"
+    })
+  });
 </script>
+
+
+

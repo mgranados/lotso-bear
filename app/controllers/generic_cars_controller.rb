@@ -74,11 +74,9 @@ class GenericCarsController < ApplicationController
   end
 
   def show_found_cars
-    @generic_cars = ModelAcronym.find_by_model(params[:model].upcase).generic_cars
-      unless @generic_cars.blank?
-        respond_to do |format|
-          format.js {}
-        end
+    @models = ModelAcronym.find_by_model(params[:model].upcase)
+      respond_to do |format|
+        format.js {}
       end
   end
 

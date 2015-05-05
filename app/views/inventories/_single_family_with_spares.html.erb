@@ -1,0 +1,20 @@
+<tr>
+	<td><input value="Spares" type="button" id="hidden" class="hide_spares"/></td>
+	<td><%= @generic_family.generic_cars.first.model_acronym.model %></td>
+	<td><%= @generic_family.name %> </td>
+	<td><%= @generic_family.code %></td>
+	<td><%= @generic_family.code %></td>
+	<td><%= hidden_field_tag "stocks[][id]", @generic_family.id %></td>
+	<td><%= text_field_tag "stocks[][price]", nil %></td>
+	<td><%= text_field_tag "stocks[][quantity]", nil %></td>
+</tr>
+<% @generic_family.spare_likelihoods.each do |spare_likelihood| %>
+	<tr class="">
+		<td><%= spare_likelihood.generic_spare.name %></td>
+		<td><%= spare_likelihood.generic_spare.code %></td>
+		<td><%= check_box_tag "stocks[][spares_ids][]", spare_likelihood.generic_spare.id, true %></td>
+		<td></td>
+		<td></td>
+		<td></td>
+	</tr>
+<% end %>

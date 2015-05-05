@@ -4,15 +4,20 @@
 		<table id="allStockTable">
 		  <thead>
 		    <tr>
-		      <th> Nombre </th>
-		      <th> Borrar</th>
-
+		      <th>Fecha de Entrada</th>
+		      <th>Hora de Entrada</th>
+		      <th>Numero de piezas que entraron</th>
+		      <th>Ver</th>
+		      <th>Borrar</th>
 		    </tr>
 		  </thead>
 		  <tbody>
 			<% for order in @all_orders %>
 			    <tr>
-			      <td><%= order.created_at %></td>
+			    	<td><%= order.created_at.strftime("%d/%m/%y") %></td>
+			    	<td><%= order.created_at.strftime("%H:%M") %></td>
+			    	<td><%= order.stock_families.count %></td>
+			    	<td><%= link_to "Ver Detalles" %></td>
 			      <td>
       		<%= link_to "Borrar", order, :confirm => '¿Seguro Que Deseas Borrarlo?', :method => :delete , class: "btn btn-primary"%>
 			      </td>
@@ -21,9 +26,11 @@
 			</tbody>
 		</table>
 	<% else %>
-	<h2>No hay stock</h2>
+	<h2>No hay Ordenes</h2>
 	<% end %>
 <script>
-	$('#allStockTable').dataTable();
+	$('#allStockTable').dataTable( {
+		"bSort": false
+    } );
 
 </script>
