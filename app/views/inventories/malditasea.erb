@@ -11,7 +11,7 @@
 
 	<h2 id="genericCarRelatedFamiliesTitle" >Familias relacionadas:</h2>
 	<div id="genericCarRelatedFamilies"></div>
-	 <%= form_tag({:controller => :stock_families, :action => :create}, {:multipart => true}) do %>
+	 <%= form_tag({:controller => :orders, :action => :create}, {:multipart => true}) do %>
 
 	 <table id="genericCarRelatedFamiliesTable" class="table table-striped">
 	 	<thead>
@@ -31,7 +31,7 @@
 	      </tbody>
 	   </table>
 
-  		<%= submit_tag "Recibir piezas", class: "btn btn-primary pull-right" %>
+  		<%= submit_tag "Recibirs piezas", class: "btn btn-primary pull-right" %>
 	<% end %>
 
 	 

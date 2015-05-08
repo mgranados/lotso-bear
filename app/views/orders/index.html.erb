@@ -1,9 +1,12 @@
 <h1>Listing orders</h1>
 
-<table>
+<table class="table">
   <thead>
     <tr>
-      <th>Entance date</th>
+<!--       <th>Fecha de Entrada <br>(Introducida por el usuario)</th>
+ -->  
+      <th>Fecha de Entrada</th>
+      <th>Hora de Entrada</th>
       <th>Warehouse</th>
       <th></th>
       <th></th>
@@ -14,7 +17,9 @@
   <tbody>
     <% @orders.each do |order| %>
       <tr>
-        <td><%= order.entance_date %></td>
+<!--         <td><%= order.entrance_date.strftime("%d/%m/%y") %></td>
+ -->        <td><%= order.created_at.strftime("%d/%m/%y") %></td>
+        <td><%= order.created_at.strftime("%H:%M") %></td>
         <td><%= order.warehouse_id %></td>
         <td><%= link_to 'Show', order %></td>
         <td><%= link_to 'Edit', edit_order_path(order) %></td>

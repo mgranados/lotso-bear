@@ -1,14 +1,60 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Entance date:</strong>
-  <%= @order.entance_date %>
+  <strong>Fecha de Entrada:</strong>
+  <%= @order.entrance_date.strftime("%d/%m/%Y") %>
 </p>
 
-<p>
-  <strong>Warehouse:</strong>
+<!-- <p>
+  <strong>Sucursal:</strong>
   <%= @order.warehouse_id %>
-</p>
+</p> -->
+<table class="table">
+<thead>
+	<th>Nombre</th>
+	<th>Codigo</th>
+	<th>Cantidad</th>
+	<th>Precio</th>
+	<th>Supplier</th>
+	<th></th>
+</thead>
+<tbody>
+	<% @order.stock_families.each do |stock| %>
+	<tr>
+		<td>
+			<%= stock.generic_family.name %>
+		</td>
+		<td><%= stock.code %></td>		
+		<td>
+			<%= stock.quantity %>
+		</td>
+		<td>
+			<%= stock.price.entrance %>
+		</td>
+		<td>
+			<%= stock.supplier.name %>
+		</td>
+		<td><%= link_to "Imprimir Etiquetas", label_stock_family_path(@order) %></td>
+	</tr>
+	<tr>
+		<td></td>
+		<td><strong>Nombre</strong></td>
+		<td><strong>Codigo</strong></td>
+	</tr>
+	<% stock.stock_spares.each do |spare| %>
+	<tr>
+		<td></td>
+		<td>
+		<%= spare.generic_spare.name %>
+		</td>
+		<td><%= spare.code %></td>
+		<td></td>
+		<td></td>
+		<td>Imprimir Etiqueta</td>
+	</tr>
+	<% end %>
+	<% end %>
+</tbody>
+</table>
 
-<%= link_to 'Edit', edit_order_path(@order) %> |
-<%= link_to 'Back', orders_path %>
+<%= link_to 'Atras', orders_path %>

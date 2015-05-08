@@ -14,7 +14,7 @@
           <td><%= generic_family.name %></td>
           <td><%= generic_family.generic_cars.first.model_acronym.model %></td>
           <td><%= generic_family.code %></td>
-          <td><input value='Añadir a Orden' type="button" family-id="<%= generic_family.id %>" class="show_childs">
+          <td><input value='Añadir a Orden' type="button" family-id="<%= generic_family.id %>" car-id="<%= @generic_car.id %>" class="add_to_order">
           </td>
 
         </tr>
@@ -25,9 +25,9 @@
 </table>
 
 <script type="text/javascript">
-  $('.show_childs').click(function () {
+  $('.add_to_order').click(function () {
     $.ajax({
-      url: "/inventories/"+$(this).attr("family-id")+"/add_family_with_spares_to_order/"
+      url: "/inventories/"+$(this).attr("family-id")+'/'+$(this).attr("car-id")+"/add_family_with_spares_to_order/"
     })
   });
 </script>

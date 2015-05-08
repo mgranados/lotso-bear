@@ -12,7 +12,6 @@
 //= require jquery-fileupload
 //= require cocoon
 //= require maskedinput
-
 //= require_tree .
 
 

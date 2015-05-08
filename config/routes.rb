@@ -4,6 +4,7 @@ LotsoBear::Application.routes.draw do
 
   root 'sessions#new'
   resources :model_acronyms
+  resources :orders
   resources :brands
   resources :mold_spares
   resources :sessions, only: [:new, :create, :destroy]
@@ -11,7 +12,12 @@ LotsoBear::Application.routes.draw do
   resources :valuations, only: [:index, :new, :create, :show]
   resources :spares, only: [:index, :new, :create, :show, :edit ,:destroy, :update]
   resources :generic_spares, only: [:index, :new, :create, :show, :edit ,:destroy, :update]
-  resources :stock_families, only: [:index, :new, :show, :edit ,:destroy, :update]
+
+  resources :stock_families, only: [:index, :new, :show, :edit ,:destroy, :update] do
+    member do
+      get :label
+    end
+  end
 
   resources :generic_families, only: [:index, :new, :create, :show, :destroy, :edit] do
     collection do
@@ -36,16 +42,17 @@ LotsoBear::Application.routes.draw do
     end
   end
 
+
   resources :inventories do
     member do
       get :add_family_with_spares_to_order
     end
+
+
     collection do
-      get :entrance
       get :departure
       get :receive_order
       get :all
-      get :orders
       get :add_new_stock
       post :add_to_inventory, to: 'stock_families#create'
       post :departure_stock_family
@@ -132,6 +139,8 @@ LotsoBear::Application.routes.draw do
   get '/build_spares/:id', to: 'generic_families#build_spares', as: 'build_spare'
 
   get '/select_generic_families/:id', to: 'inventories#show_generic_car_generic_families', as: 'family_selection'
+
+  get '/inventories/:family_id/:car_id/add_family_with_spares_to_order',to: 'inventories#add_family_with_spares_to_order'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

@@ -1,8 +1,8 @@
 class AddAttachmentImageToStockFamilyImages < ActiveRecord::Migration
   def self.up
-    change_table :stock_family_images do |t|
-      t.attachment :image
-    end
+	change_table :stock_family_images do |t|
+	  t.attachment :image
+	end
   end
 
   def self.down

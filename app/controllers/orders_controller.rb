@@ -21,9 +21,37 @@ class OrdersController < ApplicationController
   def edit
   end
 
-  # POST /orders
-  # POST /orders.json
   def create
+    
+    order = Order.new
+    # Order Info
+    order.entrance_date = Time.now
+
+    families = params[:stocks]
+
+    families.each do |family_info|
+      stock_family = StockFamily.create_stocks_from_generics(family_info[:id],family_info[:spares],family_info[:car_id])
+      stock_family.supplier_id = family_info[:stock_family_supplier]
+      stock_family.supplier_code = family_info[:supplier_code].to_i
+        price = Price.new(entrance:family_info[:price])
+      stock_family.price = price
+      stock_family.quantity = family_info[:quantity]
+      order.stock_families << stock_family
+    end
+    
+    if order.save!
+      flash[:success] = "Orden Guardada Con Exíto"
+      redirect_to order_path(order.id)
+    end
+  end
+
+
+  def create2
+
+
+        # entrance_date = Date.new params[:order]["entrance_date(1i)"].to_i,params[:order]["entrance_date(2i)"].to_i,params[:order]["entrance_date(3i)"].to_i
+
+    # order.entrance_date = entrance_date
     @order = Order.new(order_params)
 
     respond_to do |format|
@@ -69,6 +97,6 @@ class OrdersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def order_params
-      params.require(:order).permit(:entance_date, :warehouse_id)
+      params.require(:order).permit(:entrance_date, :warehouse_id)
     end
 end

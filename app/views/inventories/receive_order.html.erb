@@ -10,17 +10,18 @@
 
 	<h2 id="genericCarRelatedFamiliesTitle" >Familias relacionadas:</h2>
 	<div id="genericCarRelatedFamilies"></div>
-	 <%= form_tag({:controller => :stock_families, :action => :create}, {:multipart => true}) do %>
+	 <%= form_tag({:controller => :orders, :action => :create}, {:multipart => true}) do %>
 
-	 <table id="genericCarRelatedFamiliesTable" class="table table-striped">
+<!-- 	 <%= date_select :order, :entrance_date %>
+ -->	 <table id="genericCarRelatedFamiliesTable" class="table table-striped">
 	 	<thead>
 	        <tr>
-	          <th style="display:none;"></th>
 	          <th></th>
 	          <th> Modelo</th>
 	          <th> Nombre Pieza</th>
 	          <th> Código</th>
 			  <th> Proveedor</th>
+			  <th>Codigo de Proveedor</th>
 	          <th> Precio</th>
 	          <th> Cantidad</th>
 	        </tr>

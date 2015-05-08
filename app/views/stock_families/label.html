@@ -1,0 +1,25 @@
+<style type="text/css">
+	.label_print{
+		background-color: white;
+		width: 300px;
+		height: 80px;
+		text-align: center;
+		padding-top: 3px;
+	}
+	.label_title{
+		color: black;
+	}
+</style>
+<div class="label_print" >
+	<h1 class="label_title"><%= @stock_family.generic_family.name %></h1>
+	<h1 class="label_title"><%= @stock_family.code %></h1>
+</div>
+
+<% @stock_family.stock_spares.each do |spare| %>
+<br>
+<div class="label_print" >
+	<h1 class="label_title"><%= spare.generic_spare.name %></h1>
+
+	<h1 class="label_title"><%= spare.code %></h1>
+</div>
+<% end %>

@@ -14,6 +14,7 @@ gem "paperclip", "~> 4.2"
 gem 'carrierwave'
 
 
+
 gem "cocoon"
 gem 'jquery-rails'
 gem 'jquery-fileupload-rails'

@@ -12,14 +12,17 @@ class InventoriesController < ApplicationController
   end
 
   def add_family_with_spares_to_order
-    @generic_family = GenericFamily.find_by_id(params[:id])
+    @generic_family = GenericFamily.find_by_id(params[:family_id])
+    @generic_car = GenericCar.find_by_id(params[:car_id])
     respond_to do |format|
       format.js {}
     end
   end
 
   def show_generic_car_generic_families
-  	 @generic_families_found = GenericCar.find_by_id(params[:id]).generic_families
+    @generic_car = GenericCar.find_by_id(params[:id])
+  	@generic_families_found = @generic_car.generic_families
+
       respond_to do |format|
           format.js { }
         # format.json { render json: {generic_cars_found: }, status: :done }
