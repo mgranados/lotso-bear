@@ -1,8 +1,13 @@
+<%require 'barby'
+require 'barby/barcode/code_128'
+require 'barby/outputter/html_outputter'
+require 'barby/outputter/ascii_outputter'
+%>
 <style type="text/css">
 	.label_print{
 		background-color: white;
 		width: 300px;
-		height: 80px;
+		height: 150px;
 		text-align: center;
 		padding-top: 3px;
 	}
@@ -13,6 +18,8 @@
 <div class="label_print" >
 	<h1 class="label_title"><%= @stock_family.generic_family.name %></h1>
 	<h1 class="label_title"><%= @stock_family.code %></h1>
+	<%= raw @barcode.to_html(:class_name => 'stock-barcode') %>
+
 </div>
 
 <% @stock_family.stock_spares.each do |spare| %>
@@ -21,5 +28,11 @@
 	<h1 class="label_title"><%= spare.generic_spare.name %></h1>
 
 	<h1 class="label_title"><%= spare.code %></h1>
+
+   	<%  barcode = Barby::Code128B.new(spare.code) %>
+
+	<%= raw barcode.to_html(:class_name => 'stock-barcode') %>
+
+
 </div>
 <% end %>

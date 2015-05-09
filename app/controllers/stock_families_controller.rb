@@ -1,3 +1,8 @@
+require 'barby'
+require 'barby/barcode/code_128'
+require 'barby/outputter/html_outputter'
+require 'barby/outputter/ascii_outputter'
+
 class StockFamiliesController < ApplicationController
   before_action :set_family, only: [:show, :label]
 
@@ -12,6 +17,7 @@ class StockFamiliesController < ApplicationController
   end
 
   def label
+      @barcode = Barby::Code128B.new(@stock_family.code)
   end
 
   def destroy
@@ -23,4 +29,5 @@ class StockFamiliesController < ApplicationController
     def set_family
       @stock_family = StockFamily.find_by_id(params[:id])
     end
+
 end

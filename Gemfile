@@ -26,6 +26,9 @@ gem 'twitter-bootstrap-rails'
 #Input Mask
 gem 'maskedinput-rails'
 
+#barcode
+gem 'barby'
+
 #Data Table
   gem 'jquery-datatables-rails', '~> 3.1.1'
   gem 'jquery-ui-rails'

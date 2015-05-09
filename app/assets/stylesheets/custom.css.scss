@@ -3,6 +3,11 @@
 @import "bootstrap.min";
 
 
+table.barby-barcode { border-spacing: 0; }
+tr.barby-row {}
+td.barby-cell { width: 3px; height: 120px; }
+td.barby-cell.on { background: #000; }
+
 .check{
   visibility: hidden !important;
   background-color: red;
