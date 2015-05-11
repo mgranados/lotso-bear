@@ -1,3 +1,8 @@
 // Place all the styles related to the StockFamilies controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.barby-barcode { border-spacing: 0; }
+.barby-row {}
+.barby-cell { width: 3px; height: 120px; }
+.barby-cell.on { background: #000; }
