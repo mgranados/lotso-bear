@@ -15,24 +15,30 @@ require 'barby/outputter/ascii_outputter'
 		color: black;
 	}
 </style>
-<div class="label_print" >
-	<h1 class="label_title"><%= @stock_family.generic_family.name %></h1>
-	<h1 class="label_title"><%= @stock_family.code %></h1>
-	<%= raw @barcode.to_html(:class_name => 'stock-barcode') %>
 
-</div>
+<% @stock_families.each do |stock_family| %>
+	<div class="label_print" >
+	<h1 class="label_title"><%= stock_family.generic_family.name %></h1>
+	<h1 class="label_title"><%= stock_family.code %></h1>
 
-<% @stock_family.stock_spares.each do |spare| %>
-<br>
-<div class="label_print" >
-	<h1 class="label_title"><%= spare.generic_spare.name %></h1>
-
-	<h1 class="label_title"><%= spare.code %></h1>
-
-   	<%  barcode = Barby::Code128B.new(spare.code) %>
+	<% barcode = Barby::Code128B.new(stock_family.code) %> 
 
 	<%= raw barcode.to_html(:class_name => 'stock-barcode') %>
 
+	</div>
 
-</div>
+	<% stock_family.stock_spares.each do |spare| %>
+	<br>
+	<div class="label_print" >
+		<h1 class="label_title"><%= spare.generic_spare.name %></h1>
+
+		<h1 class="label_title"><%= spare.code %></h1>
+
+	   	<%  barcode = Barby::Code128B.new(spare.code) %>
+
+		<%= raw barcode.to_html(:class_name => 'stock-barcode') %>
+
+
+	</div>
+	<% end %>
 <% end %>

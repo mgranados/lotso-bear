@@ -17,8 +17,9 @@ class StockFamiliesController < ApplicationController
   end
 
   def label
-      @barcode = Barby::Code128B.new(@stock_family.code)
-  end
+     label_order = Order.find_by_id(params[:id])
+      @stock_families = label_order.stock_families
+        end
 
   def destroy
     StockFamily.find_by_id(params[:id]).destroy
