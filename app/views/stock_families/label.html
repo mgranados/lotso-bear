@@ -3,18 +3,7 @@ require 'barby/barcode/code_128'
 require 'barby/outputter/html_outputter'
 require 'barby/outputter/ascii_outputter'
 %>
-<style type="text/css">
-	.label_print{
-		background-color: white;
-		width: 300px;
-		height: 220px;
-		text-align: center;
-		padding-top: 3px;
-	}
-	.label_title{
-		color: black;
-	}
-</style>
+
 
 <% @stock_families.each do |stock_family| %>
 	<div class="label_print" >
