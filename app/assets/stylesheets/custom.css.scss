@@ -2,6 +2,21 @@
 @import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:600);
 @import "bootstrap.min";
 
+.barby-barcode { border-spacing: 0; }
+.barby-row {}
+.barby-cell { width: 3px; height: 120px; }
+.barby-cell.on { background: #000; }
+
+  .label_print{
+    background-color: white;
+    width: 300px;
+    height: 220px;
+    text-align: center;
+    padding-top: 3px;
+  }
+  .label_title{
+    color: black;
+  }
 
 
 .check{
