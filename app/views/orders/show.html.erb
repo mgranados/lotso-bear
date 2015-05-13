@@ -32,7 +32,9 @@
 			<%= stock.price.entrance %>
 		</td>
 		<td>
-			<%= stock.supplier.name %>
+			<% unless stock.supplier.name.blank? %>
+				<%= stock.supplier.name %>
+			<% end %>
 		</td>
 		<td><%= link_to "Imprimir Etiquetas", label_stock_family_path(@order) %></td>
 	</tr>
