@@ -31,7 +31,7 @@ class OrdersController < ApplicationController
 
     families.each do |family_info|
       stock_family = StockFamily.create_stocks_from_generics(family_info[:id],family_info[:spares],family_info[:car_id])
-      stock_family.supplier_id = family_info[:stock_family_supplier]
+      stock_family.supplier_id = family_info[:stock_family_supplier].to_i
       stock_family.supplier_code = family_info[:supplier_code].to_i
         price = Price.new(entrance:family_info[:price])
       stock_family.price = price

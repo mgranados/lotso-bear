@@ -32,7 +32,7 @@
 			<%= stock.price.entrance %>
 		</td>
 		<td>
-			<% unless stock.supplier.name.blank? %>
+			<% unless stock.supplier.blank? %>
 				<%= stock.supplier.name %>
 			<% end %>
 		</td>
