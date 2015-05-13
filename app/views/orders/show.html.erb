@@ -29,7 +29,9 @@
 			<%= stock.quantity %>
 		</td>
 		<td>
-			<%= stock.price.entrance %>
+			<% unless stock.price.blank? %>
+				<%= stock.price.entrance %>
+			<% end %>
 		</td>
 		<td>
 			<% unless stock.supplier.blank? %>
