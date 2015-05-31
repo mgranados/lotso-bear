@@ -17,9 +17,9 @@ class StockFamiliesController < ApplicationController
   end
 
   def label
-     label_order = Order.find_by_id(params[:id])
-      @stock_families = label_order.stock_families
-        end
+    label_order = Order.find_by_id(params[:id])
+    @stock_families = label_order.stock_families
+  end
 
   def destroy
     StockFamily.find_by_id(params[:id]).destroy

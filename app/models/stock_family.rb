@@ -21,7 +21,7 @@ private
 # codigo del coche - codigo de la familia - id unico
   def create_code
     car = GenericCar.find_by_id(self.car_order_id)
-  	self.update(code: "#{car.code}-#{self.generic_family.code}-#{self.id}")
+  	self.update(code: "#{car.code}-#{self.generic_family.code}-#{self.id}-#{self.quantity}")
   end
 
 end
