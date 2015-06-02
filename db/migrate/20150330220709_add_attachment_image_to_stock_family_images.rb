@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class AddAttachmentImageToStockFamilyImages < ActiveRecord::Migration
   def self.up
 	change_table :stock_family_images do |t|

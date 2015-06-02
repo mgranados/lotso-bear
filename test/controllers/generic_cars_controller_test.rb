@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class GenericCarsControllerTest < ActionController::TestCase
 
   # test "should create generic_car" do

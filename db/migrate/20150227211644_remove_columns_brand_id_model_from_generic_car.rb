@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class RemoveColumnsBrandIdModelFromGenericCar < ActiveRecord::Migration
   def change
     remove_column :generic_cars, :brand_id

@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class CreateCarSpareAlloys < ActiveRecord::Migration
   def change
     create_table :car_spare_alloys do |t|

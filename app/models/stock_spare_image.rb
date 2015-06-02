@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class StockSpareImage < ActiveRecord::Base
   belongs_to :stock_spare, dependent: :destroy
 

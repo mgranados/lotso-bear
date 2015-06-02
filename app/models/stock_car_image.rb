@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class StockCarImage < ActiveRecord::Base
   belongs_to :stock_car, dependent: :destroy
 

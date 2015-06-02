@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class StockFamilyImage < ActiveRecord::Base
 	belongs_to :stock_family
 

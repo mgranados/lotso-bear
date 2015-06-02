@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class AddAttachmentImageToGenericCarImages < ActiveRecord::Migration
   def self.up
     change_table :generic_car_images do |t|

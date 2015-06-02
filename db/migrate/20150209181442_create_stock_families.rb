@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class CreateStockFamilies < ActiveRecord::Migration
   def change
     create_table :stock_families do |t|

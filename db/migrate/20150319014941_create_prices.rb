@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class CreatePrices < ActiveRecord::Migration
   def change
   	if !table_exists? :prices

@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class CreateModelAcronyms < ActiveRecord::Migration
   def change
     create_table :model_acronyms do |t|

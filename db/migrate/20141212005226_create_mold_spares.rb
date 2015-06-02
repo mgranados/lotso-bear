@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class CreateMoldSpares < ActiveRecord::Migration
   def change
     create_table :mold_spares do |t|

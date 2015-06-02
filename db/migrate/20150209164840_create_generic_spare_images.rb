@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class CreateGenericSpareImages < ActiveRecord::Migration
   def change
     create_table :generic_spare_images do |t|

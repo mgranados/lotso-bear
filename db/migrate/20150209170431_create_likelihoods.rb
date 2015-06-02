@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class CreateLikelihoods < ActiveRecord::Migration
   def change
     create_table :likelihoods do |t|

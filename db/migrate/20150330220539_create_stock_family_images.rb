@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class CreateStockFamilyImages < ActiveRecord::Migration
   def change
   	if !table_exists? :stock_family_images

@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class GenericCar < ActiveRecord::Base
   # //Associations//
   has_many :stock_cars

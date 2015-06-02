@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class Prevaluation < ActiveRecord::Base
   has_many :stock_cars
   has_many :insureds

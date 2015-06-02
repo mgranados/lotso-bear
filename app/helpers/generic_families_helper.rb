@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 module GenericFamiliesHelper
 
 	def build_spares_for_families(family, number)

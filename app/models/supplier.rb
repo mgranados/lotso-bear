@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class Supplier < ActiveRecord::Base
 	belongs_to :supplier_type
 	has_many :stock_families

@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class InventoriesController < ApplicationController
 
   def entrance
@@ -61,7 +62,7 @@ class InventoriesController < ApplicationController
     end
     if departure_stock.status.blank?
       departure_stock.update(status: params[:status]) 
-      flash[:success] = "Pieza registrada"
+      flash[:success] = "Pieza:  (#{departure_stock.code}, #{departure_stock.generic_family.name}) registrada"
       render departure_inventories_path
     elsif !departure_stock.status.blank?
       flash[:danger] = "La pieza ya había salido: Su estado es: #{departure_stock.status}"

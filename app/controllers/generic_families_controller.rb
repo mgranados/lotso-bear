@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class GenericFamiliesController < ApplicationController
   before_action :set_family, only: [:show, :destroy, :edit, :count_spares]
 
