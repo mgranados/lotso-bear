@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class CreateGenericCarImages < ActiveRecord::Migration
   def change
     create_table :generic_car_images do |t|

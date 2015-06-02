@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class ModelAcronymsController < ApplicationController
   before_action :set_model_acronym, only: [:show, :edit, :update, :destroy]
 

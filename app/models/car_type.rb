@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class CarType < ActiveRecord::Base
   has_many :generic_cars
 

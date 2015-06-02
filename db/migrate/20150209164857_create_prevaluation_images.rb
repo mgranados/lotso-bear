@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class CreatePrevaluationImages < ActiveRecord::Migration
   def change
     create_table :prevaluation_images do |t|

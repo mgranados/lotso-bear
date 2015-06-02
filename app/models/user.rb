@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class User < ActiveRecord::Base
       before_save { self.email = email.downcase }
       before_create :create_remember_token

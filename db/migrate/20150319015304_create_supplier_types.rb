@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class CreateSupplierTypes < ActiveRecord::Migration
   def change
   	if !table_exists? :supplier_types

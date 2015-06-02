@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class CreateOrderSuppliers < ActiveRecord::Migration
   def change
   	if !table_exists? :order_suppliers

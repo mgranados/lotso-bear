@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class GenericFamily < ActiveRecord::Base
 
   has_many :childs, class_name: 'GenericFamily', foreign_key: 'father_id'

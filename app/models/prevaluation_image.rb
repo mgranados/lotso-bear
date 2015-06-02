@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class PrevaluationImage < ActiveRecord::Base
   belongs_to :prevaluation, dependent: :destroy
 

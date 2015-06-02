@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class StockSpare < ActiveRecord::Base
   belongs_to :car
   belongs_to :warehouse

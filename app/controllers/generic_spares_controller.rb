@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class GenericSparesController < ApplicationController
 
 before_action :set_generic_spare, only: [:show, :edit, :destroy, :update]

@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class SparesController < ApplicationController
 
   def index

@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class GenericCarTest < ActiveSupport::TestCase
   require 'test_helper'
 

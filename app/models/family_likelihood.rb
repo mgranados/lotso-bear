@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class FamilyLikelihood < ActiveRecord::Base
   belongs_to :generic_family
   belongs_to :generic_car

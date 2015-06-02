@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 module ApplicationHelper
 #Metodo para el titulo
   def full_title(page_title)

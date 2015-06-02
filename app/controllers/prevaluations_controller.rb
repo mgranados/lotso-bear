@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class PrevaluationsController < ApplicationController
   def new
     @prevaluation = Prevaluation.new

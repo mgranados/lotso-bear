@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 require 'barby'
 require 'barby/barcode/code_128'
 require 'barby/outputter/html_outputter'

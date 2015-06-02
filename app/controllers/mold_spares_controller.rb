@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class MoldSparesController < ApplicationController
   before_action :set_mold_spare, only: [:show, :edit, :update, :destroy]
 

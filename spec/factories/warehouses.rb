@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 require 'faker'
 
 branches = ['Reforma 1201','Petrolera 2021','Centro 1293','Camino Real']

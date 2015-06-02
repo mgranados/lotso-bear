@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class GenericCarGeneration < ActiveRecord::Base
   belongs_to :generation
   belongs_to :generic_car

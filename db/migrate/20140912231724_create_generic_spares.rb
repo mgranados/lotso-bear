@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class CreateGenericSpares < ActiveRecord::Migration
   def change
     create_table :generic_spares do |t|

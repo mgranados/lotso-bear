@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 # # User.create!(name:"Administrador", email:"admin@admin.com",password:"admin", password_confirmation:"admin", username: "Administrador", privileges:"admin")
 # # User.create!(name:"Operador",email:"operador@operador.com",password:"operador", password_confirmation:"operador", username: "Operador", privileges:"operador")
 # # User.create!(name:"Capturista",email:"capturista@capturista.com",password:"capturista", password_confirmation:"capturista", username: "Capturista", privileges:"capturista")

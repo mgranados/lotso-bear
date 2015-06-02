@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class CreateFamilyLikelihood < ActiveRecord::Migration
   def change
     if !table_exists? :family_likelihoods

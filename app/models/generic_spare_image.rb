@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class GenericSpareImage < ActiveRecord::Base
   belongs_to :generic_spare, dependent: :destroy
 
