@@ -12,6 +12,8 @@ gem 'pundit'
 # Image Uploaders
 gem "paperclip", "~> 4.2"
 gem 'carrierwave'
+gem 'chunky_png'
+
 
 
 

@@ -18,16 +18,10 @@ class StockFamily < ActiveRecord::Base
   end
   
 private
-# codigo del coche - codigo de la familia - id unico
-  # def create_code
-  #   car = GenericCar.find_by_id(self.car_order_id)
-  # 	self.update(code: "#{car.code}-#{self.generic_family.code}-#{self.id}-#{self.quantity}")
-  # end
-
   def create_code
     car = GenericCar.find_by_id(self.car_order_id)
     current_number =  StockFamily.where(generic_family_id: self.generic_family_id).count
-    self.update(code: "#{car.code}-#{self.generic_family.code}-#{current_number}")
+    self.update(code: "#{car.code}#{self.generic_family.code}#{current_number}")
   end
 
 end
