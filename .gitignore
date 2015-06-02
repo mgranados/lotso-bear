@@ -15,6 +15,9 @@
 /log/*.log
 /tmp/*
 
+# Ignore barcode generated
+/app/assets/images/barcodes/*
+
 /.DS_Store
 
 # Ignore Documentation
