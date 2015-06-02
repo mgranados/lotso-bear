@@ -45,18 +45,19 @@ body {
   background-color: #e8e8e8;
   font-family     : 'source sans pro', sans-serif;
   min-height      : 700px;
+  margin: 0;
 }
 .background {
   background-image: url("../img/bground.png");
 }
-.navbar {
+/*.navbar {
   background-color: #454b55;
   border          : none;
   color           : #fff;
   font-size       : 15px;
   height          : 60px;
   text-transform  : uppercase;
-}
+}*/
 #panpri h1 {
   color         : #51a7fa;
   font-size     : 18px;
@@ -90,13 +91,13 @@ body {
 #basfor .form-control {
   width: 100%;
 }
-.navi-tab {
+/*.navi-tab {
   background-color: rgb(217, 219, 224);
 }
 .menu-dropped {
   background-color: #454b55;
-}
-.navbar-static-top {
+}*/
+/*.navbar-static-top {
   color        : #fff;
   margin-bottom: 19px;
 }
@@ -108,7 +109,7 @@ body {
 .navbar-inverse .navbar-nav>.open>a, .navbar-inverse .navbar-nav>.open>a:hover, .navbar-inverse .navbar-nav>.open>a:focus {
   background-color: #31353c;
   color           : #fff;
-}
+}*/
 .user-button {
   font-size  : 15px;
   font-weight: bold;
@@ -135,23 +136,37 @@ body {
 .centered{
     text-align: center;
 }
+/*.navbar-fixed-top {
+    min-height: 80px;
+}
 
+.navbar-nav > li > a {
+    padding-top: 0px;
+    padding-bottom: 0px;
+    line-height: 80px;
+}*/
 
 /* Small devices (tablets, 768px and up) */
 @media (min-width: 768px) {
-    ul.nav, ul.navbar {  font-size: 12px; }
+
+ul.nav, ul.navbar {
+  font-size: 11px;
+}
 
  }
 
 /* Medium devices (desktops, 992px and up) */
 @media (min-width: 992px) { 
 
-  ul.nav, ul.navbar {  font-size: 12px; }
+ul.nav, ul.navbar {
+  font-size: 11px;
+}
+
 }
 
 /* Large devices (large desktops, 1200px and up) */
 @media (min-width: 1200px) { 
-    ul.nav, ul.navbar {  font-size: 15px; }
+    ul.nav, ul.navbar {  font-size: 15px;}
 }
 
 
