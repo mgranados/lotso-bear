@@ -57,7 +57,7 @@ class GenericCar < ActiveRecord::Base
 
   # //Functions//
   def code
-    "#{model_acronym.brand.acronym}-#{number_of_generation.split(//).first}-#{model_acronym.initials}"
+    "#{model_acronym.brand.acronym}#{number_of_generation.split(//).first}#{model_acronym.initials}"
   end
 
   def find_model

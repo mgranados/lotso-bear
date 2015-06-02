@@ -3,6 +3,9 @@ require 'barby'
 require 'barby/barcode/code_128'
 require 'barby/outputter/html_outputter'
 require 'barby/outputter/ascii_outputter'
+require 'chunky_png'
+
+require 'barby/outputter/png_outputter'
 
 class StockFamiliesController < ApplicationController
   before_action :set_family, only: [:show, :label]

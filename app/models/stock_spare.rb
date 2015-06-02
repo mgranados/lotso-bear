@@ -13,7 +13,7 @@ class StockSpare < ActiveRecord::Base
  def create_code
 	car = GenericCar.find_by_id(self.stock_family.car_order_id)
 	current_number =  StockSpare.where(generic_spare_id: self.generic_spare_id).count
-	self.update(code: "#{car.code}-#{self.generic_spare.code}-#{current_number}")
+	self.update(code: "#{car.code}#{self.generic_spare.code}#{current_number}")
  end
  
 end

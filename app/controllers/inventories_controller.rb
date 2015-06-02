@@ -51,22 +51,23 @@ class InventoriesController < ApplicationController
   end
 
   def departure_stock_family
-
-    departure_stock = StockFamily.find_by_code(params[:code])
-
-    if StockFamily.exists?(code: params[:code]) && departure_stock.status.blank?
+    if StockFamily.exists?(code: params[:code]) 
+      departure_stock = StockFamily.find_by_code(params[:code])
+    elsif StockSpare.exists?(code: params[:code]) 
+      departure_stock = StockSpare.find_by_code(params[:code])
+    else
+      flash[:danger] = "No se puede encontrar pieza con ese código"
+      render departure_inventories_path
+      return 0
+    end
+    if departure_stock.status.blank?
       departure_stock.update(status: params[:status]) 
       flash[:success] = "Pieza registrada"
       render departure_inventories_path
     elsif !departure_stock.status.blank?
       flash[:danger] = "La pieza ya había salido: Su estado es: #{departure_stock.status}"
       render departure_inventories_path
-    else
-      flash[:danger] = "No se puede encontrar pieza con ese código"
-      render departure_inventories_path
     end
-
-
   end
 	
 
