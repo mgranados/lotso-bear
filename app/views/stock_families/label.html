@@ -1,39 +1,14 @@
-<%require 'barby'
-require 'barby/barcode/code_128'
-require 'barby/outputter/html_outputter'
-require 'barby/outputter/ascii_outputter'
-require 'chunky_png'
-%>
-
-
 <% @stock_families.each do |stock_family| %>
 	<div class="label_print" >
-	<h1 class="label_title"><%= stock_family.generic_family.name %></h1>
-	<h1 class="label_title"><%= stock_family.code %></h1>
-
-	<% barcode = Barby::Code128B.new(stock_family.code) %> 
-    <% blob = Barby::PngOutputter.new(barcode).to_png %>
-
-    <% File.open("app/assets/images/barcodes/families/#{stock_family.id}.png", 'w'){|f| f.write blob } %>
-
-	<%= image_tag("barcodes/families/#{stock_family.id}.png") %>
-
-	<% raw barcode.to_html(:class_name => 'stock-barcode') %>
-
+		<h1 class="label_title"><%= stock_family.generic_family.name %></h1>
+		<h1 class="label_title"><%= stock_family.code %></h1>
+		<%= image_tag("barcodes/families/#{stock_family.id}.png", class: "barcode") %>
 	</div>
-
 	<% stock_family.stock_spares.each do |spare| %>
 	<br>
 	<div class="label_print" >
 		<h1 class="label_title"><%= spare.generic_spare.name %></h1>
-
 		<h1 class="label_title"><%= spare.code %></h1>
-
-	   	<%  barcode = Barby::Code128B.new(spare.code) %>
-    	<% blob = Barby::PngOutputter.new(barcode).to_png %>
-
-		<% File.open("app/assets/images/barcodes/spares/#{spare.id}.png", 'w'){|f| f.write blob } %>
-
 		<%= image_tag("barcodes/spares/#{spare.id}.png") %>
 	</div>
 	<% end %>

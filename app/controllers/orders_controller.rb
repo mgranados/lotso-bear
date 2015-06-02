@@ -1,3 +1,11 @@
+require 'barby'
+require 'barby/barcode/code_128'
+require 'barby/outputter/html_outputter'
+require 'barby/outputter/ascii_outputter'
+require 'chunky_png'
+require "prawn/measurement_extensions"
+require 'barby/outputter/png_outputter'
+
 class OrdersController < ApplicationController
   before_action :set_order, only: [:show, :edit, :update, :destroy]
 
@@ -77,6 +85,67 @@ class OrdersController < ApplicationController
         format.json { render json: @order.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+ def labels
+    label_order = Order.find_by_id(params[:id])
+    labels = Array.new
+    @stock_families = label_order.stock_families
+    @stock_families.each do |stock_family|
+      barcode = Barby::Code128B.new(stock_family.code) 
+      blob = Barby::PngOutputter.new(barcode).to_png(height: 40) 
+      File.open("app/assets/images/barcodes/families/#{stock_family.id}.png", 'w'){|f| f.write blob }
+      labels << {:png => "app/assets/images/barcodes/families/#{stock_family.id}.png", :model => stock_family.generic_family.generic_cars.first.model_acronym.model, :name => stock_family.generic_family.name.upcase, :code => stock_family.code}
+      stock_family.stock_spares.each do |spare|
+        barcode = Barby::Code128B.new(spare.code)
+        blob = Barby::PngOutputter.new(barcode).to_png(height: 40)
+        File.open("app/assets/images/barcodes/spares/#{spare.id}.png", 'w'){|f| f.write blob }
+              labels << {:png => "app/assets/images/barcodes/spares/#{spare.id}.png", :model => stock_family.generic_family.generic_cars.first.model_acronym.model,:name => spare.generic_spare.name.titleize, :code => spare.code}
+      end
+
+      Prawn::Document.generate("app/assets/pdf/barcodes.pdf", top_margin: 2.15.send(:cm), right_margin: 0.79.send(:cm), bottom_margin: 1.7.send(:cm), left_margin:  0.62.send(:cm) )do
+    # Prawn::Document.generate("app/assets/pdf/barcodes.pdf", margin: [2.11.send(:cm),0.79.send(:cm),1.45.send(:cm),0.62.send(:cm)]) do
+      y_axis = 680
+      number_labels = 0
+      labels.each do |label|
+        if number_labels%2 == 0
+          bounding_box([20,y_axis], :width => 240, :height => 95) do
+            image label[:png], :at => [50, 80]
+            move_down 10
+            text "#{label[:model]}  #{label[:name]}",:align => :center
+            move_down 50
+            text "#{label[:code]}-#{label_order.entrance_date.strftime("%m/%Y")}",:align => :center
+
+            stroke_bounds
+          end
+        else
+          bounding_box([315,y_axis], :width => 240, :height => 95) do
+            image label[:png], :at => [50, 80]
+            move_down 10
+            text "#{label[:model]}  #{label[:name]}",:align => :center
+            move_down 50
+            text "#{label[:code]}-#{label_order.entrance_date.strftime("%m/%Y")}",:align => :center
+            stroke_bounds
+          end
+        end
+
+        if number_labels == 13
+         number_labels = 0
+         y_axis=680
+         start_new_page
+        else
+          if number_labels%2 != 0
+            y_axis-=95
+          end
+          number_labels+=1
+        end
+      end
+ 
+    end
+    end 
+
+    file = open("app/assets/pdf/barcodes.pdf")
+    send_file(file, :filename => "implicit.pdf", :type => "application/pdf" , :disposition =>      "inline")
   end
 
   # DELETE /orders/1

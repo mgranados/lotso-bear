@@ -9,6 +9,8 @@
   <strong>Sucursal:</strong>
   <%= @order.warehouse_id %>
 </p> -->
+
+<%= link_to "Imprimir Etiquetas", labels_order_path(@order), :target => "_blank" %>
 <table class="table">
 <thead>
 	<th>Nombre</th>
@@ -38,7 +40,7 @@
 				<%= stock.supplier.name %>
 			<% end %>
 		</td>
-		<td><%= link_to "Imprimir Etiquetas", label_stock_family_path(@order) %></td>
+		<td></td>
 	</tr>
 	<tr>
 		<td></td>

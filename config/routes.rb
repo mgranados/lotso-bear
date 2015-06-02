@@ -4,7 +4,6 @@ LotsoBear::Application.routes.draw do
 
   root 'sessions#new'
   resources :model_acronyms
-  resources :orders
   resources :brands
   resources :mold_spares
   resources :sessions, only: [:new, :create, :destroy]
@@ -18,6 +17,13 @@ LotsoBear::Application.routes.draw do
       get :label
     end
   end
+
+  resources :orders do
+    member do
+      get :labels
+    end
+  end
+
 
   resources :generic_families, only: [:index, :new, :create, :show, :destroy, :edit] do
     collection do

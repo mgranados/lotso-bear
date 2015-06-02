@@ -15,7 +15,8 @@ gem 'carrierwave'
 gem 'chunky_png'
 
 
-
+#PDF Generator
+gem 'prawn'
 
 gem "cocoon"
 gem 'jquery-rails'

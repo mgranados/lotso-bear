@@ -116,8 +116,12 @@ GEM
       activesupport (>= 3.0.0)
       cocaine (~> 0.5.3)
       mime-types
+    pdf-core (0.5.1)
     pg (0.15.1)
     polyglot (0.3.5)
+    prawn (2.0.1)
+      pdf-core (~> 0.5.1)
+      ttfunk (~> 1.4.0)
     puma (2.11.1)
       rack (>= 1.1, < 2.0)
     pundit (1.0.0)
@@ -201,6 +205,7 @@ GEM
     treetop (1.4.15)
       polyglot
       polyglot (>= 0.3.1)
+    ttfunk (1.4.0)
     turbolinks (2.5.3)
       coffee-rails
     twitter-bootstrap-rails (2.2.8)
@@ -240,6 +245,7 @@ DEPENDENCIES
   nilify_blanks
   paperclip (~> 4.2)
   pg (= 0.15.1)
+  prawn
   puma (= 2.11.1)
   pundit
   railroady
