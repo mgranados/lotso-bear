@@ -1,6 +1,10 @@
 # -*- encoding : utf-8 -*-
 LotsoBear::Application.routes.draw do
 
+  resources :subsections
+
+  resources :sections
+
   resources :suppliers
 
   root 'sessions#new'

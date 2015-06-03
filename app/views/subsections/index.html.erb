@@ -1,0 +1,29 @@
+<h1>Listing subsections</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Code</th>
+      <th>Section</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @subsections.each do |subsection| %>
+      <tr>
+        <td><%= subsection.code %></td>
+        <td><%= subsection.section_id %></td>
+        <td><%= link_to 'Show', subsection %></td>
+        <td><%= link_to 'Edit', edit_subsection_path(subsection) %></td>
+        <td><%= link_to 'Destroy', subsection, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Subsection', new_subsection_path %>

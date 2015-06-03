@@ -1,0 +1,25 @@
+<%= form_for(@subsection) do |f| %>
+  <% if @subsection.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@subsection.errors.count, "error") %> prohibited this subsection from being saved:</h2>
+
+      <ul>
+      <% @subsection.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :code %><br>
+    <%= f.text_field :code %>
+  </div>
+  <div class="field">
+    <%= f.label :section_id %><br>
+    <%= f.number_field :section_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
