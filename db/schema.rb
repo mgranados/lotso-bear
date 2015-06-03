@@ -155,6 +155,11 @@ ActiveRecord::Schema.define(version: 20150603061657) do
     t.datetime "updated_at"
   end
 
+  create_table "orders_suppliers", id: false, force: true do |t|
+    t.integer "order_id",    null: false
+    t.integer "supplier_id", null: false
+  end
+
   create_table "prevaluation_images", force: true do |t|
     t.string   "prevaluation_id"
     t.datetime "created_at"
@@ -240,6 +245,10 @@ ActiveRecord::Schema.define(version: 20150603061657) do
   create_table "stock_family_images", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
     t.integer  "stock_family_id"
   end
 
