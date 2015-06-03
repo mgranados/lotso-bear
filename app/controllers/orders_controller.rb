@@ -96,23 +96,28 @@ class OrdersController < ApplicationController
 
     stock_families_to_print = Array.new()
     
-    stock_families_id_to_print.each do |stid|
-      stock_families_to_print << StockFamily.find_by_id(stid)
-    end
+    if !stock_families_id_to_print.blank?
+      stock_families_id_to_print.each do |stid|
+        stock_families_to_print << StockFamily.find_by_id(stid)
+      end
 
-    spares_id_to_print = params[:spares_to_print]
-
-    spares_to_print = Array.new()
-    
-    spares_id_to_print.each do |spid|
-      spares_to_print << StockSpare.find_by_id(spid)
-    end
 
      stock_families_to_print.each do |stock_family|
         barcode = Barby::Code128B.new(stock_family.code) 
         blob = Barby::PngOutputter.new(barcode).to_png(height: 40) 
         File.open("app/assets/images/barcodes/families/#{stock_family.id}.png", 'w'){|f| f.write blob }
         labels << {:png => "app/assets/images/barcodes/families/#{stock_family.id}.png", :model => stock_family.generic_family.generic_cars.first.model_acronym.model, :name => stock_family.generic_family.name.upcase, :code => stock_family.code}
+      end
+
+    end
+
+    spares_id_to_print = params[:spares_to_print]
+
+    spares_to_print = Array.new()
+    
+    if !spares_id_to_print.blank?
+      spares_id_to_print.each do |spid|
+        spares_to_print << StockSpare.find_by_id(spid)
       end
 
     #get spares
@@ -122,6 +127,9 @@ class OrdersController < ApplicationController
         File.open("app/assets/images/barcodes/spares/#{spare.id}.png", 'w'){|f| f.write blob }
               labels << {:png => "app/assets/images/barcodes/spares/#{spare.id}.png", :model => spare.generic_spare.generic_families.first.generic_cars.first.model_acronym.model,:name => spare.generic_spare.name.titleize, :code => spare.code}
       end
+
+    end
+
 
 
    
