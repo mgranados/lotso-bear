@@ -1,4 +1,3 @@
-<p id="notice"><%= notice %></p>
 
 <p>
   <strong>Codigo:</strong>
@@ -15,6 +14,7 @@
   <%= @subsection.code %>
 </p>
 
+<%= link_to 'Imprimir Etiqueta', print_label_warehouse_section_subsection_path(@subsection.section.warehouse,@subsection.section, @subsection) %>
 
 
 <%= link_to 'Edit', edit_subsection_path(@subsection) %> |

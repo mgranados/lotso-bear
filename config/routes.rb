@@ -23,7 +23,12 @@ LotsoBear::Application.routes.draw do
 
   resources :warehouses do
     resources :sections do
-      resources :subsections
+
+      resources :subsections do
+        member do
+          get :print_label
+        end
+      end
     end
   end
 

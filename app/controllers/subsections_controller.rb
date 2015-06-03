@@ -1,3 +1,10 @@
+require 'barby'
+require 'barby/barcode/code_128'
+require 'barby/outputter/html_outputter'
+require 'barby/outputter/ascii_outputter'
+require 'chunky_png'
+require "prawn/measurement_extensions"
+require 'barby/outputter/png_outputter'
 class SubsectionsController < ApplicationController
   before_action :set_subsection, only: [:show, :edit, :update, :destroy]
 
@@ -6,6 +13,27 @@ class SubsectionsController < ApplicationController
   def index
     @subsections = Subsection.all
   end
+
+  def print_label
+    section = Subsection.find_by_id(params[:id])
+    barcode = Barby::Code128B.new(section.code) 
+    blob = Barby::PngOutputter.new(barcode).to_png(height: 40) 
+    File.open("app/assets/images/barcodes/subsections/#{section.id}.png", 'w'){|f| f.write blob }
+    label = {:png => "app/assets/images/barcodes/subsections/#{section.id}.png", :code => section.code}
+   
+    Prawn::Document.generate("app/assets/pdf/barcodes_section.pdf", top_margin: 2.15.send(:cm), right_margin: 0.79.send(:cm), bottom_margin: 1.7.send(:cm), left_margin:  0.62.send(:cm) )do
+      y_axis = 680
+      bounding_box([20,y_axis], :width => 240, :height => 95) do
+        image label[:png], :at => [35, 80]
+        move_down 10
+        text "#{label[:code]}",:align => :center
+      end
+    end
+
+      file = open("app/assets/pdf/barcodes_section.pdf")
+      send_file(file, :filename => "barcodes_section.pdf", :type => "application/pdf" , :disposition =>      "inline")
+  end
+
 
   # GET /subsections/1
   # GET /subsections/1.json
