@@ -9,58 +9,64 @@
   <strong>Sucursal:</strong>
   <%= @order.warehouse_id %>
 </p> -->
+<%= form_tag labels_order_path(@order), :target => "_blank" do %>
+<%= submit_tag "Imprimir Etiquetas", class:"btn btn-large btn-success"   %>
+	<table class="table">
+		<thead>
+			<th>Nombre</th>
+			<th>Código</th>
+			<th>Cantidad</th>
+			<th>Precio</th>
+			<th>Supplier</th>
+			<th>Imprimible</th>
+			<th>Acciones</th>
+		</thead>
+		<tbody>
+			<% @order.stock_families.each do |stock| %>
+			<tr>
+				<td>
+					<%= stock.generic_family.name %>
+				</td>
+				<td><%= stock.code %></td>		
+				<td>
+					<%= stock.quantity %>
+				</td>
+				<td>
+					<% unless stock.price.blank? %>
+						<%= stock.price.entrance %>
+					<% end %>
+				</td>
+				<td>
+					<% unless stock.supplier.blank? %>
+						<%= stock.supplier.name %>
+					<% end %>
+				</td>
+				<td><%= check_box_tag "ids_to_print[]", stock.id, true %>
+				<%= label_tag(:printable, "Imprimir etiqueta") %></td>
+				<td><%= link_to("Editar", edit_stock_family_url(stock)) %></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td><strong>Nombre</strong></td>
+				<td><strong>Código</strong></td>
+			</tr>
+			<% stock.stock_spares.each do |spare| %>
+			<tr>
+				<td></td>
+				<td>
+				<%= spare.generic_spare.name %>
+				</td>
+				<td><%= spare.code %></td>
+				<td></td>
+				<td></td>
+				<td><%= check_box_tag "spares_to_print[]" , spare.id, true %>
+				<%= label_tag(:printable, "Imprimir etiqueta") %></td>
+				<td><%= link_to("Editar", edit_stock_spare_path(spare)) %></td>
 
-<%= link_to "Imprimir Etiquetas", labels_order_path(@order), :target => "_blank" %>
-<table class="table">
-<thead>
-	<th>Nombre</th>
-	<th>Codigo</th>
-	<th>Cantidad</th>
-	<th>Precio</th>
-	<th>Supplier</th>
-	<th></th>
-</thead>
-<tbody>
-	<% @order.stock_families.each do |stock| %>
-	<tr>
-		<td>
-			<%= stock.generic_family.name %>
-		</td>
-		<td><%= stock.code %></td>		
-		<td>
-			<%= stock.quantity %>
-		</td>
-		<td>
-			<% unless stock.price.blank? %>
-				<%= stock.price.entrance %>
+			</tr>
 			<% end %>
-		</td>
-		<td>
-			<% unless stock.supplier.blank? %>
-				<%= stock.supplier.name %>
 			<% end %>
-		</td>
-		<td></td>
-	</tr>
-	<tr>
-		<td></td>
-		<td><strong>Nombre</strong></td>
-		<td><strong>Codigo</strong></td>
-	</tr>
-	<% stock.stock_spares.each do |spare| %>
-	<tr>
-		<td></td>
-		<td>g
-		<%= spare.generic_spare.name %>
-		</td>
-		<td><%= spare.code %></td>
-		<td></td>
-		<td></td>
-		<td></td>
-	</tr>
-	<% end %>
-	<% end %>
-</tbody>
-</table>
-
+		</tbody>
+	</table>
+<% end %>
 <%= link_to 'Atras', orders_path %>

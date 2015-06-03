@@ -3,6 +3,7 @@ LotsoBear::Application.routes.draw do
 
  
 
+  get "stock_spares/edit"
   resources :subsections
 
   resources :sections
@@ -10,6 +11,7 @@ LotsoBear::Application.routes.draw do
   resources :suppliers
 
   root 'sessions#new'
+
   resources :model_acronyms
   resources :brands
   resources :mold_spares
@@ -32,9 +34,11 @@ LotsoBear::Application.routes.draw do
     end
   end
 
+  resources :stock_spares, only: [:edit,:show,:update]
+  
   resources :orders do
     member do
-      get :labels
+      post :labels
     end
   end
 

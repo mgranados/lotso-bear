@@ -4,6 +4,10 @@ class StockFamily < ActiveRecord::Base
   belongs_to :price
   belongs_to :supplier
   belongs_to :order
+  
+  has_attached_file :photo
+  validates_attachment_content_type :photo, :content_type => /\Aimage\/.*\Z/
+
   has_many :stock_family_images
   has_many :stock_spares
 

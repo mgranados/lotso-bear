@@ -11,7 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20150603202952) do
+=======
+ActiveRecord::Schema.define(version: 20150603195323) do
+>>>>>>> 46f89032722e62c451697ce912c92c83ea2edf17
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -155,6 +159,11 @@ ActiveRecord::Schema.define(version: 20150603202952) do
     t.datetime "updated_at"
   end
 
+  create_table "orders_suppliers", id: false, force: true do |t|
+    t.integer "order_id",    null: false
+    t.integer "supplier_id", null: false
+  end
+
   create_table "prevaluation_images", force: true do |t|
     t.string   "prevaluation_id"
     t.datetime "created_at"
@@ -235,8 +244,15 @@ ActiveRecord::Schema.define(version: 20150603202952) do
     t.integer  "supplier_code"
     t.integer  "quantity"
     t.integer  "car_order_id"
+<<<<<<< HEAD
     t.string   "subsection_id_integer"
     t.integer  "subsection_id"
+=======
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+    t.datetime "photo_updated_at"
+>>>>>>> 46f89032722e62c451697ce912c92c83ea2edf17
   end
 
   create_table "stock_family_images", force: true do |t|
@@ -267,7 +283,14 @@ ActiveRecord::Schema.define(version: 20150603202952) do
     t.datetime "updated_at"
     t.integer  "stock_family_id"
     t.string   "supplier_code"
+<<<<<<< HEAD
     t.integer  "subsection_id"
+=======
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+    t.datetime "photo_updated_at"
+>>>>>>> 46f89032722e62c451697ce912c92c83ea2edf17
   end
 
   create_table "subsections", force: true do |t|
