@@ -3,6 +3,8 @@
 <table>
   <thead>
     <tr>
+      <th>Sucursal</th>
+      <th>Locación</th>
       <th></th>
       <th></th>
       <th></th>
@@ -12,7 +14,9 @@
   <tbody>
     <% @warehouses.each do |warehouse| %>
       <tr>
-        <td><%= link_to 'Show', warehouse %></td>
+        <td><%= warehouse.branch %></td>
+        <td><%= warehouse.location %></td>
+        <td><%= link_to 'Mostrar', warehouse %></td>
         <td><%= link_to 'Edit', edit_warehouse_path(warehouse) %></td>
         <td><%= link_to 'Destroy', warehouse, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
