@@ -1,4 +1,3 @@
-<p id="notice"><%= notice %></p>
 
 <p>
   <strong>Code:</strong>
@@ -7,13 +6,36 @@
 
 <p>
   <strong>Warehouse:</strong>
-  <%= @section.warehouse_id %>
+  <%= @section.warehouse.branch %>
 </p>
 
 <p>
   <strong>Name:</strong>
   <%= @section.name %>
 </p>
+
+<h2>Subsecciones</h2>
+
+<table class="table">
+	<thead>
+		<th>Codigo</th>
+		<th>Descripción</th>
+		<th>Familias</th>
+		<th></th>
+	</thead>
+	<tbody>
+	<% @section.subsections.each do |subsection| %>
+		<tr>
+			<td><%= subsection.code %></td>
+			<td><%= subsection.name %></td>
+			<td><%= subsection.stock_families.count %></td>
+			<td><%= link_to "Mostrar", subsection %></td>
+		</tr>
+	<% end -%>
+	</tbody>
+</table>
+
+<%= link_to 'Nueva Sub-sección', new_warehouse_section_subsection_path(@section.warehouse,@section) %>
 
 <%= link_to 'Edit', edit_section_path(@section) %> |
 <%= link_to 'Back', sections_path %>

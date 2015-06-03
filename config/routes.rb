@@ -69,6 +69,9 @@ LotsoBear::Application.routes.draw do
     end
 
     collection do
+      get :acomodate
+      post :save_store_stocks
+      post :store_stocks
       get :departure
       get :receive_order
       get :all

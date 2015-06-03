@@ -15,6 +15,8 @@ class SubsectionsController < ApplicationController
   # GET /subsections/new
   def new
     @subsection = Subsection.new
+    @warehouse = Warehouse.find_by_id(params[:warehouse_id])
+    @section = Section.find_by_id(params[:section_id])
   end
 
   # GET /subsections/1/edit
@@ -25,6 +27,7 @@ class SubsectionsController < ApplicationController
   # POST /subsections.json
   def create
     @subsection = Subsection.new(subsection_params)
+    @subsection.section_id = params[:section_id]
 
     respond_to do |format|
       if @subsection.save
@@ -69,6 +72,6 @@ class SubsectionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def subsection_params
-      params.require(:subsection).permit(:code, :section_id, :name)
+      params.require(:subsection).permit(:code, :name, :section_id)
     end
 end

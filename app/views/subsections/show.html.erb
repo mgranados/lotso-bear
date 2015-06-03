@@ -1,19 +1,21 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Code:</strong>
+  <strong>Codigo:</strong>
   <%= @subsection.code %>
 </p>
 
 <p>
-  <strong>Section:</strong>
-  <%= @subsection.section_id %>
+  <strong>Nombre:</strong>
+  <%= @subsection.name %>
 </p>
 
 <p>
-  <strong>Name:</strong>
-  <%= @subsection.name %>
+  <strong>Sección:</strong>
+  <%= @subsection.code %>
 </p>
+
+
 
 <%= link_to 'Edit', edit_subsection_path(@subsection) %> |
 <%= link_to 'Back', subsections_path %>

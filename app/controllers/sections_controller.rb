@@ -15,6 +15,7 @@ class SectionsController < ApplicationController
   # GET /sections/new
   def new
     @section = Section.new
+    @warehouse = Warehouse.find_by_id(params[:warehouse_id])
   end
 
   # GET /sections/1/edit
@@ -25,10 +26,11 @@ class SectionsController < ApplicationController
   # POST /sections.json
   def create
     @section = Section.new(section_params)
+    @section.warehouse_id = params[:warehouse_id]
 
     respond_to do |format|
       if @section.save
-        format.html { redirect_to @section, notice: 'Section was successfully created.' }
+        format.html { redirect_to @section, notice: 'Sección Creada con Exito' }
         format.json { render action: 'show', status: :created, location: @section }
       else
         format.html { render action: 'new' }

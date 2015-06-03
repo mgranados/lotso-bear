@@ -12,6 +12,36 @@ class InventoriesController < ApplicationController
   def index
   end
 
+  def acomodate
+  end
+
+  def save_store_stocks
+    if StockFamily.exists?(code: params[:code]) 
+      stock = StockFamily.find_by_code(params[:code])
+    elsif StockSpare.exists?(code: params[:code]) 
+      stock = StockSpare.find_by_code(params[:code])
+    else
+      flash[:danger] = "No se puede encontrar pieza con ese código"
+      render acomodate_inventories_path
+      return 0
+    end
+
+    if stock.update(subsection_id: Subsection.find_by_code(params[:section_code]).id)
+      flash[:success] = "Agregado Al rack con Exito"
+    end
+    render acomodate_inventories_path
+
+  end
+
+  def store_stocks
+    @subsection = Subsection.find_by_code(params[:section_code])
+
+    if @subsection.blank?
+      flash[:danger] = "No existe esa seccion"
+      render acomodate_inventories_path
+    end
+  end
+
   def add_family_with_spares_to_order
     @generic_family = GenericFamily.find_by_id(params[:family_id])
     @generic_car = GenericCar.find_by_id(params[:car_id])

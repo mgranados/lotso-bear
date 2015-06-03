@@ -1,0 +1,33 @@
+<h2>Codigo:<%= @subsection.code %></h2>
+
+<h2>Nombre: <%= @subsection.name %></h2>
+
+
+<%= form_tag(save_store_stocks_inventories_path) do  %>
+  <p>
+  	<%= hidden_field_tag :section_code, @subsection.code %>
+    <%= text_field_tag :code %>
+    <%= submit_tag "Insertar al Rack", :name => nil %>
+  </p>
+<% end %>
+
+
+<div class="stored_stocks">
+<table class="table">
+<thead>
+	<th>Nombre</th>
+	<th>Codigo</th>
+	<th>Cantidad</th>
+</thead>
+  <tbody>
+    <% @subsection.stock_families.each do |stock_family| %>
+      <tr>
+        <td><%= stock_family.generic_family.name %></td>
+        <td><%= stock_family.code %></td>
+        <td><%= stock_family.quantity %></td>
+      </tr>
+      <% end %>
+  </tbody>
+</table>
+	
+</div>

@@ -3,20 +3,31 @@
 
 <p>Lugar: <%= @warehouse.location%></p>
 
-<%= @warehouse.sections.each do |section| %>
+<% @warehouse.sections.each do |section| %>
 	
 <% end %>
 
 <h2> Secciones </h2>
 
-<table>
+<table class="table">
 	<thead>
 		<th>Codigo</th>
 		<th>Descripción</th>
-		<th>Piezas</th>
+		<th>Sub-secciones</th>
+		<th></th>
 	</thead>
+	<tbody>
+	<% @warehouse.sections.each do |section| %>
+		<tr>
+			<td><%= section.code %></td>
+			<td><%= section.name %></td>
+			<td><%= section.subsections.count %></td>
+			<td><%= link_to "Mostrar", section %></td>
+		</tr>
+	<% end -%>
+	</tbody>
 </table>
-<%= link_to 'Nueva Sección' %>
+<%= link_to 'Nueva Sección', new_warehouse_section_path(@warehouse) %>
 
 
 
