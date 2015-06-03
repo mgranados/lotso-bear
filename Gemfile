@@ -11,7 +11,6 @@ gem 'pundit'
 
 # Image Uploaders
 gem "paperclip", "~> 4.2"
-gem 'carrierwave'
 gem 'chunky_png'
 
 
@@ -47,6 +46,7 @@ gem 'barby'
 
   gem 'pg', '0.15.1'
 
+  gem 'passenger'
 
 group :development, :test do
   gem 'railroady'
@@ -59,7 +59,6 @@ group :development, :test do
 end
 
 group :production do
-  gem 'passenger'
  # gem 'puma', '2.11.1'
   gem 'rails_12factor', '0.0.2'
 end
