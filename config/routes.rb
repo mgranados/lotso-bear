@@ -1,6 +1,8 @@
 # -*- encoding : utf-8 -*-
 LotsoBear::Application.routes.draw do
 
+  get "warehouse/index"
+  get "warehouse/show"
   resources :suppliers
 
   root 'sessions#new'
@@ -51,10 +53,10 @@ LotsoBear::Application.routes.draw do
 
 
   resources :inventories do
+
     member do
       get :add_family_with_spares_to_order
     end
-
 
     collection do
       get :departure
@@ -65,29 +67,8 @@ LotsoBear::Application.routes.draw do
       post :departure_stock_family
       resources :stock_families, only: [:create]
     end
+
   end
-
-
-  # match '/login',              to: 'sessions#new',        via: 'get'
-  # match '/admin',              to: 'branches#admin',      via: 'get'
-  # match '/gerente',            to: 'branches#manager',    via: 'get'
-  # match '/ajustador',          to: 'branches#adjuster',   via: 'get'
-  # match '/operador',           to: 'branches#operative',  via: 'get'
-  # match '/capturista',         to: 'branches#capturist',  via: 'get'
-  # match '/proceso',            to: 'branches#process',    via: 'get'
-  # match '/almacen',            to: 'branches#warehouse',  via: 'get'
-  # match '/consultar',            to: 'client_actions#home', via: 'get'
-  # match '/c/show',               to: 'client_actions#show', via: 'get'
-  # match '/reports',              to: 'reports#index', via: 'get'
-  # match '/reports/repair',       to: 'reports#repair', via: 'get'
-  # match '/reports/insurance',    to: 'reports#insurance', via: 'get'
-  # match '/reports/cars',         to: 'reports#cars', via: 'get'
-  # match '/roster',              to: 'roster#index', via: 'get'
-  # match '/roster/employeePerformance', to: 'roster#employeePerformance', via: 'get'
-  # match '/roster/attendance',          to: 'roster#attendance', via: 'get'
-  # match '/invoices',            to: 'invoices#home', via: 'get'
-  # match '/signin',  to: 'sessions#new',         via: 'get'
-  # match '/signout', to: 'sessions#destroy',     via: 'delete'
 
 
   match '/new_generic_spare_from_template', to: 'generic_spares#template', via: 'get'
@@ -98,13 +79,16 @@ LotsoBear::Application.routes.draw do
   match '/busqueda', to: 'generic_cars#search',  via: 'get'
   match '/new_pre_valuations', to: 'prevaluations#new',   via: 'get'
   match '/login',              to: 'sessions#new',        via: 'get'
-  match '/admin',              to: 'branches#admin',      via: 'get'
-  match '/gerente',            to: 'branches#manager',    via: 'get'
-  match '/ajustador',          to: 'branches#adjuster',   via: 'get'
-  match '/operador',           to: 'branches#operative',  via: 'get'
-  match '/capturista',         to: 'branches#capturist',  via: 'get'
-  match '/proceso',            to: 'branches#process',    via: 'get'
-  match '/almacen',            to: 'branches#warehouse',  via: 'get'
+  # match '/admin',              to: 'branches#admin',      via: 'get'
+  # match '/gerente',            to: 'branches#manager',    via: 'get'
+  # match '/ajustador',          to: 'branches#adjuster',   via: 'get'
+  # match '/operador',           to: 'branches#operative',  via: 'get'
+  # match '/capturista',         to: 'branches#capturist',  via: 'get'
+  # match '/proceso',            to: 'branches#process',    via: 'get'
+  # match '/almacen',            to: 'branches#warehouse',  via: 'get'
+  match '/places',            to: 'warehouses#index',     via: 'get'
+
+
 
   match '/count_spares/:id', to:"generic_families#count_spares", via: 'get'
 
@@ -123,7 +107,6 @@ LotsoBear::Application.routes.draw do
   match '/invoices',            to: 'invoices#home', via: 'get'
 
   match '/nuevaTemplate',            to: 'generic_spares#newtemplate', via: 'get'
-
 
   # Route to a funciton that relates families to generic cars
   get '/relate_generic_family_to_generic_car/:id', to: 'generic_cars#relate_generic_family_to_generic_car', as: 'relate_generic_family_to_generic_car'
