@@ -7,6 +7,8 @@ class StockFamily < ActiveRecord::Base
   has_many :stock_family_images
   has_many :stock_spares
 
+  belogns_to :subsection
+
   after_create :create_code
 
   def self.available

@@ -4,7 +4,8 @@ describe "sections/new" do
   before(:each) do
     assign(:section, stub_model(Section,
       :code => "MyString",
-      :warehouse_id => 1
+      :warehouse_id => 1,
+      :name => "MyString"
     ).as_new_record)
   end
 
@@ -15,6 +16,7 @@ describe "sections/new" do
     assert_select "form[action=?][method=?]", sections_path, "post" do
       assert_select "input#section_code[name=?]", "section[code]"
       assert_select "input#section_warehouse_id[name=?]", "section[warehouse_id]"
+      assert_select "input#section_name[name=?]", "section[name]"
     end
   end
 end

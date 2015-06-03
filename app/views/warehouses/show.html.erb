@@ -1,0 +1,11 @@
+
+<p>Sucursal: <%= @warehouse.branch%></p>
+
+<p>Lugar: <%= @warehouse.location%></p>
+
+<%= @warehouse.sections.each do |section| %>
+	
+<% end %>
+
+<%= link_to 'Edit', edit_warehouse_path(@warehouse) %> |
+<%= link_to 'Back', warehouses_path %>

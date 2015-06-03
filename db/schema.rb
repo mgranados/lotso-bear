@@ -1,4 +1,4 @@
-# -*- encoding : utf-8 -*-
+# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150507184749) do
+ActiveRecord::Schema.define(version: 20150603061657) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -186,6 +186,14 @@ ActiveRecord::Schema.define(version: 20150507184749) do
     t.datetime "updated_at"
   end
 
+  create_table "sections", force: true do |t|
+    t.string   "code"
+    t.integer  "warehouse_id"
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "spare_likelihoods", force: true do |t|
     t.integer  "generic_spare_id"
     t.integer  "generic_family_id"
@@ -232,10 +240,6 @@ ActiveRecord::Schema.define(version: 20150507184749) do
   create_table "stock_family_images", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "image_file_name"
-    t.string   "image_content_type"
-    t.integer  "image_file_size"
-    t.datetime "image_updated_at"
     t.integer  "stock_family_id"
   end
 
@@ -257,6 +261,14 @@ ActiveRecord::Schema.define(version: 20150507184749) do
     t.datetime "updated_at"
     t.integer  "stock_family_id"
     t.string   "supplier_code"
+  end
+
+  create_table "subsections", force: true do |t|
+    t.string   "code"
+    t.integer  "section_id"
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "supplier_types", force: true do |t|

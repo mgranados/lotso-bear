@@ -5,6 +5,7 @@ class StockSpare < ActiveRecord::Base
   belongs_to :generic_spare
   belongs_to :stock_family
   belongs_to :order
+  belogns_to :subsection
 
   has_many :stock_spare_images
 

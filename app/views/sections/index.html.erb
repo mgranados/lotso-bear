@@ -5,6 +5,7 @@
     <tr>
       <th>Code</th>
       <th>Warehouse</th>
+      <th>Name</th>
       <th></th>
       <th></th>
       <th></th>
@@ -16,6 +17,7 @@
       <tr>
         <td><%= section.code %></td>
         <td><%= section.warehouse_id %></td>
+        <td><%= section.name %></td>
         <td><%= link_to 'Show', section %></td>
         <td><%= link_to 'Edit', edit_section_path(section) %></td>
         <td><%= link_to 'Destroy', section, method: :delete, data: { confirm: 'Are you sure?' } %></td>

@@ -1,0 +1,32 @@
+<%= form_for(@warehouse) do |f| %>
+  <% if @warehouse.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@warehouse.errors.count, "error") %> prohibited this warehouse from being saved:</h2>
+
+      <ul>
+      <% @warehouse.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :branch %><br>
+    <%= f.text_field :branch %>
+  </div>
+
+  <div class="field">
+    <%= f.label :location %><br>
+    <%= f.text_field :location %>
+  </div>
+
+  <div class="field">
+    <%= f.label :geolocation %><br>
+    <%= f.text_field :geolocation %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

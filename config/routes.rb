@@ -1,6 +1,8 @@
 # -*- encoding : utf-8 -*-
 LotsoBear::Application.routes.draw do
 
+ 
+
   resources :subsections
 
   resources :sections
@@ -16,6 +18,13 @@ LotsoBear::Application.routes.draw do
   resources :valuations, only: [:index, :new, :create, :show]
   resources :spares, only: [:index, :new, :create, :show, :edit ,:destroy, :update]
   resources :generic_spares, only: [:index, :new, :create, :show, :edit ,:destroy, :update]
+
+  resources :warehouses do
+    resources :sections do
+      resources :subsections
+    end
+  end
+
 
   resources :stock_families, only: [:index, :new, :show, :edit ,:destroy, :update] do
     member do
@@ -86,7 +95,6 @@ LotsoBear::Application.routes.draw do
   # match '/capturista',         to: 'branches#capturist',  via: 'get'
   # match '/proceso',            to: 'branches#process',    via: 'get'
   # match '/almacen',            to: 'branches#warehouse',  via: 'get'
-  match '/places',            to: 'warehouses#index',     via: 'get'
 
 
 

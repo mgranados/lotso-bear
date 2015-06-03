@@ -5,11 +5,13 @@ describe "sections/index" do
     assign(:sections, [
       stub_model(Section,
         :code => "Code",
-        :warehouse_id => 1
+        :warehouse_id => 1,
+        :name => "Name"
       ),
       stub_model(Section,
         :code => "Code",
-        :warehouse_id => 1
+        :warehouse_id => 1,
+        :name => "Name"
       )
     ])
   end
@@ -19,5 +21,6 @@ describe "sections/index" do
     # Run the generator again with the --webrat flag if you want to use webrat matchers
     assert_select "tr>td", :text => "Code".to_s, :count => 2
     assert_select "tr>td", :text => 1.to_s, :count => 2
+    assert_select "tr>td", :text => "Name".to_s, :count => 2
   end
 end

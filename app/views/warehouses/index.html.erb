@@ -1,0 +1,25 @@
+<h1>Listing warehouses</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @warehouses.each do |warehouse| %>
+      <tr>
+        <td><%= link_to 'Show', warehouse %></td>
+        <td><%= link_to 'Edit', edit_warehouse_path(warehouse) %></td>
+        <td><%= link_to 'Destroy', warehouse, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Warehouse', new_warehouse_path %>
