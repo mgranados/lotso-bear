@@ -1,7 +1,7 @@
 //= require jquery
 //= require jquery-ui
 //= require jquery_ujs
-//= require bootstrap
+//= require bootstrap.min
 //= require dataTables/jquery.dataTables
 //= require dataTables/extras/dataTables.responsive
 //= require dataTables/jquery.dataTables
