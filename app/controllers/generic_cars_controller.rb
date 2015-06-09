@@ -15,7 +15,6 @@ class GenericCarsController < ApplicationController
   end
 
   def index
-    # GenericCar.fix_generic_car_families
     @generic_cars = GenericCar.all
   end
 
@@ -59,9 +58,7 @@ class GenericCarsController < ApplicationController
         generic_car.generic_families << generic_family_clone
       end
     end
-
     redirect_to assignation_generic_car_path(generic_car.id)
-
   end
 
   def destroy
@@ -74,12 +71,11 @@ class GenericCarsController < ApplicationController
     @other_families =  GenericFamily.other_families(@generic_car)
   end
 
-  def show_found_cars
+  def search_by_model
     @models = ModelAcronym.find_by_model(params[:model].upcase)
       respond_to do |format|
         format.js {}
       end
-      
   end
 
 private
@@ -102,12 +98,6 @@ private
 
   def set_generic_car
     @generic_car = GenericCar.find(params[:id])
-  end
-
-  def search
-    if params[:search]
-      @generic_cars = GenericCar.search(params[:search])
-    end
   end
 
 end

@@ -67,9 +67,11 @@ LotsoBear::Application.routes.draw do
     end
     collection do
       get :update_generation
-      get :search
+      post :search_by_model
     end
   end
+
+
 
 
   resources :inventories do
@@ -142,9 +144,6 @@ LotsoBear::Application.routes.draw do
   get '/not_assigned_families', to: 'generic_families#not_assigned_families'
   get '/assigned_families', to: 'generic_families#assigned_families'
   match '/assign_families',         to: 'generic_families#assign', via: 'post'
-
-  match '/search_for_generic_car', to: 'generic_cars#show_found_cars', via: 'post'
-
 
   get '/build_spares/:id', to: 'generic_families#build_spares', as: 'build_spare'
 

@@ -1,25 +1,45 @@
-<%= form_for(@order) do |f| %>
-  <% if @order.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@order.errors.count, "error") %> prohibited this order from being saved:</h2>
 
-      <ul>
-      <% @order.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
+  <h2>Busca el modelo</h2>
+  <%= form_tag search_by_model_generic_cars_path,  class: "form-inline", remote: true do  %>
+    <%= tag(:input, :type => "hidden", :name => request_forgery_protection_token.to_s, :value => form_authenticity_token) %> 
+
+    <%= text_field_tag :model , nil, class: "form-control"  %>
+    <%= submit_tag 'Buscar', class: "btn btn-primary" %>
   <% end %>
 
-  <div class="field">
-    <%= f.label :entrance_date %><br>
-    <%= f.date_select :entrance_date %>
-  </div>
-  <div class="field">
-    <%= f.label :warehouse_id %><br>
-    <%= f.number_field :warehouse_id %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+  <div id="genericCarsFound"></div>
+
+  <h2 id="genericCarRelatedFamiliesTitle" >Familias relacionadas:</h2>
+  <div id="genericCarRelatedFamilies"></div>
+  <%= form_for(@order) do |f| %>
+
+   <%= form_tag({:controller => :orders, :action => :create}, {:multipart => true}) do %>
+
+<!--   <%= date_select :order, :entrance_date %>
+ --><table id="genericCarRelatedFamiliesTable" class="table table-striped">
+    
+    <thead>
+          <tr>
+            <th></th>
+            <th> Modelo</th>
+            <th> Nombre Pieza</th>
+            <th> Código</th>
+        <th> Proveedor</th>
+        <th>Codigo de Proveedor</th>
+            <th> Precio</th>
+            <th> Cantidad</th>
+          </tr>
+        </thead>
+        
+        <tbody id="orderStockFamiliesToAdd">
+
+        </tbody>
+        
+   </table>
+
+      <%= submit_tag "Recibir piezas", class: "btn btn-primary pull-right" %>
+  <% end %>
+
+
 <% end %>
+   
