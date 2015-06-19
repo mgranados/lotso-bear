@@ -235,7 +235,6 @@ ActiveRecord::Schema.define(version: 20150603212943) do
     t.integer  "supplier_code"
     t.integer  "quantity"
     t.integer  "car_order_id"
-    t.string   "subsection_id_integer"
     t.integer  "subsection_id"
     t.string   "photo_file_name"
     t.string   "photo_content_type"

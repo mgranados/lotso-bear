@@ -2,7 +2,7 @@
 class PrevaluationsController < ApplicationController
   def new
     @prevaluation = Prevaluation.new
-    @prevaluation.cars.build
+    @prevaluation.stock_cars.build
     @prevaluation.insureds.build
   end
 

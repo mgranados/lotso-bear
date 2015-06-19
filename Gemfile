@@ -59,7 +59,6 @@ group :development, :test do
 end
 
 group :production do
- # gem 'puma', '2.11.1'
   gem 'rails_12factor', '0.0.2'
 end
 
