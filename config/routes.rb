@@ -3,6 +3,9 @@ LotsoBear::Application.routes.draw do
 
  
 
+
+  resources :supplies
+
   get "stock_spares/edit"
 
 
@@ -91,6 +94,7 @@ LotsoBear::Application.routes.draw do
       post :add_to_inventory, to: 'stock_families#create'
       post :departure_stock_family
       resources :stock_families, only: [:create]
+      resources :supplies
     end
   end
 
