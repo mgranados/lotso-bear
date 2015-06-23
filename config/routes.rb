@@ -4,9 +4,7 @@ LotsoBear::Application.routes.draw do
  
 
   get "stock_spares/edit"
-  resources :subsections
 
-  resources :sections
 
   resources :suppliers
 
@@ -22,9 +20,8 @@ LotsoBear::Application.routes.draw do
   resources :generic_spares, only: [:index, :new, :create, :show, :edit ,:destroy, :update]
 
   resources :warehouses do
-    resources :sections do
-
-      resources :subsections do
+    resources :sections, shallow: true do
+      resources :subsections, shallow: true do
         member do
           get :print_label
         end
@@ -36,6 +33,7 @@ LotsoBear::Application.routes.draw do
   resources :stock_families, only: [:index, :new, :show, :edit ,:destroy, :update] do
     member do
       get :label
+      get :history
     end
   end
 
@@ -44,6 +42,7 @@ LotsoBear::Application.routes.draw do
   resources :orders do
     member do
       post :labels
+      get :history
     end
   end
 
@@ -80,9 +79,11 @@ LotsoBear::Application.routes.draw do
     end
 
     collection do
+
       get :acomodate
       post :save_store_stocks
       post :store_stocks
+
       get :departure
       get :receive_order
       get :all

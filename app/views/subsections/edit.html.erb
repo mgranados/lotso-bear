@@ -2,5 +2,4 @@
 
 <%= render 'form' %>
 
-<%= link_to 'Show', @subsection %> |
-<%= link_to 'Back', subsections_path %>
+<%= link_to 'Back', section_subsections_path(@subsection.section) %>

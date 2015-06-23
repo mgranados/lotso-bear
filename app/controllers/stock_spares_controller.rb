@@ -1,6 +1,6 @@
 class StockSparesController < ApplicationController
   
-  before_action :set_spare, only: [:show, :update, :edit]
+  before_action :set_spare, only: [:show, :update, :edit, :history]
 
   def edit
   end
@@ -14,6 +14,10 @@ class StockSparesController < ApplicationController
       flash[:success] = "Imagen guardada con éxito!"
       redirect_to @stock_spare
     end
+
+  end
+
+  def history
 
   end
 

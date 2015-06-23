@@ -14,12 +14,13 @@ class SectionsController < ApplicationController
 
   # GET /sections/new
   def new
-    @section = Section.new
     @warehouse = Warehouse.find_by_id(params[:warehouse_id])
+    @section = Section.new
   end
 
   # GET /sections/1/edit
   def edit
+    @warehouse = @section.warehouse
   end
 
   # POST /sections

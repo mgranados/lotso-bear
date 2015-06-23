@@ -29,14 +29,14 @@
 			<td><%= subsection.code %></td>
 			<td><%= subsection.name %></td>
 			<td><%= subsection.stock_families.count %></td>
-			<td><%= link_to "Mostrar", subsection %></td>
+			<td><%= link_to "Mostrar", subsection_path(subsection) %></td>
 		</tr>
 	<% end -%>
 	</tbody>
 </table>
 
 
-<%= link_to 'Nueva Sub-sección', new_warehouse_section_subsection_path(@section.warehouse,@section) %>
+<%= link_to 'Nueva Sub-sección', new_section_subsection_path(@section.warehouse,@section) %>
 
 <%= link_to 'Edit', edit_section_path(@section) %> |
-<%= link_to 'Back', sections_path %>
+<%= link_to 'Back', warehouse_sections_path(@section.warehouse) %>

@@ -10,6 +10,8 @@ class StockFamily < ActiveRecord::Base
 
   has_many :stock_family_images
   has_many :stock_spares
+  has_many :family_histories
+
 
   belongs_to :subsection
 

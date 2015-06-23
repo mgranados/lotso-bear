@@ -11,6 +11,8 @@ class StockSpare < ActiveRecord::Base
   #validates_attachment_content_type :photo, :content_type => /\Aimage\/.*\Z/
 
   has_many :stock_spare_images
+  has_many :spare_histories
+
 
   after_create :create_code
 

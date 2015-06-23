@@ -8,7 +8,7 @@ require "prawn/measurement_extensions"
 require 'barby/outputter/png_outputter'
 
 class StockFamiliesController < ApplicationController
-  before_action :set_family, only: [:show, :label, :edit, :update]
+  before_action :set_family, only: [:show, :label, :edit, :update, :history]
 
   def new
   	@stockFamily = StockFamily.new
@@ -21,12 +21,14 @@ class StockFamiliesController < ApplicationController
   end
 
   def update    
-
      if @stock_family.update(stock_family_params)
       flash[:success] = "Imagen guardada con éxito!"
       redirect_to @stock_family
     end
+  end
 
+  def history
+    
   end
 
   def show

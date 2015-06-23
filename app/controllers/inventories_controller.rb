@@ -60,9 +60,9 @@ class InventoriesController < ApplicationController
       end
   end
 
-  def receive_order
-    @order = Order.new
-  end
+  # def receive_order
+  #   @order = Order.new
+  # end
 
   def add_new_stock
       respond_to do |format|

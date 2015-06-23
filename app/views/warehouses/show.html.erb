@@ -22,7 +22,7 @@
 			<td><%= section.code %></td>
 			<td><%= section.name %></td>
 			<td><%= section.subsections.count %></td>
-			<td><%= link_to "Mostrar", section %></td>
+			<td><%= link_to "Mostrar", section_path(section) %></td>
 		</tr>
 	<% end -%>
 	</tbody>

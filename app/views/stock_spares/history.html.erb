@@ -1,0 +1,15 @@
+<%= link_to "Regresar", all_inventories_path %>
+<table class="table">
+  <thead>
+  	<th>Acción</th>
+  	<th>Hora</th>
+  </thead>
+  <tbody>
+	<% for history in @stock_spare.family_histories %>
+	    <tr>
+	      <td><%= history.description %></td>
+	      <td><%= history.created_at.strftime("%d/%m/%y %H:%M") %></td>
+	    </tr>
+	<% end %>
+   </tbody>
+</table>

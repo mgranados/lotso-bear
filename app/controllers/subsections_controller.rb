@@ -43,7 +43,6 @@ class SubsectionsController < ApplicationController
   # GET /subsections/new
   def new
     @subsection = Subsection.new
-    @warehouse = Warehouse.find_by_id(params[:warehouse_id])
     @section = Section.find_by_id(params[:section_id])
   end
 
