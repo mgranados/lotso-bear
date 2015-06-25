@@ -20,7 +20,8 @@
  * development BD: syrat_development
  * production BD: syrat_production_live
  * config it:
- 			create on config/database.yml
+ 		* create on config/database.yml
+ 		#
  			development:
 			 adapter: postgresql
 			 database: syrat_development
