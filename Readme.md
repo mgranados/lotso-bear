@@ -65,13 +65,13 @@ rake diagram:all
 
 ####diagrams are generated on doc/####
 
-* model is based on 
-		* GenericFamily
-		* StockFamily
-		* GenericSpare
-		* StockSpare
-		* GenericCar
-		* Warehouse
+* model is based on: 
+	* GenericFamily
+	* StockFamily
+	* GenericSpare
+	* StockSpare
+	* GenericCar
+	* Warehouse
 
 ### GenericFamily: ###
 #### Generic car part that fits a Generic Car. ####
