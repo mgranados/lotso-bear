@@ -11,13 +11,14 @@
 ###H3 passenger on local server###
 ### heroku unicorn ###
 ### PostgresSQL for DB (postgresapp better) ###
-	···postgres gem
-	···run ```export PATH=$PATH:/Applications/Postgres.app/Contents/Versions/9.4/bin
+	* postgres gem
+	#### Run: ####
+	export PATH=$PATH:/Applications/Postgres.app/Contents/Versions/9.4/bin
 
 
 
-markup: * development BD: syrat_development
-markup: * production BD: syrat_production_live
+ * development BD: syrat_development
+ * production BD: syrat_production_live
  * config it:
  			create on config/database.yml
  			development:
@@ -41,14 +42,15 @@ markup: * production BD: syrat_production_live
 
 
 ##for installation:##
-run: rake db:migrate
+####run:####
+rake db:migrate
 
-for creating and filling the database.
+###for creating and filling the database.###
+###on the root of the repo to test it###
+####run:####
+rails s 
 
-on the root of the repo to test it
-run: rails s 
-
-on navigator:
+###on navigator:###
 localhost:3000
 
 
@@ -57,9 +59,10 @@ localhost:3000
 * https://github.com/preston/railroady
 * already on the gem file.
 
-run: rake diagram:all
+####run:####
+rake diagram:all
 
-diagrams are generated on doc/
+####diagrams are generated on doc/####
 
 * model is based on 
 		* GenericFamily
@@ -69,17 +72,17 @@ diagrams are generated on doc/
 		* GenericCar
 		* Warehouse
 
-# GenericFamily:
-	Generic car part that fits a Generic Car.
+### GenericFamily: ###
+	####Generic car part that fits a Generic Car.####
 
 ### StockFamily ###
-	Generic Family part, once it arrives to warehouse or it is install in a car. (It's on stock)
+	####Generic Family part, once it arrives to warehouse or it is install in a car. (It's on stock)####
 
 ### GenericSpare ###
-	Small car parts, that belong to a GenericFamily
+	####Small car parts, that belong to a GenericFamily####
 
 ### StockSpare ###
-	GenericSpare once it enters to a warehouse or it is install in a car. (It's on stock)
+	####GenericSpare once it enters to a warehouse or it is install in a car. (It's on stock)####
 
 
 ## ROUTES: ##
