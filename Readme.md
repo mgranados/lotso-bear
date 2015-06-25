@@ -3,14 +3,14 @@
 
 ## specs for install:##
 
-### Install Ruby version '2.0.0' and Rails '4.x.x'###
+*Install Ruby version '2.0.0' and Rails '4.x.x'
 
-###Railroady.###
+*Railroady.
 
-### development default server###
-###H3 passenger on local server###
-### heroku unicorn ###
-### PostgresSQL for DB (postgresapp better) ###
+* development default server
+* passenger on local server
+* heroku unicorn 
+*	PostgresSQL for DB (postgresapp better) 
 	* postgres gem
 	#### Run: ####
 	export PATH=$PATH:/Applications/Postgres.app/Contents/Versions/9.4/bin
