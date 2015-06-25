@@ -73,16 +73,16 @@ rake diagram:all
 		* Warehouse
 
 ### GenericFamily: ###
-	#### Generic car part that fits a Generic Car. ####
+#### Generic car part that fits a Generic Car. ####
 
 ### StockFamily ###
-	#### Generic Family part, once it arrives to warehouse or it is install in a car. (It's on stock) ####
+#### Generic Family part, once it arrives to warehouse or it is install in a car. (It's on stock) ####
 
 ### GenericSpare ###
-	#### Small car parts, that belong to a GenericFamily ####
+#### Small car parts, that belong to a GenericFamily ####
 
 ### StockSpare ###
-	#### GenericSpare once it enters to a warehouse or it is install in a car. (It's on stock) ####
+#### GenericSpare once it enters to a warehouse or it is install in a car. (It's on stock) ####
 
 
 ## ROUTES: ##
