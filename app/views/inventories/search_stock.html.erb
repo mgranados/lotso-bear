@@ -1,0 +1,11 @@
+<div class="row">
+	<div class="col-md-4"></div>
+	<div class="col-md-4 text-center">
+		<h1>Buscar Pieza</h1>
+		<%= form_tag :action => "search_stock" do %>
+			<%= text_field_tag :code, nil, class: "form-control"  %><br>
+		    <%= submit_tag 'Buscar', class: "btn btn-primary" %>
+		<% end %>	
+	</div>
+	<div class="col-md-4"></div>
+</div>

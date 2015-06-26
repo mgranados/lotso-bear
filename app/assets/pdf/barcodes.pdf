@@ -17,48 +17,10 @@ endobj
 >>
 endobj
 4 0 obj
-<< /Length 499
+<< /Length 4
 >>
 stream
 q
-
-q
-154.0 0.0 0.0 60.0 72.5748 653.189 cm
-/I1 Do
-Q
-
-BT
-78.7768 709.573 Td
-/F1.0 12 Tf
-[<4131202042756c626f204465204c757a20536563756e646172> -15 <696f>] TJ
-ET
-
-
-BT
-100.5148 645.701 Td
-/F1.0 12 Tf
-[<41> 50 <55314131464335312d30362f32303135>] TJ
-ET
-
-
-q
-154.0 0.0 0.0 60.0 367.5748 653.189 cm
-/I2 Do
-Q
-
-BT
-365.2088 709.573 Td
-/F1.0 12 Tf
-[<4131202042756c626f204465204c757a20446520446972656363696f6e616c>] TJ
-ET
-
-
-BT
-395.5148 645.701 Td
-/F1.0 12 Tf
-[<41> 50 <55314131464336312d30362f32303135>] TJ
-ET
-
 Q
 
 endstream
@@ -69,77 +31,22 @@ endobj
 /MediaBox [0 0 612.0 792.0]
 /Contents 4 0 R
 /Resources << /ProcSet [/PDF /Text /ImageB /ImageC /ImageI]
-/XObject << /I1 6 0 R
-/I2 8 0 R
->>
-/Font << /F1.0 7 0 R
 >>
 >>
->>
-endobj
-6 0 obj
-<< /Type /XObject
-/Subtype /Image
-/Height 60
-/Width 154
-/BitsPerComponent 1
-/ColorSpace /DeviceGray
-/Length 69
-/Filter [/FlateDecode]
-/DecodeParms [<< /Predictor 15
-/Colors 1
-/BitsPerComponent 1
-/Columns 154
->>]
->>
-stream
-xœcú	01`CGğLõeİ´’M3¬ß{Ş‘ò{!:ğNr‚&­w/ÏêñË8*¸]åÙ&‰×ï$Šéá%&
-endstream
-endobj
-7 0 obj
-<< /Type /Font
-/Subtype /Type1
-/BaseFont /Helvetica
-/Encoding /WinAnsiEncoding
->>
-endobj
-8 0 obj
-<< /Type /XObject
-/Subtype /Image
-/Height 60
-/Width 154
-/BitsPerComponent 1
-/ColorSpace /DeviceGray
-/Length 69
-/Filter [/FlateDecode]
-/DecodeParms [<< /Predictor 15
-/Colors 1
-/BitsPerComponent 1
-/Columns 154
->>]
->>
-stream
-xœcú	01`CGğLõeİ´’M3¬ßûÆHq®x'
-
-9A“V‰»—gõøeÜ¼äÙ÷ˆ×ï$Šl%&
-endstream
 endobj
 xref
-0 9
+0 6
 0000000000 65535 f 
 0000000015 00000 n 
 0000000109 00000 n 
 0000000158 00000 n 
 0000000215 00000 n 
-0000000765 00000 n 
-0000000978 00000 n 
-0000001295 00000 n 
-0000001392 00000 n 
+0000000268 00000 n 
 trailer
-<< /Size 9
+<< /Size 6
 /Root 2 0 R
 /Info 1 0 R
 >>
 startxref
-1709
+422
 %%EOF

@@ -12,6 +12,7 @@
 		      <th> Precio Salida</th>
 		      <th> Proveedor </th>
 		      <th></th>
+		      <th></th>
 
 		    </tr>
 		  </thead>
@@ -46,6 +47,7 @@
 			     		<%= stock.supplier.name %>
 			     	<% end %>
 			    	 </td>
+			    	 <td><%= link_to "ver", stock_family_path(stock) %></td>
 			    <td><%= link_to "Historial", history_stock_family_path(stock) %></td>
 
 

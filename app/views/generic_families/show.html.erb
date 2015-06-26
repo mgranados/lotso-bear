@@ -1,6 +1,60 @@
- <%# @generic_family.code %>
+	
+	<h2>Familia Generica </h2>
+   <table class="table table-condensed">
+     <thead>
+       <tr>
+         <th>
+           <%= t(:name) %>
+         </th>
+         <th>
+           <%= t(:code) %>
+         </th>
+         <th>
+           <%= t(:number_of_spares) %>
+         </th>
+         <th></th>
+       </tr>
+     </thead>
+     <tbody>
+        <tr>
+          <td>
+            <%= @generic_family.name%>
+          </td>
+          <td>
+            <%= @generic_family.code%>
+          </td>
+          <td>
+            <%= @generic_family.generic_spares.count%>
+          </td>
+        </tr>
+         </tr>
+     </tbody>
+   </table> 
 
- <%= @generic_family.generic_spares.each do |spare| %>
- 	<p>spare:</p>
- 	<%= spare.name %>
- <% end %>
+   <h2>Piezas Genericas</h2>
+
+   <table class="table table-condensed">
+     <thead>
+       <tr>
+         <th>
+           <%= t(:name) %>
+         </th>
+         <th>
+           <%= t(:code) %>
+         </th>
+       </tr>
+     </thead>
+     <tbody>
+        <% @generic_family.generic_spares.each do |spare| %>
+        <tr>
+          <td>
+            <%= spare.name%>
+          </td>
+          <td>
+            <%= spare.code%>
+          </td>
+        </tr>
+         </tr>
+        <% end %>
+     </tbody>
+   </table> 

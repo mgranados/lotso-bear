@@ -9,6 +9,18 @@ class InventoriesController < ApplicationController
   def departure
   end
 
+  def search_stock
+    if params[:code]
+      if StockFamily.exists?(code: params[:code]) 
+        redirect_to stock_family_path(StockFamily.find_by_code(params[:code]))
+      elsif StockSpare.exists?(code: params[:code]) 
+        redirect_to stock_spare_path(StockSpare.find_by_code(params[:code]))
+      else
+        flash[:danger] = "No se puede encontrar pieza con ese código"
+      end
+    end
+  end
+
   def index
   end
 
