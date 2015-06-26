@@ -104,12 +104,14 @@ class InventoriesController < ApplicationController
     end
     if departure_stock.status.blank?
       departure_stock.update(status: params[:status]) 
-      flash[:success] = "Pieza:  (#{departure_stock.code}, #{departure_stock.generic_family.name}) registrada"
+      flash[:success] = " #{departure_stock.generic_family.name}  codigo:#{departure_stock.code} salida con exito!"
       render departure_inventories_path
-    elsif !departure_stock.status.blank?
+    elsif !departure_stock.status.blank? && (departure_stock.status=="Instalada"|| departure_stock.status=="Vendida Externo"||departure_stock.status=="Envio Propio")
       flash[:danger] = "La pieza ya había salido: Su estado es: #{departure_stock.status}"
       render departure_inventories_path
     end
+
+
   end
 	
 
