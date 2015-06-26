@@ -1,12 +1,147 @@
+<!-- Falta Agregar photo -->
 
-<p>
-  <strong>Name:</strong>
-  <%= @stock_family.generic_family.name %>
-</p>
+<h1> Pieza Padre </h1>
+<div class="row">
+  <div class="col-md-6">
+    <table class="table table-condensed">
+      <thead>
+        <tr>
+          <th><%= t(:name) %></th>
+          <th><%= t(:code) %></th>
+          <th>Modelos</th>
+          <th>Proveedor</th>
+          <th>Estatus</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><%= @stock_family.generic_family.name%></td>
+          <td><%= @stock_family.code%></td>
+          <td>
+            <% @stock_family.generic_family.generic_cars.each do |generic_car| %>
+              <%= generic_car.model_acronym.model %><br>
+            <% end %>
+          </td>
+          <td><%= @stock_family.supplier.name %></td>
+          <td>
+            <%= @stock_family.status %>
+            <% if @stock_family.status == "Instalada" %>
+              <%= link_to "Ver Coche", stock_car_path(@stock_family.stock_car) %>
+            <% end %>
+          </td>
+        </tr>
+      </tbody>
+    </table> 
+  </div>
+  <div class="col-md-4">
+    <table class="table table-condensed">
+      <thead>
+        <tr>
+          <th>Precio Entrada</th>
+          <th>Precio Salida</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>$ <%= @stock_family.price.entrance%></td>
+          <td>$ <%= @stock_family.price.departure %></td>
+        </tr>
+      </tbody>
+    </table> 
+  </div>
+  <div class="col-md-2">
+    <%= link_to "Imprimir Etiqueta", label_stock_family_path(@stock_family) %>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-4">
+    <table class="table table-condensed">
+      <thead>
+        <tr>
+          <th>Almacen</th>
+          <th>Rack</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><%= @stock_family.subsection.section.warehouse.branch %></td>
+          <td><%= @stock_family.subsection.code %> </td>
+          <td><%= link_to "Ver", subsection_path(@stock_family.subsection) %></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="col-md-4">
+    <table class="table table-condensed">
+      <thead>
+        <tr>
+          <th>Orden de Entrada</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><%= @stock_family.order.created_at.strftime("%d/%m/%Y - %H:%M") %></td>
+          <td><%= link_to "Ver Orden", order_path(@stock_family.order) %></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="col-md-4">
+    <table class="table table-condensed">
+      <thead>
+        <tr>
+          <th>Ultima Actualización</th>  
+          <th></th>  
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><%= @stock_family.family_histories.last.description %></td>
+          <td><%= link_to "Ver Historial", history_stock_family_path(@stock_family) %></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
 
-<p>
-  <strong>photo:</strong>
-  <%= image_tag @stock_family.photo.url %>
-</p>
+   <h2>Piezas Adentro: <%= @stock_family.stock_spares.count%></h2>
 
-<%= link_to("Regresar a Ordenes", orders_path) %>
+   <table class="table table-condensed">
+     <thead>
+       <tr>
+         <th>
+           <%= t(:name) %>
+         </th>
+         <th>
+           <%= t(:code) %>
+         </th>
+         <th>Estatus</th>
+         <th>Almacen</th>
+         <th>Rack</th>
+         <th></th>
+       </tr>
+     </thead>
+     <tbody>
+        <% @stock_family.stock_spares.each do |spare| %>
+        <tr>
+            <td><%= link_to "#{spare.generic_spare.name}", stock_spare_path(spare) %></td>
+          <td>
+            <%= spare.code%>
+          </td>
+          <td> 
+            <%= spare.status %>
+            <% if spare.status == "Instalada" %>
+              <%= link_to "Ver Coche", stock_car_path(spare.stock_car) %>
+            <% end %>
+          </td>
+          <td><%= spare.subsection.section.warehouse.branch%></td>
+          <td><%= spare.subsection.code%></td>
+          <td><%= link_to "Ver Rack", subsection_path(spare.subsection) %></td>
+        </tr>
+         </tr>
+        <% end %>
+     </tbody>
+   </table> 
+

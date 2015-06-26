@@ -4,6 +4,7 @@ class StockFamily < ActiveRecord::Base
   belongs_to :price
   belongs_to :supplier
   belongs_to :order
+  belongs_to :stock_car
   
   has_attached_file :photo, :styles => { :medium => "300x300>", :thumb => "100x100>" }
 

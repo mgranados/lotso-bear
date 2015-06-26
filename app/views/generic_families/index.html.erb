@@ -30,9 +30,6 @@
            <%= t(:show) %>
          </th>
          <th>
-           <%= t(:edit) %>
-         </th>
-         <th>
            <%= t(:delete) %>
          </th>
        </tr>
@@ -50,7 +47,6 @@
             <%= family.generic_spares.count%>
           </td>
           <td><%= link_to t(:show), family, class: "" %></td>
-          <td><%= link_to t(:edit), edit_generic_family_path(family), class: "" %></td>
           <td><%= link_to t(:delete), family, :confirm => '¿Seguro Que Deseas Borrarlo?', :method => :delete , class: ""%></td>
         </tr>
          </tr>

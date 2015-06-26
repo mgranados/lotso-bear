@@ -5,7 +5,7 @@
   	<th>Hora</th>
   </thead>
   <tbody>
-	<% for history in @stock_spare.family_histories %>
+	<% for history in @stock_spare.spare_histories %>
 	    <tr>
 	      <td><%= history.description %></td>
 	      <td><%= history.created_at.strftime("%d/%m/%y %H:%M") %></td>

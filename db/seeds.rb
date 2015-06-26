@@ -55,7 +55,7 @@
 #   "Volkswagen",
 #   "Volvo"
 #   ]
-#
+
 #   acronyms = [
 #     "AC",
 #     "AR",
@@ -102,7 +102,7 @@
 #     "VW",
 #     "VL"
 #   ]
-#
+
 #   for i in 0...brands.length
 #     Brand.create(name: brands[i], acronym:acronyms[i])
 #   end
@@ -114,7 +114,7 @@
 #   CarType.create(name: type.first)
 #   end
 # }
-#
+
 # # Model Acronym
 # @model = ModelAcronym.new(initials:'CO', model: 'COROLLA')
 # @model.brand = Brand.first
@@ -124,16 +124,16 @@
 # @genericCar.car_type = CarType.first
 # @genericCar.model_acronym = ModelAcronym.first
 # @genericCar.save!
-#
+
 # # Generic Family Mold with spares
 # @generic_family_mold = GenericFamily.new(name: 'Puerta Derecha Molde', code: 'FA', mold:true)
 # @generic_family_mold.generic_spares << GenericSpare.create(name: "Manija",code:"A0")
 # @generic_family_mold.generic_spares << GenericSpare.create(name: "Manivela",code:"A1")
 # @generic_family_mold.save!
-#
+
 # @genericCar.car_type.generic_families << @generic_family_mold
 # @genericCar.save!
-#
+
 # #Generic family, non mold, with spares
 # @generic_family = GenericFamily.new(name: 'Puerta Izquierda No Molde', code: 'FA', mold:false)
 # # @generic_family.father = @generic_family_mold
@@ -142,11 +142,11 @@
 # @generic_family.save!
 
 
-#TypeLikelihood.dedupe
-#GenericFamily.copy_families_to_generic_cars
+# #TypeLikelihood.dedupe
+# #GenericFamily.copy_families_to_generic_cars
 
 
-# Type of Suppliers
+# #Type of Suppliers
 # SupplierType.create(name: "Desmontado Original") 
 # SupplierType.create(name: "Original") 
 # SupplierType.create(name: "Taiwan") 

@@ -1,9 +1,19 @@
+<div class="col-md-12">
 <h1>Salidas</h1>
-<h2>Ingresa el código de la pieza</h2>
 <%= form_tag action: :departure_stock_family, class: "form-inline", method: :get do  %>
-	<%= text_field_tag :code , nil, class: "form-control entrada"  %>
+	<h2>Selecciona Estado:</h2>
 	<%= select_tag "status", options_for_select([ "Instalada", "Vendida Externo", "Envio Propio" ], "Instalada") %>
-	<%= submit_tag 'Sacar Pieza', class: "btn btn-primary" %>
+	<h2>Ingresa el código de la pieza</h2>
+	<div class="col-md-6">
+	<%= text_field_tag :code , nil, class: "form-control entrada"  %>
+	</div>
+<br>
+<br>
+<br>
+	<%= submit_tag 'Sacar Pieza', class: "btn btn-primary center-text" %>
+</br>
+<br>
+</div>
 <% end %>
 
 <script>
