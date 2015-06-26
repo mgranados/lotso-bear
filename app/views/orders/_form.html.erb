@@ -13,10 +13,11 @@
   <div id="genericCarRelatedFamilies"></div>
   <%= form_for(@order) do |f| %>
 
-   <%= form_tag({:controller => :orders, :action => :create}, {:multipart => true}) do %>
+   <%= form_tag({:controller => :orders, :action => :create}, :html => {:multipart => true}) do %>
 
-<!--   <%= date_select :order, :entrance_date %>
- --><table id="genericCarRelatedFamiliesTable" class="table table-striped">
+<!--   <%= date_select :order, :entrance_date %>-->
+
+<table id="genericCarRelatedFamiliesTable" class="table table-striped">
     
     <thead>
           <tr>
@@ -24,9 +25,9 @@
             <th> Modelo</th>
             <th> Nombre Pieza</th>
             <th> Código</th>
-        <th> Proveedor</th>
-        <th>Codigo de Proveedor</th>
-            <th> Precio</th>
+            <th> Proveedor</th>
+            <th> Código de Proveedor</th>
+            <th> Color</th>
             <th> Cantidad</th>
           </tr>
         </thead>
@@ -37,7 +38,8 @@
         
    </table>
 
-      <%= submit_tag "Recibir piezas", class: "btn btn-primary pull-right" %>
+    <%= submit_tag "Recibir piezas", class: "btn btn-primary pull-right" %>
+  
   <% end %>
 
 

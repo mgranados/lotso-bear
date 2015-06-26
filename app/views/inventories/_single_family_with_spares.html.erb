@@ -7,19 +7,28 @@
 	<td><%= grouped_collection_select nil, "stocks[][stock_family_supplier]", SupplierType.all, :suppliers, :name, :id, :name, :include_blank => true %></td>	
 	<td class="hidden"><%= hidden_field_tag "stocks[][id]", @generic_family.id %>sup</td>
 	<td><%= text_field_tag "stocks[][supplier_code]" %></td>
-	<td><%= text_field_tag "stocks[][price]", nil %></td>
+	<td><%= text_field_tag "stocks[][color]", nil %></td>
 	<td><%= text_field_tag "stocks[][quantity]", nil %></td>
 	
 </tr>
+<% spares_to_hide = "#{@generic_family.id}#{Time.now.strftime('%d%h%m%s')}"  %>
 <% @generic_family.spare_likelihoods.each do |spare_likelihood| %>
-	<tr class="">
+	<tr class="<%=spares_to_hide%>">
+	
 		<td><%= check_box_tag "stocks[]spares[][id]", spare_likelihood.generic_spare.id, true %></td>
 		<td></td>
 		<td><%= spare_likelihood.generic_spare.name %></td>
 		<td><%= spare_likelihood.generic_spare.code %></td>
 		<td></td>
 		<td><%= text_field_tag "stocks[]spares[][supplier_code]" %></td>
-		<td></td>
+		<td><%= text_field_tag "stocks[]spares[][color]" %></td>
 		<td></td>
 	</tr>
+
 <% end %>
+
+	<script type="text/javascript">
+		$(".hide_spares").click(function() {
+			$(".<%=spares_to_hide%>").toggle();
+		});
+	</script>

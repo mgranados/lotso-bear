@@ -16,10 +16,10 @@
 			<th>Nombre</th>
 			<th>Código</th>
 			<th>Cantidad</th>
-			<th>Precio</th>
-			<th>Supplier</th>
+			<th>Color</th>
+			<th>Proveedor</th>
 			<th>Imprimible</th>
-			<th>Acciones</th>
+			<th>Foto</th>
 		</thead>
 		<tbody>
 			<% @order.stock_families.each do |stock| %>
@@ -32,8 +32,8 @@
 					<%= stock.quantity %>
 				</td>
 				<td>
-					<% unless stock.price.blank? %>
-						<%= stock.price.entrance %>
+					<% unless stock.color.blank? %>
+						<%= stock.color %>
 					<% end %>
 				</td>
 				<td>
@@ -43,7 +43,11 @@
 				</td>
 				<td><%= check_box_tag "ids_to_print[]", stock.id, true %>
 				<%= label_tag(:printable, "Imprimir etiqueta") %></td>
-				<td><%= link_to("Editar", edit_stock_family_url(stock)) %></td>
+				<td><%= link_to("Cambiar/subir Foto", edit_stock_family_url(stock)) %>
+					<% if !stock.photo.blank?  %>
+						<%= image_tag stock.photo.url(:thumb) %>
+					<% end %>
+				</td>
 			</tr>
 			<tr>
 				<td></td>
@@ -61,7 +65,12 @@
 				<td></td>
 				<td><%= check_box_tag "spares_to_print[]" , spare.id, true %>
 				<%= label_tag(:printable, "Imprimir etiqueta") %></td>
-				<td><%= link_to("Editar", edit_stock_spare_path(spare)) %></td>
+				<td><%= link_to("Cambiar/subir Foto", edit_stock_spare_path(spare)) %>
+					<% if !spare.photo.blank?  %>
+						<%= image_tag spare.photo.url(:thumb) %>
+					<% end %>
+
+					</td>
 
 			</tr>
 			<% end %>
