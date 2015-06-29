@@ -29,6 +29,7 @@ LotsoBear::Application.routes.draw do
     member do
       get :label
       get :history
+      get :choose_label
     end
 
   end
