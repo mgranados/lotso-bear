@@ -1,0 +1,31 @@
+<div class ="row">
+<%= form_tag labels_order_path(@order), :target => "_blank" do %>
+
+<h1>Escoger Piezas a Imprimir Etiquetas</h1>
+<%= submit_tag "Imprimir Etiquetas", class:"btn btn-large btn-success"   %>
+
+	<div class="col-md-12">
+		<table>
+			<thead>
+				<tr>
+					<th><strong>Nombre</strong></th>
+					<th><strong>Código</strong></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+				<td>
+				<%= spare.generic_spare.name %>
+				</td>
+				<td><%= spare.code %></td>
+				<td></td>
+				<td></td>
+				<td><%= check_box_tag "spares_to_print[]" , spare.id, true %>
+				<%= label_tag(:printable, "Imprimir etiqueta") %></td>
+				<td><%= link_to("Editar", edit_stock_spare_path(spare)) %></td>				</tr>
+			</tbody>
+		</table>		
+	</div>
+</div>
+
+<% end %>

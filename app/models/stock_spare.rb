@@ -9,8 +9,8 @@ class StockSpare < ActiveRecord::Base
   belongs_to :stock_car
   belongs_to :price
 
-  has_attached_file :photo
-  #validates_attachment_content_type :photo, :content_type => /\Aimage\/.*\Z/
+  has_attached_file :photo, :styles => { :medium => "300x300>", :thumb => "100x100>" }
+  validates_attachment_content_type :photo, :content_type => /\Aimage\/.*\Z/
 
   has_many :stock_spare_images
   has_many :spare_histories

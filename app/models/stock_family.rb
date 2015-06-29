@@ -6,8 +6,9 @@ class StockFamily < ActiveRecord::Base
   belongs_to :order
   belongs_to :stock_car
   
-  has_attached_file :photo
-  #validates_attachment_content_type :photo, :content_type => /\Aimage\/.*\Z/
+  has_attached_file :photo, :styles => { :medium => "300x300>", :thumb => "100x100>" }
+
+  validates_attachment_content_type :photo, :content_type => ["image/jpg", "image/jpeg", "image/png", "image/gif"]
 
   has_many :stock_family_images
   has_many :stock_spares
