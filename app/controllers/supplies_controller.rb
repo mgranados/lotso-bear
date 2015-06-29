@@ -1,5 +1,5 @@
 class SuppliesController < ApplicationController
-  before_action :set_supply, only: [:show, :edit, :update, :destroy]
+  before_action :set_supply, only: [:show, :edit, :update, :destroy,:spend]
 
   # GET /supplies
   # GET /supplies.json
@@ -60,6 +60,14 @@ class SuppliesController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def spend
+    if @supply.qty>0
+      @supply.update(qty: @supply.qty-1);
+      redirect_to :index
+    end
+  end
+
 
   private
     # Use callbacks to share common setup or constraints between actions.
