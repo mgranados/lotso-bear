@@ -18,6 +18,8 @@ tmp/*
 
 # Ignore barcode generated
 /app/assets/images/barcodes/*
+/app/assets/pdf/*
+app/assets/pdf/*
 
 /.DS_Store
 

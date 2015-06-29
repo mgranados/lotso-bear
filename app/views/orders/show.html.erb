@@ -9,7 +9,7 @@
   <strong>Sucursal:</strong>
   <%= @order.warehouse_id %>
 </p> -->
-<%= form_tag labels_order_path(@order), :target => "_blank" do %>
+<%= form_tag print_label_order_path(@order), :target => "_blank" do %>
 <%= submit_tag "Imprimir Etiquetas", class:"btn btn-large btn-success"   %>
 	<table class="table">
 		<thead>
