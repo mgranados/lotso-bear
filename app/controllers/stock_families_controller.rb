@@ -22,8 +22,8 @@ class StockFamiliesController < ApplicationController
 
   def update    
      if @stock_family.update(stock_family_params)
-      flash[:success] = "Imagen guardada con éxito!"
-      redirect_to @stock_family
+      flash[:success] = "Imagen cargada a #{@stock_family.generic_family.name} con código:#{@stock_family.code}!"
+      redirect_to order_path(@stock_family.order)
     end
   end
 
