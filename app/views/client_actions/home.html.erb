@@ -1,13 +1,13 @@
 <% provide(:title, "Consultar estado de Auto") %>
 
 <div class="jumbotron">
-  <%= form_for(:client_actions, url: '/c/show', class: "form-signin form-inline") do |f| %>
+  
     <h1 class="blutits">Consultar estado de Auto</h1>
       <div class="form-group col-md-5">
-            <%= f.text_field :email, class: "form-control basic-input", placeholder: "NUMERO DE REGISTRO", id: "userInput" %>
+            <input  type="text" class="form-control basic-input" placeholder="NUMERO DE REGISTRO" id="userInput" %>
       </div>
         <button type="button" class="btn btn-primary col-md-2 search">Consultar</button>
-  <% end %>
+  
 </div>
 <div class="row">
 	<div class="col-sm-8 col-sm-offset-2">

@@ -98,6 +98,7 @@ LotsoBear::Application.routes.draw do
 
   match '/consultar',            to: 'client_actions#home', via: 'get'
   match '/c/show',               to: 'client_actions#show', via: 'get'
+  match '/get_client_car', to: 'client_actions#get_client_car', via: 'post'
 
   match '/signin',  to: 'sessions#new',         via: 'get'
   match '/signout', to: 'sessions#destroy',     via: 'delete'

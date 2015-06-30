@@ -257,6 +257,7 @@ ActiveRecord::Schema.define(version: 20150626005043) do
     t.integer  "photo_file_size"
     t.datetime "photo_updated_at"
     t.integer  "stock_car_id"
+    t.string   "color"
   end
 
   create_table "stock_family_images", force: true do |t|
