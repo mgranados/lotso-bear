@@ -1,5 +1,6 @@
 # -*- encoding : utf-8 -*-
 LotsoBear::Application.routes.draw do
+
   resources :stock_cars
 
   root 'sessions#new'
@@ -14,6 +15,7 @@ LotsoBear::Application.routes.draw do
   resources :valuations, only: [:index, :new, :create, :show]
   resources :spares, only: [:index, :new, :create, :show, :edit ,:destroy, :update]
   resources :generic_spares, only: [:index, :new, :create, :show, :edit ,:destroy, :update]
+
 
   resources :warehouses do
     resources :sections, shallow: true do
@@ -38,8 +40,8 @@ LotsoBear::Application.routes.draw do
       get :history
     end
   end
- 
-  
+
+
   resources :orders do
     member do
       post :labels
@@ -47,7 +49,7 @@ LotsoBear::Application.routes.draw do
     end
   end
 
-  resources :generic_families, only: [:index, :new, :create, :show, :destroy] do
+  resources :generic_families, only: [:index, :new, :create, :show, :destroy, :update] do
     collection do
       get :not_assigned
       get :assigned
@@ -55,6 +57,7 @@ LotsoBear::Application.routes.draw do
     end
     member do
       get :count_spares
+      get :prices
     end
   end
 
@@ -69,8 +72,9 @@ LotsoBear::Application.routes.draw do
     end
   end
 
-    get '/select_generic_families/:id', to: 'inventories#show_generic_car_generic_families', as: 'family_selection'
-    get '/inventories/:family_id/:car_id/add_family_with_spares_to_order',to: 'inventories#add_family_with_spares_to_order'
+  get '/select_generic_families/:id', to: 'inventories#show_generic_car_generic_families', as: 'family_selection'
+  get '/inventories/:family_id/:car_id/add_family_with_spares_to_order',to: 'inventories#add_family_with_spares_to_order'
+
   resources :inventories do
     member do
       get :add_family_with_spares_to_order
@@ -79,21 +83,20 @@ LotsoBear::Application.routes.draw do
       get :acomodate
       post :save_store_stocks
       post :store_stocks
-
       get :departure
-
       get :all
-
       get :add_new_stock
-
       post :search_stock
       get :search_stock
-
       post :add_to_inventory, to: 'stock_families#create'
       post :departure_stock_family
       resources :stock_families, only: [:create]
       resources :supplies
     end
+  end
+
+  namespace :admin do
+    get :prices
   end
 
   match '/consultar',            to: 'client_actions#home', via: 'get'
@@ -146,10 +149,4 @@ LotsoBear::Application.routes.draw do
   #   resources :posts, concerns: :toggleable
   #   resources :photos, concerns: :toggleable
 
-  # Example resource route within a namespace:
-  #   namespace :admin do
-  #     # Directs /admin/products/* to Admin::ProductsController
-  #     # (app/controllers/admin/products_controller.rb)
-  #     resources :products
-  #   end
 end

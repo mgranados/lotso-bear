@@ -1,27 +1,25 @@
-<div class="navbar navbar-inverse navbar-static-top" role="navigation">
-      <div class="container">
-        <!-- Barra de navegacion  -->
-
-            <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#navbar">
-              <span class="sr-only">Toggle navigation</span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </button>
-            
-            <div clas="navbar-header">
+<div class="container">
+    <div class="navbar-header navbar-inverse ">
+	      <button data-target=".bs-navbar-collapse" data-toggle="collapse" type="button" class="navbar-toggle collapsed">
+	        <span class="sr-only">Toggle navigation</span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	      </button>
+ 			 <div clas="navbar-header">
               <%= link_to image_tag("logo2.png", height: "30px"), root_path, class:"navbar-brand", style: "height: 30px;"%>
             </div>
 
-
-          <div class="navbar-collapse collapse" id="navbar" aria-expanded="false" style="height: 1px;">
-              <ul class="nav navbar-nav">
+        </div>
+    <nav class="navbar-collapse bs-navbar-collapse collapse navbar-inverse " aria-expanded="false" style="height: 1px;">
+      <ul class="nav navbar-nav">
                 <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">ADMIN<span class="caret"></span></a>
                   <ul class="dropdown-menu" role="menu">
                     <li><a href="#">Reportes</a></li>
                     <li><a href="#">Nóminas</a></li>
                     <li><a href="#">Facturas</a></li>
+                    <li><%= link_to "Precios", admin_prices_path  %></li>
                   </ul>
                 </li>
                 <li><a href="#">PREVALUACIÓN</a></li>
@@ -35,9 +33,10 @@
                 <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">ALMACÉN <span class="caret"></span></a>
                   <ul class="dropdown-menu" role="menu">
-                    <li><%= link_to "Entradas", receive_order_inventories_path %></li>
+                    <li><%= link_to "Entradas", new_order_path %></li>
                     <li><%= link_to "Salidas", departure_inventories_path %></li>
                     <li><%= link_to "Inventarios",  inventories_path %></li>
+                    <li><%= link_to "Bodegas",  warehouses_path %></li>
                   </ul>
                 </li>
                 <li class="dropdown">
@@ -57,6 +56,6 @@
                   </ul>
                 </li>
               </ul>
-            </div>
-      </div>
-</div>
+
+    </nav>
+  </div>
