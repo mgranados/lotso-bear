@@ -1,14 +1,6 @@
 # -*- encoding : utf-8 -*-
-require 'barby'
-require 'barby/barcode/code_128'
-require 'barby/outputter/html_outputter'
-require 'barby/outputter/ascii_outputter'
-require 'chunky_png'
-require "prawn/measurement_extensions"
-require 'barby/outputter/png_outputter'
-
 class StockFamiliesController < ApplicationController
-  before_action :set_family, only: [:show, :label, :edit, :update, :history, :choose_label]
+  before_action :set_family, only: [:show, :label, :edit, :update, :history, :choose_labels]
 
   def new
   	@stockFamily = StockFamily.new
@@ -37,6 +29,22 @@ class StockFamiliesController < ApplicationController
   end
 
   def print_label
+    labels_to_print = Array.new
+    family_to_print = params[:family_to_print]
+    stocks_to_print = params[:spares_to_print]
+
+    unless family_to_print.blank?
+      labels_to_print << StockFamily.stock_family_label_info(family_to_print)
+    end
+
+    unless stocks_to_print.blank?
+      stocks_to_print.each do |stock_id|
+        labels_to_print << StockSpare.stock_spare_label_info(stock_id)
+      end
+    end
+    generate_labels_pdf(labels_to_print)
+    file = open("app/assets/pdf/barcodes.pdf")
+    send_file(file, :filename => "etiquetas.pdf", :type => "application/pdf" , :disposition =>      "inline")
   end
 
 
