@@ -1,6 +1,6 @@
 <h1>Listing sections</h1>
 
-<table>
+<table class="table">
   <thead>
     <tr>
       <th>Code</th>
@@ -18,9 +18,9 @@
         <td><%= section.code %></td>
         <td><%= section.warehouse_id %></td>
         <td><%= section.name %></td>
-        <td><%= link_to 'Show', section %></td>
-        <td><%= link_to 'Edit', edit_section_path(section) %></td>
-        <td><%= link_to 'Destroy', section, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Mostrar', section,class:"btn btn-info" %></td>
+        <td><%= link_to 'Editar', edit_section_path(section),class:"btn btn-warning" %></td>
+        <td><%= link_to 'Eliminar', section, method: :delete, data: { confirm: 'Are you sure?' },class:"btn btn-danger" %></td>
       </tr>
     <% end %>
   </tbody>
@@ -28,4 +28,4 @@
 
 <br>
 
-<%= link_to 'New Section', new_warehouse_section_path %>
+<%= link_to 'New Section', new_warehouse_section_path,class:"btn btn-success" %>

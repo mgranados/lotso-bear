@@ -4,24 +4,26 @@
       <h2><%= pluralize(@subsection.errors.count, "error") %> prohibited this subsection from being saved:</h2>
 
       <ul>
-      <% @subsection.errors.full_messages.each do |msg| %>
+      <% @section.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
       <% end %>
       </ul>
     </div>
   <% end %>
 
-  <h2>Seccion: <%= @subsection.section.code %></h2>
+  <h2>Seccion: <%= @section.code %></h2>
 
   <div class="field">
     <%= f.label :code %><br>
     <%= f.text_field :code %>
   </div>
   <div class="field">
-    <%= f.label :name %><br>
+    <%= f.label :nombre %><br>
     <%= f.text_field :name %>
   </div>
+  <br>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Crear Subsection", class:"btn btn-info" %>
   </div>
+  <br>
 <% end %>
