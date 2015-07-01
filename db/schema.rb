@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150701014454) do
+ActiveRecord::Schema.define(version: 20150701230847) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -84,7 +84,6 @@ ActiveRecord::Schema.define(version: 20150701014454) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "code"
-    t.boolean  "mold"
     t.integer  "father_id"
     t.boolean  "active"
     t.integer  "entrance_price_cents"
@@ -132,22 +131,6 @@ ActiveRecord::Schema.define(version: 20150701014454) do
     t.integer  "brand_id"
     t.string   "initials"
     t.string   "model"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "mold_components", force: true do |t|
-    t.string   "name"
-    t.integer  "mold_spare_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "mold_spares", force: true do |t|
-    t.string   "name"
-    t.string   "comment"
-    t.string   "mold_type"
-    t.string   "code"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -255,7 +238,6 @@ ActiveRecord::Schema.define(version: 20150701014454) do
     t.integer  "supplier_code"
     t.integer  "quantity"
     t.integer  "car_order_id"
-    t.string   "subsection_id_integer"
     t.integer  "subsection_id"
     t.string   "photo_file_name"
     t.string   "photo_content_type"
@@ -263,7 +245,6 @@ ActiveRecord::Schema.define(version: 20150701014454) do
     t.datetime "photo_updated_at"
     t.string   "color"
     t.integer  "stock_car_id"
-    t.string   "color"
   end
 
   create_table "stock_family_images", force: true do |t|
