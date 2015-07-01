@@ -16,6 +16,11 @@ LotsoBear::Application.routes.draw do
   resources :spares, only: [:index, :new, :create, :show, :edit ,:destroy, :update]
   resources :generic_spares, only: [:index, :new, :create, :show, :edit ,:destroy, :update]
 
+  resources :supplies do
+    member do
+    get :spend
+    end  
+  end
 
   resources :warehouses do
     resources :sections, shallow: true do
@@ -29,8 +34,9 @@ LotsoBear::Application.routes.draw do
 
   resources :stock_families, only: [:index, :new, :show, :edit ,:destroy, :update] do
     member do
-      get :label
+      post :print_label
       get :history
+      get :choose_labels
     end
 
   end
@@ -44,7 +50,7 @@ LotsoBear::Application.routes.draw do
 
   resources :orders do
     member do
-      post :labels
+      post :print_label
       get :history
     end
   end
@@ -101,6 +107,7 @@ LotsoBear::Application.routes.draw do
 
   match '/consultar',            to: 'client_actions#home', via: 'get'
   match '/c/show',               to: 'client_actions#show', via: 'get'
+  match '/get_client_car', to: 'client_actions#get_client_car', via: 'post'
 
   match '/signin',  to: 'sessions#new',         via: 'get'
   match '/signout', to: 'sessions#destroy',     via: 'delete'

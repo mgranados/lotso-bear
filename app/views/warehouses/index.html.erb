@@ -1,6 +1,6 @@
 <h1>Listing warehouses</h1>
 
-<table>
+<table class="table">
   <thead>
     <tr>
       <th>Sucursal</th>
@@ -16,9 +16,9 @@
       <tr>
         <td><%= warehouse.branch %></td>
         <td><%= warehouse.location %></td>
-        <td><%= link_to 'Mostrar', warehouse %></td>
-        <td><%= link_to 'Edit', edit_warehouse_path(warehouse) %></td>
-        <td><%= link_to 'Destroy', warehouse, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Mostrar', warehouse ,class:"btn btn-info" %></td>
+        <td><%= link_to 'Editar', edit_warehouse_path(warehouse),class:"btn btn-warning" %></td>
+        <td><%= link_to 'Eliminar', warehouse, method: :delete, data: { confirm: '¿Estas seguro?' },class:"btn btn-danger" %></td>
       </tr>
     <% end %>
   </tbody>

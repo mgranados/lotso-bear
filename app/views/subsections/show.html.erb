@@ -11,11 +11,11 @@
 
 <p>
   <strong>Sección:</strong>
-  <%= @subsection.code %>
+  <%= @subsection.section.code %>
 </p>
 
-<%= link_to 'Imprimir Etiqueta', print_label_subsection_path(@subsection) %>
+<%= link_to 'Imprimir Etiqueta', print_label_subsection_path(@subsection),class:"btn btn-success" %>
 
 
-<%= link_to 'Edit', edit_subsection_path(@subsection) %> |
-<%= link_to 'Back', section_subsections_path(@subsection.section) %>
+<%= link_to 'Edit', edit_subsection_path(@subsection),class:"btn btn-warning" %> |
+<%= link_to 'Back', section_subsections_path(@subsection.section),class:"btn btn-default" %>

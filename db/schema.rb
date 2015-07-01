@@ -255,6 +255,7 @@ ActiveRecord::Schema.define(version: 20150701014454) do
     t.integer  "supplier_code"
     t.integer  "quantity"
     t.integer  "car_order_id"
+    t.string   "subsection_id_integer"
     t.integer  "subsection_id"
     t.string   "photo_file_name"
     t.string   "photo_content_type"
@@ -262,6 +263,7 @@ ActiveRecord::Schema.define(version: 20150701014454) do
     t.datetime "photo_updated_at"
     t.string   "color"
     t.integer  "stock_car_id"
+    t.string   "color"
   end
 
   create_table "stock_family_images", force: true do |t|

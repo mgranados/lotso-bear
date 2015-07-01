@@ -1,0 +1,19 @@
+<% if @stock_car %>
+    <table class="table table-responsive">
+      <tbody>
+        <tr>
+          <td><strong>Preevaluación:</strong></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td><strong>Código:</strong></td>
+          <td><%= @stock_car.code %></td>
+        </tr>
+      </tbody>
+    </table>
+
+<% else %>
+  <div class="danger">
+    <h4>Código incorrecto. Por favor verifíque su información</h4>
+  </div>
+<% end %>

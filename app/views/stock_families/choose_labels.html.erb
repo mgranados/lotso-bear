@@ -1,0 +1,50 @@
+<div class ="row">
+<%= form_tag print_label_stock_family_path(@stock_family), :target => "_blank" do %>
+	<h1>Escoger Piezas a Imprimir Etiquetas</h1>
+	<%= submit_tag "Imprimir Etiquetas", class:"btn btn-large btn-success"   %>
+	<div class="col-md-12">
+		<table class="table">
+			<thead>
+				<tr>
+					<th><strong>Nombre</strong></th>
+					<th><strong>Código</strong></th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td><%= @stock_family.generic_family.name %></td>
+					<td><%= @stock_family.code %></td>
+					<td><%= check_box_tag "family_to_print" , @stock_family.id, true %>
+					<%= label_tag(:printable, "Imprimir etiqueta") %></td>
+				</tr>
+			</tbody>
+		</table>		
+	</div>
+	<div class="col-md-12">
+	<h3>Piezas adentro:</h3>
+		<table class="table">
+			<thead>
+				<tr>
+					<th><strong>Nombre</strong></th>
+					<th><strong>Código</strong></th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+			<% @stock_family.stock_spares.each do |spare| %>
+				<tr>
+					<td><%= spare.generic_spare.name %></td>
+					<td><%= spare.code %></td>
+					<td><%= check_box_tag "spares_to_print[]" , @stock_family.id, true %>
+					<%= label_tag(:printable, "Imprimir etiqueta") %></td>
+				</tr>
+			<% end %>
+			</tbody>
+		</table>		
+	</div>
+
+
+
+<% end %>
+</div>
