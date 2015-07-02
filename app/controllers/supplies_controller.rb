@@ -1,5 +1,5 @@
 class SuppliesController < ApplicationController
-  before_action :set_supply, only: [:show, :edit, :update, :destroy,:spend]
+  before_action :set_supply, only: [:show, :edit, :update, :destroy]
 
   # GET /supplies
   # GET /supplies.json
@@ -61,13 +61,19 @@ class SuppliesController < ApplicationController
     end
   end
 
-  def spend
-    if @supply.qty>0
-      @supply.update(qty: @supply.qty-1);
-      redirect_to :index
-    end
+  def consumer
   end
 
+  def spend
+    @employee = User.find_by_code(params[:user_code])
+
+    if @employee.blank?
+      flash[:danger] = "Empleado no encontrado"
+      redirect_to consumer_supplies_path
+    else
+
+    end
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -77,6 +83,7 @@ class SuppliesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def supply_params
-      params.require(:supply).permit(:name, :minimum_qty, :cost, :description)
+      params.require(:supply).permit(:name, :minimum_qty, :cost, :description, :quantity, :weight, :supplier_id, :brand, :size, :code 
+        )
     end
 end

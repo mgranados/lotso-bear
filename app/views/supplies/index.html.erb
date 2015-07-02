@@ -7,9 +7,12 @@
       <th>Cantidad Mínima</th>
       <th>Costo</th>
       <th>Descripción</th>
-      <th></th>
-      <th></th>
-      <th></th>
+      <th>Weight</th>
+      <th>Brand</th>
+      <th>Quantity</th>
+      <th>Size</th>
+      <th>Supplier</th>
+      <th>Code</th>
     </tr>
   </thead>
 
@@ -20,8 +23,13 @@
         <td><%= supply.minimum_qty %></td>
         <td><%= supply.cost %></td>
         <td><%= supply.description %></td>
+        <td><%= supply.weight %></td>
+        <td><%= supply.brand %></td>
+        <td><%= supply.quantity %></td>
+        <td><%= supply.size %></td>
+        <td><%= supply.supplier %></td>
+        <td><%= supply.code %></td>
         <td><%= link_to 'Ver', supply ,class:"btn btn-info" %></td>
-        <td><%= link_to 'Consumir', spend_supply_path(supply),class:"btn btn-warning" %></td>
         <td><%= link_to 'Editar', edit_supply_path(supply),class:"btn btn-warning" %></td>
         <td><%= link_to 'Eliminar', supply, method: :delete, data: { confirm: 'Are you sure?' },class:"btn btn-danger" %></td>
       </tr>

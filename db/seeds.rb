@@ -4,8 +4,8 @@
 # # User.create!(name:"Capturista",email:"capturista@capturista.com",password:"capturista", password_confirmation:"capturista", username: "Capturista", privileges:"capturista")
 # # User.create!(name:"Gerente",email:"gerente@gerente.com",password:"gerente", password_confirmation:"gerente", username: "Gerente", privileges:"gerente")
 # User.create!(name:"Ajustador",email:"ajustador@ajustador.com",password:"ajustador", password_confirmation:"ajustador", username: "Ajustador", privileges:"ajustador")
-	
-	# User.create!(name:"trabajador", email: "trabajador@trabajador.com", password: "trabajador", password_confirmation: "trabajador", username: "trabajador", privileges: "empleado")
+	# User.all.destroy_all
+	# User.create!(name:"trabajador", email: "trabajador@trabajador.com", password: "trabajador", password_confirmation: "trabajador", username: "trabajador", privileges: "empleado", code:"holi")
 
 # for i in 1900...2500
 #   Generation.create!(year:i)

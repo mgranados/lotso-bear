@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150626005043) do
+ActiveRecord::Schema.define(version: 20150702002651) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -326,6 +326,12 @@ ActiveRecord::Schema.define(version: 20150626005043) do
     t.string   "description"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.float    "weight"
+    t.string   "brand"
+    t.integer  "quantity"
+    t.string   "size"
+    t.integer  "supplier_id"
+    t.string   "code"
   end
 
   create_table "type_likelihoods", force: true do |t|
@@ -346,6 +352,7 @@ ActiveRecord::Schema.define(version: 20150626005043) do
     t.datetime "updated_at"
     t.string   "password_digest"
     t.string   "remember_token"
+    t.string   "code"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

@@ -11,6 +11,7 @@
     </div>
   <% end %>
 
+      
   <div class="field">
     <%= f.label :name %><br>
     <%= f.text_field :name %>
@@ -18,6 +19,10 @@
   <div class="field">
     <%= f.label :minimum_qty %><br>
     <%= f.number_field :minimum_qty %>
+
+  </div>  <div class="field">
+    <%= f.label :quantity %><br>
+    <%= f.number_field :quantity %>
   </div>
   <div class="field">
     <%= f.label :cost %><br>
@@ -26,6 +31,25 @@
   <div class="field">
     <%= f.label :description %><br>
     <%= f.text_field :description %>
+  </div>  
+  <div class="field">
+    <%= f.label :weight %><br>
+    <%= f.text_field :weight %>
+  </div>
+  <div class="field">
+    <%= f.label :brand %><br>
+    <%= f.text_field :brand %>
+  </div>
+  <div class="field">
+    <%= f.label :size %><br>
+    <%= f.text_field :size %>
+  </div>
+  <div class="field">
+    <%= f.label :code %><br>
+    <%= f.text_field :code %>
+  </div>
+  <div>
+    <%= grouped_collection_select nil, :supplier_id, SupplierType.all, :suppliers, :name, :id, :name, :include_blank => true %>
   </div>
   <div class="actions">
     <%= f.submit %>

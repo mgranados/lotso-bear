@@ -5,7 +5,6 @@ LotsoBear::Application.routes.draw do
   root 'sessions#new'
 
   resources :brands
-  resources :supplies
   resources :suppliers
   resources :mold_spares
   resources :model_acronyms
@@ -14,13 +13,20 @@ LotsoBear::Application.routes.draw do
   resources :valuations, only: [:index, :new, :create, :show]
   resources :spares, only: [:index, :new, :create, :show, :edit ,:destroy, :update]
   resources :generic_spares, only: [:index, :new, :create, :show, :edit ,:destroy, :update]
+  resources :users
+    
+# <SUPPLIES>
 
+
+  #get '/supplies/:user_id/spend', to: 'supplies#spend', as: 'spend_dsupplies' #getting the user id in the path
+  post '/supplies/spend', to: 'supplies#spend', as: 'spend_supplies' #getting the user 
+
+  get '/supplies/consumer', to: 'supplies#consumer', as: 'consumer_supplies'
   resources :supplies do
-    member do
-    get :spend
-    end  
   end
+# </SUPPLIES>
 
+# <WAREHOUSES>
   resources :warehouses do
     resources :sections, shallow: true do
       resources :subsections, shallow: true do
@@ -30,30 +36,36 @@ LotsoBear::Application.routes.draw do
       end
     end
   end
+# </WAREHOUSES>
 
+# <STOCK_FAMILIES>
+  post 'stock_families/print_label', to: 'stock_families#print_label', as: 'print_label_stock_family'
   resources :stock_families, only: [:index, :new, :show, :edit ,:destroy, :update] do
     member do
-      post :print_label
       get :history
       get :choose_labels
     end
-
   end
+# </STOCK_FAMILIES>
 
+# <STOCK_SPARES>
   resources :stock_spares, only: [:edit,:show,:update] do
     member do
       get :history
     end
   end
- 
+# </STOCK_SPARES>
   
+# <ORDERS>
   resources :orders do
     member do
       post :print_label
       get :history
     end
   end
+# </ORDERS>
 
+# <GENERIC_FAMILIES>
   resources :generic_families, only: [:index, :new, :create, :show, :destroy] do
     collection do
       get :not_assigned
@@ -64,7 +76,9 @@ LotsoBear::Application.routes.draw do
       get :count_spares
     end
   end
+# </GENERIC_FAMILIES>
 
+# <GENERIC_CARS>
   resources :generic_cars, only: [:index, :new, :create, :show, :edit ,:destroy, :update] do
     member do
       get :assignation
@@ -75,7 +89,9 @@ LotsoBear::Application.routes.draw do
       post :search_by_model
     end
   end
+# </GENERIC_CARS>
 
+# <INVENTORIES>
     get '/select_generic_families/:id', to: 'inventories#show_generic_car_generic_families', as: 'family_selection'
     get '/inventories/:family_id/:car_id/add_family_with_spares_to_order',to: 'inventories#add_family_with_spares_to_order'
   resources :inventories do
@@ -83,6 +99,7 @@ LotsoBear::Application.routes.draw do
       get :add_family_with_spares_to_order
     end
     collection do
+      get :worker #Route to select an emplooyee with a searching form -> 
       get :acomodate
       post :save_store_stocks
       post :store_stocks
@@ -102,12 +119,18 @@ LotsoBear::Application.routes.draw do
       resources :supplies
     end
   end
+# </INVENTORIES>
 
+# <CLIENTS>
   match '/consultar',            to: 'client_actions#home', via: 'get'
   match '/c/show',               to: 'client_actions#show', via: 'get'
+# </CLIENTS>
 
+
+# <USERS>
   match '/signin',  to: 'sessions#new',         via: 'get'
   match '/signout', to: 'sessions#destroy',     via: 'delete'
+# </USERS>
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
