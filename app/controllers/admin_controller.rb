@@ -1,6 +1,5 @@
 # -*- encoding : utf-8 -*-
 class AdminController < ApplicationController
-
   def home
   end
 
@@ -9,4 +8,7 @@ class AdminController < ApplicationController
     @families_unpriced = GenericFamily.where.not(father_id: nil).where(entrance_price_cents: nil)
   end
 
+  def suppliers
+      @suppliers = Supplier.all
+  end
 end

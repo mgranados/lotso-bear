@@ -3,6 +3,8 @@ class GenericFamily < ActiveRecord::Base
 
   has_many :childs, class_name: 'GenericFamily', foreign_key: 'father_id'
   belongs_to :father, class_name: 'GenericFamily'
+  has_many :suppliers, through: :supplier_likelihoods
+  has_many :supplier_likelihoods
 
   has_many :spare_likelihoods
   has_many :generic_spares, through: :spare_likelihoods
@@ -19,6 +21,7 @@ class GenericFamily < ActiveRecord::Base
 
   validates :name, presence: :true
   validates :code, presence: :true
+
 
 
   def self.add_to_corresponding_cars (type_likelihood)

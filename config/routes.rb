@@ -19,7 +19,7 @@ LotsoBear::Application.routes.draw do
   resources :supplies do
     member do
     get :spend
-    end  
+    end
   end
 
   resources :warehouses do
@@ -105,6 +105,7 @@ LotsoBear::Application.routes.draw do
     get :prices
   end
 
+  match '/admin/suppliers/',    to: 'suppliers#index',        via: 'get'
   match '/consultar',            to: 'client_actions#home', via: 'get'
   match '/c/show',               to: 'client_actions#show', via: 'get'
   match '/get_client_car', to: 'client_actions#get_client_car', via: 'post'
