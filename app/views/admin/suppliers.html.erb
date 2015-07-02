@@ -1,10 +1,13 @@
-<h1>Todos los proveedores</h1>
+<h1>Suppliers</h1>
+
+<h3>Listado Proveedores</h3>
 
 <table id="suppliersIndexTable">
   <thead>
     <tr>
       <th>Nombre</th>
       <th>Tipo</th>
+      <th>Ubicación</th>
       <th></th>
       <th></th>
       <th></th>
@@ -16,7 +19,8 @@
       <tr>
         <td><%= supplier.name %></td>
         <td><%= supplier.supplier_type.name %></td>
-        <td><%= link_to 'Seleccionar', supplier %></td>
+        <td><%= supplier.location %></td>
+        <td><%= link_to 'Show', supplier %></td>
         <td><%= link_to 'Edit', edit_supplier_path(supplier) %></td>
         <td><%= link_to 'Destroy', supplier, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
@@ -27,11 +31,3 @@
 <br>
 
 <%= link_to 'New Supplier', new_supplier_path %>
-
-
-<script>
-$(function(){
-  $('#suppliersIndexTable').dataTable();
-
-});
-</script>

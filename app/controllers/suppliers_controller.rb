@@ -19,6 +19,8 @@
     # GET /suppliers/1
     # GET /suppliers/1.json
     def show
+      @generic_families = GenericFamily.where.not(father_id: nil)
+
     end
 
     # GET /suppliers/new

@@ -21,6 +21,10 @@
     <%= f.select :supplier_type_id, SupplierType.all.collect { |p| [ p.name, p.id ] }, {include_blank: '---'} %>
 
   </div>
+  <div class="field">
+    <%= f.label :location %><br>
+    <%= f.text_field :location %>
+  </div>
   <div class="actions">
     <%= f.submit %>
   </div>

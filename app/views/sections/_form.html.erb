@@ -11,6 +11,7 @@
     </div>
   <% end %>
 
+<div class="col-md-12">
   <p>Warehouse: <%= @warehouse.branch %></p>
 
   <div class="field">
@@ -21,7 +22,11 @@
     <%= f.label :name %><br>
     <%= f.text_field :name %>
   </div>
+  <br>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Crear Section", class:"btn btn-info"%>
   </div>
+  <br>
+  <br>
+</div>
 <% end %>

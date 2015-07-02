@@ -10,5 +10,42 @@
   <%= @supplier.supplier_type_id %>
 </p>
 
+
+<table id="suppliersIndexTable">
+  <thead>
+    <tr>
+      <th>Nombre Pieza</th>
+      <th>Modelo Auto</th>
+      <th>Generación</th>
+      <th>Precio</th>
+      <th>Seleccionar</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @generic_families.each do |generic_fam| %>
+      <tr>
+        <td><%= generic_fam.name %></td>
+        <td><%= generic_fam.generic_cars.first.model_acronym.model  %></td>
+        <td><%= generic_fam.generic_cars.first.first_generation_year %> -
+          <% if !generic_fam.generic_cars.first.gen_continues %>
+            <%= generic_fam.generic_cars.first.last_generation_year %>
+          <% else %>
+            Año Actual
+          <% end %>
+         </td>
+        <td><%= link_to 'Edit', '#' %></td>
+        <td><%= link_to 'Seleccionar', '#' %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Nueva Pieza', '#' %>
+
+
+
 <%= link_to 'Edit', edit_supplier_path(@supplier) %> |
 <%= link_to 'Back', suppliers_path %>

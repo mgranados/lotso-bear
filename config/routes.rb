@@ -42,6 +42,7 @@ LotsoBear::Application.routes.draw do
   post 'stock_families/print_label', to: 'stock_families#print_label', as: 'print_label_stock_family'
   resources :stock_families, only: [:index, :new, :show, :edit ,:destroy, :update] do
     member do
+      post :print_label
       get :history
       get :choose_labels
     end
@@ -64,9 +65,8 @@ LotsoBear::Application.routes.draw do
     end
   end
 # </ORDERS>
-
-# <GENERIC_FAMILIES>
-  resources :generic_families, only: [:index, :new, :create, :show, :destroy] do
+#<GENERIC_FAMILIES>
+  resources :generic_families, only: [:index, :new, :create, :show, :destroy, :update] do
     collection do
       get :not_assigned
       get :assigned
@@ -74,6 +74,7 @@ LotsoBear::Application.routes.draw do
     end
     member do
       get :count_spares
+      get :prices
     end
   end
 # </GENERIC_FAMILIES>
@@ -103,16 +104,11 @@ LotsoBear::Application.routes.draw do
       get :acomodate
       post :save_store_stocks
       post :store_stocks
-
       get :departure
-
       get :all
-
       get :add_new_stock
-
       post :search_stock
       get :search_stock
-
       post :add_to_inventory, to: 'stock_families#create'
       post :departure_stock_family
       resources :stock_families, only: [:create]
@@ -124,13 +120,27 @@ LotsoBear::Application.routes.draw do
 # <CLIENTS>
   match '/consultar',            to: 'client_actions#home', via: 'get'
   match '/c/show',               to: 'client_actions#show', via: 'get'
-# </CLIENTS>
+  match '/get_client_car', to: 'client_actions#get_client_car', via: 'post'
+#<CLIENT>
 
 
 # <USERS>
   match '/signin',  to: 'sessions#new',         via: 'get'
   match '/signout', to: 'sessions#destroy',     via: 'delete'
 # </USERS>
+
+#<ADMIN>
+namespace :admin do
+    get :prices
+  end
+#</ADMIN>
+  match '/admin/suppliers/',    to: 'suppliers#index',        via: 'get'
+  match '/consultar',            to: 'client_actions#home', via: 'get'
+  match '/c/show',               to: 'client_actions#show', via: 'get'
+  match '/get_client_car', to: 'client_actions#get_client_car', via: 'post'
+
+  match '/signin',  to: 'sessions#new',         via: 'get'
+  match '/signout', to: 'sessions#destroy',     via: 'delete'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
@@ -176,10 +186,4 @@ LotsoBear::Application.routes.draw do
   #   resources :posts, concerns: :toggleable
   #   resources :photos, concerns: :toggleable
 
-  # Example resource route within a namespace:
-  #   namespace :admin do
-  #     # Directs /admin/products/* to Admin::ProductsController
-  #     # (app/controllers/admin/products_controller.rb)
-  #     resources :products
-  #   end
 end

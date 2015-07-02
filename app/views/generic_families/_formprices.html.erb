@@ -1,0 +1,27 @@
+<%= form_for @generic_family do |f| %>
+		<%= f.hidden_field :id%>
+			<div class="row">
+
+				<div class='col-md-4'>
+					<div class='form-group'>
+						<%= f.label "Precio Entrada"%>
+						<%= f.number_field :entrance_price_cents, :class =>"form-control"%>
+					</div>
+				</div>
+
+				<div class='col-md-4'>
+					<div class='form-group'>
+						<%= f.label "Precio Salida" %>
+						<%= f.number_field :departure_price_cents, :class =>"form-control"%>
+					</div>
+				</div>
+
+			</div>
+
+				<div class="row">
+					<div class="col-md-6"></div>
+					<div class="col-md-3"><%= link_to t(:cancel), generic_families_path, class: "btn btn-default" %></div>
+					<div class="col-md-3"><%= f.submit "Guardar Precio", class: "btn btn-primary"%></div>
+				</div>
+
+<% end %>

@@ -1,5 +1,5 @@
 class GenericFamiliesController < ApplicationController
-  before_action :set_family, only: [:show, :destroy, :edit, :count_spares]
+  before_action :set_family, only: [:show, :destroy, :edit, :count_spares, :prices, :update]
 
   def new
     @generic_family = GenericFamily.new
@@ -14,6 +14,21 @@ class GenericFamiliesController < ApplicationController
     else
       render 'new'
     end
+  end
+
+  def update
+    respond_to do |format|
+      if @generic_family.update(required_params)
+        format.html { redirect_to admin_prices_path, notice: 'El precio fue agregado con éxito' }
+        format.json { render :show, status: :ok, location: @generic_family }
+      else
+        format.html { render :edit }
+        format.json { render json: @generic_family.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  def prices
   end
 
   def show
@@ -59,8 +74,9 @@ class GenericFamiliesController < ApplicationController
   end
 
   private
+
     def required_params
-      params.require(:generic_family).permit(:code,:name, :mold, {:types => []},{:family_ids => []} ,spare_likelihoods_attributes:[:id, :generic_family_id, :generic_spare_id, generic_spare_attributes:[:name,:code]])
+      params.require(:generic_family).permit(:code,:name, :entrance_price_cents, :departure_price_cents, :mold, {:types => []},{:family_ids => []} ,spare_likelihoods_attributes:[:id, :generic_family_id, :generic_spare_id, generic_spare_attributes:[:name,:code]])
     end
 
     def set_family

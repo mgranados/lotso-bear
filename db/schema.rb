@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150702002651) do
+ActiveRecord::Schema.define(version: 20150702005056) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -84,9 +84,12 @@ ActiveRecord::Schema.define(version: 20150702002651) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "code"
-    t.boolean  "mold"
     t.integer  "father_id"
     t.boolean  "active"
+    t.integer  "entrance_price_cents"
+    t.string   "entrance_price_currency",  default: "USD", null: false
+    t.integer  "departure_price_cents"
+    t.string   "departure_price_currency", default: "USD", null: false
   end
 
   create_table "generic_fittables", force: true do |t|
@@ -128,22 +131,6 @@ ActiveRecord::Schema.define(version: 20150702002651) do
     t.integer  "brand_id"
     t.string   "initials"
     t.string   "model"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "mold_components", force: true do |t|
-    t.string   "name"
-    t.integer  "mold_spare_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "mold_spares", force: true do |t|
-    t.string   "name"
-    t.string   "comment"
-    t.string   "mold_type"
-    t.string   "code"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -251,14 +238,13 @@ ActiveRecord::Schema.define(version: 20150702002651) do
     t.integer  "supplier_code"
     t.integer  "quantity"
     t.integer  "car_order_id"
-    t.string   "subsection_id_integer"
     t.integer  "subsection_id"
     t.string   "photo_file_name"
     t.string   "photo_content_type"
     t.integer  "photo_file_size"
     t.datetime "photo_updated_at"
-    t.integer  "stock_car_id"
     t.string   "color"
+    t.integer  "stock_car_id"
   end
 
   create_table "stock_family_images", force: true do |t|
@@ -306,6 +292,13 @@ ActiveRecord::Schema.define(version: 20150702002651) do
     t.datetime "updated_at"
   end
 
+  create_table "supplier_likelihoods", force: true do |t|
+    t.integer  "supplier_id"
+    t.integer  "generic_family_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "supplier_types", force: true do |t|
     t.string   "name"
     t.datetime "created_at"
@@ -317,6 +310,7 @@ ActiveRecord::Schema.define(version: 20150702002651) do
     t.string   "supplier_type_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "location"
   end
 
   create_table "supplies", force: true do |t|

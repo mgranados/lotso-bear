@@ -1,0 +1,63 @@
+<h1>Administración de Precios</h1>
+
+<h3>Familias sin Precio</h3>
+<table class="table">
+  <thead>
+    <th>Nombre</th>
+    <th>Código</th>
+    <th>Modelo Coche</th>
+    <th>Generación</th>
+    <th>Precio</th>
+  </thead>
+
+  <tbody>
+    <% for family in @families_unpriced %>
+      <tr>
+        <td><%= family.name %></td>
+        <td><%= family.code  %></td>
+        <td><%= family.generic_cars.first.model_acronym.model  %></td>
+        <td><%= family.generic_cars.first.first_generation_year %> -
+          <% if !family.generic_cars.first.gen_continues %>
+            <%= family.generic_cars.first.last_generation_year %>
+          <% else %>
+            Año Actual
+          <% end %>
+         </td>
+         <td>
+           <%= link_to "Asignar Precio", prices_generic_family_path(family) %>
+        </td>
+      </tr>
+    <% end %>
+    </tbody>
+</table>
+
+<h3>Familias ya con precio</h3>
+<table class="table">
+  <thead>
+    <th>Nombre</th>
+    <th>Código</th>
+    <th>Modelo Coche</th>
+    <th>Generación</th>
+    <th>Precio</th>
+  </thead>
+
+  <tbody>
+    <% for family in @families_priced %>
+      <tr>
+        <td><%= family.name %></td>
+        <td><%= family.code  %></td>
+        <td><%= family.generic_cars.first.model_acronym.model  %></td>
+        <td><%= family.generic_cars.first.first_generation_year %> -
+          <% if !family.generic_cars.first.gen_continues %>
+            <%= family.generic_cars.first.last_generation_year %>
+          <% else %>
+            Año Actual
+          <% end %>
+         </td>
+         <td>
+          $<%= family.entrance_price_cents %>
+        </td>
+      </tr>
+    <% end %>
+    </tbody>
+</table>

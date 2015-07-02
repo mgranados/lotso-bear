@@ -8,6 +8,7 @@ gem "jquery-turbolinks"
 gem 'jbuilder', '~> 1.2'
 gem 'bcrypt-ruby', '3.1.2' #passwords hasheados
 gem 'pundit'
+gem 'money-rails'
 
 # Image Uploaders
 gem "paperclip", "~> 4.2"
