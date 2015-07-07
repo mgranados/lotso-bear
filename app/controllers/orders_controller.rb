@@ -23,7 +23,6 @@ class OrdersController < ApplicationController
   end
 
   def create
-    
     order = Order.new
     # Order Info
     order.entrance_date = Time.now

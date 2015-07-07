@@ -21,6 +21,53 @@ class SuppliesController < ApplicationController
   def edit
   end
 
+# <Process Spend Supply>
+  def consumer
+  end
+
+  def spend
+    @employee = User.find_by_code(params[:user_code])
+
+    if @employee.blank?
+      flash[:danger] = "Empleado no encontrado"
+      redirect_to consumer_supplies_path
+    end
+  end
+
+  def add_supply_to_spend
+    @supply = Supply.find_by_code(params[:supply_code])
+      respond_to do |format|
+      format.js {}
+    end
+  end
+
+  def update_spend
+    supplies = params[:supplies]
+      supplies.each do |supply_info|
+        supply = Supply.find_by_id(supply_info[:supply_id])
+        if supply_info[:supply_quantity_to_spend].blank?
+          flash[:danger] = "Error, no se pueden poner cantidades vacias"
+          redirect_to spend_fail_supplies_path(params[:user_code])
+          return 0
+        elsif supply.quantity-supply_info[:supply_quantity_to_spend].to_i < 0
+          flash[:danger] = "#{supply.name} se ha agotado, solo quedan #{supply.quantity}, vuelva a empezar el proceso."
+          redirect_to spend_fail_supplies_path(params[:user_code])
+          return 0
+        else
+          user = User.find_by_code(params[:user_code])
+          Supply.transaction do
+            supply.update(quantity:supply.quantity-supply_info[:supply_quantity_to_spend].to_i)
+            Spending.create_with_cost(user,supply,supply_info[:supply_quantity_to_spend])  
+          end
+        end
+      end
+      flash[:success] = "Cantidades Actualizadas con exito"
+      redirect_to consumer_supplies_path
+  end
+    
+# </Process Spend Supply>
+
+
   # POST /supplies
   # POST /supplies.json
   def create
@@ -58,20 +105,6 @@ class SuppliesController < ApplicationController
     respond_to do |format|
       format.html { redirect_to supplies_url }
       format.json { head :no_content }
-    end
-  end
-
-  def consumer
-  end
-
-  def spend
-    @employee = User.find_by_code(params[:user_code])
-
-    if @employee.blank?
-      flash[:danger] = "Empleado no encontrado"
-      redirect_to consumer_supplies_path
-    else
-
     end
   end
 

@@ -1,0 +1,57 @@
+<h1>Gastos Por Empleado</h1>
+
+<h2>Gastos de <%= l(Time.now, format: "%B").capitalize %></h2>
+<table class="table">
+	<thead>
+		<th>Consumible</th>
+		<th>Codigo de Consumible</th>
+		<th>Fecha</th>
+		<th>Cantidad Consumida</th>
+		<th>Costo por unidad</th>
+		<th>Costo Total</th>
+		<th></th>
+	</thead>
+	<tbody>
+		<% @month_spending.each do |spending| %>
+			<tr>
+				<td><%= spending.supply.name %></td>
+				<td><%= spending.supply.code %></td>
+				<td><%= spending.created_at.strftime("%d/%m/%y") %></td>
+				<td><%= spending.quantity %></td>
+				<td><%= spending.cost_cents/spending.quantity %></td>
+				<td><%= spending.cost_cents %></td>
+			</tr>
+		<% end %>
+	</tbody>
+</table>
+
+<h2>Historial Completo</h2>
+<table id="history">
+	<thead>
+		<th>Consumible</th>
+		<th>Codigo de Consumible</th>
+		<th>Fecha</th>
+		<th>Cantidad Consumida</th>
+		<th>Costo por unidad</th>
+		<th>Costo Total</th>
+	</thead>
+	<tbody>
+		<% @user.spendings.each do |spending| %>
+			<tr>
+				<td><%= spending.supply.name %></td>
+				<td><%= spending.supply.code %></td>
+				<td><%= spending.created_at.strftime("%d/%m/%y") %></td>
+				<td><%= spending.quantity %></td>
+				<td><%= spending.cost_cents/spending.quantity %></td>
+				<td><%= spending.cost_cents %></td>
+			</tr>
+		<% end %>
+	</tbody>
+</table>
+
+<script>
+$(function(){
+ $('#history').dataTable();
+
+});
+</script>

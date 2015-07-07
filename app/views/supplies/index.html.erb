@@ -1,5 +1,6 @@
 <h1> Consumibles </h1>
 
+<%= link_to "Consumir", consumer_supplies_path %>
 <table class="table">
   <thead class="">
     <tr>
@@ -7,12 +8,14 @@
       <th>Cantidad Mínima</th>
       <th>Costo</th>
       <th>Descripción</th>
-      <th>Weight</th>
-      <th>Brand</th>
-      <th>Quantity</th>
-      <th>Size</th>
-      <th>Supplier</th>
-      <th>Code</th>
+      <th>Peso</th>
+      <th>Marca</th>
+      <th>Cantidad</th>
+      <th>Tamaño</th>
+      <th>Proveedor</th>
+      <th>Codigo</th>
+      <th></th>
+      <th></th>
     </tr>
   </thead>
 
@@ -29,7 +32,6 @@
         <td><%= supply.size %></td>
         <td><%= supply.supplier %></td>
         <td><%= supply.code %></td>
-        <td><%= link_to 'Ver', supply ,class:"btn btn-info" %></td>
         <td><%= link_to 'Editar', edit_supply_path(supply),class:"btn btn-warning" %></td>
         <td><%= link_to 'Eliminar', supply, method: :delete, data: { confirm: 'Are you sure?' },class:"btn btn-danger" %></td>
       </tr>

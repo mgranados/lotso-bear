@@ -1,5 +1,8 @@
 # -*- encoding : utf-8 -*-
 class User < ActiveRecord::Base
+
+      has_many :spendings
+
       before_save { self.email = email.downcase }
       before_create :create_remember_token
 
@@ -22,6 +25,19 @@ class User < ActiveRecord::Base
 
       def User.digest(token)
         Digest::SHA1.hexdigest(token.to_s)
+      end
+
+      def get_spending_cost_of_month
+        @spendings = Spending.where('created_at BETWEEN ? AND ?', Time.now.beginning_of_month, Time.now.end_of_month)
+        cost = 0
+        @spendings.each do |expense|
+          cost += expense.cost_cents
+        end
+        cost
+      end
+
+      def get_spendings_of_month
+        month_spendings = Spending.where('created_at BETWEEN ? AND ?', Time.now.beginning_of_month, Time.now.end_of_month)
       end
 
       private

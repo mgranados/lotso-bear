@@ -1,0 +1,21 @@
+<h1>Gastos Por Empleado</h1>
+<table class="table">
+	<thead>
+		<th>Nombre</th>
+		<th>Codigo</th>
+		<th>Mes Actual</th>
+		<th>Gasto del Mes</th>
+		<th></th>
+	</thead>
+	<tbody>
+		<% @users.each do |user| %>
+			<tr>
+				<td><%= user.name %></td>
+				<td><%= user.code %></td>
+				<td><%= l(Time.now, format: "%B").capitalize %></td>
+				<td><%= user.get_spending_cost_of_month %></td>
+				<td><%= link_to "Gastos", spending_history_user_path(user) %></td>
+			</tr>
+		<% end %>
+	</tbody>
+</table>

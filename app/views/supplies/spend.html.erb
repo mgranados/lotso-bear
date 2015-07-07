@@ -12,23 +12,27 @@
 	</tbody>
 </table>
 
-<%= form_tag spend_supplies_path, remote: true do %>
+<%= form_tag add_supply_to_spend_path, remote: true do %>
 	<%= text_field_tag :supply_code %>
 	<%= submit_tag "Buscar Consumible" %>
 <% end %>
 
+<%= form_tag udpate_spend_supplies_path do %>
+	<%= hidden_field_tag :user_code, @employee.code  %>
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Nombre</th>
+				<th>Codigo</th>
+				<th>Marca</th>
+				<th>Tamaño</th>
+				<th>Existencia</th>
+				<th>Cantidad a gastar</th>
+			</tr>
+		</thead>
+		<tbody id="supplies_to_spend">
 
-<table>
-	<thead>
-		<tr>
-			<th>Nombre</th>
-			<th>Codigo</th>
-			<th></th>
-		</tr>
-	</thead>
-	<tbody>
-		<tr>
-			<td></td>
-		</tr>
-	</tbody>
-</table>
+		</tbody>
+	</table>
+	<%= submit_tag "Introducir Gastos" %>
+<% end %>
