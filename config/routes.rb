@@ -1,5 +1,9 @@
 # -*- encoding : utf-8 -*-
 LotsoBear::Application.routes.draw do
+  get "supplier_codes/new"
+  get "supplier_codes/edit"
+  get "supplier_codes/create"
+  get "supplier_codes/update"
   resources :stock_cars
 
   root 'sessions#new'
@@ -14,17 +18,20 @@ LotsoBear::Application.routes.draw do
   resources :spares, only: [:index, :new, :create, :show, :edit ,:destroy, :update]
   resources :generic_spares, only: [:index, :new, :create, :show, :edit ,:destroy, :update]
   resources :users
-    
+
 # <SUPPLIES>
 
 
   #get '/supplies/:user_id/spend', to: 'supplies#spend', as: 'spend_dsupplies' #getting the user id in the path
-  post '/supplies/spend', to: 'supplies#spend', as: 'spend_supplies' #getting the user 
+  post '/supplies/spend', to: 'supplies#spend', as: 'spend_supplies' #getting the user
 
   get '/supplies/consumer', to: 'supplies#consumer', as: 'consumer_supplies'
   resources :supplies do
   end
 # </SUPPLIES>
+
+  get '/suppliers/:supplier_id/generic_families/:generic_family_id/new_supplier_code', to: 'supplier_codes#new', as: 'new_supplier_code'
+  post '/suppliers/:supplier_id/generic_families/:generic_family_id/supplier_code_creation', to: 'supplier_codes#create', as: 'supplier_generic_family_supplier_codes'
 
 # <WAREHOUSES>
   resources :warehouses do
@@ -56,7 +63,7 @@ LotsoBear::Application.routes.draw do
     end
   end
 # </STOCK_SPARES>
-  
+
 # <ORDERS>
   resources :orders do
     member do
@@ -78,6 +85,9 @@ LotsoBear::Application.routes.draw do
     end
   end
 # </GENERIC_FAMILIES>
+  resources :supplier do
+    resources :supplier
+  end
 
 # <GENERIC_CARS>
   resources :generic_cars, only: [:index, :new, :create, :show, :edit ,:destroy, :update] do
@@ -100,7 +110,7 @@ LotsoBear::Application.routes.draw do
       get :add_family_with_spares_to_order
     end
     collection do
-      get :worker #Route to select an emplooyee with a searching form -> 
+      get :worker #Route to select an emplooyee with a searching form ->
       get :acomodate
       post :save_store_stocks
       post :store_stocks
@@ -117,6 +127,9 @@ LotsoBear::Application.routes.draw do
   end
 # </INVENTORIES>
 
+
+
+
 # <CLIENTS>
   match '/consultar',            to: 'client_actions#home', via: 'get'
   match '/c/show',               to: 'client_actions#show', via: 'get'
@@ -128,6 +141,7 @@ LotsoBear::Application.routes.draw do
   match '/signin',  to: 'sessions#new',         via: 'get'
   match '/signout', to: 'sessions#destroy',     via: 'delete'
 # </USERS>
+
 
 #<ADMIN>
 namespace :admin do

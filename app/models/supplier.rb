@@ -9,6 +9,9 @@ class Supplier < ActiveRecord::Base
 
 	has_many :orders, through: :order_suppliers
 	has_many :supplies
+	
+	has_many :generic_families, through: :supplier_codes
+	has_many :supplier_codes
 
 	validates :name, :supplier_type_id, presence: true
 end

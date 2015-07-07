@@ -1,0 +1,2 @@
+module SupplierCodesHelper
+end
