@@ -1,0 +1,34 @@
+<h1>SupplierCodes#new</h1>
+<p>
+  <strong>Nombre de proveedor:</strong>
+  <%= @supplier.name %>
+</p>
+<p>
+  <strong>Familia de proveedor:</strong>
+  <%= @generic_family.name %>
+</p>
+<p>
+  <strong>Modelo:</strong>
+  <%= @generic_family.generic_cars.first.model_acronym.model %>
+</p>
+<p>
+  <strong>Generación:</strong>
+    <%= @generic_family.generic_cars.first.first_generation_year %> -
+    <% if !@generic_family.generic_cars.first.gen_continues %>
+      <%= @generic_family.generic_cars.first.last_generation_year %>
+    <% else %>
+      <p>Año Actual</p>
+    <% end %>
+</p>
+
+
+<%= form_for([@supplier,@generic_family, @supplier_code]) do |f| %>
+  <ul>
+      <li>
+        <%= f.label :code, "Código familia:" %>
+        <%= f.text_field :code %>
+      </li>
+  </ul>
+  <%= f.submit "Asignar código" %>
+
+<% end %>

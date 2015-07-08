@@ -19,8 +19,10 @@
     # GET /suppliers/1
     # GET /suppliers/1.json
     def show
-      @generic_families = GenericFamily.where.not(father_id: nil)
-
+      @supplier_codes = 
+      #@generic_families = GenericFamily.where.not(father_id: nil)
+      @generic_families_with_code = GenericFamily.joins(:supplier_codes)
+      @generic_families_wo_code =  GenericFamily.where.not(id: GenericFamily.joins(:supplier_codes).select(:generic_family_id)).where.not(father_id: nil)
     end
 
     # GET /suppliers/new

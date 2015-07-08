@@ -1,5 +1,9 @@
 # -*- encoding : utf-8 -*-
 LotsoBear::Application.routes.draw do
+  get "supplier_codes/new"
+  get "supplier_codes/edit"
+  get "supplier_codes/create"
+  get "supplier_codes/update"
   resources :stock_cars
 
   root 'sessions#new'
@@ -23,6 +27,9 @@ LotsoBear::Application.routes.draw do
   resources :supplies do
   end
 # </SUPPLIES>
+
+  get '/suppliers/:supplier_id/generic_families/:generic_family_id/new_supplier_code', to: 'supplier_codes#new', as: 'new_supplier_code'
+  post '/suppliers/:supplier_id/generic_families/:generic_family_id/supplier_code_creation', to: 'supplier_codes#create', as: 'supplier_generic_family_supplier_codes'
 
 # <WAREHOUSES>
   resources :warehouses do
@@ -54,7 +61,7 @@ LotsoBear::Application.routes.draw do
     end
   end
 # </STOCK_SPARES>
-  
+
 # <ORDERS>
   resources :orders do
     member do
@@ -99,7 +106,6 @@ LotsoBear::Application.routes.draw do
       get :add_family_with_spares_to_order
     end
     collection do
-      get :worker #Route to select an emplooyee with a searching form -> 
       get :acomodate
       post :save_store_stocks
       post :store_stocks
@@ -135,6 +141,7 @@ LotsoBear::Application.routes.draw do
     end
   end
 # </USERS>
+
 
 #<ADMIN>
 namespace :admin do

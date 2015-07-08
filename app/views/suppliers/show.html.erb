@@ -1,16 +1,16 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Name:</strong>
+  <strong>Nombre de proveedor:</strong>
   <%= @supplier.name %>
 </p>
 
 <p>
-  <strong>Supplier type:</strong>
+  <strong>Tipo de proveedor:</strong>
   <%= @supplier.supplier_type_id %>
 </p>
 
-
+<h2>Piezas con códigos establecidos</h2>
 <table id="suppliersIndexTable">
   <thead>
     <tr>
@@ -18,12 +18,12 @@
       <th>Modelo Auto</th>
       <th>Generación</th>
       <th>Precio</th>
-      <th>Seleccionar</th>
+      <th>Código</th>
     </tr>
   </thead>
 
   <tbody>
-    <% @generic_families.each do |generic_fam| %>
+    <% @generic_families_with_code.each do |generic_fam| %>
       <tr>
         <td><%= generic_fam.name %></td>
         <td><%= generic_fam.generic_cars.first.model_acronym.model  %></td>
@@ -35,7 +35,39 @@
           <% end %>
          </td>
         <td><%= link_to 'Edit', '#' %></td>
-        <td><%= link_to 'Seleccionar', '#' %></td>
+        <td>
+          <%= generic_fam.get_supplier_code(@supplier) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<h2>Otras piezas disponibles</h2>
+<table id="suppliersAdditionalTable">
+  <thead>
+    <tr>
+      <th>Nombre Pieza</th>
+      <th>Modelo Auto</th>
+      <th>Generación</th>
+      <th>Precio</th>
+      <th>Seleccionar</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @generic_families_wo_code.each do |generic_fam| %>
+      <tr>
+        <td><%= generic_fam.name %></td>
+        <td><%= generic_fam.generic_cars.first.model_acronym.model  %></td>
+        <td><%= generic_fam.generic_cars.first.first_generation_year %> -
+          <% if !generic_fam.generic_cars.first.gen_continues %>
+            <%= generic_fam.generic_cars.first.last_generation_year %>
+          <% else %>
+            Año Actual
+          <% end %>
+         </td>
+        <td><%= link_to 'Edit', '#' %></td>
+        <td><%= link_to 'Seleccionar', new_supplier_code_path(@supplier, generic_fam) %></td>
       </tr>
     <% end %>
   </tbody>
@@ -49,3 +81,12 @@
 
 <%= link_to 'Edit', edit_supplier_path(@supplier) %> |
 <%= link_to 'Back', suppliers_path %>
+
+
+<script>
+$(function(){
+  $('#suppliersAdditionalTable').dataTable();
+  $('#suppliersIndexTable').dataTable();
+
+});
+</script>

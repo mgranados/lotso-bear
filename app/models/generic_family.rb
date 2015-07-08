@@ -17,6 +17,9 @@ class GenericFamily < ActiveRecord::Base
   has_many :family_likelihoods
   has_many :generic_cars, through: :family_likelihoods
 
+  has_many :suppliers, through: :supplier_codes
+  has_many :supplier_codes
+
   accepts_nested_attributes_for :spare_likelihoods
 
   validates :name, presence: :true
@@ -129,6 +132,11 @@ class GenericFamily < ActiveRecord::Base
 
   def name_with_code
     "#{self.name},#{self.code}"
+  end
+
+  def get_supplier_code(supplier)
+    supplier_code = SupplierCode.where(generic_family_id: self.id, supplier_id: supplier.id)
+    supplier_code.first.code
   end
 
 end
