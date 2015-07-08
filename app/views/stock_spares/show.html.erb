@@ -46,8 +46,8 @@
 		  </thead>
 		  <tbody>
 		    <tr>
-		      <td>$ <%= @stock_spare.price.entrance%></td>
-		      <td>$ <%= @stock_spare.price.departure %></td>
+		    	<td></td>
+		    	<td></td>
 		    </tr>
 		  </tbody>
 		</table> 
@@ -66,9 +66,15 @@
 	      </thead>
 	      <tbody>
 	        <tr>
-	          <td><%= @stock_spare.subsection.section.warehouse.branch %></td>
-	          <td><%= @stock_spare.subsection.code %> </td>
-	          <td><%= link_to "Ver", subsection_path(@stock_spare.subsection) %></td>
+	        	<% unless @stock_spare.subsection.blank? %>
+	          		<td><%= @stock_spare.subsection.section.warehouse.branch %></td>
+	          		<td><%= @stock_spare.subsection.code %> </td>
+	          		<td><%= link_to "Ver", subsection_path(@stock_spare.subsection) %></td>
+	          	<% else %>
+	          		<td></td>
+	          		<td></td>
+	          		<td></td>
+	          	<% end %>
 	        </tr>
 	      </tbody>
 	    </table>
@@ -99,8 +105,14 @@
       </thead>
       <tbody>
         <tr>
-          <td><%= @stock_spare.spare_histories.last.description %></td>
-          <td><%= link_to "Ver Historial", history_stock_spare_path(@stock_spare) %></td>
+        	<% unless @stock_spare.spare_histories.blank? %>
+          		<td><%= @stock_spare.spare_histories.last.description %></td>
+          		<td><%= link_to "Ver Historial", history_stock_spare_path(@stock_spare) %></td>
+          	<% else %>
+          		<td>No existe historial</td>
+          		<td></td>
+          	<% end %>
+
         </tr>
       </tbody>
     </table>

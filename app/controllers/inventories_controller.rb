@@ -62,9 +62,6 @@ class InventoriesController < ApplicationController
     end
   end
 
-  def worker
-  end
-
   def show_generic_car_generic_families
     @generic_car = GenericCar.find_by_id(params[:id])
   	@generic_families_found = @generic_car.generic_families

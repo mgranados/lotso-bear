@@ -54,14 +54,14 @@ class GenericFamily < ActiveRecord::Base
   #   end
   # end
 
-  def self.copy_families_final_fantasy
-    GenericCar.find_each do |car|
-        car.car_type.generic_families.each do |family|
-          family_clone = family.clone_generic_family_with_generic_spares
-          family_clone.car_types.each {|type| puts "Type: #{type.id} Name: #{type.full_name}"}
-        end
-    end
-  end
+  # def self.copy_families_final_fantasy
+  #   GenericCar.find_each do |car|
+  #       car.car_type.generic_families.each do |family|
+  #         family_clone = family.clone_generic_family_with_generic_spares
+  #         family_clone.car_types.each {|type| puts "Type: #{type.id} Name: #{type.full_name}"}
+  #       end
+  #   end
+  # end
     # where(father_id: nil).each do |family|
     #   puts "Family: #{family.name} Code: #{family.code} Father: #{family.father_id}"
     #   family.car_types.each do |type|
@@ -123,6 +123,7 @@ class GenericFamily < ActiveRecord::Base
         spare = StockSpare.new
         spare.generic_spare_id = spare_tuple[:id]
         spare.supplier_code = spare_tuple[:supplier_code]
+        spare.status = "Almacen"
         stockFam.stock_spares << spare
       end
     end

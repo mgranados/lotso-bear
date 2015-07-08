@@ -17,15 +17,13 @@ LotsoBear::Application.routes.draw do
   resources :valuations, only: [:index, :new, :create, :show]
   resources :spares, only: [:index, :new, :create, :show, :edit ,:destroy, :update]
   resources :generic_spares, only: [:index, :new, :create, :show, :edit ,:destroy, :update]
-  resources :users
-
+    
 # <SUPPLIES>
-
-
-  #get '/supplies/:user_id/spend', to: 'supplies#spend', as: 'spend_dsupplies' #getting the user id in the path
-  post '/supplies/spend', to: 'supplies#spend', as: 'spend_supplies' #getting the user
-
-  get '/supplies/consumer', to: 'supplies#consumer', as: 'consumer_supplies'
+  get '/supplies/consumer', to: 'supplies#consumer', as: 'consumer_supplies' #getting the user
+  get '/supplies/spend/:user_code', to: 'supplies#spend', as: 'spend_fail_supplies' #supplies to spend are listed
+  post '/supplies/spend', to: 'supplies#spend', as: 'spend_supplies' #supplies to spend are listed
+  post '/supplies/add_supply_to_spend/', to: 'supplies#add_supply_to_spend', as:'add_supply_to_spend' #adds a single supply to spend via ajax
+  post '/supplies/update_spend/', to:'supplies#update_spend', as: 'udpate_spend_supplies'
   resources :supplies do
   end
 # </SUPPLIES>
@@ -72,6 +70,7 @@ LotsoBear::Application.routes.draw do
     end
   end
 # </ORDERS>
+
 #<GENERIC_FAMILIES>
   resources :generic_families, only: [:index, :new, :create, :show, :destroy, :update] do
     collection do
@@ -85,9 +84,6 @@ LotsoBear::Application.routes.draw do
     end
   end
 # </GENERIC_FAMILIES>
-  resources :supplier do
-    resources :supplier
-  end
 
 # <GENERIC_CARS>
   resources :generic_cars, only: [:index, :new, :create, :show, :edit ,:destroy, :update] do
@@ -110,7 +106,6 @@ LotsoBear::Application.routes.draw do
       get :add_family_with_spares_to_order
     end
     collection do
-      get :worker #Route to select an emplooyee with a searching form ->
       get :acomodate
       post :save_store_stocks
       post :store_stocks
@@ -127,9 +122,6 @@ LotsoBear::Application.routes.draw do
   end
 # </INVENTORIES>
 
-
-
-
 # <CLIENTS>
   match '/consultar',            to: 'client_actions#home', via: 'get'
   match '/c/show',               to: 'client_actions#show', via: 'get'
@@ -140,6 +132,14 @@ LotsoBear::Application.routes.draw do
 # <USERS>
   match '/signin',  to: 'sessions#new',         via: 'get'
   match '/signout', to: 'sessions#destroy',     via: 'delete'
+  resources :users do
+    collection do
+      get :spending
+    end
+    member do
+      get :spending_history
+    end
+  end
 # </USERS>
 
 

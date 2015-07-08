@@ -1,0 +1,9 @@
+<tr>
+	<td><%= @supply.name %></td>
+	<td><%= @supply.code %></td>
+	<td><%= @supply.brand %></td>
+	<td><%= @supply.size %></td>
+	<td><%= @supply.quantity %></td>
+	<td><%= number_field_tag "supplies[][supply_quantity_to_spend]",nil %></td>
+	<td class="hidden"><%= hidden_field_tag "supplies[][supply_id]", @supply.id  %></td>
+</tr>
