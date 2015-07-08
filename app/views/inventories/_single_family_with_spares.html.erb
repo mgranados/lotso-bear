@@ -1,5 +1,6 @@
-<tr>
-	<td><input value="Spares" type="button" id="hidden" class="hide_spares"/></td>
+<tr class="">
+	<% spares_to_hide = "#{@generic_family.id}#{Time.now.strftime('%d%h%m%s%L')}"  %>
+	<td><input value="Spares" type="button" id="hidden_<%=spares_to_hide%>" class="hide_spares"/></td>
 	<td><%= @generic_car.model_acronym.model %></td>
 	<td class="hidden"><%= hidden_field_tag "stocks[][car_id]", @generic_car.id  %></td>
 	<td><%= @generic_family.name %> </td>
@@ -9,11 +10,15 @@
 	<td><%= text_field_tag "stocks[][supplier_code]" %></td>
 	<td><%= text_field_tag "stocks[][color]", nil %></td>
 	<td><%= text_field_tag "stocks[][quantity]", nil %></td>
+	<td> <button class="btn btn-danger" id="eliminar_<%=spares_to_hide%>" eliminar="<%=spares_to_hide%>" >Eliminar</button></td>
+	
 	
 </tr>
-<% spares_to_hide = "#{@generic_family.id}#{Time.now.strftime('%d%h%m%s')}"  %>
+<!--<div class="esconde">-->
+
 <% @generic_family.spare_likelihoods.each do |spare_likelihood| %>
-	<tr class="<%=spares_to_hide%>">
+	<tr class="<%=spares_to_hide%>" >
+	<!--<tr class="hidden_<%=@generic_family.id%>">-->
 	
 		<td><%= check_box_tag "stocks[]spares[][id]", spare_likelihood.generic_spare.id, true %></td>
 		<td></td>
@@ -22,13 +27,36 @@
 		<td></td>
 		<td><%= text_field_tag "stocks[]spares[][supplier_code]" %></td>
 		<td><%= text_field_tag "stocks[]spares[][color]" %></td>
-		<td></td>
+		
 	</tr>
 
 <% end %>
+  <script type="text/javascript">
 
-	<script type="text/javascript">
-		$(".hide_spares").click(function() {
-			$(".<%=spares_to_hide%>").toggle();
-		});
-	</script>
+  $(document).ready(function(){
+
+    console.log(" WORKING!! ");
+
+    $("#hidden_<%=spares_to_hide%>").on("click",function() {
+
+      console.log(""+$(this).parent().parent().next().attr("class"));
+      $("tr."+$(this).parent().parent().next().attr("class")).toggle();
+      
+    });
+
+    $("#eliminar_<%=spares_to_hide%>").on("click",function() {
+
+      console.log(""+$(this).parent().parent().next().attr("class"));
+      //$("tr."+$(this).attr("eliminar:eq(0)")).prev().remove();
+      $("tr."+$(this).attr("eliminar")).remove();
+      $(this).parent().parent().remove();
+     // $("tr.primary_"+$(this).attr("eliminar")).remove();
+      
+    });
+
+
+  });
+    
+  </script>
+<!--</div>-->
+
