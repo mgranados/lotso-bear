@@ -27,7 +27,7 @@ class StockFamily < ActiveRecord::Base
   after_create :create_code
 
   def self.available
-  	 where(status: nil)
+  	 where(status: 'Almacen')
   end
 
   def self.create_stocks_from_generics (generic_family_id, spares_info,car_id)

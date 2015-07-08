@@ -30,7 +30,7 @@
         <td><%= supply.brand %></td>
         <td><%= supply.quantity %></td>
         <td><%= supply.size %></td>
-        <td><%= supply.supplier %></td>
+        <td><%= supply.supplier.name %></td>
         <td><%= supply.code %></td>
         <td><%= link_to 'Editar', edit_supply_path(supply),class:"btn btn-warning" %></td>
         <td><%= link_to 'Eliminar', supply, method: :delete, data: { confirm: 'Are you sure?' },class:"btn btn-danger" %></td>
@@ -41,4 +41,4 @@
 
 <br>
 
-<%= link_to 'New Supply', new_supply_path %>
+<%= link_to 'Nuevo Consumible', new_supply_path, class:"btn btn-success" %>

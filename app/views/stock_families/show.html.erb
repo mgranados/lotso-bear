@@ -43,8 +43,8 @@
       </thead>
       <tbody>
         <tr>
-          <td>$ <%= @stock_family.price.entrance%></td>
-          <td>$ <%= @stock_family.price.departure %></td>
+          <td></td>
+          <td></td>
         </tr>
       </tbody>
     </table> 
@@ -65,9 +65,13 @@
       </thead>
       <tbody>
         <tr>
-          <td><%= @stock_family.subsection.section.warehouse.branch %></td>
-          <td><%= @stock_family.subsection.code %> </td>
-          <td><%= link_to "Ver", subsection_path(@stock_family.subsection) %></td>
+          <% unless @stock_family.subsection.blank?  %>
+            <td><%= @stock_family.subsection.section.warehouse.branch %></td>
+            <td><%= @stock_family.subsection.code %> </td>
+            <td><%= link_to "Ver", subsection_path(@stock_family.subsection) %></td>
+          <%else %>
+            <td>No se ha ingresado a ningun almacen</td>
+          <% end %>
         </tr>
       </tbody>
     </table>
@@ -98,8 +102,12 @@
       </thead>
       <tbody>
         <tr>
-          <td><%= @stock_family.family_histories.last.description %></td>
-          <td><%= link_to "Ver Historial", history_stock_family_path(@stock_family) %></td>
+          <% unless @stock_family.family_histories.blank?%>
+            <td><%= @stock_family.family_histories.last.description %></td>
+            <td><%= link_to "Ver Historial", history_stock_family_path(@stock_family) %></td>
+          <% else %>
+            <td>No Tiene Historial</td>
+          <% end %>
         </tr>
       </tbody>
     </table>
@@ -136,9 +144,15 @@
               <%= link_to "Ver Coche", stock_car_path(spare.stock_car) %>
             <% end %>
           </td>
-          <td><%= spare.subsection.section.warehouse.branch%></td>
-          <td><%= spare.subsection.code%></td>
-          <td><%= link_to "Ver Rack", subsection_path(spare.subsection) %></td>
+          <% unless spare.subsection.blank? %>
+            <td><%= spare.subsection.section.warehouse.branch%></td>
+            <td><%= spare.subsection.code%></td>
+            <td><%= link_to "Ver Rack", subsection_path(spare.subsection) %></td>
+          <% else %>
+            <td></td>
+            <td></td>
+            <td></td>
+          <% end %>
         </tr>
          </tr>
         <% end %>

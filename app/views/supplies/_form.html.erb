@@ -49,7 +49,7 @@
     <%= f.text_field :code %>
   </div>
   <div>
-    <%= grouped_collection_select nil, :supplier_id, SupplierType.all, :suppliers, :name, :id, :name, :include_blank => true %>
+    <%= grouped_collection_select :supply, :supplier_id, SupplierType.all, :suppliers, :name, :id, :name, :include_blank => true %>
   </div>
   <div class="actions">
     <%= f.submit %>
