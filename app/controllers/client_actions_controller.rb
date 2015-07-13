@@ -9,7 +9,7 @@ class ClientActionsController < ApplicationController
   def get_client_car
   	code = params[:code]
   	puts code
-  	@stock_car = StockCar.where(code: code)
+  	@stock_car = StockCar.where(code: code).first
   	respond_to do |format|
       format.js { }
     end
