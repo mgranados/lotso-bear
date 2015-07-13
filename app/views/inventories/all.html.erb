@@ -8,8 +8,6 @@
 				<th> Modelo Coche </th>		
 				<th> Generación Coche </th>		
 				<th> Año Coche </th>		            
-		      <th> Precio Entrada</th>
-		      <th> Precio Salida</th>
 		      <th> Proveedor </th>
 		      <th></th>
 		      <th></th>
@@ -24,23 +22,6 @@
 			      <td><%= stock.generic_family.family_likelihoods.first.generic_car.model_acronym.model %></td>
 			      <td><%= stock.generic_family.family_likelihoods.first.generic_car.number_of_generation %></td>
 			      <td><%= stock.generic_family.family_likelihoods.first.generic_car.years %></td>
-
-			      <td>
-  			      	<% if !stock.price.blank? %>
-		     			 <%= stock.price.entrance %>
-		     		<% else %>
-			     			<h3>---</h3>
-		     		<% end %>
-			      </td>
-
-			      <td>
-			      	<% if !stock.price.blank? %>
-		     			 <%= stock.price.departure %>
-		     		<% else %>
-			     			 ---
-
-			      <% end %>
-			      </td>
 
 			      <td>
 					<% if !stock.supplier.blank? %>

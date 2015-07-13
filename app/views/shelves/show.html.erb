@@ -1,0 +1,28 @@
+<h1>Rack: <%= @shelf.code %></h1>
+
+<%= link_to "Editar #{@shelf.code}", edit_shelf_path(@shelf),class:"btn btn-primary"  %>
+<%= link_to "Destruir #{@shelf.code}", shelf_path(id: @shelf.id, warehouse_id: @shelf.warehouse), method: :delete, data: { confirm: 'Estas Seguro?' },class:"btn btn-danger"  %>
+<%= link_to 'Regresar a Listado de Racks', warehouse_shelves_path(@shelf.warehouse),class:"btn btn-default" %>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Código</th>
+      <th>Pasillo</th>
+      <th>Fila</th>
+      <th>Nivel</th>
+      <th>Número</th>
+    </tr>
+  </thead>
+
+  <tbody>
+      <tr>
+        <td><%= @shelf.code%></td>
+        <td><%= @shelf.aisle %></td>
+        <td><%= @shelf.row %></td>
+        <td><%= @shelf.level %></td>
+        <td><%= @shelf.number %></td>
+      </tr>
+  </tbody>
+</table>
+

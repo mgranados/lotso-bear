@@ -1,125 +1,129 @@
 # -*- encoding : utf-8 -*-
-# # User.new!(name:"Administrador", email:"admin@admin.com",password:"admin", password_confirmation:"admin", username: "Administrador", privileges:"admin")
-# # User.new!(name:"Operador",email:"operador@operador.com",password:"operador", password_confirmation:"operador", username: "Operador", privileges:"operador")
-# # User.new!(name:"Capturista",email:"capturista@capturista.com",password:"capturista", password_confirmation:"capturista", username: "Capturista", privileges:"capturista")
-# # User.new!(name:"Gerente",email:"gerente@gerente.com",password:"gerente", password_confirmation:"gerente", username: "Gerente", privileges:"gerente")
+# User.new!(name:"Administrador", email:"admin@admin.com",password:"admin", password_confirmation:"admin", username: "Administrador", privileges:"admin")
+# User.new!(name:"Operador",email:"operador@operador.com",password:"operador", password_confirmation:"operador", username: "Operador", privileges:"operador")
+# User.new!(name:"Capturista",email:"capturista@capturista.com",password:"capturista", password_confirmation:"capturista", username: "Capturista", privileges:"capturista")
+# User.new!(name:"Gerente",email:"gerente@gerente.com",password:"gerente", password_confirmation:"gerente", username: "Gerente", privileges:"gerente")
 # User.new!(name:"Ajustador",email:"ajustador@ajustador.com",password:"ajustador", password_confirmation:"ajustador", username: "Ajustador", privileges:"ajustador")
-# @user = User.create(name:"trabajador", email: "trabajador@trabajador.com", password: "trabajador", password_confirmation: "trabajador", username: "trabajador", privileges: "empleado", code:"holi")
+@user = User.create(name:"trabajador", email: "trabajador@trabajador.com", password: "trabajador", password_confirmation: "trabajador", username: "trabajador", privileges: "empleado", code:"holi")
 	
-# for i in 1900...2500
-#   Generation.new!(year:i)
-# end
-# brands = [
-#   "Acura",
-#   "Alfa Romeo",
-#   "Audi",
-#   "Bentley",
-#   "BMW",
-#   "Cadillac",
-#   "Chevrolet",
-#   "Chrysler",
-#   "Dodge",
-#   "Ferrari",
-#   "Fiat",
-#   "Ford",
-#   "GMC",
-#   "Honda",
-#   "Hyundai",
-#   "Infinity",
-#   "Isuzu",
-#   "Jaguar",
-#   "Jeep",
-#   "Kia",
-#   "Lamborghini",
-#   "Land Rover",
-#   "Lexus",
-#   "Lincoln",
-#   "Maserati",
-#   "Mastretta",
-#   "Mazda",
-#   "Mercedes Benz",
-#   "Mini",
-#   "Mitsubishi",
-#   "Nissan",
-#   "Peugeot",
-#   "Pontiac",
-#   "Porsche",
-#   "Renault",
-#   "Rolls Royce",
-#   "Saab",
-#   "Seat",
-#   "Smart",
-#   "Subaru",
-#   "Suzuki",
-#   "Toyota",
-#   "Volkswagen",
-#   "Volvo"
-#   ]
+for i in 1900...2500
+  Generation.create(year:i)
+end
+brands = [
+  "Acura",
+  "Alfa Romeo",
+  "Audi",
+  "Bentley",
+  "BMW",
+  "Cadillac",
+  "Chevrolet",
+  "Chrysler",
+  "Dodge",
+  "Ferrari",
+  "Fiat",
+  "Ford",
+  "GMC",
+  "Honda",
+  "Hyundai",
+  "Infinity",
+  "Isuzu",
+  "Jaguar",
+  "Jeep",
+  "Kia",
+  "Lamborghini",
+  "Land Rover",
+  "Lexus",
+  "Lincoln",
+  "Maserati",
+  "Mastretta",
+  "Mazda",
+  "Mercedes Benz",
+  "Mini",
+  "Mitsubishi",
+  "Nissan",
+  "Peugeot",
+  "Pontiac",
+  "Porsche",
+  "Renault",
+  "Rolls Royce",
+  "Saab",
+  "Seat",
+  "Smart",
+  "Subaru",
+  "Suzuki",
+  "Toyota",
+  "Volkswagen",
+  "Volvo"
+  ]
 
-#   acronyms = [
-#     "AC",
-#     "AR",
-#     "AU",
-#     "BE",
-#     "BM",
-#     "CA",
-#     "CV",
-#     "CH",
-#     "DD",
-#     "FE",
-#     "FT",
-#     "FR",
-#     "GM",
-#     "HN",
-#     "HY",
-#     "IN",
-#     "IZ",
-#     "JG",
-#     "JE",
-#     "KI",
-#     "LA",
-#     "LR",
-#     "LX",
-#     "LN",
-#     "MA",
-#     "MT",
-#     "MZ",
-#     "MB",
-#     "MN",
-#     "MT",
-#     "NI",
-#     "PU",
-#     "PN",
-#     "PS",
-#     "RE",
-#     "RR",
-#     "SA",
-#     "SE",
-#     "SM",
-#     "SU",
-#     "SZ",
-#     "TY",
-#     "VW",
-#     "VL"
-#   ]
+  acronyms = [
+    "AC",
+    "AR",
+    "AU",
+    "BE",
+    "BM",
+    "CA",
+    "CV",
+    "CH",
+    "DD",
+    "FE",
+    "FT",
+    "FR",
+    "GM",
+    "HN",
+    "HY",
+    "IN",
+    "IZ",
+    "JG",
+    "JE",
+    "KI",
+    "LA",
+    "LR",
+    "LX",
+    "LN",
+    "MA",
+    "MT",
+    "MZ",
+    "MB",
+    "MN",
+    "MT",
+    "NI",
+    "PU",
+    "PN",
+    "PS",
+    "RE",
+    "RR",
+    "SA",
+    "SE",
+    "SM",
+    "SU",
+    "SZ",
+    "TY",
+    "VW",
+    "VL"
+  ]
     Brand.create(name: 'Mitsubishi', acronym:'MT')
 
-#   for i in 0...brands.length
-#     Brand.new(name: brands[i], acronym:acronyms[i])
-#   end
+  for i in 0...brands.length
+    Brand.new(name: brands[i], acronym:acronyms[i])
+  end
 
-# types = [['Hatchback','3/5'],['Hatchback','3'],['Hatchback','5'],['Sedan','2'],['Sedan','4'],['Sedan','2/4'],['SUV'],['Minivan'],['Sedan/Hatchback','4/5'],['Sedan/Hatchback','3/4/5'],['Pick Up','2'],['Pick Up','4'],['Pick Up','2/4'],['Crossover'],['Van']]
-# types.each { |type|
-#   if type.count == 2
-#   CarType.new(name: type.first,doors: type.last)
-#   elsif
-#   CarType.new(name: type.first)
-#   end
-# }
+types = [['Hatchback','3/5'],['Hatchback','3'],['Hatchback','5'],['Sedan','2'],['Sedan','4'],['Sedan','2/4'],['SUV'],['Minivan'],['Sedan/Hatchback','4/5'],['Sedan/Hatchback','3/4/5'],['Pick Up','2'],['Pick Up','4'],['Pick Up','2/4'],['Crossover'],['Van']]
+types.each { |type|
+  if type.count == 2
+  CarType.new(name: type.first,doors: type.last)
+  elsif
+  CarType.new(name: type.first)
+  end
+}
 
 
 # </TESTING>
+<<<<<<< HEAD
 # #brand
+=======
+#brand
+>>>>>>> d6f253272d0da267b232fff7e4bb8d94cd653992
 @brand = Brand.new( name: "audi", acronym: "AU")
 @brand.save!
 #modelacronym
@@ -153,6 +157,7 @@
 @genericFamilyFather.father=@genericFamilySon
 @genericFamilyFather.save!
 
+<<<<<<< HEAD
 #moldspare NO
 #@moldspare = MoldSpare.new(name: "moldspare", comment: "comentario del mold", mold_type: "mold_type", code: "code")
 #moldComponent NO
@@ -177,6 +182,11 @@
 #@GenericSpare<<@SpareLikelihood
 #@genericFamilySon<<@SpareLikelihood
 
+=======
+#GenericSpare
+@GenericSpare = GenericSpare.create(brand: "Audi_spares", type_of_spare: "tipo spare", name: "Manija", region: "China", description: "Refaccion tal", code: "code")
+
+>>>>>>> d6f253272d0da267b232fff7e4bb8d94cd653992
 @genericc.generic_families<<@genericFamilyFather
 @car.generic_families<<@genericFamilyFather
 @GenericSpare.generic_families<<@genericFamilyFather
@@ -220,6 +230,7 @@
 @Order.save!
 
 #supplier
+<<<<<<< HEAD
 @SupplierType = SupplierType.create(name: "Desmontado Original")#Taller Automotriz
 @Original = SupplierType.create(name: "Original")#agencia
 @Taiwan = SupplierType.create(name: "Taiwan")#Radec
@@ -249,6 +260,21 @@
  @Radec.save!
  @Order.save!
 
+=======
+@SupplierType = SupplierType.create(name: "Supplier type")
+
+#Section
+@Section = Section.new(code: "dasdasd", name: "Section")
+@Section.warehouse=@Warehouse
+@Section.save!
+
+#Supplier
+@Supplier = Supplier.new( name: "supplier")
+@Supplier.supplier_type=@SupplierType
+@Order.suppliers<<@Supplier
+@Supplier.save!
+@Order.save!
+>>>>>>> d6f253272d0da267b232fff7e4bb8d94cd653992
 
 #Subsection
 @Subsection = Subsection.new(code: "code", name: "subsect")

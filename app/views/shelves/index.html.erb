@@ -1,0 +1,30 @@
+<h1>Listando Racks en <strong><%= @warehouse.branch %></strong></h1>
+<%= link_to 'Nuevo Rack', new_warehouse_shelf_path(@warehouse),class:"btn btn-primary"  %>
+<%= link_to 'Regresar a Almacen', warehouse_path(@warehouse),class:"btn btn-default" %>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Código</th>
+      <th>Pasillo</th>
+      <th>Fila</th>
+      <th>Nivel</th>
+      <th>Número</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @shelves.each do |shelf| %>
+      <tr>
+        <td><%= shelf.code%></td>
+        <td><%= shelf.aisle %></td>
+        <td><%= shelf.row %></td>
+        <td><%= shelf.level %></td>
+        <td><%= shelf.number %></td>
+        <td><%= link_to 'Mostrar', shelf,class:"btn btn-info"  %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+

@@ -5,7 +5,7 @@ class StockSpare < ActiveRecord::Base
   belongs_to :generic_spare
   belongs_to :stock_family
   belongs_to :order
-  belongs_to :subsection
+  belongs_to :shelf
   belongs_to :stock_car
   belongs_to :price
 

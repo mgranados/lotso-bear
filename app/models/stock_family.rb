@@ -22,7 +22,7 @@ class StockFamily < ActiveRecord::Base
   has_many :family_histories
 
 
-  belongs_to :subsection
+  belongs_to :shelf
 
   after_create :create_code
 

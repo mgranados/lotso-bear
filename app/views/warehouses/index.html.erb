@@ -1,12 +1,10 @@
 <h1>Almacenes y bodegas</h1>
-
+<%= link_to 'Nuevo Almacén', new_warehouse_path, class:"btn btn-primary" %>
 <table class="table">
   <thead>
     <tr>
       <th>Sucursal</th>
       <th>Locación</th>
-      <th></th>
-      <th></th>
       <th></th>
     </tr>
   </thead>
@@ -17,13 +15,7 @@
         <td><%= warehouse.branch %></td>
         <td><%= warehouse.location %></td>
         <td><%= link_to 'Mostrar', warehouse ,class:"btn btn-info" %></td>
-        <td><%= link_to 'Editar', edit_warehouse_path(warehouse),class:"btn btn-warning" %></td>
-        <td><%= link_to 'Eliminar', warehouse, method: :delete, data: { confirm: '¿Estas seguro?' },class:"btn btn-danger" %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
-
-<br>
-
-<%= link_to 'Nuevo Almacén', new_warehouse_path, class:"btn btn-primary" %>

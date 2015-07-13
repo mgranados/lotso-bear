@@ -14,4 +14,5 @@ class Supplier < ActiveRecord::Base
 	has_many :supplier_codes
 
 	validates :name, :supplier_type_id, presence: true
+	
 end

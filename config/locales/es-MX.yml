@@ -30,6 +30,16 @@ es-MX:
         one: "Familia Generica"
         other: "Familias Genericas"
     attributes:
+      warehouse:
+        branch: "Nombre"
+        location: "Locación"
+        code: "Código"
+        geolocation: "Geolocalización"
+      shelf:
+        aisle: "Pasillo"
+        row: "Fila"
+        number: "Número"
+        level: "Nivel"
       generic_car:
         year: "Año"
         car_type: "Tipo"

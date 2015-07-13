@@ -1,0 +1,22 @@
+<%= form_for([@warehouse,@shelf]) do |f| %>
+  <%= render 'shared/error_messages', model: @shelf %>
+  <div class="field">
+    <%= f.label 'Pasillo (1 caracter)' %><br>
+    <%= f.text_field :aisle %>
+  </div>
+  <div class="field">
+    <%= f.label 'Fila (2 caracteres)' %><br>
+    <%= f.text_field :row %>
+  </div>
+  <div class="field">
+    <%= f.label 'Nivel (1 digito)' %><br>
+    <%= f.number_field :level %>
+  </div>
+  <div class="field">
+    <%= f.label 'Numero (2 digitos)' %><br>
+    <%= f.number_field :number %>
+  </div>
+  <div class="actions">
+    <%= f.submit "Guardar Rack", class:"btn btn-primary" %>
+  </div>
+<% end %>
