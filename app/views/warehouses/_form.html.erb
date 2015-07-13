@@ -1,16 +1,5 @@
 <%= form_for(@warehouse) do |f| %>
-  <% if @warehouse.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@warehouse.errors.count, "error") %> prohibited this warehouse from being saved:</h2>
-
-      <ul>
-      <% @warehouse.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
+  <%= render 'shared/error_messages', model: @warehouse %>
   <div class="field">
     <%= f.label :branch, "Nombre" %><br>
     <%= f.text_field :branch %>
@@ -32,9 +21,6 @@
   </div>
 
   <div class="actions">
-    <br>
-    
-    <%= f.submit "Guardar Almacén", class:"btn btn-info" %>
+    <%= f.submit "Guardar Almacén", class:"btn btn-primary" %>
   </div>
-  <br>
 <% end %>

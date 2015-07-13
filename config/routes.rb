@@ -1,5 +1,6 @@
 # -*- encoding : utf-8 -*-
 LotsoBear::Application.routes.draw do
+
   get "supplier_codes/new"
   get "supplier_codes/edit"
   get "supplier_codes/create"
@@ -33,15 +34,15 @@ LotsoBear::Application.routes.draw do
 
 # <WAREHOUSES>
   resources :warehouses do
-    resources :sections, shallow: true do
-      resources :subsections, shallow: true do
-        member do
-          get :print_label
-        end
-      end
-    end
+      resources :shelves, shallow: true
   end
 # </WAREHOUSES>
+# </SHELVES>
+  resources :shelves do
+    # post 'shelves/print_label', to: 'stock_families#print_label', as: 'print_label_stock_family'
+  end
+# </SHELVES>
+
 
 # <STOCK_FAMILIES>
   post 'stock_families/print_label', to: 'stock_families#print_label', as: 'print_label_stock_family'

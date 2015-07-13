@@ -27,7 +27,7 @@ class WarehousesController < ApplicationController
     @warehouse = Warehouse.new(warehouse_params)
 
       if @warehouse.save
-        flash[:success] =  'Warehouse was successfully created.'
+        flash[:success] =  'Almacen Creado con Exito!'
         redirect_to @warehouse
       else
         render :new
@@ -38,7 +38,7 @@ class WarehousesController < ApplicationController
   # PATCH/PUT /warehouses/1.json
   def update
       if @warehouse.update(warehouse_params)
-        flash[:success]=  'Warehouse was successfully updated.'
+        flash[:success] =  'Almacen Actualizado con Exito!'
         redirect_to @warehouse
       else
         render :edit 

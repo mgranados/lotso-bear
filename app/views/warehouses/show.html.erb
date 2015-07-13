@@ -1,36 +1,24 @@
 
+<h1>Sucursal: <strong><%= @warehouse.branch %></strong></h1>
+<td><%= link_to "Editar #{@warehouse.branch}", edit_warehouse_path(@warehouse),class:"btn btn-primary" %></td>
+<td><%= link_to "Eliminar #{@warehouse.branch}", @warehouse, method: :delete, data: { confirm: '¿Estas seguro?' },class:"btn btn-danger" %></td>
 
-<h1 class="center-text"><medium>Sucursal:</medium> <%= @warehouse.branch%></h1>
-
-<h1><medium>Lugar: </medium> <%= @warehouse.location%></h1>
-
-<% @warehouse.sections.each do |section| %>
-	
-<% end %>
-
-<h2> Secciones </h2>
+<%= link_to 'Regresar a Almacenes', warehouses_path,class:"btn btn-default" %>
 
 <table class="table">
 	<thead>
+		<th>Sucursal</th>
+		<th>Locación</th>
 		<th>Codigo</th>
-		<th>Descripción</th>
-		<th>Sub-secciones</th>
+		<th>Geolocalización</th>
+		<th># de Racks</th>
 		<th></th>
 	</thead>
 	<tbody>
-	<% @warehouse.sections.each do |section| %>
-		<tr>
-			<td><%= section.code %></td>
-			<td><%= section.name %></td>
-			<td><%= section.subsections.count %></td>
-			<td><%= link_to "Mostrar", section_path(section), class:"btn btn-info" %></td>
-		</tr>
-	<% end -%>
+		<td><%= @warehouse.branch%></td>
+		<td><%= @warehouse.location%></td>
+		<td><%= @warehouse.code %></td>
+		<td><%= @warehouse.geolocation %></td>
+		<td><%= link_to "Ver #{@warehouse.shelves.count} Racks", warehouse_shelves_path(@warehouse),class:"btn btn-info" %></td>
 	</tbody>
 </table>
-<%= link_to 'Nueva Sección', new_warehouse_section_path(@warehouse),class:"btn btn-warning" %>
-
-
-
-<%= link_to 'Editar', edit_warehouse_path(@warehouse),class:"btn btn-primary" %> |
-<%= link_to 'Back', warehouses_path,class:"btn btn-default" %>
