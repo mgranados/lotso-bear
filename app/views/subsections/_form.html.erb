@@ -11,19 +11,21 @@
     </div>
   <% end %>
 
-  <h2>Seccion: <%= @section.code %></h2>
+  <h2>Almacén: <%= @section.warehouse.branch %></h2>
+
+  <h3>Seccion: <%= @section.code %></h3>
 
   <div class="field">
-    <%= f.label :code %><br>
+    <%= f.label :code, "Código" %><br>
     <%= f.text_field :code %>
   </div>
   <div class="field">
-    <%= f.label :nombre %><br>
+    <%= f.label :nombre, "Nombre" %><br>
     <%= f.text_field :name %>
   </div>
   <br>
   <div class="actions">
-    <%= f.submit "Crear Subsection", class:"btn btn-info" %>
+    <%= f.submit "Guardar subsección", class:"btn btn-info" %>
   </div>
   <br>
 <% end %>

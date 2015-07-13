@@ -26,29 +26,23 @@ class WarehousesController < ApplicationController
   def create
     @warehouse = Warehouse.new(warehouse_params)
 
-    respond_to do |format|
       if @warehouse.save
-        format.html { redirect_to @warehouse, notice: 'Warehouse was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @warehouse }
+        flash[:success] =  'Warehouse was successfully created.'
+        redirect_to @warehouse
       else
-        format.html { render action: 'new' }
-        format.json { render json: @warehouse.errors, status: :unprocessable_entity }
+        render :new
       end
-    end
   end
 
   # PATCH/PUT /warehouses/1
   # PATCH/PUT /warehouses/1.json
   def update
-    respond_to do |format|
       if @warehouse.update(warehouse_params)
-        format.html { redirect_to @warehouse, notice: 'Warehouse was successfully updated.' }
-        format.json { head :no_content }
+        flash[:success]=  'Warehouse was successfully updated.'
+        redirect_to @warehouse
       else
-        format.html { render action: 'edit' }
-        format.json { render json: @warehouse.errors, status: :unprocessable_entity }
+        render :edit 
       end
-    end
   end
 
   # DELETE /warehouses/1

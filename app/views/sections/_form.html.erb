@@ -12,19 +12,19 @@
   <% end %>
 
 <div class="col-md-12">
-  <p>Warehouse: <%= @warehouse.branch %></p>
+  <p>Almacén: <%= @warehouse.branch %></p>
 
   <div class="field">
-    <%= f.label :code %><br>
+    <%= f.label :code, "Código" %><br>
     <%= f.text_field :code %>
   </div>
   <div class="field">
-    <%= f.label :name %><br>
+    <%= f.label :name, "Nombre" %><br>
     <%= f.text_field :name %>
   </div>
   <br>
   <div class="actions">
-    <%= f.submit "Crear Section", class:"btn btn-info"%>
+    <%= f.submit "Guardar Sección", class:"btn btn-info"%>
   </div>
   <br>
   <br>
