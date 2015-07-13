@@ -29,29 +29,23 @@ class SectionsController < ApplicationController
     @section = Section.new(section_params)
     @section.warehouse_id = params[:warehouse_id]
 
-    respond_to do |format|
       if @section.save
-        format.html { redirect_to @section, notice: 'Sección Creada con Exito' }
-        format.json { render action: 'show', status: :created, location: @section }
+        flash[:success] = 'Sección Creada con Exito' 
+        redirect_to @section
       else
-        format.html { render action: 'new' }
-        format.json { render json: @section.errors, status: :unprocessable_entity }
+        render :new
       end
-    end
   end
 
   # PATCH/PUT /sections/1
   # PATCH/PUT /sections/1.json
   def update
-    respond_to do |format|
       if @section.update(section_params)
-        format.html { redirect_to @section, notice: 'Section was successfully updated.' }
-        format.json { head :no_content }
+        flash[:success] = 'Sección Actualizada con Exito' 
+        redirect_to @section
       else
-        format.html { render action: 'edit' }
-        format.json { render json: @section.errors, status: :unprocessable_entity }
+        render :edit
       end
-    end
   end
 
   # DELETE /sections/1

@@ -56,29 +56,23 @@ class SubsectionsController < ApplicationController
     @subsection = Subsection.new(subsection_params)
     @subsection.section_id = params[:section_id]
 
-    respond_to do |format|
       if @subsection.save
-        format.html { redirect_to @subsection, notice: 'Subsection was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @subsection }
+        flash[:success] = 'Subsection was successfully created.' 
+        redirect_to @subsection
       else
-        format.html { render action: 'new' }
-        format.json { render json: @subsection.errors, status: :unprocessable_entity }
+        render :new
       end
-    end
   end
 
   # PATCH/PUT /subsections/1
   # PATCH/PUT /subsections/1.json
   def update
-    respond_to do |format|
       if @subsection.update(subsection_params)
-        format.html { redirect_to @subsection, notice: 'Subsection was successfully updated.' }
-        format.json { head :no_content }
+        flash[:success] = 'Subsection was successfully updated.'
+        redirect_to @subsection
       else
-        format.html { render action: 'edit' }
-        format.json { render json: @subsection.errors, status: :unprocessable_entity }
+        render :edit
       end
-    end
   end
 
   # DELETE /subsections/1
