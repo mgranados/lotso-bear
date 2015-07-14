@@ -173,14 +173,6 @@ ActiveRecord::Schema.define(version: 20150713205217) do
     t.datetime "updated_at"
   end
 
-  create_table "sections", force: true do |t|
-    t.string   "code"
-    t.integer  "warehouse_id"
-    t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "shelves", force: true do |t|
     t.string   "aisle"
     t.string   "row"
@@ -259,10 +251,7 @@ ActiveRecord::Schema.define(version: 20150713205217) do
     t.datetime "photo_updated_at"
     t.integer  "stock_car_id"
     t.string   "color"
-<<<<<<< HEAD
-=======
     t.integer  "shelf_id"
->>>>>>> d6f253272d0da267b232fff7e4bb8d94cd653992
   end
 
   create_table "stock_family_images", force: true do |t|
@@ -301,14 +290,6 @@ ActiveRecord::Schema.define(version: 20150713205217) do
     t.integer  "stock_car_id"
     t.integer  "price_id"
     t.integer  "shelf_id"
-  end
-
-  create_table "subsections", force: true do |t|
-    t.string   "code"
-    t.string   "name"
-    t.integer  "section_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
   end
 
   create_table "supplier_codes", force: true do |t|
