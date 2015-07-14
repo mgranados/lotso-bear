@@ -119,7 +119,11 @@ types.each { |type|
 
 
 # </TESTING>
+<<<<<<< HEAD
+# #brand
+=======
 #brand
+>>>>>>> d6f253272d0da267b232fff7e4bb8d94cd653992
 @brand = Brand.new( name: "audi", acronym: "AU")
 @brand.save!
 #modelacronym
@@ -153,9 +157,36 @@ types.each { |type|
 @genericFamilyFather.father=@genericFamilySon
 @genericFamilyFather.save!
 
+<<<<<<< HEAD
+#moldspare NO
+#@moldspare = MoldSpare.new(name: "moldspare", comment: "comentario del mold", mold_type: "mold_type", code: "code")
+#moldComponent NO
+#@moldComponent= MoldComponent.new(name: "moldComponent")
+#@moldspare<<@moldComponent
+
 #GenericSpare
 @GenericSpare = GenericSpare.create(brand: "Audi_spares", type_of_spare: "tipo spare", name: "Manija", region: "China", description: "Refaccion tal", code: "code")
 
+#familylikelihood
+#@familylikelihood = FamilyLikelihood.new( years: "2")
+#@genericc<<@familylikelihood
+#@genericFamilySon<<@familylikelihood
+
+#TypeLikelihood
+#@TypeLikelihood= TypeLikelihood.new( active: 0, years: "2")
+#@car<<@TypeLikelihood
+#@genericFamilySon<<@TypeLikelihood
+
+#SpareLikelihood
+#@SpareLikelihood= SpareLikelihood.new()
+#@GenericSpare<<@SpareLikelihood
+#@genericFamilySon<<@SpareLikelihood
+
+=======
+#GenericSpare
+@GenericSpare = GenericSpare.create(brand: "Audi_spares", type_of_spare: "tipo spare", name: "Manija", region: "China", description: "Refaccion tal", code: "code")
+
+>>>>>>> d6f253272d0da267b232fff7e4bb8d94cd653992
 @genericc.generic_families<<@genericFamilyFather
 @car.generic_families<<@genericFamilyFather
 @GenericSpare.generic_families<<@genericFamilyFather
@@ -199,6 +230,37 @@ types.each { |type|
 @Order.save!
 
 #supplier
+<<<<<<< HEAD
+@SupplierType = SupplierType.create(name: "Desmontado Original")#Taller Automotriz
+@Original = SupplierType.create(name: "Original")#agencia
+@Taiwan = SupplierType.create(name: "Taiwan")#Radec
+
+
+ #Section
+ @Section = Section.new(code: "dasdasd", name: "Section")
+ @Section.warehouse=@Warehouse
+ @Section.save!
+
+ #Supplier taller automotriz
+@Supplier = Supplier.new( name: "Taller Automotriz")
+ @Supplier.supplier_type=@SupplierType
+ @Order.suppliers<<@Supplier
+ @Supplier.save!
+ @Order.save!
+
+ @Agencia = Supplier.new( name: "Agencia")
+ @Agencia.supplier_type=@Original
+ @Order.suppliers<<@Agencia
+ @Agencia.save!
+ @Order.save!
+
+ @Radec = Supplier.new( name: "Radec")
+ @Radec.supplier_type=@Taiwan
+ @Order.suppliers<<@Radec
+ @Radec.save!
+ @Order.save!
+
+=======
 @SupplierType = SupplierType.create(name: "Supplier type")
 
 #Section
@@ -212,6 +274,7 @@ types.each { |type|
 @Order.suppliers<<@Supplier
 @Supplier.save!
 @Order.save!
+>>>>>>> d6f253272d0da267b232fff7e4bb8d94cd653992
 
 #Subsection
 @Subsection = Subsection.new(code: "code", name: "subsect")

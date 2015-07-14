@@ -5,10 +5,10 @@
 	<td class="hidden"><%= hidden_field_tag "stocks[][car_id]", @generic_car.id  %></td>
 	<td><%= @generic_family.name %> </td>
 	<td><%= @generic_family.code %></td>
-	<td><%= grouped_collection_select nil, "stocks[][stock_family_supplier]", SupplierType.all, :suppliers, :name, :id, :name, :include_blank => true %></td>	
+	<td name="<%=spares_to_hide%>"><%= grouped_collection_select nil, "stocks[][stock_family_supplier]", SupplierType.all, :suppliers, :name, :id, :name, :include_blank => true %></td>	
 	<td class="hidden"><%= hidden_field_tag "stocks[][id]", @generic_family.id %>sup</td>
 	<td><%= text_field_tag "stocks[][supplier_code]" %></td>
-	<td><%= text_field_tag "stocks[][color]", nil %></td>
+	<td class="hide_color_<%=spares_to_hide%> hide_color"><%= text_field_tag "stocks[][color]", nil %></td>
 	<td><%= text_field_tag "stocks[][quantity]", nil %></td>
 	<td> <button class="btn btn-danger" id="eliminar_<%=spares_to_hide%>" eliminar="<%=spares_to_hide%>" >Eliminar</button></td>
 	
@@ -26,14 +26,14 @@
 		<td><%= spare_likelihood.generic_spare.code %></td>
 		<td></td>
 		<td><%= text_field_tag "stocks[]spares[][supplier_code]" %></td>
-		<td><%= text_field_tag "stocks[]spares[][color]" %></td>
+		<td class="hide_color_<%=spares_to_hide%> hide_color"><%= text_field_tag "stocks[]spares[][color]" %></td>
 		
 	</tr>
 
 <% end %>
   <script type="text/javascript">
 
-  $(document).ready(function(){
+  //$(document).ready(function(){
 
     console.log(" WORKING!! ");
 
@@ -48,14 +48,30 @@
 
       console.log(""+$(this).parent().parent().next().attr("class"));
       //$("tr."+$(this).attr("eliminar:eq(0)")).prev().remove();
+      $("tr."+$(this).attr("eliminar")).next().remove();
       $("tr."+$(this).attr("eliminar")).remove();
       $(this).parent().parent().remove();
      // $("tr.primary_"+$(this).attr("eliminar")).remove();
+
+     	vacio();
       
     });
 
+    $("#orderStockFamiliesToAdd select").change(function(){
 
-  });
+    console.log("parent:"+$(this).parent().find("optgroup[label='Desmontado Original']").find("option[value='"+$(this).val()+"']").text());
+    if($(this).parent().find("optgroup[label='Desmontado Original']").find("option[value='"+$(this).val()+"']").text()!="")
+    {
+    	$(".hide_color_"+$(this).parent().attr("name")).removeClass("hide_color");	
+    }
+    else{
+    	$(".hide_color_"+$(this).parent().attr("name")).addClass("hide_color");	
+    }
+
+	});
+
+
+  //});
     
   </script>
 <!--</div>-->

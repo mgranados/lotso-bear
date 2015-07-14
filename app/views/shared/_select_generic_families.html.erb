@@ -27,8 +27,14 @@
 <script type="text/javascript">
   $('.add_to_order').click(function () {
     $.ajax({
-      url: "/inventories/"+$(this).attr("family-id")+'/'+$(this).attr("car-id")+"/add_family_with_spares_to_order/"
+      url: "/inventories/"+$(this).attr("family-id")+'/'+$(this).attr("car-id")+"/add_family_with_spares_to_order/",
+      success:function()
+      {
+          console.log("succeSSS");
+         $("div#recibir_p").fadeIn();
+      }
     })
+
   });
 </script>
 
