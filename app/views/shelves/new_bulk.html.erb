@@ -1,0 +1,18 @@
+	<h1>Crear Racks</h1>
+
+	<%= form_tag warehouse_shelves_bulk_create_path,  class: "form-inline" do %>
+		<%= tag(:input, :type => "hidden", :name => request_forgery_protection_token.to_s, :value => form_authenticity_token) %> 
+
+		<%= label_tag :Pasillo %>
+		<%= text_field_tag :aisle , nil, class: "form-control"  %><br>
+		<%= label_tag :Fila %>
+		<%= number_field_tag :row , nil, class: "form-control"  %><br>
+		<%= label_tag :Nivel %>
+		<%= number_field_tag :level , nil, class: "form-control"  %><br>
+		<%= label_tag :Número %>
+		<%= number_field_tag :number , nil, class: "form-control"  %><br>
+
+
+
+		<%= submit_tag 'Crear Racks', class: "btn btn-primary" %>
+	<% end %>
