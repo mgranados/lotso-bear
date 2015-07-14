@@ -3,12 +3,12 @@ class Shelf < ActiveRecord::Base
   has_many :stock_families
   has_many :stock_spares
 
-  validates :aisle, :row, :level, :number, presence: true
-  validates :aisle, length: { is: 1 }
-  validates :row, length: { is: 2 }
-  validates :level, length: { is: 1 }
-  validates :number, length: { is: 2 }
-	validates_uniqueness_of :aisle, :scope => [:row, :level, :number]
+  validates :aisle, :row, :level, presence: true
+  validates :aisle, length: { maximum: 2 }
+  validates :row, length: { maximum: 2 }
+  validates :level, length: { maximum: 2 }
+  validates :number, length: { maximum: 2 }
+	validates_uniqueness_of :aisle, :scope => [:row, :level, :number, :warehouse_id]
 	before_save :upcase
   after_create :create_code
 
@@ -20,7 +20,6 @@ class Shelf < ActiveRecord::Base
 
  	def upcase
       self.aisle.upcase!
-      self.row.upcase!
   end
 
 

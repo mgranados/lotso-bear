@@ -1,5 +1,6 @@
 <h1>Listando Racks en <strong><%= @warehouse.branch %></strong></h1>
 <%= link_to 'Nuevo Rack', new_warehouse_shelf_path(@warehouse),class:"btn btn-primary"  %>
+<%= link_to 'Nuevo Conjunto de Racks', warehouse_shelves_bulk_new_path(@warehouse),class:"btn btn-primary"  %>
 <%= link_to 'Regresar a Almacen', warehouse_path(@warehouse),class:"btn btn-default" %>
 <table class="table">
   <thead>
