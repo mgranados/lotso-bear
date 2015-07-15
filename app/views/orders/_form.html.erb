@@ -1,3 +1,14 @@
+  <style type="text/css">
+
+  .hide_color{
+
+    visibility: hidden;
+
+  }
+
+
+  </style>
+
   <h2>Busca el modelo</h2>
   <%= form_tag search_by_model_generic_cars_path,  class: "form-inline", remote: true do  %>
     <%= tag(:input, :type => "hidden", :name => request_forgery_protection_token.to_s, :value => form_authenticity_token) %> 
@@ -10,6 +21,9 @@
 
   <h2 id="genericCarRelatedFamiliesTitle" >Familias relacionadas:</h2>
   <div id="genericCarRelatedFamilies"></div>
+
+
+
   <%= form_for(@order) do |f| %>
 
    <%= form_tag({:controller => :orders, :action => :create}, :html => {:multipart => true}) do %>
@@ -36,13 +50,50 @@
         
    </table>
 
+   <div id="recibir_p" style="display:none;">
     <%= submit_tag "Recibir piezas", class: "btn btn-primary pull-right" %>
-  
+    </div>
   <% end %>
 
 
 <% end %>
 
+<script type="text/javascript">
+
+$(".selecciona_coche").click(function(){
+
+    vacio();
+
+});
+
+$("#orderStockFamiliesToAdd select").on("change",function(){
+
+    console.log("PADRE desde form!:");
+
+});
 
 
-   
+
+
+  function vacio(){
+
+    console.log("children:"+$("#orderStockFamiliesToAdd").children().length);
+
+    if($("#orderStockFamiliesToAdd").children().length>0){
+
+        $("div#recibir_p").fadeIn();
+
+    }
+    else{
+
+        $("div#recibir_p").fadeOut();
+
+    }
+
+  }
+
+
+</script>
+
+
+

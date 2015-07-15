@@ -34,13 +34,15 @@ LotsoBear::Application.routes.draw do
 
 # <WAREHOUSES>
   resources :warehouses do
-      resources :shelves, shallow: true
+      get 'shelves/new_bulk', to: 'shelves#new_bulk', as: 'shelves_bulk_new'
+      post 'shelves/create_bulk', to: 'shelves#create_bulk', as: 'shelves_bulk_create'
+
+      resources :shelves, shallow: true do
+
+      end
   end
 # </WAREHOUSES>
 # </SHELVES>
-  resources :shelves do
-    # post 'shelves/print_label', to: 'stock_families#print_label', as: 'print_label_stock_family'
-  end
 # </SHELVES>
 
 

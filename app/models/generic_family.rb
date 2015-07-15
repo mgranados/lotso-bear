@@ -136,7 +136,9 @@ class GenericFamily < ActiveRecord::Base
 
   def get_supplier_code(supplier)
     supplier_code = SupplierCode.where(generic_family_id: self.id, supplier_id: supplier.id)
-    supplier_code.first.code
+    unless supplier_code.blank?
+      supplier_code.first.code
+    end
   end
   def get_price(supplier)
     supplier_code = SupplierCode.where(generic_family_id: self.id, supplier_id: supplier.id)

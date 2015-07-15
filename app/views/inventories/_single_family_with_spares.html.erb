@@ -1,18 +1,31 @@
-<tr class="">
-	<% spares_to_hide = "#{@generic_family.id}#{Time.now.strftime('%d%h%m%s%L')}"  %>
+<% spares_to_hide = "#{@generic_family.id}#{Time.now.strftime('%d%h%m%s%L')}"  %>
+<tr id="tr_<%=spares_to_hide%>">
 	<td><input value="Spares" type="button" id="hidden_<%=spares_to_hide%>" class="hide_spares"/></td>
 	<td><%= @generic_car.model_acronym.model %></td>
 	<td class="hidden"><%= hidden_field_tag "stocks[][car_id]", @generic_car.id  %></td>
 	<td><%= @generic_family.name %> </td>
 	<td><%= @generic_family.code %></td>
-	<td><%= grouped_collection_select nil, "stocks[][stock_family_supplier]", SupplierType.all, :suppliers, :name, :id, :name, :include_blank => true %></td>	
+	<td name="<%=spares_to_hide%>"><%= grouped_collection_select nil, "stocks[][stock_family_supplier]", SupplierType.all, :suppliers, :name, :id, :name, :include_blank => true %></td>	
 	<td class="hidden"><%= hidden_field_tag "stocks[][id]", @generic_family.id %>sup</td>
-	<td><%= text_field_tag "stocks[][supplier_code]" %></td>
-	<td><%= text_field_tag "stocks[][color]", nil %></td>
+	<td class="supp_code"><%= text_field_tag "stocks[][supplier_code]" %></td>
+	<td class="hide_color_<%=spares_to_hide%> hide_color"><%= text_field_tag "stocks[][color]", nil %></td>
 	<td><%= text_field_tag "stocks[][quantity]", nil %></td>
 	<td> <button class="btn btn-danger" id="eliminar_<%=spares_to_hide%>" eliminar="<%=spares_to_hide%>" >Eliminar</button></td>
 	
-	
+
+</tr>
+<tr style="display:none">
+	<td>
+		<div class="supplier_codes">
+    	
+    	<% @suppliers.each do |supp_code| %>
+    	  <% supp_code.supplier_codes.each do |supplier_type| %>
+    	  <p id="<%=supplier_type.id%>" name="<%=supplier_type.code%>"></p>
+    	  <% end %>
+	    <% end %>
+		</div>
+	</td>
+
 </tr>
 <!--<div class="esconde">-->
 
@@ -26,16 +39,40 @@
 		<td><%= spare_likelihood.generic_spare.code %></td>
 		<td></td>
 		<td><%= text_field_tag "stocks[]spares[][supplier_code]" %></td>
-		<td><%= text_field_tag "stocks[]spares[][color]" %></td>
+		<td class="hide_color_<%=spares_to_hide%> hide_color"><%= text_field_tag "stocks[]spares[][color]" %></td>
 		
 	</tr>
 
 <% end %>
+
+<!-- 
+<tr>
+	<h1>Suppliers:</h1>
+	<%= @suppliers.first.supplier_codes.count %>
+	<% @suppliers.each do |supp_code| %>
+    	<% supp_code.supplier_codes.each do |supplier_type| %>
+    		<%= supplier_type.code %>
+    	<% end %>
+    <% end %>
+</tr>
+
+
+<tr>
+	<h1>Suppliers:</h1>
+	<% @generic_family.supplier_codes.each do |supp_code| %>
+    	<%= supp_code.code %>
+    <% end %>
+</tr>
+ -->
+
+
   <script type="text/javascript">
 
-  $(document).ready(function(){
+  //$(document).ready(function(){
 
     console.log(" WORKING!! ");
+
+
 
     $("#hidden_<%=spares_to_hide%>").on("click",function() {
 
@@ -48,14 +85,39 @@
 
       console.log(""+$(this).parent().parent().next().attr("class"));
       //$("tr."+$(this).attr("eliminar:eq(0)")).prev().remove();
+      $("tr."+$(this).attr("eliminar")).next().remove();
       $("tr."+$(this).attr("eliminar")).remove();
       $(this).parent().parent().remove();
      // $("tr.primary_"+$(this).attr("eliminar")).remove();
+
+     	vacio();
       
     });
 
+    $("#orderStockFamiliesToAdd tr#tr_<%=spares_to_hide%> select").change(function(){
 
-  });
+    console.log("parent:"+$(this).parent().find("optgroup[label='Desmontado Original']").find("option[value='"+$(this).val()+"']").text());
+    if($(this).parent().find("optgroup[label='Desmontado Original']").find("option[value='"+$(this).val()+"']").text()!="")
+    {
+    	$(".hide_color_"+$(this).parent().attr("name")).removeClass("hide_color");
+    	
+
+
+    }
+    else{
+    	$(".hide_color_"+$(this).parent().attr("name")).addClass("hide_color");	
+    }
+
+    //codigo en siguiente.
+    // se encuentra los p(parrafos) con los id y codigos de los proveedores y se toman para agregarlos al input de proveedor. el codigo esta en el name y el id es el id del parrafo.
+    $(this).parent().next().next().find("input").val($(this).parent().parent().next().find("p#"+$(this).val()).attr("name"));
+    console.log("code:"+$(this).parent().parent().next().find("p#"+$(this).val()).attr("name"));
+    //console.log("input:"+$(this).parent().next().next().html());
+
+	});
+
+
+  //});
     
   </script>
 <!--</div>-->
