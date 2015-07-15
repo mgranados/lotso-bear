@@ -34,7 +34,9 @@
             Año Actual
           <% end %>
          </td>
-        <td><%= link_to 'Edit', '#' %></td>
+        <td>
+          <%= humanized_money_with_symbol generic_fam.get_price(@supplier) %></td>
+        </td>
         <td>
           <%= generic_fam.get_supplier_code(@supplier) %></td>
       </tr>
@@ -49,7 +51,6 @@
       <th>Nombre Pieza</th>
       <th>Modelo Auto</th>
       <th>Generación</th>
-      <th>Precio</th>
       <th>Seleccionar</th>
     </tr>
   </thead>
@@ -66,7 +67,6 @@
             Año Actual
           <% end %>
          </td>
-        <td><%= link_to 'Edit', '#' %></td>
         <td><%= link_to 'Seleccionar', new_supplier_code_path(@supplier, generic_fam) %></td>
       </tr>
     <% end %>

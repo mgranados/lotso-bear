@@ -138,5 +138,11 @@ class GenericFamily < ActiveRecord::Base
     supplier_code = SupplierCode.where(generic_family_id: self.id, supplier_id: supplier.id)
     supplier_code.first.code
   end
+  def get_price(supplier)
+    supplier_code = SupplierCode.where(generic_family_id: self.id, supplier_id: supplier.id)
+    supplier_code.first.price
+  end
+
+
 
 end
