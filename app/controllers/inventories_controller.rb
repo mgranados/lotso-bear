@@ -53,8 +53,10 @@ class InventoriesController < ApplicationController
   def departure_stock_family
     if StockFamily.exists?(code: params[:code]) 
       departure_stock = StockFamily.find_by_code(params[:code])
+      family = true
     elsif StockSpare.exists?(code: params[:code]) 
       departure_stock = StockSpare.find_by_code(params[:code])
+      family = false
     else
       flash[:danger] = "No se puede encontrar pieza con ese código"
       render departure_inventories_path
@@ -62,7 +64,14 @@ class InventoriesController < ApplicationController
     end
     if departure_stock.status != 'Instalada' && departure_stock.status != 'Vendido Externo' && departure_stock.status != 'Envio Propio'
       departure_stock.update(status: params[:status]) 
-      flash[:success] = " #{departure_stock.generic_family.name}  codigo:#{departure_stock.code} salida con exito!"
+      if family
+        departure_stock.family_histories.create(description: "Salida - status: #{params[:status]}")
+        flash[:success] = " #{departure_stock.generic_family.name}  codigo:#{departure_stock.code} salida con exito!"
+
+      else
+        departure_stock.spare_histories.create(description: "Salida - status: #{params[:status]}")
+        flash[:success] = " #{departure_stock.generic_spare.name}  codigo:#{departure_stock.code} salida con exito!"
+      end
       render departure_inventories_path
       return 0
     elsif !departure_stock.status.blank? && (departure_stock.status=="Instalada"|| departure_stock.status=="Vendida Externo"||departure_stock.status=="Envio Propio")

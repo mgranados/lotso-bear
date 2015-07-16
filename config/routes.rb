@@ -98,8 +98,9 @@ LotsoBear::Application.routes.draw do
 # </GENERIC_FAMILIES>
 
 # <GENERIC_CARS>
-  resources :generic_cars, only: [:index, :new, :create, :show, :edit ,:destroy, :update] do
+  resources :generic_cars do
     member do
+      get :edit_generation
       get :assignation
       patch :relate_generic_family
     end

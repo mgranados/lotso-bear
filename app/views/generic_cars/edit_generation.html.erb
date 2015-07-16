@@ -1,0 +1,15 @@
+<%= form_for @generic_car, :html => { :multipart => true, :id => "fileupload" } do |f|%>
+  <%= render 'shared/error_messages', model: @generic_car %>
+
+    <div class="col-md-4 col-xs-6 form-group text-center">
+      <%= f.label :gen_continues %><br>
+      <%= f.check_box :gen_continues %>
+      </div>
+      <div class="col-md-4 col-xs-6 form-group text-center">
+      <%= f.label :years , class:"title-change"%><br>
+      <%= f.text_field :years, class: "form-control years" %>
+      <p class="text-muted note continua"></p>
+    </div>
+
+  <%= f.submit nil,  class: "btn btn-primary pull-right" %>
+  <% end %>

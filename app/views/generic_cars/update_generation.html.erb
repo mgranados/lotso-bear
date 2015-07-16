@@ -1,25 +1,19 @@
-<%= link_to "Nuevo Coche Generico", new_generic_car_path, class: "button button-primary" %>
-
+<h1>Coches con Generaciones que Continuan</h1>
 <table id="genericCars" class="u-full-width">
   <thead>
     <th> Marca </th>
     <th> Modelo </th>
     <th> Tipo </th>
-    <th> Año </th>
     <th> Generación </th>
-    <th> # Puertas </th>
     <th> Codigo</th>
-    <th></th>
-    <th></th>
     <th></th>
   </thead>
   <tbody>
     <% for car in @generic_cars %>
     <tr>
-      <td><%= car.brand.name %></td>
-      <td><%= car.model %></td>
-      <td><%= car.type_of_car %></td>
-      <td><%= car.year %></td>
+      <td><%= car.model_acronym.brand.name %></td>
+      <td><%= car.model_acronym.model %></td>
+      <td><%= car.car_type.full_name %></td>
       <td><%= car.first_generation_year %> -
         <% if !car.gen_continues %>
         <%= car.last_generation_year %>
@@ -27,11 +21,8 @@
         Año Actual
         <% end %>
       </td>
-      <td><%= car.doors %></td>
       <td><%= car.code %></td>
-      <td><%= link_to "Ver", car, class: "button" %></td>
-      <td><%= link_to 'Editar', edit_generic_car_path(car), class: "button" %></td>
-      <td><%= link_to "Borrar", car, :confirm => '¿Seguro Que Deseas Borrarlo?', :method => :delete , class: "button"%></td>
+      <td><%= link_to 'Editar', edit_generation_generic_car_path(car), class: "button" %></td>
     </tr>
     <% end %>
   </tbody>
