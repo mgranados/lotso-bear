@@ -14,6 +14,9 @@ gem 'money-rails'
 gem "paperclip", "~> 4.2"
 gem 'chunky_png'
 
+#jquery validation
+gem 'jquery-validation-rails'
+
 
 #PDF Generator
 gem 'prawn'
