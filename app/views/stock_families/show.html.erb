@@ -31,7 +31,7 @@
           </td>
         </tr>
       </tbody>
-    </table> 
+    </table>
   </div>
   <div class="col-md-4">
     <table class="table table-condensed">
@@ -43,11 +43,11 @@
       </thead>
       <tbody>
         <tr>
-          <td></td>
-          <td></td>
+          <td><%= @stock_family.entrance_price %></td>
+          <td><%= @stock_family.departure_price %></td>
         </tr>
       </tbody>
-    </table> 
+    </table>
   </div>
   <div class="col-md-2">
     <%= link_to "Imprimir Etiqueta", choose_labels_stock_family_path(@stock_family) %>
@@ -95,8 +95,8 @@
     <table class="table table-condensed">
       <thead>
         <tr>
-          <th>Ultima Actualización</th>  
-          <th></th>  
+          <th>Ultima Actualización</th>
+          <th></th>
         </tr>
       </thead>
       <tbody>
@@ -137,7 +137,7 @@
           <td>
             <%= spare.code%>
           </td>
-          <td> 
+          <td>
             <%= spare.status %>
             <% if spare.status == "Instalada" %>
               <%= link_to "Ver Coche", stock_car_path(spare.stock_car) %>
@@ -155,5 +155,4 @@
          </tr>
         <% end %>
      </tbody>
-   </table> 
-
+   </table>
