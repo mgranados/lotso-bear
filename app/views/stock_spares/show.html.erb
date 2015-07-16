@@ -23,10 +23,10 @@
 				<td>
 					<% @stock_spare.stock_family.generic_family.generic_cars.each do |generic_car| %>
 				    	<%= generic_car.model_acronym.model %><br>
-					<% end %>				
+					<% end %>
 				</td>
 				<td><%= @stock_spare.stock_family.supplier.name %></td>
-				<td> 
+				<td>
             		<%= @stock_spare.status %>
             		<% if @stock_spare.status == "Instalada" %>
               			<%= link_to "Ver Coche", stock_car_path(@stock_spare.stock_car) %>
@@ -46,11 +46,11 @@
 		  </thead>
 		  <tbody>
 		    <tr>
-		    	<td></td>
-		    	<td></td>
+					<td><%= @stock_spare.entrance_price %></td>
+					<td><%= @stock_spare.departure_price %></td>
 		    </tr>
 		  </tbody>
-		</table> 
+		</table>
 	</div>
 </div>
 <div class="row">
@@ -96,8 +96,8 @@
     <table class="table table-condensed">
       <thead>
         <tr>
-          <th>Ultima Actualización</th>  
-          <th></th>  
+          <th>Ultima Actualización</th>
+          <th></th>
         </tr>
       </thead>
       <tbody>

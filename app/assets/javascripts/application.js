@@ -1,3 +1,5 @@
+//= require jquery.validate
+//= require jquery.validate.additional-methods
 //= require jquery
 //= require jquery-ui
 //= require jquery_ujs
@@ -13,5 +15,4 @@
 //= require cocoon
 //= require maskedinput
 //= require_tree .
-
 

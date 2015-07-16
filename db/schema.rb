@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150715191722) do
+ActiveRecord::Schema.define(version: 20150716184651) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -173,6 +173,13 @@ ActiveRecord::Schema.define(version: 20150715191722) do
     t.datetime "updated_at"
   end
 
+  create_table "prices", force: true do |t|
+    t.string   "entrance"
+    t.string   "departure"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "sections", force: true do |t|
     t.string   "code"
     t.integer  "warehouse_id"
@@ -244,7 +251,6 @@ ActiveRecord::Schema.define(version: 20150715191722) do
     t.integer  "generic_family_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "price_id"
     t.integer  "supplier_id"
     t.integer  "order_id"
     t.string   "code"
@@ -260,6 +266,10 @@ ActiveRecord::Schema.define(version: 20150715191722) do
     t.integer  "stock_car_id"
     t.string   "color"
     t.integer  "shelf_id"
+    t.integer  "entrance_price_centavos"
+    t.string   "entrance_price_currency",  default: "MXN", null: false
+    t.integer  "departure_price_centavos"
+    t.string   "departure_price_currency", default: "MXN", null: false
   end
 
   create_table "stock_family_images", force: true do |t|
@@ -296,8 +306,11 @@ ActiveRecord::Schema.define(version: 20150715191722) do
     t.integer  "photo_file_size"
     t.datetime "photo_updated_at"
     t.integer  "stock_car_id"
-    t.integer  "price_id"
     t.integer  "shelf_id"
+    t.integer  "entrance_price_centavos"
+    t.string   "entrance_price_currency",  default: "MXN", null: false
+    t.integer  "departure_price_centavos"
+    t.string   "departure_price_currency", default: "MXN", null: false
   end
 
   create_table "subsections", force: true do |t|
