@@ -28,7 +28,7 @@ class SupplierCodesController < ApplicationController
 
   private
     def supplier_code_params
-      params.require(:supplier_code).permit(:generic_family, :supplier, :code)
+      params.require(:supplier_code).permit(:generic_family, :supplier, :code, :price)
     end
 
     def select_generic_families_and_suppliers

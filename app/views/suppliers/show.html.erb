@@ -34,7 +34,9 @@
             Año Actual
           <% end %>
          </td>
-        <td><%= link_to 'Edit', '#' %></td>
+        <td>
+          <%= humanized_money_with_symbol generic_fam.get_price(@supplier) %></td>
+        </td>
         <td>
           <%= generic_fam.get_supplier_code(@supplier) %></td>
       </tr>
@@ -49,28 +51,24 @@
       <th>Nombre Pieza</th>
       <th>Modelo Auto</th>
       <th>Generación</th>
-      <th>Precio</th>
       <th>Seleccionar</th>
     </tr>
   </thead>
 
   <tbody>
     <% @generic_families_wo_code.each do |generic_fam| %>
-      <% unless generic_fam.has_supplier_code?(@supplier) %>
-        <tr>
-          <td><%= generic_fam.name %></td>
-          <td><%= generic_fam.generic_cars.first.model_acronym.model  %></td>
-          <td><%= generic_fam.generic_cars.first.first_generation_year %> -
-            <% if !generic_fam.generic_cars.first.gen_continues %>
-              <%= generic_fam.generic_cars.first.last_generation_year %>
-            <% else %>
-              Año Actual
-            <% end %>
-           </td>
-          <td><%= link_to 'Edit', '#' %></td>
-          <td><%= link_to 'Seleccionar', new_supplier_code_path(@supplier, generic_fam) %></td>
-        </tr>
-      <% end %>
+      <tr>
+        <td><%= generic_fam.name %></td>
+        <td><%= generic_fam.generic_cars.first.model_acronym.model  %></td>
+        <td><%= generic_fam.generic_cars.first.first_generation_year %> -
+          <% if !generic_fam.generic_cars.first.gen_continues %>
+            <%= generic_fam.generic_cars.first.last_generation_year %>
+          <% else %>
+            Año Actual
+          <% end %>
+         </td>
+        <td><%= link_to 'Seleccionar', new_supplier_code_path(@supplier, generic_fam) %></td>
+      </tr>
     <% end %>
   </tbody>
 </table>

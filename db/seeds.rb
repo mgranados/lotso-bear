@@ -105,7 +105,7 @@ brands = [
     Brand.create(name: 'Mitsubishi', acronym:'MT')
 
   for i in 0...brands.length
-    Brand.new(name: brands[i], acronym:acronyms[i])
+    Brand.create(name: brands[i], acronym:acronyms[i])
   end
 
 types = [['Hatchback','3/5'],['Hatchback','3'],['Hatchback','5'],['Sedan','2'],['Sedan','4'],['Sedan','2/4'],['SUV'],['Minivan'],['Sedan/Hatchback','4/5'],['Sedan/Hatchback','3/4/5'],['Pick Up','2'],['Pick Up','4'],['Pick Up','2/4'],['Crossover'],['Van']]
@@ -118,14 +118,8 @@ types.each { |type|
 }
 
 
-# </TESTING>
-<<<<<<< HEAD
-# #brand
-=======
-#brand
->>>>>>> d6f253272d0da267b232fff7e4bb8d94cd653992
-@brand = Brand.new( name: "audi", acronym: "AU")
-@brand.save!
+@brand = Brand.find(2)
+#@brand.save!
 #modelacronym
 @macronym= ModelAcronym.new(initials: "A4", model: "A4")
 @macronym.brand = @brand
@@ -157,15 +151,12 @@ types.each { |type|
 @genericFamilyFather.father=@genericFamilySon
 @genericFamilyFather.save!
 
-<<<<<<< HEAD
+
 #moldspare NO
 #@moldspare = MoldSpare.new(name: "moldspare", comment: "comentario del mold", mold_type: "mold_type", code: "code")
 #moldComponent NO
 #@moldComponent= MoldComponent.new(name: "moldComponent")
 #@moldspare<<@moldComponent
-
-#GenericSpare
-@GenericSpare = GenericSpare.create(brand: "Audi_spares", type_of_spare: "tipo spare", name: "Manija", region: "China", description: "Refaccion tal", code: "code")
 
 #familylikelihood
 #@familylikelihood = FamilyLikelihood.new( years: "2")
@@ -182,11 +173,8 @@ types.each { |type|
 #@GenericSpare<<@SpareLikelihood
 #@genericFamilySon<<@SpareLikelihood
 
-=======
 #GenericSpare
 @GenericSpare = GenericSpare.create(brand: "Audi_spares", type_of_spare: "tipo spare", name: "Manija", region: "China", description: "Refaccion tal", code: "code")
-
->>>>>>> d6f253272d0da267b232fff7e4bb8d94cd653992
 @genericc.generic_families<<@genericFamilyFather
 @car.generic_families<<@genericFamilyFather
 @GenericSpare.generic_families<<@genericFamilyFather
@@ -230,16 +218,11 @@ types.each { |type|
 @Order.save!
 
 #supplier
-<<<<<<< HEAD
+#HEAD
 @SupplierType = SupplierType.create(name: "Desmontado Original")#Taller Automotriz
 @Original = SupplierType.create(name: "Original")#agencia
 @Taiwan = SupplierType.create(name: "Taiwan")#Radec
 
-
- #Section
- @Section = Section.new(code: "dasdasd", name: "Section")
- @Section.warehouse=@Warehouse
- @Section.save!
 
  #Supplier taller automotriz
 @Supplier = Supplier.new( name: "Taller Automotriz")
@@ -260,26 +243,12 @@ types.each { |type|
  @Radec.save!
  @Order.save!
 
-=======
-@SupplierType = SupplierType.create(name: "Supplier type")
+ #supplier_codes
+ @supplier_codes = SupplierCode.create(generic_family_id:@genericFamilyFather.id,supplier_id:@Supplier.id,code:"#{@genericFamilyFather.id}#{@Supplier.id}#{'asdas'}" )
+ @supplier_codes = SupplierCode.create(generic_family_id:@genericFamilyFather.id,supplier_id:@Agencia.id,code:"#{@genericFamilyFather.id}#{@Agencia.id}#{'asdas'}" )
+ @supplier_codes = SupplierCode.create(generic_family_id:@genericFamilyFather.id,supplier_id:@Radec.id,code:"#{@genericFamilyFather.id}#{@Radec.id}#{'asdas'}" )
 
-#Section
-@Section = Section.new(code: "dasdasd", name: "Section")
-@Section.warehouse=@Warehouse
-@Section.save!
 
-#Supplier
-@Supplier = Supplier.new( name: "supplier")
-@Supplier.supplier_type=@SupplierType
-@Order.suppliers<<@Supplier
-@Supplier.save!
-@Order.save!
->>>>>>> d6f253272d0da267b232fff7e4bb8d94cd653992
-
-#Subsection
-@Subsection = Subsection.new(code: "code", name: "subsect")
-@Subsection.section=@Section
-@Subsection.save!
 
 #OrderSupplier
 @OrderSupplier = OrderSupplier.create()
@@ -293,7 +262,7 @@ types.each { |type|
 @StockFamily = StockFamily.new( quantity: 10, color: "rojo", car_order_id:@genericc.id)
 @StockFamily.supplier=@Supplier
 @StockFamily.order=@Order
-@StockFamily.subsection=@Subsection
+#@StockFamily.subsection=@Subsection
 @StockFamily.stock_car=@stock
 @StockFamily.generic_family=@genericFamilySon
 #@StockFamily.car_order = @genericc
@@ -309,7 +278,7 @@ types.each { |type|
 #StockSpare
 @StockSpare= StockSpare.new(status: "status", description: "description text", code: "asdads", color: "rojo", supplier_code: "codes")
 @StockSpare.stock_family=@StockFamily
-@StockSpare.subsection=@Subsection
+#@StockSpare.subsection=@Subsection
 @StockSpare.warehouse=@Warehouse
 @StockSpare.stock_car=@stock
 @StockSpare.generic_spare=@GenericSpare
