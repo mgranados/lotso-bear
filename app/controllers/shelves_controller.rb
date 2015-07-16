@@ -21,6 +21,54 @@ class ShelvesController < ApplicationController
   def new_bulk
   end
 
+# <STORE A STOCK IN A RACK>
+  def search
+  end
+
+  def store_stocks
+    begin
+      @shelf = Shelf.find_by_code(params[:code])
+    rescue ActiveRecord::RecordNotFound
+      flash[:danger] = "No Se Encontro Rack con ese código, Vuelva a Intentar."
+      redirect_to shelves_search_path
+      return
+    end
+  end
+
+
+  def save_stocks
+    @shelf = Shelf.find_by_code(params[:shelf_code])
+    if params[:stock_families_id].blank?
+      redirect_to get_store_stocks_shelf_path(@shelf.code)
+      return
+    else
+      stock_families_ids = params[:stock_families_id]
+      stock_families_ids.each do |id|
+        @stock_family = StockFamily.find_by_id(id.to_i)
+        @stock_family.update(shelf_id:@shelf.id)
+      end
+      flash[:success] = "Piezas Guardadas en el Rack con Exito!"
+      redirect_to shelves_search_path
+      return
+    end
+
+    # if StockFamily.exists?(code: params[:code]) 
+    #   stock = StockFamily.find_by_code(params[:code])
+    # elsif StockSpare.exists?(code: params[:code]) 
+    #   stock = StockSpare.find_by_code(params[:code])
+    # else
+    #   flash[:danger] = "No se puede encontrar pieza con ese código"
+    #   render acomodate_inventories_path
+    #   return 0
+    # end
+
+    # if stock.update(subsection_id: )
+    #   flash[:success] = "Agregado Al rack con Exito"
+    # end
+    render acomodate_inventories_path
+  end
+# </STORE A STOCK IN A RACK>
+
   def create_bulk
     aisle = params[:aisle]
     row = params[:row]
@@ -97,15 +145,13 @@ class ShelvesController < ApplicationController
 
   end
 
-  def store_stocks
-  end
 
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_shelf
       @shelf = Shelf.find(params[:id])
     end
-
+      
     def set_warehouse
       @warehouse = Warehouse.find(params[:warehouse_id])
     end

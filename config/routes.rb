@@ -29,25 +29,34 @@ LotsoBear::Application.routes.draw do
   end
 # </SUPPLIES>
 
+
+# <SUPPLIER>
   get '/suppliers/:supplier_id/generic_families/:generic_family_id/new_supplier_code', to: 'supplier_codes#new', as: 'new_supplier_code'
   post '/suppliers/:supplier_id/generic_families/:generic_family_id/supplier_code_creation', to: 'supplier_codes#create', as: 'supplier_generic_family_supplier_codes'
+# </SUPPLIER>
 
+# </SHELVES>
+  get 'shelves/:code/store_stocks', to: 'shelves#store_stocks', as: 'get_store_stocks_shelf'
+  
+  get 'shelves/search', to: 'shelves#search', as: 'shelves_search'
+  post 'shelves/store_stocks', to: 'shelves#store_stocks', as: 'store_stocks_shelf'
+  post 'shelves/save_stocks', to: 'shelves#save_stocks', as: 'save_stocks_shelf'
+# </SHELVES>
 # <WAREHOUSES>
   resources :warehouses do
       get 'shelves/new_bulk', to: 'shelves#new_bulk', as: 'shelves_bulk_new'
       post 'shelves/create_bulk', to: 'shelves#create_bulk', as: 'shelves_bulk_create'
-
       resources :shelves, shallow: true do
-
       end
   end
 # </WAREHOUSES>
-# </SHELVES>
-# </SHELVES>
+
+
 
 
 # <STOCK_FAMILIES>
   post 'stock_families/print_label', to: 'stock_families#print_label', as: 'print_label_stock_family'
+  post 'stock_families/search', to: 'stock_families#search', as: 'search_stock_family'
   resources :stock_families, only: [:index, :new, :show, :edit ,:destroy, :update] do
     member do
       post :print_label
@@ -109,12 +118,8 @@ LotsoBear::Application.routes.draw do
       get :add_family_with_spares_to_order
     end
     collection do
-      get :acomodate
-      post :save_store_stocks
-      post :store_stocks
       get :departure
       get :all
-      get :add_new_stock
       post :search_stock
       get :search_stock
       post :add_to_inventory, to: 'stock_families#create'

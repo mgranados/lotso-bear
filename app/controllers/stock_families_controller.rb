@@ -1,9 +1,16 @@
 # -*- encoding : utf-8 -*-
 class StockFamiliesController < ApplicationController
-  before_action :set_family, only: [:show, :label, :edit, :update, :history, :choose_labels]
+  before_action :set_family, only: [:show, :label, :edit, :update, :history, :choose_labels, :search]
 
   def new
   	@stockFamily = StockFamily.new
+  end
+
+  def search
+    @stock_family = StockFamily.find_by_code(params[:code])
+    respond_to do |format|
+      format.js { }
+    end
   end
 
   def show

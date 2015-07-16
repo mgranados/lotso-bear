@@ -145,7 +145,7 @@
           </td>
           <% unless spare.shelf.blank? %>
             <td><%= spare.shelf.code%></td>
-            <td><%= link_to "Ver Rack", subsection_path(spare.subsection) %></td>
+            <td><%= link_to "Ver Rack", shelf_path(spare.shelf) %></td>
           <% else %>
             <td></td>
             <td></td>

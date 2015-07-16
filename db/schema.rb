@@ -259,10 +259,7 @@ ActiveRecord::Schema.define(version: 20150714194020) do
     t.datetime "photo_updated_at"
     t.integer  "stock_car_id"
     t.string   "color"
-<<<<<<< HEAD
-=======
     t.integer  "shelf_id"
->>>>>>> d6f253272d0da267b232fff7e4bb8d94cd653992
   end
 
   create_table "stock_family_images", force: true do |t|
