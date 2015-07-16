@@ -28,6 +28,10 @@
         <%= f.label :code, "Código familia:" %>
         <%= f.text_field :code %>
       </li>
+      <li>
+        <%= f.label :price %>
+        <%= f.text_field :price, data: { role: 'money'} %>
+      </li>
   </ul>
   <%= f.submit "Asignar código" %>
 

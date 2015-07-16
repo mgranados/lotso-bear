@@ -6,5 +6,6 @@ class SupplierCode < ActiveRecord::Base
 
   validates :code, uniqueness: true
 
+  monetize :price_centavos, :allow_nil => true
 
 end

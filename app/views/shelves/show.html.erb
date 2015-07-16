@@ -26,3 +26,20 @@
   </tbody>
 </table>
 
+<table class="table">
+    <thead>
+      <th>Name</th>
+      <th>Código</th>
+    </thead>
+    <tbody>
+    <% @shelf.stock_families.each do |family| %>
+      <tr>
+        <td><%= family.generic_family.name %></td>
+        <td><%= family.code %></td>
+        <td><%= link_to 'Ver', stock_family_path(family),class:"btn btn-info" %>
+</td>
+      </tr>
+    <% end %>
+    </tbody>
+</table>
+
