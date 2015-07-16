@@ -61,20 +61,17 @@
 	        <tr>
 	          <th>Almacen</th>
 	          <th>Rack</th>
-	          <th></th>
 	        </tr>
 	      </thead>
 	      <tbody>
 	        <tr>
-	        	<% unless @stock_spare.subsection.blank? %>
-	          		<td><%= @stock_spare.subsection.section.warehouse.branch %></td>
-	          		<td><%= @stock_spare.subsection.code %> </td>
-	          		<td><%= link_to "Ver", subsection_path(@stock_spare.subsection) %></td>
-	          	<% else %>
-	          		<td></td>
-	          		<td></td>
-	          		<td></td>
-	          	<% end %>
+	          <% unless @stock_spare.stock_family.shelf.blank?  %>
+	            <td><%= @stock_spare.stock_family.shelf.code %> </td>
+	            <td><%= link_to "Ver", shelf_path(@stock_spare.stock_family.shelf) %></td>
+	          <%else %>
+	            <td>No se ha ingresado a ningun almacen</td>
+	            <td></td>
+	          <% end %>
 	        </tr>
 	      </tbody>
 	    </table>
