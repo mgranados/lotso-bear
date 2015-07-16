@@ -1,0 +1,30 @@
+<h1>Rack  <strong> <%= @shelf.code %></strong></h1>
+
+<div class="row">
+  <div class="col-md-4">
+    <%= form_tag search_stock_family_path, remote: true do %>
+      <%= text_field_tag :code, nil, class: "form-control"  %><br>
+        <%= submit_tag 'Agregar Pieza', class: "btn btn-info" %>
+    <% end %> 
+  </div>
+  <div class="col-md-2"></div>
+  <div class="col-md-6"></div>
+</div>
+
+<%= form_tag save_stocks_shelf_path do%>
+  <div class="row">
+    <table class="table">
+      <thead>
+        <th>Nombre</th>
+        <th>Codigo</th>
+        <th></th>
+      </thead>
+      <tbody id="stocks">
+      </tbody>
+      
+    </table>
+  </div>
+    <%= hidden_field_tag :shelf_code, @shelf.code %>
+
+  <%= submit_tag 'Guardar Piezas', class: "btn btn-primary" %>
+<% end %> 

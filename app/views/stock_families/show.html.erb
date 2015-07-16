@@ -60,7 +60,6 @@
         <tr>
           <th>Almacen</th>
           <th>Rack</th>
-          <th></th>
         </tr>
       </thead>
       <tbody>
@@ -70,6 +69,7 @@
             <td><%= link_to "Ver", shelf_path(@stock_family.shelf) %></td>
           <%else %>
             <td>No se ha ingresado a ningun almacen</td>
+            <td></td>
           <% end %>
         </tr>
       </tbody>
@@ -145,7 +145,7 @@
           </td>
           <% unless spare.shelf.blank? %>
             <td><%= spare.shelf.code%></td>
-            <td><%= link_to "Ver Rack", subsection_path(spare.subsection) %></td>
+            <td><%= link_to "Ver Rack", shelf_path(spare.shelf) %></td>
           <% else %>
             <td></td>
             <td></td>

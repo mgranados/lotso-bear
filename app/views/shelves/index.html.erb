@@ -1,8 +1,8 @@
 <h1>Listando Racks en <strong><%= @warehouse.branch %></strong></h1>
 <%= link_to 'Nuevo Rack', new_warehouse_shelf_path(@warehouse),class:"btn btn-primary"  %>
 <%= link_to 'Nuevo Conjunto de Racks', warehouse_shelves_bulk_new_path(@warehouse),class:"btn btn-primary"  %>
-<%= link_to 'Regresar a Almacen', warehouse_path(@warehouse),class:"btn btn-default" %>
-<table class="table">
+<%= link_to 'Regresar a Listdo de Almacenes', warehouse_path(@warehouse),class:"btn btn-default" %>
+<table id="racks">
   <thead>
     <tr>
       <th>Código</th>
@@ -10,6 +10,7 @@
       <th>Fila</th>
       <th>Nivel</th>
       <th>Número</th>
+      <th></th>
     </tr>
   </thead>
 
@@ -27,5 +28,11 @@
   </tbody>
 </table>
 
-<br>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('#racks').dataTable();
+  });
+</script>
+
 

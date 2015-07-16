@@ -1,0 +1,8 @@
+	<h1>Buscar Rack</h1>
+
+	<%= form_tag store_stocks_shelf_path,  class: "form-inline" do %>
+		<%= tag(:input, :type => "hidden", :name => request_forgery_protection_token.to_s, :value => form_authenticity_token) %> 
+		<%= label_tag :Código %>
+		<%= text_field_tag :code , nil, class: "form-control"  %><br>
+		<%= submit_tag 'Buscar Rack', class: "btn btn-primary" %>
+	<% end %>
