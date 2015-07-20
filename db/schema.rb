@@ -173,13 +173,6 @@ ActiveRecord::Schema.define(version: 20150716184651) do
     t.datetime "updated_at"
   end
 
-  create_table "prices", force: true do |t|
-    t.string   "entrance"
-    t.string   "departure"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "sections", force: true do |t|
     t.string   "code"
     t.integer  "warehouse_id"

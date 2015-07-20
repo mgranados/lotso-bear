@@ -91,6 +91,7 @@ LotsoBear::Application.routes.draw do
       post :assign
     end
     member do
+      get :variant
       get :count_spares
       get :prices
     end
