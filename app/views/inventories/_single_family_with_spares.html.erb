@@ -76,8 +76,8 @@
 
     $("#hidden_<%=spares_to_hide%>").on("click",function() {
 
-      console.log(""+$(this).parent().parent().next().attr("class"));
-      $("tr."+$(this).parent().parent().next().attr("class")).toggle();
+      console.log(""+$(this).parent().parent().next().next().attr("class"));
+      $("tr."+$(this).parent().parent().next().next().attr("class")).toggle();
       
     });
 
