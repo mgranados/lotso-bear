@@ -126,6 +126,7 @@ types.each { |type|
 @macronym.save!
 #generation
 @generation = Generation.new(year: 2015)
+@generation.save!
 #car type
 @car = CarType.create(name: "Sedan", doors: "4")
 #generic car
@@ -135,7 +136,7 @@ types.each { |type|
 @genericc.save!
 
 #genericCar GEneration
-@genericcarG = GenericCarGeneration.new()
+#@genericcarG = GenericCarGeneration.new()
 @genericc.generations<<@generation
 @genericc.save!
 #@genericc.generations<<@genericcarG

@@ -4,4 +4,6 @@ class StockCar < ActiveRecord::Base
   has_many :stock_families
   has_many :stock_spares
   belongs_to :prevaluation 
+
+  validates :code, uniqueness: true
 end
