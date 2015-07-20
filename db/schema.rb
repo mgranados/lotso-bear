@@ -173,21 +173,6 @@ ActiveRecord::Schema.define(version: 20150716184651) do
     t.datetime "updated_at"
   end
 
-  create_table "prices", force: true do |t|
-    t.string   "entrance"
-    t.string   "departure"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "sections", force: true do |t|
-    t.string   "code"
-    t.integer  "warehouse_id"
-    t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "shelves", force: true do |t|
     t.string   "aisle"
     t.integer  "level"
@@ -263,8 +248,8 @@ ActiveRecord::Schema.define(version: 20150716184651) do
     t.string   "photo_content_type"
     t.integer  "photo_file_size"
     t.datetime "photo_updated_at"
-    t.string   "color"
     t.integer  "stock_car_id"
+    t.string   "color"
     t.integer  "shelf_id"
     t.integer  "entrance_price_centavos"
     t.string   "entrance_price_currency",  default: "MXN", null: false
@@ -311,14 +296,6 @@ ActiveRecord::Schema.define(version: 20150716184651) do
     t.string   "entrance_price_currency",  default: "MXN", null: false
     t.integer  "departure_price_centavos"
     t.string   "departure_price_currency", default: "MXN", null: false
-  end
-
-  create_table "subsections", force: true do |t|
-    t.string   "code"
-    t.string   "name"
-    t.integer  "section_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
   end
 
   create_table "supplier_codes", force: true do |t|

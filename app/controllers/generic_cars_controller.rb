@@ -1,6 +1,6 @@
 # -*- encoding : utf-8 -*-
 class GenericCarsController < ApplicationController
-  before_action :set_generic_car, only: [:show, :edit, :destroy, :update, :assignation]
+  before_action :set_generic_car, only: [:show, :edit, :destroy, :update, :assignation, :edit_generation]
   
   def new
     @generic_car = GenericCar.new

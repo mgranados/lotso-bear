@@ -37,6 +37,7 @@ class OrdersController < ApplicationController
         stock_family.supplier_code = family_info[:supplier_code].to_i
         stock_family.color = family_info[:color]
         stock_family.status = "Almacen"
+        stock_family.family_histories.new(description: "Entrada - Añadida a una orden.")
         puts "Awesome #{quantity}"
         order.stock_families << stock_family 
       end
