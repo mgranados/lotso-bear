@@ -1,6 +1,8 @@
 # -*- encoding : utf-8 -*-
 LotsoBear::Application.routes.draw do
 
+  resources :services
+
   get "supplier_codes/new"
   get "supplier_codes/edit"
   get "supplier_codes/create"
