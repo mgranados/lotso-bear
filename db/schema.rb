@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150716184651) do
+ActiveRecord::Schema.define(version: 20150720221825) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -90,6 +90,10 @@ ActiveRecord::Schema.define(version: 20150716184651) do
     t.string   "entrance_price_currency",  default: "MXN", null: false
     t.integer  "departure_price_centavos"
     t.string   "departure_price_currency", default: "MXN", null: false
+<<<<<<< HEAD
+=======
+    t.string   "years"
+>>>>>>> 834d410bfc7adbc3951f9a6beaee64c9b0ab2cea
   end
 
   create_table "generic_fittables", force: true do |t|

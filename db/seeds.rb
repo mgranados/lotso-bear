@@ -147,8 +147,8 @@ types.each { |type|
 #@genericCarImage.save!
 
 #genericFamily
-@genericFamilyFather = GenericFamily.new(name: "GenericFamDad", description: "generic family Padre", code: "codepadre", father_id: nil, active:0, entrance_price_cents: 20, entrance_price_currency: "string", departure_price_cents: 2, departure_price_currency: "departure_price_currency")
-@genericFamilySon = GenericFamily.create(name: "GenericFamSon", description: "generic family de Hijo", code: "codehijo", active:0, entrance_price_cents: 10, entrance_price_currency: "entrance_price_currency", departure_price_cents: 10, departure_price_currency: "departure_price_currency_3")
+@genericFamilyFather = GenericFamily.new(name: "GenericFamDad", description: "generic family Padre", code: "codepadre", father_id: nil, active:0, entrance_price_centavos: 20, entrance_price_currency: "string", departure_price_centavos: 2, departure_price_currency: "departure_price_currency")
+@genericFamilySon = GenericFamily.create(name: "GenericFamSon", description: "generic family de Hijo", code: "codehijo", active:0, entrance_price_centavos: 10, entrance_price_currency: "entrance_price_currency", departure_price_centavos: 10, departure_price_currency: "departure_price_currency_3")
 @genericFamilyFather.father=@genericFamilySon
 @genericFamilyFather.save!
 

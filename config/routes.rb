@@ -84,6 +84,9 @@ LotsoBear::Application.routes.draw do
 # </ORDERS>
 
 #<GENERIC_FAMILIES>
+  post 'generic_families/create_variant', to: 'generic_families#create_variant', as: 'create_variant_stock_family'
+  get 'generic_families/:id/variant/:generic_car_id, ', to: 'generic_families#variant', as: 'variant_generic_family'
+  
   resources :generic_families, only: [:index, :new, :create, :show, :destroy, :update] do
     collection do
       get :not_assigned
@@ -91,7 +94,7 @@ LotsoBear::Application.routes.draw do
       post :assign
     end
     member do
-      get :variant
+      # get :variant
       get :count_spares
       get :prices
     end

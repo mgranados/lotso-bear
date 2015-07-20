@@ -2,6 +2,7 @@
 
 <table class="table table-striped">
   <thead>
+    <th></th>
     <th>Nombre</th>
     <th>Codigo</th>
     <th>Añadir Familia</th>
@@ -9,20 +10,32 @@
   <tbody>
 
   <% @generic_car.generic_families.each do |generic_family| %>
+  <% spares_to_hide = "#{generic_family.id}#{Time.now.strftime('%d%h%m%s%L')}"  %>
       <tr>
+        <td><input value="Spares" type="button" id="hidden_<%=spares_to_hide%>" class="hide_spares"/></td>
         <td><%= generic_family.name %></td>
         <td><%= generic_family.code %></td>
-        <td><%= link_to "+", variant_generic_family_path(generic_family) %></td>
+        <td><%= link_to "+", variant_generic_family_path(generic_family, @generic_car) %></td>
       </tr>
 <% generic_family.spare_likelihoods.each do |spare_likelihood| %>
-  <tr>
-  
+  <tr class="<%=spares_to_hide%>" >
+    <td></td>
     <td><%= spare_likelihood.generic_spare.name %></td>
     <td><%= spare_likelihood.generic_spare.code %></td>
     
   </tr>
+  <script type="text/javascript">
 
+   $("#hidden_<%=spares_to_hide%>").on("click",function() {
+
+      console.log(""+$(this).parent().parent().next().attr("class"));
+      $("tr."+$(this).parent().parent().next().attr("class")).toggle();
+      
+    });
+
+</script>
 <% end %>  
   <% end %>
 </tbody>
 </table>
+
