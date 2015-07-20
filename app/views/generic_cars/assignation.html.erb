@@ -1,9 +1,6 @@
 <h1>Carro genérico | Asignación de Familias </h1>
 <%= render 'shared/generic_car', car: @generic_car%>
-<%= form_for @generic_car do |builder| %>
-	<%= render 'generic_car_families', car: @generic_car, f: builder %>
-	<%= submit_tag "Guardar Coche", class: "btn btn-primary" %>
-<% end %>
+<%= render 'generic_car_families', car: @generic_car %>
 <%= render 'other_generic_car_families', car: @other_families %>
 <%= link_to "Cancel", generic_cars_path , class: "btn " %>
 

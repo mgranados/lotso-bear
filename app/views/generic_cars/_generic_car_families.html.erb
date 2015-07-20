@@ -1,42 +1,28 @@
 <h2>Familias relacionadas</h2>
 
-<% cont = 0 %>
 <table class="table table-striped">
   <thead>
     <th>Nombre</th>
     <th>Codigo</th>
-    <th>Habilitado</th>
-    <th>Años</th>
     <th>Añadir Familia</th>
-    <th></th>
   </thead>
   <tbody>
-  <%= f.fields_for :family_likelihoods do |family_likelihood| %>
-    <%= family_likelihood.fields_for :generic_family do |family| %>
-      <tr>
-        <td><input value="Spares" type="button" id="hidden<%= cont %>" class="hide_spares"/></td>
-        <td><%= family.text_field :name , disabled: true%></td>
-        <td><%= family.text_field :code , disabled: true%></td>
-        <td><%= check_box_tag 'active', 'yes', true %></td>
-        <td><%= family_likelihood.text_field :years, placeholder: car.formatted_year %></td>
-        <td><%= link_to '+', '#', id:cont, name: 'helper'%></td>
 
-        <td><%= family.hidden_field :name ,{id:"nameHelper#{cont}" , name:"helper#{cont}"} %><%= family.hidden_field :code ,{id:"codeHelper#{cont}" , name:"helper#{cont}"} %></td>
-        <%= family.fields_for :spare_likelihoods do |spare_likelihood| %>
-          <tr class="hidden<%= cont %> hidden spares">
-            <%= spare_likelihood.fields_for :generic_spare do |spare| %>
-              <td></td>
-              <td><%= spare.text_field :name %></td>
-              <td><%= spare.text_field :code %> </td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-            <% end %>
-          </tr>
-        <% end %>
-        <% cont+=1 %>
-    <% end %>
+  <% @generic_car.generic_families.each do |generic_family| %>
+      <tr>
+        <td><%= generic_family.name %></td>
+        <td><%= generic_family.code %></td>
+        <td><%= link_to "+", variant_generic_family_path(generic_family) %></td>
+      </tr>
+<% generic_family.spare_likelihoods.each do |spare_likelihood| %>
+  <tr>
+  
+    <td><%= spare_likelihood.generic_spare.name %></td>
+    <td><%= spare_likelihood.generic_spare.code %></td>
+    
+  </tr>
+
+<% end %>  
   <% end %>
-  </tbody>
+</tbody>
 </table>

@@ -8,11 +8,13 @@ require 'barby/outputter/png_outputter'
 
 class StockFamily < ActiveRecord::Base
   belongs_to :generic_family
-  belongs_to :price
   belongs_to :supplier
   belongs_to :order
   belongs_to :stock_car
-  
+
+  monetize :entrance_price_centavos, :allow_nil => true
+  monetize :departure_price_centavos, :allow_nil => true
+
   has_attached_file :photo, :styles => { :medium => "300x300>", :thumb => "100x100>" }
 
   validates_attachment_content_type :photo, :content_type => ["image/jpg", "image/jpeg", "image/png", "image/gif"]
@@ -37,13 +39,13 @@ class StockFamily < ActiveRecord::Base
 
   def self.stock_family_label_info(stock_family_id)
     stock_family = self.find_by_id(stock_family_id)
-    barcode = Barby::Code128B.new(stock_family.code) 
-    blob = Barby::PngOutputter.new(barcode).to_png(height: 40) 
+    barcode = Barby::Code128B.new(stock_family.code)
+    blob = Barby::PngOutputter.new(barcode).to_png(height: 40)
     file = "app/assets/images/barcodes/families/#{stock_family.id}.png"
     File.open(file, 'w'){|f| f.write blob }
     return {:png => file, :model => stock_family.generic_family.generic_cars.first.model_acronym.model, :name => stock_family.generic_family.name.upcase, :code => stock_family.code, :entrance_date => stock_family.order.entrance_date.strftime("%m/%Y")}
   end
-  
+
 private
   def create_code
     car = GenericCar.find_by_id(self.car_order_id)
