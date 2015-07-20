@@ -12,7 +12,7 @@
       <tr>
         <td><%= generic_family.name %></td>
         <td><%= generic_family.code %></td>
-        <td><%= link_to "+", variant_generic_family_path(generic_family) %></td>
+        <td><%= link_to "+", variant_generic_family_path(generic_family, @generic_car) %></td>
       </tr>
 <% generic_family.spare_likelihoods.each do |spare_likelihood| %>
   <tr>

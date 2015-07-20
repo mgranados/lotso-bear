@@ -28,6 +28,32 @@ class GenericFamiliesController < ApplicationController
     end
   end
 
+
+# <CREATE VARIANT>
+  def variant
+    generic_family_father = GenericFamily.find_by_id(params[:id])
+    @generic_car = GenericCar.find_by_id(params[:generic_car_id])
+    @generic_family = GenericFamily.new
+    @generic_family.name ||= generic_family_father.name
+    @generic_family.code ||= generic_family_father.code
+
+    generic_family_father.spare_likelihoods.each do |spare_likelihood|
+      build = @generic_family.spare_likelihoods.build.build_generic_spare
+      build.name = spare_likelihood.generic_spare.name
+      build.code = spare_likelihood.generic_spare.code
+    end
+  end
+
+  def create_variant
+    @generic_car = GenericCar.find_by_id(params[:generic_car_id])
+    @generic_family = GenericFamily.new(required_params)
+    @generic_car.generic_families << @generic_family
+    if @generic_car.save!
+      redirect_to assignation_generic_car_path(@generic_car)
+    end
+  end
+# </CREATE VARIANT>
+
   def prices
   end
 

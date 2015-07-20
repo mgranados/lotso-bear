@@ -1,0 +1,45 @@
+<%= form_for @generic_family, :url => create_variant_stock_family_path do |f| %>
+
+	<%= hidden_field_tag :generic_car_id, @generic_car.id %>
+	<div class="row">
+		<div class="col-md-4">
+			<div class="form-group">
+				<%= f.label :name %>
+				<%= f.text_field :name , class:'form-control'%><br>
+			</div>
+		</div>
+		<div class="col-md-4">
+			<div class="form-group">
+				<%= f.label :years %>
+				<%= f.text_field :years , class:'form-control'%><br>
+			</div>
+		</div>
+		<div class="col-md-4">
+			<div class="form-group">
+				<%= f.label :code %>
+				<%= f.text_field :code , class:'form-control'%>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<h2>Piezas</h2>
+		<%= f.fields_for :spare_likelihoods do | likelihood | %>
+			<%= likelihood.fields_for :generic_spare do | spare | %>
+				<div class="col-md-6">
+					<div class="form-group">
+					<%= spare.label :name %>
+					<%= spare.text_field :name, class:'form-control' %>
+					</div>
+				</div>
+				<div class="col-md-3">
+					<div class="form-group">
+						<%= spare.label :code %>
+						<%= spare.text_field :code, class:'form-control' %>
+					</div>
+				</div>  
+			<% end %>
+		<% end %>
+	</div>
+
+	<%= f.submit "Crear Variante" %>
+<% end %>
