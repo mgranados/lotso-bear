@@ -1,0 +1,29 @@
+<div class="nested-fields">
+
+<div id="generic_spare">
+	<%= f.fields_for :generic_spare do | spare | %>
+		<div class="nested-fields">
+			<div class="col-md-6">
+				<div class="form-group field">
+					<%= spare.label :name %>
+					<%= spare.text_field :name, class:'form-control' %>
+				</div>
+			</div>
+			<div class="col-md-3">
+				<div class="form-group field">
+					<%= spare.label :code %>
+					<%= spare.text_field :code, class:'form-control' %>
+				</div>
+			</div> 
+		</div>
+	<% end %>
+	 <%= link_to_add_association 'or create a new tag', f, :generic_spare %>
+
+
+	<div class="col-md-3">
+		<div class="form-group">
+	 		<%= link_to_remove_association "x", f %>
+	 	</div>
+	</div>  
+</div>
+</div>

@@ -37,14 +37,17 @@ class GenericFamiliesController < ApplicationController
     @generic_family.name ||= generic_family_father.name
     @generic_family.code ||= generic_family_father.code
 
-    generic_family_father.spare_likelihoods.each do |spare_likelihood|
-      build = @generic_family.spare_likelihoods.build.build_generic_spare
-      build.name = spare_likelihood.generic_spare.name
-      build.code = spare_likelihood.generic_spare.code
+    generic_family_father.generic_spares.each do |generic_spare|
+         pre_build = @generic_family.spare_likelihoods.build
+
+      build = pre_build.build_generic_spare
+      build.name = generic_spare.name
+      build.code = generic_spare.code
     end
   end
 
   def create_variant
+    d
     @generic_car = GenericCar.find_by_id(params[:generic_car_id])
     @generic_family = GenericFamily.new(required_params)
     @generic_car.generic_families << @generic_family
@@ -102,7 +105,7 @@ class GenericFamiliesController < ApplicationController
   private
 
     def required_params
-      params.require(:generic_family).permit(:code,:name, :entrance_price_cents, :departure_price_cents, :mold, {:types => []},{:family_ids => []} ,spare_likelihoods_attributes:[:id, :generic_family_id, :generic_spare_id, generic_spare_attributes:[:name,:code]])
+      params.require(:generic_family).permit(:code,:name, :years, {:types => []},{:family_ids => []} ,spare_likelihoods_attributes:[:id, :generic_family_id, :generic_spare_id, generic_spare_attributes:[:id, :name,:code, :_destroy]])
     end
 
     def set_family

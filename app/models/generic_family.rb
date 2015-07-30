@@ -118,13 +118,15 @@ class GenericFamily < ActiveRecord::Base
     stockFam.generic_family_id = self.id
     stockFam.car_order_id = car_id
 
-    spares_info.each do |spare_tuple|
-      unless spare_tuple[:id].blank?
-        spare = StockSpare.new
-        spare.generic_spare_id = spare_tuple[:id]
-        spare.supplier_code = spare_tuple[:supplier_code]
-        spare.status = "Almacen"
-        stockFam.stock_spares << spare
+    unless spares_info.blank?
+      spares_info.each do |spare_tuple|
+        unless spare_tuple[:id].blank?
+          spare = StockSpare.new
+          spare.generic_spare_id = spare_tuple[:id]
+          spare.supplier_code = spare_tuple[:supplier_code]
+          spare.status = "Almacen"
+          stockFam.stock_spares << spare
+        end
       end
     end
     stockFam

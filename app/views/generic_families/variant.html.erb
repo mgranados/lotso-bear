@@ -23,22 +23,15 @@
 	</div>
 	<div class="row">
 		<h2>Piezas</h2>
-		<%= f.fields_for :spare_likelihoods do | likelihood | %>
-			<%= likelihood.fields_for :generic_spare do | spare | %>
-				<div class="col-md-6">
-					<div class="form-group">
-					<%= spare.label :name %>
-					<%= spare.text_field :name, class:'form-control' %>
-					</div>
-				</div>
-				<div class="col-md-3">
-					<div class="form-group">
-						<%= spare.label :code %>
-						<%= spare.text_field :code, class:'form-control' %>
-					</div>
-				</div>  
+
+		<div id="spare_likelihoods">
+			<%= f.fields_for :spare_likelihoods do | likelihood | %>
+				<%= render 'spare_likelihood_fields', :f => likelihood %> 
 			<% end %>
-		<% end %>
+			<%= link_to_add_association 'Añadir Pieza', f, :spare_likelihoods %>
+		</div>
+
+
 	</div>
 
 	<%= f.submit "Crear Variante" %>

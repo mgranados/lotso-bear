@@ -18,13 +18,16 @@
         <td><%= link_to "+", variant_generic_family_path(generic_family, @generic_car) %></td>
       </tr>
 <% generic_family.spare_likelihoods.each do |spare_likelihood| %>
-  <tr class="<%=spares_to_hide%>" >
+  <tr style="display:none" class="<%=spares_to_hide%>" >
     <td></td>
     <td><%= spare_likelihood.generic_spare.name %></td>
     <td><%= spare_likelihood.generic_spare.code %></td>
     
   </tr>
-  <script type="text/javascript">
+ 
+<% end %> 
+
+ <script type="text/javascript">
 
    $("#hidden_<%=spares_to_hide%>").on("click",function() {
 
@@ -33,8 +36,7 @@
       
     });
 
-</script>
-<% end %>  
+</script> 
   <% end %>
 </tbody>
 </table>
