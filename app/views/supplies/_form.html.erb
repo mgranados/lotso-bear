@@ -11,8 +11,9 @@
     </div>
   <% end %>
 
-      
-  <div class="field">
+<div  class="col-md-6">
+
+    <div class="field">
     <%= f.label :name %><br>
     <%= f.text_field :name %>
   </div>
@@ -32,7 +33,11 @@
     <%= f.label :description %><br>
     <%= f.text_field :description %>
   </div>  
-  <div class="field">
+
+</div>
+      
+  <div class="col-md-6">
+    <div class="field">
     <%= f.label :weight %><br>
     <%= f.text_field :weight %>
   </div>
@@ -48,10 +53,16 @@
     <%= f.label :code %><br>
     <%= f.text_field :code %>
   </div>
+  <br>
   <div>
     <%= grouped_collection_select :supply, :supplier_id, SupplierType.all, :suppliers, :name, :id, :name, :include_blank => true %>
   </div>
-  <div class="actions">
+  </div>
+  <br>
+  <div class="col-md-12 center-block">
+    <br>
+    <div class="actions">
     <%= f.submit %>
+    </div>
   </div>
 <% end %>
