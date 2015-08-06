@@ -21,9 +21,9 @@ class ModelAcronymTest < ActiveSupport::TestCase
     assert_not model_acronym.save
   end
 
-  test "should not save model if exist" do
-    model_acronym_2 = model_acronyms(:corolla)
-    assert_not  model_acronym_2.save
+  test "should not save if model exist" do
+      model_acronym = ModelAcronym.new(model:"COROLLA")
+      assert_not model_acronym.save
   end
 
   test "should not save model if initials are already used" do
@@ -33,7 +33,7 @@ class ModelAcronymTest < ActiveSupport::TestCase
   end
 
   test "should return existing model if exist, database stays the same" do
-    assert_no_difference 'ModelAcronym.count', 1 do
+    assert_no_difference 'ModelAcronym.count' do
       model_acronym_2 = model_acronyms(:corolla)
       model_acronym_2.save
     end

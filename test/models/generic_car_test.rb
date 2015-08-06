@@ -23,7 +23,7 @@ class GenericCarTest < ActiveSupport::TestCase
   test "code generates correctly" do
     generic_car = generic_cars(:corolla)
     generic_car.save
-    assert_equal( 'TY-1-CO', generic_car.code )
+    assert_equal( 'TY1CO', generic_car.code )
   end
 
   test "should not save car without number_of_generation" do
