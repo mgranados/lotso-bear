@@ -25,6 +25,7 @@ gem "cocoon"
 gem 'jquery-rails'
 gem 'jquery-fileupload-rails'
 gem 'twitter-bootstrap-rails'
+gem 'turn'
 
 #javascript tables
 
