@@ -9,8 +9,6 @@ corolla:
 
 
 corsa:
-  first_generation_year: 2002
-  last_generation_year: 2006
   number_of_generation: 2nd
   years: 2001-2004
   gen_continues: false

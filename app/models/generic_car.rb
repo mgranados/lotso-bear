@@ -7,16 +7,12 @@ class GenericCar < ActiveRecord::Base
   belongs_to :car_type
   belongs_to :model_acronym
 
-  accepts_nested_attributes_for :model_acronym
-  accepts_nested_attributes_for :car_type
 
   has_many :generic_car_generations
   has_many :generations, through: :generic_car_generations
 
   has_many :generic_car_images, dependent: :destroy
   accepts_nested_attributes_for :generic_car_images
-
-  belongs_to :car_type
 
   belongs_to :model_acronym, inverse_of: :generic_cars
   accepts_nested_attributes_for :model_acronym
@@ -25,6 +21,8 @@ class GenericCar < ActiveRecord::Base
   has_many :generic_families, through: :family_likelihoods
 
   accepts_nested_attributes_for :family_likelihoods
+  accepts_nested_attributes_for :model_acronym
+  accepts_nested_attributes_for :car_type
 
   # //Validations//
   validates :years, :number_of_generation, :car_type, :model_acronym, presence: true
