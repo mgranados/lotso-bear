@@ -1,0 +1,12 @@
+faro_cromado_padre:
+  name: Faro Cromado
+  code: FC
+  father: 
+  years: 1991
+
+
+faro_cromado:
+  name: Faro Cromado
+  code: FC
+  father: faro_cromado_padre
+  years: 1991

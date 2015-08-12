@@ -5,4 +5,6 @@ class Brand < ActiveRecord::Base
   validates :acronym, uniqueness: true
   validates :name, uniqueness: true
 
+  validates :name, :acronym, presence: true
+
 end

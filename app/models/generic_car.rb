@@ -26,7 +26,7 @@ class GenericCar < ActiveRecord::Base
 
   # //Validations//
   validates :years, :number_of_generation, :car_type, :model_acronym, presence: true
-  # validates_associated :model_acronym
+  
   #//Callbacks//
   before_save :generation_split
 
@@ -80,31 +80,13 @@ class GenericCar < ActiveRecord::Base
     gen_continues ? "#{first_generation_year} - Año Actual" : "#{years}"
   end
 
-  # def self.fix_generic_car_families
-  #   all.each do |generic_car_m|
-  #     puts "Generic Car - Model:#{generic_car_m.model_acronym.model} #Families: #{generic_car_m.car_type.generic_families.count}"
-  #     generic_car_m.car_type.generic_families.each do |generic_family_m|
-  #       puts "Generic Family: #{generic_family_m.name}"
-  #       generic_car_m.car_type.generic_families << generic_family_m.clone_generic_family_with_generic_spares
-  #     end
-  #     puts "Generic Car - Model:#{generic_car_m.model_acronym.model} #Families: #{generic_car_m.car_type.generic_families.count}"
-  #     puts "Next Record --------------------------------------------------------------"
-  #   end
-  #   @generic_families = GenericFamily.where(father_id: nil)
-  #   @generic_families.each do |generic_family|
-  #     generic_family.type_likelihoods.destroy_all
-  #   end
-  # end
-
-
   private
-
   def generation_split
     years_split
     for i in self.first_generation_year.to_i..self.last_generation_year.to_i
-      @record = Generation.find_by_year(i)
-      @generation = GenericCarGeneration.new(generic_car_id:self.id, generation_id: @record.id)
-      @generation.save
+      record = Generation.find_by_year(i)
+      generation = GenericCarGeneration.new(generic_car_id:self.id, generation_id: record.id)
+      generation.save
     end
   end
 

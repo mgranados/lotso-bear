@@ -6,7 +6,6 @@ class GenericCarTest < ActiveSupport::TestCase
     @generic_car = generic_cars(:corolla)
   end
 
-
   test "should not save car without model_acronym" do
     @generic_car.model_acronym = nil
     assert_not @generic_car.save
@@ -31,20 +30,25 @@ class GenericCarTest < ActiveSupport::TestCase
     assert_not @generic_car.save
   end
 
-  test "car should be valid" do
-    assert @generic_car.valid?, "#{@generic_car.errors.first}"
-  end
-
-  test "first_generation_year saves correctly" do
+  test "first_generation_year generates correctly" do
     generic_car = generic_cars(:corsa)
     generic_car.save
     assert_equal 2001, generic_car.first_generation_year
   end
 
-  test "last_generation_year saves correctly" do
+  test "last_generation_year generates correctly" do
     generic_car = generic_cars(:corsa)
     generic_car.save
     assert_equal 2004, generic_car.last_generation_year
+  end
+
+  test "car should be valid" do
+    assert @generic_car.valid?, "#{@generic_car.errors.first}"
+  end
+
+  test "should contain generations" do
+    @generic_car.save
+    assert_equal @generic_car.generations.count, 4
   end
 
   test "should respond to stock_cars" do
@@ -86,7 +90,5 @@ class GenericCarTest < ActiveSupport::TestCase
   test "should respond to generic_families" do
     assert_respond_to @generic_car, :generic_families
   end
-
-
 
 end
