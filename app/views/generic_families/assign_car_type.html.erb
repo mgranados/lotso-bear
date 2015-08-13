@@ -1,0 +1,35 @@
+<h1>Familias genéricas</h1>
+
+
+<%= form_tag assign_generic_families_path do | f | %>
+
+	<table id="assignation_table" class="table big_table">
+	    <thead>
+	        <tr>
+	            <th>Nombre Familia</th>
+	            <% @car_types.each do | type | %>
+	            	<th> <%= type.name %> <%= type.doors %></th>
+	            <% end %>
+	        </tr>
+	    </thead>
+	    <tbody>
+		    	<tr>
+		           <td><%= @generic_family.name %></td>
+		           <% for type in @car_types do %>
+		           	<td><%= check_box_tag 'family_ids[]', "#{@generic_family.id},#{type.id}"%></td>
+		           <% end %>
+	 		  </tr>
+    	</tbody>
+	</table>
+
+
+	<%= submit_tag "Actualizar Familias", class: "btn btn-primary" %>
+<% end %>
+
+<script type="text/javascript">
+	
+$( document ).ready(function() {
+	$('#assignation_table').DataTable({});
+});
+
+</script>

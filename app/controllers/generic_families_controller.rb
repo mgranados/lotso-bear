@@ -1,5 +1,5 @@
 class GenericFamiliesController < ApplicationController
-  before_action :set_family, only: [:show, :destroy, :edit, :count_spares, :prices, :update]
+  before_action :set_family, only: [:show, :destroy, :edit, :count_spares, :prices, :update, :assign_car_type]
 
   def new
     @generic_family = GenericFamily.new
@@ -60,6 +60,12 @@ class GenericFamiliesController < ApplicationController
   end
 # </CREATE VARIANT>
 
+
+# <RELATE FAMILY TO CARTYPES>
+  def assign_car_type
+    @car_types = CarType.all
+  end
+# </RELATE FAMILY TO CARTYPES>
   def prices
   end
 

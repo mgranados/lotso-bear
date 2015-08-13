@@ -98,9 +98,9 @@ LotsoBear::Application.routes.draw do
       get :search
     end
     member do
-      # get :variant
       get :count_spares
       get :prices
+      get :assign_car_type
     end
   end
 # </GENERIC_FAMILIES>
