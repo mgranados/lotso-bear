@@ -68,24 +68,24 @@ class GenericFamilyTest < ActiveSupport::TestCase
     end
   end
 
-  test "testing not_assigned_families, should not return records of families who have a typelikeilihood" do
+  test "not_assigned_families, should not return records of families who have a typelikeilihood" do
     generic_families =  GenericFamily.not_assigned_families
-    assert_equal 1, generic_families.count
+    assert_equal GenericFamily.all.count-13, generic_families.count
   end
 
-  test "testing assigned_families, should return records of families who have a typelikeilihood" do
+  test "assigned_families, should return records of families who have a typelikeilihood" do
     # New
     generic_families =  GenericFamily.assigned_families
     assert_equal 2, generic_families.count
   end
 
-  test "testing assignation, should return records not asigned to a given car" do
+  test "other_families, should return records not asigned to a given car" do
     generic_car = generic_cars(:corolla)
     generic_families =  GenericFamily.other_families(generic_car)
     assert_equal 2, generic_families.count
   end
 
-  test "testing generate_stock_family_with_stock_spares, should return a stock_families" do
+  test "generate_stock_family_with_stock_spares, should return a stock_families" do
     generic_car = generic_cars(:corolla)
     generic_spare = generic_spares(:manija)
     # Call the method
@@ -113,24 +113,45 @@ class GenericFamilyTest < ActiveSupport::TestCase
 
   test "search by generic_car exact term" do
     generic_car = generic_cars(:corolla)
-    generic_families =  GenericFamily.search(generic_car.model_acronym.model)
-    assert_equal 10, generic_families.count
+    generic_families =  GenericFamily.search(nil, generic_car.model_acronym.model)
+    assert generic_families.count >= 10, "Didn`t find the records"
   end
 
   test "search by generic_car lowercase" do
     generic_car = generic_cars(:corolla)
-    generic_families =  GenericFamily.search(generic_car.model_acronym.model.downcase)
-    assert_equal 10, generic_families.count
+    generic_families =  GenericFamily.search(nil, generic_car.model_acronym.model.downcase)
+    assert generic_families.count >= 10, "Didn`t find the records"
   end
 
   test "search by name Exact term" do
-    generic_families =  GenericFamily.search("Pieza Faro")
-    assert_equal 10, generic_families.count
+    generic_families =  GenericFamily.search("Pieza Faro",nil)
+    assert generic_families.count >= 10, "Didn`t find the records"
   end
 
   test "search by name lowercase" do
-    generic_families =  GenericFamily.search("pieza faro")
-    assert_equal 10, generic_families.count
+    generic_families =  GenericFamily.search("pieza faro",nil)
+    assert generic_families.count >= 10, "Didn`t find the records"
   end
 
+  test "search by code Exact term" do
+    generic_families =  GenericFamily.search("F1",nil)
+    assert generic_families.count >= 1, "Didn`t find the records"
+  end
+
+  test "search by code lowercase" do
+    generic_families =  GenericFamily.search("f1",nil)
+    assert generic_families.count >= 1, "Didn`t find the records"
+  end
+
+  test "search by generic_family name and generic_car model" do
+    generic_car = generic_cars(:corolla)
+    generic_families =  GenericFamily.search("Pieza Faro",generic_car.model_acronym.model)
+    assert generic_families.count >= 1, "Didn`t find the records"
+  end
+
+  test "search by generic_family name and generic_car model lowercase" do
+    generic_car = generic_cars(:corolla)
+    generic_families =  GenericFamily.search("pieza faro",generic_car.model_acronym.model.downcase)
+    assert generic_families.count >= 1, "Didn`t find the records"
+  end
 end

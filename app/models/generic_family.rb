@@ -149,8 +149,15 @@ class GenericFamily < ActiveRecord::Base
 
 # Searches all generic families that match by name, code or generic_car model
 # Returns Array of GenericFamily
-  def self.search(search_term)
-    generic_families = where("name LIKE '%?%' OR postal_code like '%?%'")
+  def self.search(generic_family, generic_car)
+    if !generic_family.blank? && !generic_car.blank?
+      generic_families = GenericFamily.joins(generic_cars: :model_acronym).where("lower(name) LIKE ? OR lower(code) like ?","%#{generic_family.downcase}%", "%#{generic_family.downcase}%").where( model_acronyms: {model: generic_car.upcase})
+    elsif generic_family.blank?
+      generic_families = GenericFamily.joins(generic_cars: :model_acronym).where( model_acronyms: {model: generic_car.upcase})
+    else
+      generic_families = GenericFamily.where("lower(name) LIKE ? OR lower(code) like ?","%#{generic_family.downcase}%", "%#{generic_family.downcase}%")
+    end
+    generic_families
   end
 
 
