@@ -23,7 +23,7 @@ class GenericFamiliesController < ApplicationController
   def update
     respond_to do |format|
       if @generic_family.update(required_params)
-        format.html { redirect_to admin_prices_path, notice: 'El precio fue agregado con éxito' }
+        format.html { redirect_to @generic_family }
         format.json { render :show, status: :ok, location: @generic_family }
       else
         format.html { render :edit }
