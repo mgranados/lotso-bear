@@ -42,8 +42,7 @@ class GenericFamiliesController < ApplicationController
     @generic_family.code ||= generic_family_father.code
 
     generic_family_father.generic_spares.each do |generic_spare|
-         pre_build = @generic_family.spare_likelihoods.build
-
+      pre_build = @generic_family.spare_likelihoods.build
       build = pre_build.build_generic_spare
       build.name = generic_spare.name
       build.code = generic_spare.code
@@ -55,6 +54,7 @@ class GenericFamiliesController < ApplicationController
     @generic_family = GenericFamily.new(required_params)
     @generic_car.generic_families << @generic_family
     if @generic_car.save!
+      flash[:success] = "Guardado con éxito"
       redirect_to assignation_generic_car_path(@generic_car)
     end
   end

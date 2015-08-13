@@ -11,15 +11,17 @@ class GenericFamiliesTest < ActionDispatch::IntegrationTest
 
   test "add a new family without spares" do
     assert_difference 'GenericFamily.count', +1 do
-      visit new_generic_family_path
-      #check we're creating a new family
-      assert has_content?('NUEVA FAMILIA GENÉRICA'), "No llega a nueva familia"
-      #Fill up w/o spares
-      fill_in 'Nombre',     with: @generic_family.name
-      fill_in 'Código',     with: @generic_family.code
-      click_button 'Crear Familia Genérica'
-      #check if it's created correctly
-      assert has_content?('creada con éxito'), "Mensaje no aparece"
+      assert_no_difference "GenericSpare.count" do
+        visit new_generic_family_path
+        #check we're creating a new family
+        assert has_content?('NUEVA FAMILIA GENÉRICA'), "No llega a nueva familia"
+        #Fill up w/o spares
+        fill_in 'Nombre',     with: @generic_family.name
+        fill_in 'Código',     with: @generic_family.code
+        click_button 'Crear Familia Genérica'
+        #check if it's created correctly
+        assert has_content?('creada con éxito'), "Mensaje no aparece"
+      end
     end #assert_difference family added
 
   end
@@ -59,15 +61,30 @@ class GenericFamiliesTest < ActionDispatch::IntegrationTest
   #assign to a vehicle
   test "assign a generic family to a vehicle" do
     visit assigned_generic_families_path
-    assert has_content?('ASIGNACIÓN DE FAMILIAS A VEHÍCULOS')
-    first('.btn').click_link('Edit')
-    click_link('Guardar tipos coche')
+    assert has_content?('ASIGNACIÓN DE FAMILIAS A TIPOS DE VEHÍCULOS')
+    first(:link, "Editar").click
+    click_button('Guardar Familia')
     assert has_content?('Actualizado con éxito')
   end
 
   # agregar piezas
-  test "edit a family related to car" do
-    test "assign additional spare to the family" do
+  test "assign additional spare to a family" do
+    #http://localhost:3000/generic_cars
+    visit generic_cars_path
+    #click familias
+    first(:link, "Familias").click
+    #click editar familia
+    first(:link, "Editar Familia").click
+    #click añadir Pieza
+    click_link("Agregar Pieza")
+    #fill si se puede
+    #Guardar
+    click_button("Guardar Cambios")
+    #hascontent exito
+    assert has_content?("Guardado con éxito")
+  end
+  test "assign additional spare to a family, save without changes" do
+    assert_no_difference "GenericSpare.count" do
       #http://localhost:3000/generic_cars
       visit generic_cars_path
       #click familias
@@ -75,46 +92,49 @@ class GenericFamiliesTest < ActionDispatch::IntegrationTest
       #click editar familia
       first(:link, "Editar Familia").click
       #click añadir Pieza
-      click_link("Añadir Pieza")
+      click_link("Agregar Pieza")
       #fill si se puede
       #Guardar
-      click_link("Guardar Cambios")
+      click_button("Guardar Cambios")
       #hascontent exito
       assert has_content?("Guardado con éxito")
     end
+  end
 
-    test "remove spares from a family and save" do
-      #http://localhost:3000/generic_cars
+  test "remove spares from a family and save" do
+    # #http://localhost:3000/generic_cars
+    # visit generic_cars_path
+    # #click familias
+    # first(:link, "Familias").click
+    # #click editar familia
+    # first(:link, "Editar Familia").click
+    # #click remover Pieza (x o algo)
+    # # first(:link, "x").click
+    # #Guardar
+    # click_button("Guardar Cambios")
+    # #hascontent exito
+    # assert has_content?("Guardado con éxito")
+   end
+
+  # agregar variantes
+  test "add a variation of a same spare to the generic family" do
+    assert_difference "GenericFamily.count", +1 do
+      #http://localhost:3000/variant
       visit generic_cars_path
       #click familias
       first(:link, "Familias").click
       #click editar familia
-      first(:link, "Editar Familia").click
-      #click remover Pieza (x o algo)
-      first(:link, "x").click
-      #Guardar
-      click_link("Guardar Cambios")
-      #hascontent exito
+      first(:link, "Crear Variante").click    #agrega al codigo FC-01
+      #añade pieza y fill in si se puede
+      click_link("Agregar Pieza")
+      #click a guardar variantes
+      click_button("Guardar Variante")
+      #has content el codigo FC-01 en el listado
       assert has_content?("Guardado con éxito")
-     end
-  end
+    end
+  end 
 
-  # agregar variantes
-  test "add a version of a same spare to the generic family" do
-    #http://localhost:3000/variant
-    visit generic_cars_path
-    #click familias
-    first(:link, "Familias").click
-    #click editar familia
-    first(:link, "Crear Variante").click    #agrega al codigo FC-01
-    #añade pieza y fill in si se puede
-    click_link("Añadir Pieza")
-    #click a guardar variantes
-    click_link("Guardar Cambios")
-    #has content el codigo FC-01 en el listado
-    assert has_content?("Guardado con éxito")
 
-  end
 
   #assign to a supplier
   test "assign a generic family to a supplier" do

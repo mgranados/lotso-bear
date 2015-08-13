@@ -1,6 +1,5 @@
 <%= form_for @generic_family do |f| %>
-	<h1>Editar FamiliaJJ</h1>
-	<%= f.submit "Guardar Cambios",class:"btn btn-primary" %>
+	<%= f.submit 'Guardar Cambios',class:"btn btn-primary" %>
 	<div class="row">
 		<div class="col-md-4">
 			<div class="form-group">
@@ -24,21 +23,21 @@
 	<div class="row">
 		<h2>Piezas</h2>
 		<div class="col-md-12">
-			<a id="creator" class="btn btn-info">Añadir Pieza</a>
+			<%= link_to "Agregar Pieza", "#", id: "creator2"%>
 		</div>
 		<div id="family_members">
 			<%= f.fields_for :spare_likelihoods do | likelihood | %>
 				<%= likelihood.fields_for :generic_spare do | spare | %>
-					<div class="form-group">
-						<div class="col-md-6">
-							<%= spare.label :name %>
-							<%= spare.text_field :name, class:'form-control' %>
-						</div>
-						<div class="col-md-6">
-							<%= spare.label :code %>
-							<%= spare.text_field :code, class:'form-control' %>
-						</div>
+				<div class="form-group">
+					<div class="col-md-6">
+						<%= spare.label :name %>
+						<%= spare.text_field :name, class:'form-control' %>
 					</div>
+					<div class="col-md-6">
+						<%= spare.label :code %>
+						<%= spare.text_field :code, class:'form-control' %>
+					</div>
+				</div>
 				<% end %>
 			<% end %>
 		</div>
@@ -46,13 +45,9 @@
 <% end %>
 
 <script type="text/javascript">
-	$( document ).ready(function() {
 		contador = 500
-		$("#creator").click(function() {
-			$("#family_members").append('<div id="tuple_'+contador+'" class="form-group"><div class="col-md-6"><label>Nombre</label><input class="form-control input-capitalize" id="generic_family_spare_likelihoods_attributes_'+contador+'_generic_spare_attributes_name" name="generic_family[spare_likelihoods_attributes]['+contador+'][generic_spare_attributes][name]" type="text"></div><div class="col-md-6"><label>Código</label><input class="form-control" id="generic_family_spare_likelihoods_attributes_'+contador+'_generic_spare_attributes_code" name="generic_family[spare_likelihoods_attributes]['+contador+'][generic_spare_attributes][code]" type="text"></div></div>');
+		$("#creator2").click(function() {
+		$("#family_members").append('<div id="tuple_'+contador+'" class="form-group"><div class="col-md-6"><label>Nombre</label><input class="form-control input-capitalize" id="generic_family_spare_likelihoods_attributes_'+contador+'_generic_spare_attributes_name" name="generic_family[spare_likelihoods_attributes]['+contador+'][generic_spare_attributes][name]" type="text"></div><div class="col-md-6"><label>Código</label><input class="form-control" id="generic_family_spare_likelihoods_attributes_'+contador+'_generic_spare_attributes_code" name="generic_family[spare_likelihoods_attributes]['+contador+'][generic_spare_attributes][code]" type="text"></div></div>');
 			contador+=1
 		});
-
-
-	});
 </script>

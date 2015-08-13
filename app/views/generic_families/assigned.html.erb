@@ -1,4 +1,4 @@
-<h1>Asignación de familias a vehículos</h1>
+<h1>ASIGNACIÓN DE FAMILIAS A TIPOS DE VEHÍCULOS</h1>
 
 	<h2>Familia ya asignadas</h2>
 	<table id="assigned" class="table big_table">
@@ -22,7 +22,6 @@
 			           <% for type in @car_types do %>
 
 			           	<% if type.generic_families.select { |fam| fam.id == family.id}.include? family  %>
-												<!-- Should be non editable --->
 			           		<td><p>x</p></td>
 			           	<% else %>
 			           		<td><p>--</p></td>
