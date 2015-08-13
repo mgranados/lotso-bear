@@ -4,9 +4,6 @@ class GenericFamily < ActiveRecord::Base
   has_many :childs, class_name: 'GenericFamily', foreign_key: 'father_id'
   belongs_to :father, class_name: 'GenericFamily'
 
-  # has_many :suppliers, through: :supplier_likelihoods
-  # has_many :supplier_likelihoods
-
   has_many :spare_likelihoods
   has_many :generic_spares, through: :spare_likelihoods
 
@@ -26,123 +23,114 @@ class GenericFamily < ActiveRecord::Base
   validates :name, presence: :true
   validates :code, presence: :true
 
-
-
+# Clones of a generic_families to all the generic_cars that have the same car_type as the parameter. 
+# Params:
+# +type_likelihood+:: +TypeLikelihood+ object from which to extract the generic family and car_type
   def self.add_to_corresponding_cars (type_likelihood)
-    @generic_cars = GenericCar.where(car_type_id:type_likelihood.car_type_id)
-    @generic_cars.each do |generic_car|
+    ActiveRecord::Base.transaction do
+      # Select all the cars with the car_type of the type_likelihood_parameter
+      generic_cars = GenericCar.where(car_type_id:type_likelihood.car_type_id)
+      # Selects the family  from the type_likelihood parameter
       family = type_likelihood.generic_family
-      clone = family.clone_generic_family_with_generic_spares
-      unless clone.blank?
-        generic_car.generic_families << clone
-        puts "Clone Name: #{clone.name} ID: #{clone.id} "
-        clone.car_types.each {|type| puts "Type:  id: #{type.id} name: #{type.full_name}"}
+      # Clones a generic_family. Relates the clone to each generic_car
+      generic_cars.each do |generic_car|
+        # Clone the family with generic spares
+        clone = family.clone_generic_family_with_generic_spares
+        unless clone.blank?
+          # Relates the clone to a generic_car
+          generic_car.generic_families << clone
+        end
       end
     end
   end
 
-  # def self.copy_families_to_generic_cars
-  #   where(father_id: nil).order(:id).each do |family|
-  #     # puts "ID:#{family.id} Name: #{family.name}"
-  #     family.car_types.each do |type|
-  #       # puts "\t ID: #{type.id} Name: #{type.full_name}"
-  #       @genericCars = GenericCar.where(car_type_id: type.id).distinct.order(:id)
-  #       @genericCars.find_each do |car|
-  #         # puts "\t \tID:#{car.id} Name: #{car.model_acronym.model}"
-  #         car.generic_families << family.clone_generic_family_with_generic_spares
-  #       end
-  #     end
-  #   end
-  # end
-
-  # def self.copy_families_final_fantasy
-  #   GenericCar.find_each do |car|
-  #       car.car_type.generic_families.each do |family|
-  #         family_clone = family.clone_generic_family_with_generic_spares
-  #         family_clone.car_types.each {|type| puts "Type: #{type.id} Name: #{type.full_name}"}
-  #       end
-  #   end
-  # end
-    # where(father_id: nil).each do |family|
-    #   puts "Family: #{family.name} Code: #{family.code} Father: #{family.father_id}"
-    #   family.car_types.each do |type|
-    #   @genericCars = GenericCar.where(car_type_id: type.id).distinct
-    #     @genericCars.each do |car|
-    #       car.generic_families << family.clone_generic_family_with_generic_spares
-    #       puts "Car #{car.model_acronym.model} Years: #{car.years}"
-    #     end
-    #   end
-    # end
-
+# Searches all generic families that have not been related to a Typelikehood (Families that don´t have a car_type)
+# Returns Array of GenericFamily
   def self.not_assigned_families
     where.not(:id  => TypeLikelihood.select(:generic_family_id)).where(father_id: nil)
   end
 
-  def clone_generic_family_with_generic_spares
-    puts "Name: #{self.name} Code: #{self.code}"
-    clone = self.dup
-    self.generic_spares.each do | spare|
-      puts "Original ID: @#{spare.id} Name: #{spare.name}"
-      clone_spare = spare.dup
-      puts "clone    ID: @#{clone_spare.id} Name: #{clone_spare.name}"
-      clone_spare.father_id = spare.id
-      clone.generic_spares << clone_spare
-    end
-    # cont = 0
-    # self.car_types.each do | type |
-    #   puts "Orginal: #{type} WAZA"
-    #   clone.car_types << type
-    #   puts "Clone: #{type}"
-    #   puts "Ronda #{cont+=1}"
-    # end
-
-    clone.father = self
-    clone
-  end
-
+# Searches all generic families that have been related to a Typelikehood (Families that have a car_type)
+# Returns Array of GenericFamily
   def self.assigned_families
     where(:id  => TypeLikelihood.select(:generic_family_id) ).where(father_id: nil)
   end
 
+# Searches generic_families that haven´t been related to the given generic_car 
+# Params:
+# +generic_car+:: +GenericCar+ object
+# Returns Array of GenericFamily
   def self.other_families(generic_car)
+    # If the generic car doesn´t have any generic families Return all the GenericFamilies
     if generic_car.generic_families.empty?
       all
     else
+      # Query that fidns all families that are not related to the generic_car
       where('id not in (?)', generic_car.generic_families.pluck(:id).concat(generic_car.generic_families.pluck(:father_id)).compact).where(father_id: nil)
-
-      # .where(father_id: nil)
     end
   end
 
+# Searches generic_families that haven´t been related to the given generic_car 
+# Params:
+# +spares_info+:: +Array+ containing hashes with spare info (a hash has an id +Integer+ from a generic_spare, +String+ supplier_code, +String+ color), 
+# +car_id+:: +Integer+ object Integer of a GenericCar (The one that was specified in a order)
+# Returns A StockFamily
   def generate_stock_family_with_stock_spares (spares_info, car_id)
+    #  New empty StockFamily
     stockFam = StockFamily.new
+    # Assign the original id to the clone (Its father)
     stockFam.generic_family_id = self.id
+    # Assign the id of the given GenericCar
     stockFam.car_order_id = car_id
-
+  # Check that the spare info isn´t empty  
     unless spares_info.blank?
+      # Loop each hash
       spares_info.each do |spare_tuple|
+        # Check the hash isn´t empty
         unless spare_tuple[:id].blank?
+          # New empty StockSpare
           spare = StockSpare.new
+          # Relate spare to a Generic Spare
           spare.generic_spare_id = spare_tuple[:id]
+          # Add supplier code (String)
           spare.supplier_code = spare_tuple[:supplier_code]
+          # Update Status 
           spare.status = "Almacen"
+          # Add the new StockSpare to the StockFamily
           stockFam.stock_spares << spare
         end
       end
     end
+    # Return a StockFamily
     stockFam
   end
 
+# Interpolates the name and code of self
+# Returns: a string
   def name_with_code
-    "#{self.name},#{self.code}"
+    "#{self.name}, #{self.code}"
   end
 
-  def get_supplier_code(supplier)
+# Clones a GenericFamily including the GenericSpares it contains. 
+# Returns A GenericFamily 
+  def clone_generic_family_with_generic_spares
+    clone = self.dup
+    self.generic_spares.each do | spare|
+      clone_spare = spare.dup
+      clone_spare.father_id = spare.id
+      clone.generic_spares << clone_spare
+    end
+    clone.father = self
+    clone
+  end
+
+    def get_supplier_code(supplier)
     supplier_code = SupplierCode.where(generic_family_id: self.id, supplier_id: supplier.id)
     unless supplier_code.blank?
       supplier_code.first.code
     end
   end
+
   def get_price(supplier)
     supplier_code = SupplierCode.where(generic_family_id: self.id, supplier_id: supplier.id)
     supplier_code.first.price
@@ -156,5 +144,6 @@ class GenericFamily < ActiveRecord::Base
       return true
     end
   end
+
 
 end

@@ -63,10 +63,6 @@ class GenericCarTest < ActiveSupport::TestCase
     assert_respond_to @generic_car, :car_type
   end
 
-  test "should respond to model_acronym" do
-    assert_respond_to @generic_car, :model_acronym
-  end
-
   test "should respond to generic_car_generations" do
     assert_respond_to @generic_car, :generic_car_generations
   end

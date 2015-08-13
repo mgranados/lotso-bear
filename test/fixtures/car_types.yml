@@ -1,3 +1,7 @@
 suv:
   name: SUV
   doors: 5
+
+sedan:
+  name: sedan
+  doors: 4

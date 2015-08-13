@@ -4,9 +4,21 @@ faro_cromado_padre:
   father: 
   years: 1991
 
+faro_niebla_padre:
+  name: Faro Niebla
+  code: FC
+  father: 
+  years: 1991
+
 
 faro_cromado:
   name: Faro Cromado
   code: FC
   father: faro_cromado_padre
+  years: 1991
+
+generic_without_typelikelihood:
+  name: Faro Cromado
+  code: FC
+  father: 
   years: 1991

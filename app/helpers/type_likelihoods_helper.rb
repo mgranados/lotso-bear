@@ -1,0 +1,2 @@
+module TypeLikelihoodsHelper
+end

@@ -1,0 +1,17 @@
+<%= form_for(@family_likelihood) do |f| %>
+  <% if @family_likelihood.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@family_likelihood.errors.count, "error") %> prohibited this family_likelihood from being saved:</h2>
+
+      <ul>
+      <% @family_likelihood.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

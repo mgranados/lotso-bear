@@ -14,3 +14,13 @@ corsa:
   gen_continues: false
   model_acronym: corsa
   car_type: suv
+
+<% for i in 1..500 %>
+<%= i %>:
+  number_of_generation: 2nd
+  years: 2001-<%= i %>
+  gen_continues: false
+  model_acronym: corsa
+  car_type: sedan
+<% end %>
+

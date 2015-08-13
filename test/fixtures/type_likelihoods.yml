@@ -1,0 +1,7 @@
+one:
+  car_type: suv
+  generic_family: faro_cromado_padre
+
+two:
+  car_type: sedan
+  generic_family: faro_niebla_padre

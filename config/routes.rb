@@ -1,6 +1,14 @@
 # -*- encoding : utf-8 -*-
 LotsoBear::Application.routes.draw do
 
+  resources :generic_spares
+
+  resources :family_likelihoods
+
+  resources :type_likelihoods
+
+  resources :generic_families
+
   resources :services
 
   get "supplier_codes/new"
