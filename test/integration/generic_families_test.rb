@@ -57,40 +57,38 @@ class GenericFamiliesTest < ActionDispatch::IntegrationTest
     end #assert difference generic families
   end
 
-  #search for family w code
-  test "search for family with a code" do
-    visit search_generic_family_path
+  test "search for family that exists with its code" do
+    visit search_generic_families_path
     assert has_content?('Buscar'), "No llega a búsqueda"
     #search for a code
-    fill_in "Búsqueda",     with: @generic_family.code
+    fill_in :family,     with: @generic_family.code
     click_button "Buscar"
-
     assert has_content?(@generic_family.code), "No encuentra #{@generic_family.code}"
+  end
+
+  test "search for family that doesn't exists with its code" do
+    visit search_generic_families_path
+    assert has_content?('Buscar'), "No llega a búsqueda"
+    #search for a code
+    fill_in :family,     with: 'FASFASDSADFASDASFA'
+    click_button "Buscar"
+    assert has_content?('No se encontró ningún resultado.'), "No avisa que no halló"
   end
 
   #search for family w car
   test "search for a family with a car" do
-    visit search_generic_family_path
+    visit search_generic_families_path
     assert has_content?('Buscar'), "No llega a búsqueda"
     #search for a code
-    fill_in "Búsqueda",     with: "Chevy"
+    fill_in :model,     with: "COROLLA"
     click_button "Buscar"
-    assert has_content?("Chevy"), "No encuentra Chevy"
+    assert has_content?("COROLLA"), "No encuentra COROLLA"
   end
 
   #assign to a vehicle
   test "assign a generic family to a vehicle" do
-
-  end
-
-  #assign to a supplier
-  test "assign a generic family to a supplier" do
-
-  end
-
-  #assign a price
-  test "assign a generic family an specific price" do
-
+    visit assigned_generic_families_path
+    assert has_content?('Asignación de familias a vehículos')
   end
 
   # agregar piezas
@@ -102,4 +100,18 @@ class GenericFamiliesTest < ActionDispatch::IntegrationTest
   test "add versions of a same spare to the generic family" do
 
   end
+
+  #assign to a supplier
+  test "assign a generic family to a supplier" do
+    visit admin_suppliers_path
+    assert has_content?('ASIGNACIÓN DE FAMILIAS A VEHÍCULOS')
+  end
+
+  #assign a price
+  test "assign a generic family an specific price" do
+    visit admin_prices_path
+    assert has_content?('ADMINISTRACIÓN DE PRECIOS')
+  end
+
+
 end

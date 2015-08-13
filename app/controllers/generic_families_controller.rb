@@ -63,6 +63,14 @@ class GenericFamiliesController < ApplicationController
   def prices
   end
 
+  def search
+  end
+
+  def results
+    @family = params[:family]
+    @model = params[:model]
+  end
+
   def show
   end
 
@@ -105,8 +113,7 @@ class GenericFamiliesController < ApplicationController
     redirect_to generic_families_path
   end
 
-  def search
-  end
+
 
   private
 
