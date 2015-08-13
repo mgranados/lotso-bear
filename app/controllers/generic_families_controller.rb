@@ -69,14 +69,6 @@ class GenericFamiliesController < ApplicationController
   def prices
   end
 
-  def search
-  end
-
-  def results
-    @family = params[:family]
-    @model = params[:model]
-  end
-
   def show
   end
 
@@ -93,13 +85,9 @@ class GenericFamiliesController < ApplicationController
     redirect_to action: 'index'
   end
 
-  def not_assigned
-    @generic_families = GenericFamily.not_assigned_families
-    @car_types = CarType.all
-  end
-
   def assigned
-    @generic_families = GenericFamily.assigned_families
+    @generic_families_assigned = GenericFamily.assigned_families
+    @generic_families_not = GenericFamily.not_assigned_families
     @car_types = CarType.all
   end
 

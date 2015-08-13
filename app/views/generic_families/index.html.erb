@@ -47,7 +47,7 @@
             <%= family.generic_spares.count%>
           </td>
           <td><%= link_to t(:show), family, class: "" %></td>
-          <td><%= link_to t(:delete), family, :confirm => '¿Seguro Que Deseas Borrarlo?', :method => :delete , class: ""%></td>
+          <td><%= link_to t(:delete), family, data: { confirm: '¿Seguro Que Deseas Borrarlo?' } , :method => :delete , class: ""%></td>
         </tr>
          </tr>
         <% end %>
