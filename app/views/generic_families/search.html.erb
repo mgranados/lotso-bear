@@ -1,0 +1,15 @@
+<div class="jumbotron">
+  <h1>Búsqueda de Piezas</h1>
+
+  <%= form_tag results_generic_families_path, method: :get, class: "col-md-12 search-form" do %>
+    <%= text_field_tag :family, nil, placeholder:'Familia', class: "col-md-5"%>
+    <%= text_field_tag :model, nil, placeholder:'Coche', class: "col-md-3"%>
+
+    <%= submit_tag "Buscar", class: "btn btn-info" %>
+
+  <% end %>
+  <%
+    #nombre familia (tapa, puerta delantera)
+    #modelo
+  %>
+</div>

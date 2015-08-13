@@ -1,8 +1,6 @@
 # -*- encoding : utf-8 -*-
 LotsoBear::Application.routes.draw do
 
-  resources :generic_spares
-
   resources :services
 
   get "supplier_codes/new"
@@ -90,6 +88,7 @@ LotsoBear::Application.routes.draw do
 #<GENERIC_FAMILIES>
   post 'generic_families/create_variant', to: 'generic_families#create_variant', as: 'create_variant_stock_family'
   get 'generic_families/:id/variant/:generic_car_id, ', to: 'generic_families#variant', as: 'variant_generic_family'
+  get '/generic_families/results/', to: 'generic_families#results', as: 'results_generic_families'
 
   resources :generic_families, only: [:index, :new, :create, :show, :destroy, :update] do
     collection do

@@ -1,4 +1,4 @@
-<h1>Familias genéricas</h1>
+<h1>Asignación de familias a vehículos</h1>
 
 
 <%= form_tag assign_generic_families_path do | f | %>
@@ -14,6 +14,7 @@
 	    </thead>
 	    <tbody>
 
+		 <!-- ADD UP THE WHOLE SET OF FAMILIES  and an edit button next to each family-->
 	    <!-- each family -->
 			    <% @generic_families.each do | family | %>
 			    	<tr>
@@ -22,6 +23,7 @@
 			           <% for type in @car_types do %>
 
 			           	<% if type.generic_families.select { |fam| fam.id == family.id}.include? family  %>
+												<!-- Should be non editable --->
 			           		<td><%= check_box_tag 'family_ids[]', "#{family.id},#{type.id}", checked: true %></td>
 			           	<% else %>
 			           		<td><%= check_box_tag 'family_ids[]', "#{family.id},#{type.id}"%></td>
@@ -30,9 +32,6 @@
 			           <% end %>
 		 		  </tr>
 			    <% end %>
-
-
-
     	</tbody>
 	</table>
 
@@ -41,7 +40,7 @@
 <% end %>
 
 <script type="text/javascript">
-	
+
 $( document ).ready(function() {
 	$('#assignation_table').DataTable({});
 });
