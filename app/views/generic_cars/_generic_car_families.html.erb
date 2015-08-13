@@ -5,7 +5,8 @@
     <th></th>
     <th>Nombre</th>
     <th>Codigo</th>
-    <th>Añadir Familia</th>
+    <th>Variante</th>
+    <th>Editar</th>
   </thead>
   <tbody>
 
@@ -15,7 +16,8 @@
         <td><input value="Spares" type="button" id="hidden_<%=spares_to_hide%>" class="hide_spares"/></td>
         <td><%= generic_family.name %></td>
         <td><%= generic_family.code %></td>
-        <td><%= link_to "+", variant_generic_family_path(generic_family, @generic_car) %></td>
+        <td><%= link_to "Crear Variante", variant_generic_family_path(generic_family, @generic_car) %></td>
+        <td><%= link_to "Editar Familia", edit_generic_family_path(generic_family) %></td>
       </tr>
 <% generic_family.spare_likelihoods.each do |spare_likelihood| %>
   <tr style="display:none" class="<%=spares_to_hide%>" >
