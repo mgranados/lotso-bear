@@ -122,7 +122,6 @@ class GenericFamiliesController < ApplicationController
 
 
   private
-
     def required_params
       params.require(:generic_family).permit(:code,:name, :years, {:types => []},{:family_ids => []} ,spare_likelihoods_attributes:[:id, :generic_family_id, :generic_spare_id, generic_spare_attributes:[:id, :name,:code, :_destroy]])
     end

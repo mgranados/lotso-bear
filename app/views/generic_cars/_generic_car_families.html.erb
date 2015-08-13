@@ -19,16 +19,16 @@
         <td><%= link_to "Crear Variante", variant_generic_family_path(generic_family, @generic_car) %></td>
         <td><%= link_to "Editar Familia", edit_generic_family_path(generic_family) %></td>
       </tr>
-<% generic_family.spare_likelihoods.each do |spare_likelihood| %>
-  <tr style="display:none" class="<%=spares_to_hide%>" >
-    <td></td>
-    <td><%= spare_likelihood.generic_spare.name %></td>
-    <td><%= spare_likelihood.generic_spare.code %></td>
-    
-  </tr>
- 
-<% end %> 
 
+          <% generic_family.generic_spares.each do |spare| %>
+      <tr style="display:none" class="<%=spares_to_hide%>" >
+        <td></td>
+        <td><%= spare.name %></td>
+        <td><%= spare.code %></td>
+      </tr>
+    <% end %> 
+
+    
  <script type="text/javascript">
 
    $("#hidden_<%=spares_to_hide%>").on("click",function() {

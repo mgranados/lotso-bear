@@ -1,5 +1,5 @@
-<%= form_for @generic_family, :url => create_variant_stock_family_path do |f| %>
-	<h1>Editar Familia</h1>
+<%= form_for @generic_family do |f| %>
+	<h1>Editar FamiliaJJ</h1>
 	<%= f.submit "Guardar Cambios",class:"btn btn-primary" %>
 	<div class="row">
 		<div class="col-md-4">
@@ -49,7 +49,7 @@
 	$( document ).ready(function() {
 		contador = 500
 		$("#creator").click(function() {
-			$("#family_members").append('<div id="tuple_"+contador+" class="form-group"><div class="col-md-6"><label>Nombre</label><input class="form-control input-capitalize" id="generic_family_spare_likelihoods_attributes_'+contador+'_generic_spare_attributes_name" name="generic_family[spare_likelihoods_attributes]['+contador+'][generic_spare_attributes][name]" type="text"></div><div class="col-md-6"><label>Código</label><input class="form-control" id="generic_family_spare_likelihoods_attributes_'+contador+'_generic_spare_attributes_code" name="generic_family[spare_likelihoods_attributes]['+contador+'][generic_spare_attributes][code]" type="text"></div></div>');
+			$("#family_members").append('<div id="tuple_'+contador+'" class="form-group"><div class="col-md-6"><label>Nombre</label><input class="form-control input-capitalize" id="generic_family_spare_likelihoods_attributes_'+contador+'_generic_spare_attributes_name" name="generic_family[spare_likelihoods_attributes]['+contador+'][generic_spare_attributes][name]" type="text"></div><div class="col-md-6"><label>Código</label><input class="form-control" id="generic_family_spare_likelihoods_attributes_'+contador+'_generic_spare_attributes_code" name="generic_family[spare_likelihoods_attributes]['+contador+'][generic_spare_attributes][code]" type="text"></div></div>');
 			contador+=1
 		});
 

@@ -165,7 +165,7 @@ LotsoBear::Application.routes.draw do
 #<ADMIN>
 namespace :admin do
     get :prices
-  end
+end
 #</ADMIN>
 
   match '/signin',  to: 'sessions#new',         via: 'get'
