@@ -3,12 +3,6 @@ LotsoBear::Application.routes.draw do
 
   resources :generic_spares
 
-  resources :family_likelihoods
-
-  resources :type_likelihoods
-
-  resources :generic_families
-
   resources :services
 
   get "supplier_codes/new"
@@ -28,7 +22,7 @@ LotsoBear::Application.routes.draw do
   resources :valuations, only: [:index, :new, :create, :show]
   resources :spares, only: [:index, :new, :create, :show, :edit ,:destroy, :update]
   resources :generic_spares, only: [:index, :new, :create, :show, :edit ,:destroy, :update]
-    
+
 # <SUPPLIES>
   get '/supplies/consumer', to: 'supplies#consumer', as: 'consumer_supplies' #getting the user
   get '/supplies/spend/:user_code', to: 'supplies#spend', as: 'spend_fail_supplies' #supplies to spend are listed
@@ -47,7 +41,7 @@ LotsoBear::Application.routes.draw do
 
 # </SHELVES>
   get 'shelves/:code/store_stocks', to: 'shelves#store_stocks', as: 'get_store_stocks_shelf'
-  
+
   get 'shelves/search', to: 'shelves#search', as: 'shelves_search'
   post 'shelves/store_stocks', to: 'shelves#store_stocks', as: 'store_stocks_shelf'
   post 'shelves/save_stocks', to: 'shelves#save_stocks', as: 'save_stocks_shelf'
@@ -96,12 +90,13 @@ LotsoBear::Application.routes.draw do
 #<GENERIC_FAMILIES>
   post 'generic_families/create_variant', to: 'generic_families#create_variant', as: 'create_variant_stock_family'
   get 'generic_families/:id/variant/:generic_car_id, ', to: 'generic_families#variant', as: 'variant_generic_family'
-  
+
   resources :generic_families, only: [:index, :new, :create, :show, :destroy, :update] do
     collection do
       get :not_assigned
       get :assigned
       post :assign
+      get :search
     end
     member do
       # get :variant

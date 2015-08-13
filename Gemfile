@@ -37,25 +37,27 @@ gem 'maskedinput-rails'
 gem 'barby'
 
 #Data Table
-  gem 'jquery-datatables-rails', '~> 3.1.1'
-  gem 'jquery-ui-rails'
+gem 'jquery-datatables-rails', '~> 3.1.1'
+gem 'jquery-ui-rails'
 
 #Style
-  gem 'sprockets', '2.11.0'
-  gem 'sass-rails', '~> 4.0.2'
+gem 'sprockets', '2.11.0'
+gem 'sass-rails', '~> 4.0.2'
 
 # Translation
-  gem 'rails-i18n', '~> 4.0.0'
+gem 'rails-i18n', '~> 4.0.0'
 #Null Database Fields
-  gem "nilify_blanks"
+gem "nilify_blanks"
 
-  gem 'pg', '0.15.1'
+gem 'pg', '0.15.1'
+gem 'poltergeist'
 
-  gem 'passenger'
+gem 'passenger'
 
 group :development, :test do
   gem 'railroady'
   gem 'capybara', '2.1.0'
+  gem 'capybara-webkit'
   gem 'spork-rails', '4.0.0'
   gem 'selenium-webdriver', '2.35.1'
   gem 'faker'

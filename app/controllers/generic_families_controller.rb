@@ -10,7 +10,11 @@ class GenericFamiliesController < ApplicationController
     @generic_family = GenericFamily.new(required_params)
     if @generic_family.save
       redirect_to generic_families_path
-      flash[:success] = 'Familia Creada con éxito'
+      unless @generic_family.generic_spares.blank?
+        flash[:success] = "Familia: <strong>#{@generic_family.name}</strong>, con piezas: #{@generic_family.generic_spares.pluck(:name).join(', ').tr('[]', '')} creada con éxito".html_safe
+      else
+        flash[:success] = "Familia: <strong>#{@generic_family.name}</strong> creada con éxito".html_safe
+      end
     else
       render 'new'
     end
@@ -99,6 +103,9 @@ class GenericFamiliesController < ApplicationController
       flash[:success] = "Actualizado con éxito"
     end
     redirect_to generic_families_path
+  end
+
+  def search
   end
 
   private

@@ -3,10 +3,9 @@ es-MX:
   New: "Nuevo"
   edit: "Editar"
   cancel: "Cancelar"
-  number_spares: "Numero de piezas"
   create: "Crear"
-  new_generic_family: "Nueva Familia Generica"
-  number_of_spares: "Numeró de Piezas"
+  new_generic_family: "Nueva Familia Genérica"
+  number_spares: "Número de Piezas"
   name: "Nombre"
   code: "Código"
   actions: "Accciones"
@@ -15,8 +14,8 @@ es-MX:
   activerecord:
     models:
       generic_car:
-        one: "Coche Generico"
-        other: "Coches Genericos"
+        one: "Coche Genérico"
+        other: "Coches Genéricos"
       model_acronym:
         one: "Modelo"
         other: "Modelos"
@@ -27,8 +26,8 @@ es-MX:
         one: "Pieza"
         other: "Piezas"
       generic_family:
-        one: "Familia Generica"
-        other: "Familias Genericas"
+        one: "Familia Genérica"
+        other: "Familias Genéricas"
     attributes:
       warehouse:
         branch: "Nombre"

@@ -1,3 +1,9 @@
 manija:
   name: Manija
   code: FC0
+spare1:
+  name: Spare Faro Cromado 1
+  code: SFC1
+spare2:
+  name: Spare Faro Cromado 2
+  code: SFC2

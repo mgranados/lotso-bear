@@ -5,7 +5,7 @@
 	<div class="row">
 		<div class='col-md-4'>
 			<div class='form-group'>
-				<%= f.label :name%>
+				<%= f.label :name %>
 				<%= f.text_field :name, :class =>"form-control"%>
 			</div>
 		</div>
@@ -19,12 +19,12 @@
 
 		<div class='col-md-4'>
 			<div class='col-md-6'>
-				<%= label_tag t(:number_spares)%>
-				<%= number_field_tag :number_spares, 2, min: 1, max: 50 , class: "form-control"%>
+				<%= label_tag :number_spares, "Número de Piezas" %>
+				<%= number_field_tag :number_spares, min: 1, max: 50 , class: "form-control"%>
 			</div>
 			<div class='col-md-6'>
 				<br>
-				<a id="creator" class="btn btn-success"><%= t(:create)%> </a>
+				<%= link_to 'Agregar Piezas', '#', class: "btn btn-info", id: 'creator' %>
 			</div>
 		</div>
 	</div>
@@ -34,20 +34,6 @@
 			<div id="family_members" class="col-md-8">
 		<%= f.fields_for :spare_likelihoods do | likelihood | %>
 			<%= likelihood.fields_for :generic_spare do | spare | %>
- <!-- 
-			<div class="col-md-6">
-				<div class="form-group">
-				<%= spare.label :name %>
-				<%= spare.text_field :name, class:'form-control' %>
-				</div>
-			</div>
-			<div class="col-md-3">
-				<div class="form-group">
-					<%= spare.label :code %>
-					<%= spare.text_field :code, class:'form-control' %>
-				</div>
-			</div>  -->
-
 			<% end %>
 
 		<% end %>
@@ -86,9 +72,9 @@
 			alert("Codigo no puede estar Vacio");
 		}
 		else{
-	    	for (i=0;i < $("#number_spares").val(); i++) 
+	    	for (i=0;i < $("#number_spares").val(); i++)
 	    	{
-	        	$("#family_members").append('<div class="form-group"><div class="col-md-6"><label>Nombre</label><input class="form-control input-capitalize" id="generic_family_spare_likelihoods_attributes_'+contador+'_generic_spare_attributes_name" name="generic_family[spare_likelihoods_attributes]['+contador+'][generic_spare_attributes][name]" type="text"></div><div class="col-md-3"><label>Código</label><input class="form-control hidden" id="generic_family_spare_likelihoods_attributes_'+contador+'_generic_spare_attributes_code" name="generic_family[spare_likelihoods_attributes]['+contador+'][generic_spare_attributes][code]" type="text" value="'+$("#generic_family_code").val()+contador+'"><p>'+code+contador+'</p></div></div>');
+	        	$("#family_members").append('<div class="form-group"><div class="col-md-6"><label for="generic_family_spare_likelihoods_attributes_'+contador+'_generic_spare_attributes_name">Nombre Pieza '+contador+'</label><input class="form-control input-capitalize" id="generic_family_spare_likelihoods_attributes_'+contador+'_generic_spare_attributes_name" name="generic_family[spare_likelihoods_attributes]['+contador+'][generic_spare_attributes][name]" type="text"></div><div class="col-md-3"><label>Código</label><input class="form-control hidden" id="generic_family_spare_likelihoods_attributes_'+contador+'_generic_spare_attributes_code" name="generic_family[spare_likelihoods_attributes]['+contador+'][generic_spare_attributes][code]" type="text" value="'+$("#generic_family_code").val()+contador+'"><p>'+code+contador+'</p></div></div>');
 	        	contador++;
 	    	}
 		}
