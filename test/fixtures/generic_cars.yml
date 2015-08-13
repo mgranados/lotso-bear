@@ -6,6 +6,7 @@ corolla:
   gen_continues: false
   model_acronym: corolla
   car_type: suv
+  # generic_families: generic_1, generic_2, generic_3, generic_4, generic_5, generic_6, generic_7, generic_8, generic_9, generic_10
 
 
 corsa:

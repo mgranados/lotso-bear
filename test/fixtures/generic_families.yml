@@ -6,7 +6,7 @@ faro_cromado_padre:
 
 faro_niebla_padre:
   name: Faro Niebla
-  code: FC
+  code: FN
   father: 
   years: 1991
 
@@ -19,6 +19,14 @@ faro_cromado:
 
 generic_without_typelikelihood:
   name: Faro Cromado
-  code: FC
+  code: FK
   father: 
   years: 1991
+
+<% for i in 1..10 %>
+<%= "generic_#{i}" %>:
+  name: Pieza Faro
+  code: <%= "F#{i}" %>
+  father: faro_cromado_padre
+  years: 1991
+<% end %>

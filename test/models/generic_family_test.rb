@@ -111,4 +111,26 @@ class GenericFamilyTest < ActiveSupport::TestCase
     assert_equal @generic_family.generic_spares, clone_family.generic_spares
   end
 
+  test "search by generic_car exact term" do
+    generic_car = generic_cars(:corolla)
+    generic_families =  GenericFamily.search(generic_car.model_acronym.model)
+    assert_equal 10, generic_families.count
+  end
+
+  test "search by generic_car lowercase" do
+    generic_car = generic_cars(:corolla)
+    generic_families =  GenericFamily.search(generic_car.model_acronym.model.downcase)
+    assert_equal 10, generic_families.count
+  end
+
+  test "search by name Exact term" do
+    generic_families =  GenericFamily.search("Pieza Faro")
+    assert_equal 10, generic_families.count
+  end
+
+  test "search by name lowercase" do
+    generic_families =  GenericFamily.search("pieza faro")
+    assert_equal 10, generic_families.count
+  end
+
 end

@@ -1,3 +1,8 @@
 one:
  generic_family: faro_cromado
  generic_car: corolla
+<% for i in 1..10 %>
+family_likelihood<%= i %>:
+ generic_family: <%= "generic_#{i}" %>
+ generic_car: corolla
+<% end %>

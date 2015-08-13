@@ -44,32 +44,6 @@ class GenericFamily < ActiveRecord::Base
     end
   end
 
-# Searches all generic families that have not been related to a Typelikehood (Families that don´t have a car_type)
-# Returns Array of GenericFamily
-  def self.not_assigned_families
-    where.not(:id  => TypeLikelihood.select(:generic_family_id)).where(father_id: nil)
-  end
-
-# Searches all generic families that have been related to a Typelikehood (Families that have a car_type)
-# Returns Array of GenericFamily
-  def self.assigned_families
-    where(:id  => TypeLikelihood.select(:generic_family_id) ).where(father_id: nil)
-  end
-
-# Searches generic_families that haven´t been related to the given generic_car 
-# Params:
-# +generic_car+:: +GenericCar+ object
-# Returns Array of GenericFamily
-  def self.other_families(generic_car)
-    # If the generic car doesn´t have any generic families Return all the GenericFamilies
-    if generic_car.generic_families.empty?
-      all
-    else
-      # Query that fidns all families that are not related to the generic_car
-      where('id not in (?)', generic_car.generic_families.pluck(:id).concat(generic_car.generic_families.pluck(:father_id)).compact).where(father_id: nil)
-    end
-  end
-
 # Searches generic_families that haven´t been related to the given generic_car 
 # Params:
 # +spares_info+:: +Array+ containing hashes with spare info (a hash has an id +Integer+ from a generic_spare, +String+ supplier_code, +String+ color), 
@@ -143,6 +117,40 @@ class GenericFamily < ActiveRecord::Base
     else
       return true
     end
+  end
+
+
+  # // QUERIES //
+# Searches all generic families that have not been related to a Typelikehood (Families that don´t have a car_type)
+# Returns Array of GenericFamily
+  def self.not_assigned_families
+    where.not(:id  => TypeLikelihood.select(:generic_family_id)).where(father_id: nil)
+  end
+
+# Searches all generic families that have been related to a Typelikehood (Families that have a car_type)
+# Returns Array of GenericFamily
+  def self.assigned_families
+    where(:id  => TypeLikelihood.select(:generic_family_id) ).where(father_id: nil)
+  end
+
+# Searches generic_families that haven´t been related to the given generic_car 
+# Params:
+# +generic_car+:: +GenericCar+ object
+# Returns Array of GenericFamily
+  def self.other_families(generic_car)
+    # If the generic car doesn´t have any generic families Return all the GenericFamilies
+    if generic_car.generic_families.empty?
+      all
+    else
+      # Query that fidns all families that are not related to the generic_car
+      where('id not in (?)', generic_car.generic_families.pluck(:id).concat(generic_car.generic_families.pluck(:father_id)).compact).where(father_id: nil)
+    end
+  end
+
+# Searches all generic families that match by name, code or generic_car model
+# Returns Array of GenericFamily
+  def self.search(search_term)
+    generic_families = where("name LIKE '%?%' OR postal_code like '%?%'")
   end
 
 
