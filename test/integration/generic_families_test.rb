@@ -60,23 +60,60 @@ class GenericFamiliesTest < ActionDispatch::IntegrationTest
   test "assign a generic family to a vehicle" do
     visit assigned_generic_families_path
     assert has_content?('ASIGNACIÓN DE FAMILIAS A VEHÍCULOS')
-    click_link 'Edit'
-    has_content?('Guardar tipos coche')
+    first('.btn').click_link('Edit')
+    click_link('Guardar tipos coche')
+    assert has_content?('Actualizado con éxito')
   end
 
   # agregar piezas
   test "edit a family related to car" do
     test "assign additional spare to the family" do
-
+      #http://localhost:3000/generic_cars
+      visit generic_cars_path
+      #click familias
+      first(:link, "Familias").click
+      #click editar familia
+      first(:link, "Editar Familia").click
+      #click añadir Pieza
+      click_link("Añadir Pieza")
+      #fill si se puede
+      #Guardar
+      click_link("Guardar Cambios")
+      #hascontent exito
+      assert has_content?("Guardado con éxito")
     end
 
     test "remove spares from a family and save" do
-
-    end
+      #http://localhost:3000/generic_cars
+      visit generic_cars_path
+      #click familias
+      first(:link, "Familias").click
+      #click editar familia
+      first(:link, "Editar Familia").click
+      #click remover Pieza (x o algo)
+      first(:link, "x").click
+      #Guardar
+      click_link("Guardar Cambios")
+      #hascontent exito
+      assert has_content?("Guardado con éxito")
+     end
   end
 
   # agregar variantes
   test "add a version of a same spare to the generic family" do
+    #http://localhost:3000/variant
+    visit generic_cars_path
+    #click familias
+    first(:link, "Familias").click
+    #click editar familia
+    first(:link, "Crear Variante").click    #agrega al codigo FC-01
+    #añade pieza y fill in si se puede
+    click_link("Añadir Pieza")
+    #click a guardar variantes
+    click_link("Guardar Cambios")
+    #has content el codigo FC-01 en el listado
+    assert has_content?("Guardado con éxito")
+
   end
 
   #assign to a supplier
@@ -91,7 +128,6 @@ class GenericFamiliesTest < ActionDispatch::IntegrationTest
     visit admin_prices_path
     assert has_content?('ADMINISTRACIÓN DE PRECIOS')
     assert has_content?('Asignar precio')
-
   end
 
 

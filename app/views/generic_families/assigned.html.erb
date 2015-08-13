@@ -18,14 +18,14 @@
 			    	<tr>
 
 			           <td><%= family.name %></td>
-								 <td><%= link_to "Editar",  '#', class: "btn btn-primary" %></td>
+								 <td><%= link_to "Editar",  assign_car_type_generic_family_path(family), class: "btn btn-primary" %></td>
 			           <% for type in @car_types do %>
 
 			           	<% if type.generic_families.select { |fam| fam.id == family.id}.include? family  %>
 												<!-- Should be non editable --->
-			           		<td><%= check_box_tag 'family_ids[]', "#{family.id},#{type.id}", checked: true %></td>
+			           		<td><p>x</p></td>
 			           	<% else %>
-			           		<td><%= check_box_tag 'family_ids[]', "#{family.id},#{type.id}"%></td>
+			           		<td><p>--</p></td>
 			           	<% end %>
 
 			           <% end %>
@@ -49,7 +49,7 @@
 				<% @generic_families_not.each do | family | %>
 					<tr>
 							 <td><%= family.name %></td>
-							 <td><%= link_to "Editar", '#', class: "btn btn-primary" %></td>
+							 <td><%= link_to "Editar", assign_car_type_generic_family_path(family), class: "btn btn-primary" %></td>
 							 <% for type in @car_types do %>
 								<td><%= check_box_tag 'family_ids[]', "#{family.id},#{type.id}"%></td>
 							 <% end %>
@@ -66,7 +66,6 @@
 $( document ).ready(function() {
 	$('#not_assigned').DataTable({});
 	$('#assigned').DataTable({});
-	$("input:checkbox").click(function() { return false; });
 
 });
 

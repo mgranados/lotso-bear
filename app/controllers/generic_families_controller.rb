@@ -23,7 +23,7 @@ class GenericFamiliesController < ApplicationController
   def update
     respond_to do |format|
       if @generic_family.update(required_params)
-        format.html { redirect_to @generic_family }
+        format.html { redirect_to generic_cars_path, notice: 'Guardado con éxito' }
         format.json { render :show, status: :ok, location: @generic_family }
       else
         format.html { render :edit }
@@ -104,7 +104,7 @@ class GenericFamiliesController < ApplicationController
       end
       flash[:success] = "Actualizado con éxito"
     end
-    redirect_to generic_families_path
+    redirect_to assigned_generic_families_path
   end
 
 
