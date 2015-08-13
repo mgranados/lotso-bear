@@ -1,12 +1,11 @@
 <h1>Asignación de familias a vehículos</h1>
 
-
-<%= form_tag assign_generic_families_path do | f | %>
-
-	<table id="assignation_table" class="table big_table">
+	<h2>Familia ya asignadas</h2>
+	<table id="assigned" class="table big_table">
 	    <thead>
 	        <tr>
 	            <th>Nombre Familia</th>
+							<th> </th>
 	            <% @car_types.each do | type | %>
 	            	<th> <%= type.name %> <%= type.doors %></th>
 	            <% end %>
@@ -14,12 +13,12 @@
 	    </thead>
 	    <tbody>
 
-		 <!-- ADD UP THE WHOLE SET OF FAMILIES  and an edit button next to each family-->
 	    <!-- each family -->
-			    <% @generic_families.each do | family | %>
+			    <% @generic_families_assigned.each do | family | %>
 			    	<tr>
 
 			           <td><%= family.name %></td>
+								 <td><%= link_to "Editar",  '#', class: "btn btn-primary" %></td>
 			           <% for type in @car_types do %>
 
 			           	<% if type.generic_families.select { |fam| fam.id == family.id}.include? family  %>
@@ -35,14 +34,40 @@
     	</tbody>
 	</table>
 
+	<h2>Familias sin asignación</h2>
+	<table id="not_assigned" class="table big_table">
+			<thead>
+					<tr>
+							<th>Nombre Familia</th>
+							<th> </th>
+							<% @car_types.each do | type | %>
+								<th> <%= type.name %> <%= type.doors %></th>
+							<% end %>
+					</tr>
+			</thead>
+			<tbody>
+				<% @generic_families_not.each do | family | %>
+					<tr>
+							 <td><%= family.name %></td>
+							 <td><%= link_to "Editar", '#', class: "btn btn-primary" %></td>
+							 <% for type in @car_types do %>
+								<td><%= check_box_tag 'family_ids[]', "#{family.id},#{type.id}"%></td>
+							 <% end %>
+				</tr>
+				<% end %>
+			</tbody>
+	</table>
 
-	<%= submit_tag "Guardar Cambios", class: "btn btn-primary"  %>
-<% end %>
+
+
 
 <script type="text/javascript">
 
 $( document ).ready(function() {
-	$('#assignation_table').DataTable({});
+	$('#not_assigned').DataTable({});
+	$('#assigned').DataTable({});
+	$("input:checkbox").click(function() { return false; });
+
 });
 
 </script>

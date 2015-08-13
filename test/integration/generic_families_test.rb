@@ -10,7 +10,6 @@ class GenericFamiliesTest < ActionDispatch::IntegrationTest
   end
 
   test "add a new family without spares" do
-
     assert_difference 'GenericFamily.count', +1 do
       visit new_generic_family_path
       #check we're creating a new family
@@ -21,7 +20,7 @@ class GenericFamiliesTest < ActionDispatch::IntegrationTest
       click_button 'Crear Familia Genérica'
       #check if it's created correctly
       assert has_content?('creada con éxito'), "Mensaje no aparece"
-    end #generic family added
+    end #assert_difference family added
 
   end
 
@@ -57,60 +56,42 @@ class GenericFamiliesTest < ActionDispatch::IntegrationTest
     end #assert difference generic families
   end
 
-  test "search for family that exists with its code" do
-    visit search_generic_families_path
-    assert has_content?('Buscar'), "No llega a búsqueda"
-    #search for a code
-    fill_in :family,     with: @generic_family.code
-    click_button "Buscar"
-    assert has_content?(@generic_family.code), "No encuentra #{@generic_family.code}"
-  end
-
-  test "search for family that doesn't exists with its code" do
-    visit search_generic_families_path
-    assert has_content?('Buscar'), "No llega a búsqueda"
-    #search for a code
-    fill_in :family,     with: 'FASFASDSADFASDASFA'
-    click_button "Buscar"
-    assert has_content?('No se encontró ningún resultado.'), "No avisa que no halló"
-  end
-
-  #search for family w car
-  test "search for a family with a car" do
-    visit search_generic_families_path
-    assert has_content?('Buscar'), "No llega a búsqueda"
-    #search for a code
-    fill_in :model,     with: "COROLLA"
-    click_button "Buscar"
-    assert has_content?("COROLLA"), "No encuentra COROLLA"
-  end
-
   #assign to a vehicle
   test "assign a generic family to a vehicle" do
     visit assigned_generic_families_path
-    assert has_content?('Asignación de familias a vehículos')
+    assert has_content?('ASIGNACIÓN DE FAMILIAS A VEHÍCULOS')
+    click_link 'Edit'
+    has_content?('Guardar tipos coche')
   end
 
   # agregar piezas
-  test "assign a spare to the family" do
+  test "edit a family related to car" do
+    test "assign additional spare to the family" do
 
+    end
+
+    test "remove spares from a family and save" do
+
+    end
   end
 
   # agregar variantes
-  test "add versions of a same spare to the generic family" do
-
+  test "add a version of a same spare to the generic family" do
   end
 
   #assign to a supplier
   test "assign a generic family to a supplier" do
     visit admin_suppliers_path
-    assert has_content?('ASIGNACIÓN DE FAMILIAS A VEHÍCULOS')
+    assert has_content?('TODOS LOS PROVEEDORES')
+    assert has_content?('Agregar a')
   end
 
   #assign a price
   test "assign a generic family an specific price" do
     visit admin_prices_path
     assert has_content?('ADMINISTRACIÓN DE PRECIOS')
+    assert has_content?('Asignar precio')
+
   end
 
 
