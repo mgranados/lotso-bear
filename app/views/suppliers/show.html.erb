@@ -1,14 +1,17 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Nombre de proveedor:</strong>
-  <%= @supplier.name %>
-</p>
-
-<p>
-  <strong>Tipo de proveedor:</strong>
-  <%= @supplier.supplier_type.name %>
-</p>
+<table class="table">
+  <thead>
+    <th>Nombre de Proveedor</th>
+    <th>Tipo de Proveedor</th>
+  </thead>
+  <tbody>
+    <tr>
+      <td><%= @supplier.name %></td>
+      <td><%= @supplier.supplier_type.name %></td>
+    </tr>
+  </tbody>
+</table>
 
 <h2>Piezas con códigos establecidos</h2>
 <table id="suppliersIndexTable">
@@ -79,7 +82,7 @@
             <% end %>
           <% end %>
          </td>
-        <td><%= link_to 'Seleccionar', new_supplier_code_path(@supplier, generic_fam) %></td>
+        <td><%= link_to 'Agregar Precio', new_supplier_code_path(@supplier, generic_fam), class: "btn btn-primary" %></td>
       </tr>
     <% end %>
   </tbody>
