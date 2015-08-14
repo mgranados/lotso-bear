@@ -37,7 +37,7 @@ gem 'maskedinput-rails'
 gem 'barby'
 
 #Data Table
-gem 'jquery-datatables-rails', '~> 3.1.1'
+gem 'jquery-datatables-rails', '~> 3.3.0'
 gem 'jquery-ui-rails'
 
 #Style

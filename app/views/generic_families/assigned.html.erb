@@ -1,69 +1,48 @@
 <h1>ASIGNACIÓN DE FAMILIAS A TIPOS DE VEHÍCULOS</h1>
-
-	<h2>Familia ya asignadas</h2>
-	<table id="assigned" class="table big_table">
-	    <thead>
-	        <tr>
-	            <th>Nombre Familia</th>
-							<th> </th>
-	            <% @car_types.each do | type | %>
-	            	<th> <%= type.name %> <%= type.doors %></th>
-	            <% end %>
-	        </tr>
-	    </thead>
-	    <tbody>
-
-	    <!-- each family -->
-			    <% @generic_families_assigned.each do | family | %>
-			    	<tr>
-
-			           <td><%= family.name %></td>
-								 <td><%= link_to "Editar",  assign_car_type_generic_family_path(family), class: "btn btn-primary" %></td>
-			           <% for type in @car_types do %>
-
-			           	<% if type.generic_families.select { |fam| fam.id == family.id}.include? family  %>
-			           		<td><p>x</p></td>
-			           	<% else %>
-			           		<td><p>--</p></td>
-			           	<% end %>
-
-			           <% end %>
-		 		  </tr>
-			    <% end %>
-    	</tbody>
-	</table>
-
-	<h2>Familias sin asignación</h2>
-	<table id="not_assigned" class="table big_table">
-			<thead>
-					<tr>
-							<th>Nombre Familia</th>
-							<th> </th>
-							<% @car_types.each do | type | %>
-								<th> <%= type.name %> <%= type.doors %></th>
-							<% end %>
-					</tr>
-			</thead>
-			<tbody>
-				<% @generic_families_not.each do | family | %>
-					<tr>
-							 <td><%= family.name %></td>
-							 <td><%= link_to "Editar", assign_car_type_generic_family_path(family), class: "btn btn-primary" %></td>
-							 <% for type in @car_types do %>
-								<td><%= check_box_tag 'family_ids[]', "#{family.id},#{type.id}"%></td>
-							 <% end %>
-				</tr>
+<h2>Familia ya asignadas</h2>
+<table id="assigned" class="table big_table">
+	<thead>
+		<tr>
+			<th>Nombre Familia</th>
+			<% @car_types.each do | type | %>
+				<th> <%= type.name %> <%= type.doors %></th>
+			<% end %>
+		</tr>
+	</thead>
+	<tbody>
+		<% @generic_families_assigned.each do | family | %>
+			<tr>
+				<td>
+					<%= family.name %><br>
+					<%= link_to "Editar Tipos",  assign_car_type_generic_family_path(family), class: "btn btn-primary" %>
+				</td>
+				<% for type in @car_types do %>
+					<% if type.generic_families.select { |fam| fam.id == family.id}.include? family  %>
+				<td><p>x</p></td>
+				<% else %>
+				<td><p>--</p></td>
 				<% end %>
-			</tbody>
-	</table>
-
-
-
-
+				<% end %>
+			</tr>
+		<% end %>
+	</tbody>
+</table>
+<h2>Familias sin asignación</h2>
+<table id="not_assigned" class="table big_table">
+	<thead>
+		<th>Nombre Familia</th>
+		<th></th>
+	</thead>
+	<tbody>
+		<% @generic_families_not.each do | family | %>
+			<tr>
+				<td><%= family.name %></td>
+				<td><%= link_to "Asignar Tipos de Coche", assign_car_type_generic_family_path(family), class: "btn btn-primary" %></td>
+			</tr>
+		<% end %>
+	</tbody>
+</table>
 <script type="text/javascript">
-
-	$('#not_assigned').DataTable({});
-	$('#assigned').DataTable({});
-
-
+$('#not_assigned').DataTable({});
+$('#assigned').DataTable({});
 </script>
