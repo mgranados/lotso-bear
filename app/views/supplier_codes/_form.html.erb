@@ -1,0 +1,13 @@
+<%= form_for([@supplier,@generic_family, @supplier_code]) do |f| %>
+  <%= f.submit "Asignar código", class: "btn btn-primary" %>
+  	<div class="row">
+  		<div class="col-md-6">
+	        <%= f.label :code, "Código familia:" %>
+	        <%= f.text_field :code, class: "form-control"%>
+		</div>
+		<div class="col-md-6">
+	        <%= f.label :price %>
+	        <%= f.text_field :price, data: { role: 'money'}, class: "form-control" %>
+	    </div>
+    </div>
+<% end %>

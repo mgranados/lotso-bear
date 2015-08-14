@@ -1,4 +1,4 @@
-<%= form_for @generic_car, :html => { :multipart => true, :id => "fileupload" } do |f|%>
+<%= form_for @generic_car, url: update_gen_generic_car_path(params[:id]),method: 'get', :html => { :multipart => true, :id => "fileupload" } do |f|%>
   <%= render 'shared/error_messages', model: @generic_car %>
 
     <div class="col-md-4 col-xs-6 form-group text-center">

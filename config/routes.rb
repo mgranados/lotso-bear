@@ -1,6 +1,8 @@
 # -*- encoding : utf-8 -*-
 LotsoBear::Application.routes.draw do
 
+  resources :supplier_types
+
   resources :type_likelihoods
 
   resources :services
@@ -111,6 +113,7 @@ LotsoBear::Application.routes.draw do
       get :edit_generation
       get :assignation
       patch :relate_generic_family
+      get :update_gen
     end
     collection do
       get :update_generation

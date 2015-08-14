@@ -1,38 +1,35 @@
-<h1>SupplierCodes#new</h1>
-<p>
-  <strong>Nombre de proveedor:</strong>
-  <%= @supplier.name %>
-</p>
-<p>
-  <strong>Familia de proveedor:</strong>
-  <%= @generic_family.name %>
-</p>
-<p>
-  <strong>Modelo:</strong>
-  <%= @generic_family.generic_cars.first.model_acronym.model %>
-</p>
-<p>
-  <strong>Generación:</strong>
-    <%= @generic_family.generic_cars.first.first_generation_year %> -
-    <% if !@generic_family.generic_cars.first.gen_continues %>
-      <%= @generic_family.generic_cars.first.last_generation_year %>
-    <% else %>
-      <p>Año Actual</p>
-    <% end %>
-</p>
+<h1>Nuevo Codigo de Proveedor</h1>
 
-
-<%= form_for([@supplier,@generic_family, @supplier_code]) do |f| %>
-  <ul>
-      <li>
-        <%= f.label :code, "Código familia:" %>
-        <%= f.text_field :code %>
-      </li>
-      <li>
-        <%= f.label :price %>
-        <%= f.text_field :price, data: { role: 'money'} %>
-      </li>
-  </ul>
-  <%= f.submit "Asignar código" %>
-
-<% end %>
+<h2>Información del Proveedor</h2>
+<table class="table" >
+  <thead>
+    <th>Nombre</th>
+    <th>Familia Generica</th>
+    <th>Modelos Asociados a la Familia</th>
+    <th>Generación</th>
+  </thead>
+  <tbody>
+    <tr>
+      <td><%= @supplier.name %></td>
+      <td><%= @generic_family.name %></td>
+      <td>  
+        <% unless @generic_family.generic_cars.blank?  %>
+          <% @generic_family.generic_cars.each do |generic_car| %>
+            <%= generic_car.model_acronym.model  %>
+          <% end %>
+        <% end %>
+      </td>
+      <td>
+        <% unless  @generic_family.generic_cars.blank? %>
+          <%= @generic_family.generic_cars.first.first_generation_year %> -
+            <% if !@generic_family.generic_cars.first.gen_continues %>
+              <%= @generic_family.generic_cars.first.last_generation_year %>
+            <% else %>
+            Año Actual
+          <% end %>
+        <% end %>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<%= render 'form' %>

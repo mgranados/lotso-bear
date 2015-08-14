@@ -1,6 +1,6 @@
 # -*- encoding : utf-8 -*-
 class GenericCarsController < ApplicationController
-  before_action :set_generic_car, only: [:show, :edit, :destroy, :update, :assignation, :edit_generation]
+  before_action :set_generic_car, only: [:show, :edit, :destroy, :update, :assignation, :update_gen, :edit_generation]
   
   def new
     @generic_car = GenericCar.new
@@ -35,18 +35,34 @@ class GenericCarsController < ApplicationController
       render :new
     end
   end
-
+# <UPDATE>
   def update
     respond_to do |format|
       if @generic_car.update(generic_car_params)
-        format.html { redirect_to @generic_car, notice: 'El Carro fue editado con éxito' }
-        format.json { render :show, status: :ok, location: @generic_car }
+        format.html do
+          flash[:sucess] = 'El Carro fue editado con éxito'
+          redirect_to @generic_car
+        end
       else
         format.html { render :edit }
         format.json { render json: @generic_car.errors, status: :unprocessable_entity }
       end
     end
   end
+# </UPDATE>
+# <UPDATE GENERATION>
+  def update_gen
+    respond_to do |format|
+      if @generic_car.update(generic_car_params)
+        format.html do
+          flash[:success] = 'El Carro fue editado con éxito'
+          redirect_to update_generation_generic_cars_path
+        end
+        format.html { render :edit }
+      end
+    end
+  end
+# </UPDATE GENERATION>
 
   def relate_generic_family
     generic_family_ids = params[:generic_car][:generic_family_ids].reject(&:empty?)

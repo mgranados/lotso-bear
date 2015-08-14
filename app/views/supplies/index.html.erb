@@ -17,8 +17,7 @@
       <th></th>
     </tr>
   </thead>
-
-  <tbody class="">
+  <tbody>
     <% @supplies.each do |supply| %>
       <tr>
         <td><%= supply.name %></td>
@@ -29,10 +28,14 @@
         <td><%= supply.brand %></td>
         <td><%= supply.quantity %></td>
         <td><%= supply.size %></td>
-        <td><%= supply.supplier.name %></td>
+        <td>
+          <% unless supply.supplier.blank? %>
+            <%= supply.supplier.name %>
+          <% end %>
+        </td>
         <td><%= supply.code %></td>
         <td><%= link_to 'Editar', edit_supply_path(supply),class:"btn btn-warning" %></td>
-        <td><%= link_to 'Eliminar', supply, method: :delete, data: { confirm: 'Are you sure?' },class:"btn btn-danger" %></td>
+        <td><%= link_to 'Eliminar', supply, method: :delete, data: { confirm: '¿Estas Seguro?' },class:"btn btn-danger" %></td>
       </tr>
     <% end %>
   </tbody>

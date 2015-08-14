@@ -74,7 +74,6 @@ class GenericFamilyTest < ActiveSupport::TestCase
   end
 
   test "assigned_families, should return records of families who have a typelikeilihood" do
-    # New
     generic_families =  GenericFamily.assigned_families
     assert_equal 2, generic_families.count
   end
@@ -109,6 +108,12 @@ class GenericFamilyTest < ActiveSupport::TestCase
     assert_not clone_family.blank?
     #Check the copy has the same number of spares as the original
     assert_equal @generic_family.generic_spares, clone_family.generic_spares
+  end
+
+  test "should find families without supplier_code" do
+    supplier = suppliers(:agencia)
+    generic_families = GenericFamily.without_supplier_code(supplier)
+    assert generic_families.count >= 1, "Didn´t find families with no suppliers"
   end
 
   test "search by generic_car exact term" do

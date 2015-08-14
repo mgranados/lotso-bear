@@ -1,12 +1,11 @@
-<h1>Listing model_acronyms</h1>
-
-<table>
+<h1>Listando Todos los Modelos</h1>
+<%= link_to 'Nuevo Modelo', new_model_acronym_path, class: "btn btn-primary" %>
+<table id="models">
   <thead>
     <tr>
       <th>Marca</th>
       <th>Iniciales</th>
       <th>Modelo</th>
-      <th></th>
       <th></th>
       <th></th>
     </tr>
@@ -21,9 +20,8 @@
             <%= model_acronym.model %>
 
         </td>
-        <td><%= link_to 'Show', model_acronym %></td>
-        <td><%= link_to 'Edit', edit_model_acronym_path(model_acronym) %></td>
-        <td><%= link_to 'Destroy', model_acronym, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Editar Modelo', edit_model_acronym_path(model_acronym),class: "btn btn-info" %></td>
+        <td><%= link_to 'Borrar', model_acronym, method: :delete, data: { confirm: '¿Estas Seguro?' }, class: "btn btn-danger" %></td>
       </tr>
     <% end %>
   </tbody>
@@ -31,4 +29,6 @@
 
 <br>
 
-<%= link_to 'New Model acronym', new_model_acronym_path %>
+<script type="text/javascript">
+  $('#models').DataTable({});
+</script>

@@ -1,0 +1,11 @@
+agencia:
+ name: Agencia
+ supplier_type: original
+
+promotora:
+ name: Promotora Automotriz
+ supplier_type: desmontado
+
+radec:
+ name: RADEC
+ supplier_type: taiwan
