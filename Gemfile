@@ -56,8 +56,7 @@ gem 'passenger'
 
 group :development, :test do
   gem 'railroady'
-  gem 'capybara', '2.1.0'
-  gem 'capybara-webkit'
+
   gem 'spork-rails', '4.0.0'
   gem 'selenium-webdriver', '2.35.1'
   gem 'faker'
@@ -73,6 +72,8 @@ group :doc do
 end
 
 group :test do
+  gem 'capybara', '2.1.0'
+  gem 'capybara-webkit'
   gem 'factory_girl_rails', '4.2.0'
 end
 
