@@ -1,14 +1,14 @@
 # -*- encoding : utf-8 -*-
 class GenericCar < ActiveRecord::Base
   # //Associations//
-  has_many :stock_cars
-  has_many :generic_fittables
+  has_many :stock_cars, dependent: :destroy
+  has_many :generic_fittables, dependent: :destroy
 
   belongs_to :car_type
   belongs_to :model_acronym
 
 
-  has_many :generic_car_generations
+  has_many :generic_car_generations, dependent: :destroy
   has_many :generations, through: :generic_car_generations
 
   has_many :generic_car_images, dependent: :destroy
@@ -17,8 +17,8 @@ class GenericCar < ActiveRecord::Base
   belongs_to :model_acronym, inverse_of: :generic_cars
   accepts_nested_attributes_for :model_acronym
 
-  has_many :family_likelihoods
-  has_many :generic_families, through: :family_likelihoods
+  has_many :family_likelihoods, dependent: :destroy
+  has_many :generic_families, through: :family_likelihoods, dependent: :destroy
 
   accepts_nested_attributes_for :family_likelihoods
   accepts_nested_attributes_for :model_acronym

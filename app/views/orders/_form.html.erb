@@ -9,12 +9,9 @@
 
   </style>
 
-  <h2>Busca el modelo</h2>
+<h2>Busca el modelo</h2>
   <%= form_tag search_by_model_generic_cars_path,  class: "form-inline", remote: true do  %>
-    <%= tag(:input, :type => "hidden", :name => request_forgery_protection_token.to_s, :value => form_authenticity_token) %> 
-
-    <%= text_field_tag :model , nil, class: "form-control"  %>
-    <%= submit_tag 'Buscar', class: "btn btn-primary" %>
+    <%= render :partial => "/shared/generic_car_search_form_fields" %>
   <% end %>
 
   <div id="genericCarsFound"></div>

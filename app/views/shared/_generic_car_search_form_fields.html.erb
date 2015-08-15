@@ -1,0 +1,3 @@
+<%= tag(:input, :type => "hidden", :name => request_forgery_protection_token.to_s, :value => form_authenticity_token) %> 
+<%= text_field_tag :model , nil, class: "form-control"  %>
+<%= submit_tag 'Buscar', class: "btn btn-primary" %>

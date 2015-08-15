@@ -32,6 +32,24 @@
     def edit
     end
 
+    def download_template
+      @supplier = Supplier.find_by_id(params[:supplier])
+      @generic_car = GenericCar.find_by_id(params[:generic_car])
+
+
+        respond_to do |format|
+            format.xls 
+        end
+    end
+
+    def import
+      SupplierCode.import(params[:file])
+      flash[:success] = "Datos Importados con Exíto"
+      supplier = Supplier.find_by_id(params[:supplier])
+      generic_car = GenericCar.find_by_id(params[:generic_car])
+      redirect_to add_codes_supplier_path(supplier,generic_car)
+    end
+
     # POST /suppliers
     # POST /suppliers.json
     def create
@@ -70,6 +88,12 @@
         format.html { redirect_to suppliers_url }
         format.json { head :no_content }
       end
+    end
+
+    def add_codes
+      @supplier = Supplier.find_by_id(params[:supplier])
+      @generic_car = GenericCar.find_by_id(params[:generic_car])
+      @supplier_codes = SupplierCode.joins(generic_family: :generic_cars)
     end
 
     private

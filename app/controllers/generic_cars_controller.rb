@@ -95,6 +95,15 @@ class GenericCarsController < ApplicationController
   end
 
 
+  def search_by_model_in_supplier
+    @models = ModelAcronym.find_by_model(params[:model].upcase)
+    @supplier = Supplier.find_by_id(params[:supplier])
+      respond_to do |format|
+        format.js {}
+      end
+  end
+
+
   # <SEARCH FOR GENERIC CARS AND RETURN A VALUE,
 
 private

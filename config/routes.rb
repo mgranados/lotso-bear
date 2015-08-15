@@ -7,16 +7,11 @@ LotsoBear::Application.routes.draw do
 
   resources :services
 
-  get "supplier_codes/new"
-  get "supplier_codes/edit"
-  get "supplier_codes/create"
-  get "supplier_codes/update"
   resources :stock_cars
 
   root 'sessions#new'
 
   resources :brands
-  resources :suppliers
   resources :mold_spares
   resources :model_acronyms
   resources :sessions, only: [:new, :create, :destroy]
@@ -39,6 +34,14 @@ LotsoBear::Application.routes.draw do
 # <SUPPLIER>
   get '/suppliers/:supplier_id/generic_families/:generic_family_id/new_supplier_code', to: 'supplier_codes#new', as: 'new_supplier_code'
   post '/suppliers/:supplier_id/generic_families/:generic_family_id/supplier_code_creation', to: 'supplier_codes#create', as: 'supplier_generic_family_supplier_codes'
+  get '/suppliers/:supplier/add_supplier_codes/:generic_car', to: 'suppliers#add_codes', as: 'add_codes_supplier'
+  get "/suppliers/:supplier/download_template/:generic_car", to: "suppliers#download_template", as: 'download_template'
+  post "/:supplier/import/:generic_car", to: "suppliers#import", as: "import_suppliers"
+  resources :suppliers do
+    # collection do
+    #   get :import
+    # end
+  end
 # </SUPPLIER>
 
 # </SHELVES>
@@ -91,7 +94,7 @@ LotsoBear::Application.routes.draw do
 
 #<GENERIC_FAMILIES>
   post 'generic_families/create_variant', to: 'generic_families#create_variant', as: 'create_variant_stock_family'
-  get 'generic_families/:id/variant/:generic_car_id, ', to: 'generic_families#variant', as: 'variant_generic_family'
+  get 'generic_families/:id/variant/:generic_car_id', to: 'generic_families#variant', as: 'variant_generic_family'
 
   resources :generic_families, only: [:index, :new, :create, :show, :destroy, :update, :edit] do
     collection do
@@ -108,6 +111,7 @@ LotsoBear::Application.routes.draw do
 # </GENERIC_FAMILIES>
 
 # <GENERIC_CARS>
+get "generic_cars/search_generic_car_models/:supplier", to: "generic_cars#search_by_model_in_supplier", as: 'search_by_model_in_supplier'
   resources :generic_cars do
     member do
       get :edit_generation

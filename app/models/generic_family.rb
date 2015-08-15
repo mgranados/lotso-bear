@@ -4,19 +4,19 @@ class GenericFamily < ActiveRecord::Base
   has_many :childs, class_name: 'GenericFamily', foreign_key: 'father_id'
   belongs_to :father, class_name: 'GenericFamily'
 
-  has_many :spare_likelihoods
-  has_many :generic_spares, through: :spare_likelihoods
+  has_many :spare_likelihoods, dependent: :destroy
+  has_many :generic_spares, through: :spare_likelihoods, dependent: :destroy
 
-  has_many :stock_families
+  has_many :stock_families, dependent: :destroy
 
-  has_many :type_likelihoods
+  has_many :type_likelihoods, dependent: :destroy
   has_many :car_types, through: :type_likelihoods
 
-  has_many :family_likelihoods
+  has_many :family_likelihoods, dependent: :destroy
   has_many :generic_cars, through: :family_likelihoods
 
   has_many :suppliers, through: :supplier_codes
-  has_many :supplier_codes
+  has_many :supplier_codes, dependent: :destroy
 
   accepts_nested_attributes_for :spare_likelihoods
 

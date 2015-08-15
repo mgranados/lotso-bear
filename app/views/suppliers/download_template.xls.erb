@@ -1,0 +1,23 @@
+<table>
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>Nombre</th>
+    <th>Codigo Interno</th>
+    <th>Codigo Proveedor</th>
+    <th>Precio</th>
+  </tr>
+  </thead>
+  <tbody>
+    <% @generic_car.generic_families.each do |generic_family| %>
+      <% supplier_code = generic_family.supplier_codes.select { |x| x.generic_family_id == generic_family.id }.first %>
+    <tr>
+      <td><%= generic_family.id %>/<%= @supplier.id %></td>
+      <td><%= generic_family.name %></td>
+      <td><%= generic_family.code %></td>
+      <td><% unless supplier_code.blank? %><%= supplier_code.code %><% end %></td>
+      <td><% unless supplier_code.blank? %><%= supplier_code.price %><% end %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>

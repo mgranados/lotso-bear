@@ -11,11 +11,12 @@
   </tbody>
 </table>
 
-  <h2>Busca el modelo</h2>
-  <%= form_tag search_by_model_generic_cars_path,  class: "form-inline", remote: true do  %>
+<!-- Renderear busqueda general -->
+<h2>Busca el modelo</h2>
+  <%= form_tag search_by_model_in_supplier_path(supplier: @supplier), method: "get", class: "form-inline", remote: true do  %>
     <%= tag(:input, :type => "hidden", :name => request_forgery_protection_token.to_s, :value => form_authenticity_token) %> 
     <%= text_field_tag :model , nil, class: "form-control"  %>
     <%= submit_tag 'Buscar', class: "btn btn-primary" %>
   <% end %>
 <!-- En este div se agregan los coches encontrados por modelo -->
-  <div id="genericCarsFound"></div>
+<div id="genericCarsFound"></div>

@@ -17,6 +17,8 @@ gem 'chunky_png'
 #jquery validation
 gem 'jquery-validation-rails'
 
+# Excel
+gem 'roo', '~> 2.1.0'
 
 #PDF Generator
 gem 'prawn'
@@ -53,12 +55,12 @@ gem 'pg', '0.15.1'
 gem 'poltergeist'
 
 gem 'passenger'
+gem 'rubyzip', '1.1'
 
 group :development, :test do
   gem 'railroady'
 
   gem 'spork-rails', '4.0.0'
-  gem 'selenium-webdriver', '2.35.1'
   gem 'faker'
   gem 'shoulda-matchers'
 end
