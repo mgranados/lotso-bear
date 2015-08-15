@@ -53,7 +53,7 @@ class GenericFamilyTest < ActiveSupport::TestCase
   end
 
   test "should add copies of families to corresponding car types" do
-  	assert_difference 'GenericFamily.count', +2 do
+  	assert_difference 'GenericFamily.count', +3 do
       # Select a type_likelihood to use as parameter
   		type_likelihood = type_likelihoods(:one)
       #Call the method
