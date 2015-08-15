@@ -27,8 +27,8 @@ gem 'jquery-fileupload-rails'
 gem 'twitter-bootstrap-rails'
 gem 'turn'
 
-#javascript tables
-
+# DataShift
+gem "datashift"
 
 #Input Mask
 gem 'maskedinput-rails'

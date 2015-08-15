@@ -61,28 +61,19 @@
 <script type="text/javascript">
 
 $(".selecciona_coche").click(function(){
-
     vacio();
-
 });
 
 $("#orderStockFamiliesToAdd select").on("change",function(){
-
-    console.log("PADRE desde form!:");
-
 });
 
 
 
 
   function vacio(){
-
     console.log("children:"+$("#orderStockFamiliesToAdd").children().length);
-
     if($("#orderStockFamiliesToAdd").children().length>0){
-
         $("div#recibir_p").fadeIn();
-
     }
     else{
 

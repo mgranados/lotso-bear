@@ -7,7 +7,8 @@ class ModelAcronym < ActiveRecord::Base
   #Validations
   validates :model, :initials, :brand_id, presence: true
 
-  validates_uniqueness_of :model, :scope => :brand_id
+  # validates_uniqueness_of :model, :scope => :brand_id
+  validates :model, uniqueness: true
   validate :brand_with_initials_uniqueness
 
   #CallBakcks
@@ -30,6 +31,7 @@ class ModelAcronym < ActiveRecord::Base
     #Custom Validations
     def brand_with_initials_uniqueness
       if ModelAcronym.exists?(:brand_id => brand_id, model: model,:initials => initials)
+      # if ModelAcronym.exists?(:brand_id => brand_id, model: model,:initials => initials)
         return false
       elsif ModelAcronym.exists?(:brand_id => brand_id,:initials => initials)
         errors.add(:initials, "Ya Existen")

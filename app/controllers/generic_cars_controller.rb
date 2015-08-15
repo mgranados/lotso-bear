@@ -94,6 +94,9 @@ class GenericCarsController < ApplicationController
       end
   end
 
+
+  # <SEARCH FOR GENERIC CARS AND RETURN A VALUE,
+
 private
 
   def generic_car_params

@@ -1,5 +1,3 @@
-<p id="notice"><%= notice %></p>
-
 <table class="table">
   <thead>
     <th>Nombre de Proveedor</th>
@@ -13,95 +11,11 @@
   </tbody>
 </table>
 
-<h2>Piezas con códigos establecidos</h2>
-<table id="suppliersIndexTable">
-  <thead>
-      <th>Nombre Pieza</th>
-      <th>Modelo Auto</th>
-      <th>Generación</th>
-      <th>Precio</th>
-      <th>Código</th>
-  </thead>
-  <tbody>
-    <% @supplier.supplier_codes.each do |supplier_code| %>
-      <tr>
-        <td><%= supplier_code.generic_family.name %></td>
-        <td>
-          <% unless supplier_code.generic_family.generic_cars.blank?  %>
-            <% supplier_code.generic_family.generic_cars.each do |generic_car| %>
-              <%= generic_car.model_acronym.model  %>
-            <% end %>
-          <% end %>
-        </td>
-        <td>
-          <% unless  supplier_code.generic_family.generic_cars.blank? %>
-            <%= supplier_code.generic_family.generic_cars.first.first_generation_year %> -
-            <% if !supplier_code.generic_family.generic_cars.first.gen_continues %>
-              <%= supplier_code.generic_family.generic_cars.first.last_generation_year %>
-            <% else %>
-              Año Actual
-            <% end %>
-          <% end %>
-        </td>
-        <td><%= humanized_money_with_symbol supplier_code.price %></td>
-        <td><%= supplier_code.code %></td>
-      </tr>
-    <% end %> 
-  </tbody>
-</table>
-
-<h2>Otras piezas disponibles</h2>
-<table id="suppliersAdditionalTable">
-  <thead>
-    <tr>
-      <th>Nombre Pieza</th>
-      <th>Modelo Auto</th>
-      <th>Generación</th>
-      <th>Seleccionar</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @generic_families_wo_code.each do |generic_fam| %>
-      <tr>
-        <td><%= generic_fam.name %></td>
-        <td>
-          <% unless generic_fam.generic_cars.blank?  %>
-            <% generic_fam.generic_cars.each do |generic_car| %>
-              <%= generic_car.model_acronym.model  %>
-            <% end %>
-          <% end %>
-        </td>
-        <td>
-          <% unless  generic_fam.generic_cars.blank? %>
-            <%= generic_fam.generic_cars.first.first_generation_year %> -
-            <% if !generic_fam.generic_cars.first.gen_continues %>
-              <%= generic_fam.generic_cars.first.last_generation_year %>
-            <% else %>
-              Año Actual
-            <% end %>
-          <% end %>
-         </td>
-        <td><%= link_to 'Agregar Precio', new_supplier_code_path(@supplier, generic_fam), class: "btn btn-primary" %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'Nueva Pieza', '#' %>
-
-
-
-<%= link_to 'Edit', edit_supplier_path(@supplier) %> |
-<%= link_to 'Back', suppliers_path %>
-
-
-<script>
-$(function(){
-  $('#suppliersAdditionalTable').dataTable();
-  $('#suppliersIndexTable').dataTable();
-
-});
-</script>
+  <h2>Busca el modelo</h2>
+  <%= form_tag search_by_model_generic_cars_path,  class: "form-inline", remote: true do  %>
+    <%= tag(:input, :type => "hidden", :name => request_forgery_protection_token.to_s, :value => form_authenticity_token) %> 
+    <%= text_field_tag :model , nil, class: "form-control"  %>
+    <%= submit_tag 'Buscar', class: "btn btn-primary" %>
+  <% end %>
+<!-- En este div se agregan los coches encontrados por modelo -->
+  <div id="genericCarsFound"></div>

@@ -169,6 +169,6 @@ class GenericFamily < ActiveRecord::Base
 # Returns Array of GenericFamilys
   def self.without_supplier_code(supplier)
     # joins(:supplier_codes).where( supplier_codes: {supplier_id: supplier.id})
-    where.not(father_id: nil)
+    where.not(father_id: nil).limit 500
   end
 end

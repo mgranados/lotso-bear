@@ -56,6 +56,9 @@ GEM
       execjs
     coffee-script-source (1.9.1.1)
     commonjs (0.2.7)
+    datashift (0.15.0)
+      rubyzip
+      spreadsheet
     erubis (2.7.0)
     execjs (2.5.2)
     factory_girl (4.2.0)
@@ -172,6 +175,7 @@ GEM
     rdoc (4.2.0)
       json (~> 1.4)
     ref (1.0.5)
+    ruby-ole (1.2.11.8)
     rubyzip (0.9.9)
     sass (3.2.19)
     sass-rails (4.0.5)
@@ -193,6 +197,8 @@ GEM
     spork-rails (4.0.0)
       rails (>= 3.0.0, < 5)
       spork (>= 1.0rc0)
+    spreadsheet (1.0.4)
+      ruby-ole (>= 1.0)
     sprockets (2.11.0)
       hike (~> 1.2)
       multi_json (~> 1.0)
@@ -244,6 +250,7 @@ DEPENDENCIES
   chunky_png
   cocoon
   coffee-rails (~> 4.0.0)
+  datashift
   factory_girl_rails (= 4.2.0)
   faker
   jbuilder (~> 1.2)
