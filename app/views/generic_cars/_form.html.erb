@@ -5,7 +5,7 @@
   <%= f.fields_for :model_acronym do |model| %>
     <div class="col-md-4">
       <div class='form-group text-center'>
-        <%= model.label :brand %><br>
+        <%= model.label :brand_id, 'Marca' %><br>
         <%= model.select :brand_id, Brand.all.collect { |p| [ p.name, p.id ] }, {include_blank: '---'} %>
 
       </div>
@@ -32,17 +32,17 @@
     </div>
 
     <div class="col-md-4 col-xs-6 form-group text-center">
-      <%= f.label :gen_continues %><br>
+      <%= f.label :gen_continues, "Generación Continua" %><br>
       <%= f.check_box :gen_continues %>
       </div>
       <div class="col-md-4 col-xs-6 form-group text-center">
-      <%= f.label :years , class:"title-change"%><br>
+      <%= f.label :years , "Años",  class:"title-change"%><br>
       <%= f.text_field :years, class: "form-control years" %>
       <p class="text-muted note continua"></p>
     </div>
 
     <div class="col-md-4 col-xs-6 form-group pull-right">
-      <%= f.label :car_type %><br>
+      <%= f.label :car_type_id, "Tipo de coche" %><br>
       <%= f.select :car_type_id, CarType.all.collect {|p| [ p.full_name, p.id ] }, {include_blank: '---'} %>
       <p class="text-muted note ">Tipo Coche</p>
     </div>
@@ -51,6 +51,8 @@
   <div class="row">
     <div id='generic_images'>
       <div id="image_fields">
+        <% @cont = 0 %>
+
         <%= f.fields_for :generic_car_images do |generic_car_images| %>
           <%= render 'generic_car_image_fields', :f => generic_car_images %>
         <% end %>
@@ -62,5 +64,5 @@
       </div>
     </div>
   </div>
-  <%= f.submit nil,  class: "btn btn-primary pull-right" %>
+  <%= f.submit "Guardar Coche", class: "btn btn-primary pull-right" %>
   <% end %>

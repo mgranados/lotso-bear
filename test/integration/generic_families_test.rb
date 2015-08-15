@@ -6,7 +6,6 @@ class GenericFamiliesTest < ActionDispatch::IntegrationTest
     @generic_family = generic_families(:faro_cromado)
     @number_of_spares = 2
     Capybara.current_driver = :webkit
-
   end
 
   test "add a new family without spares" do
@@ -83,6 +82,7 @@ class GenericFamiliesTest < ActionDispatch::IntegrationTest
     #hascontent exito
     assert has_content?("Guardado con éxito")
   end
+
   test "assign additional spare to a family, save without changes" do
     assert_no_difference "GenericSpare.count" do
       #http://localhost:3000/generic_cars
@@ -132,7 +132,7 @@ class GenericFamiliesTest < ActionDispatch::IntegrationTest
       #has content el codigo FC-01 en el listado
       assert has_content?("Guardado con éxito")
     end
-  end 
+  end
 
 
 
@@ -149,6 +149,5 @@ class GenericFamiliesTest < ActionDispatch::IntegrationTest
     assert has_content?('ADMINISTRACIÓN DE PRECIOS')
     assert has_content?('Asignar precio')
   end
-
 
 end
