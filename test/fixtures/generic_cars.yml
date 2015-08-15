@@ -7,14 +7,22 @@ corolla:
   model_acronym: corolla
   car_type: suv
   # generic_families: generic_1, generic_2, generic_3, generic_4, generic_5, generic_6, generic_7, generic_8, generic_9, generic_10
-
-
 corsa:
   number_of_generation: 2nd
   years: 2001-2004
   gen_continues: false
   model_acronym: corsa
   car_type: suv
+
+chevy:
+  first_generation_year: 2005
+  last_generation_year: 2015
+  number_of_generation: 1er
+  years: 2005-2015
+  gen_continues: true
+  model_acronym: corolla
+  car_type: suv
+
 
 <% for i in 1..500 %>
 <%= i %>:
@@ -24,4 +32,3 @@ corsa:
   model_acronym: corsa
   car_type: sedan
 <% end %>
-
