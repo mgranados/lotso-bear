@@ -9,8 +9,10 @@
 		</div>
 		<div class="col-md-4">
 			<div class="form-group">
-				<%= f.label :years %>
-				<%= f.text_field :years , class:'form-control'%><br>
+				<%= f.label :years, "Años" , class:"añitos"%>
+				<%= f.text_field :years , class:'form-control'%>
+				<%= label_tag "continua", "Generación continúa"%>
+				<%= check_box_tag "continua" %><br>
 			</div>
 		</div>
 		<div class="col-md-4">
@@ -49,5 +51,20 @@
 		$("#creator2").click(function() {
 		$("#family_members").append('<div id="tuple_'+contador+'" class="form-group"><div class="col-md-6"><label>Nombre</label><input class="form-control input-capitalize" id="generic_family_spare_likelihoods_attributes_'+contador+'_generic_spare_attributes_name" name="generic_family[spare_likelihoods_attributes]['+contador+'][generic_spare_attributes][name]" type="text"></div><div class="col-md-6"><label>Código</label><input class="form-control" id="generic_family_spare_likelihoods_attributes_'+contador+'_generic_spare_attributes_code" name="generic_family[spare_likelihoods_attributes]['+contador+'][generic_spare_attributes][code]" type="text"></div></div>');
 			contador+=1
+		});
+
+		$(function() {
+			vals = $("#generic_family_years").val();
+			$('#continua').click(function () {
+				if($("#continua").is(':checked')){
+					$("#generic_family_years").mask("0999");
+					$(".añitos").html("Año inicial (-Año Vigente)");
+				}
+				else{
+					$("#generic_family_years").mask("0999-0999");
+					$(".añitos").html("Años");
+				}
+			});
+			$("#generic_family_years").val(vals);
 		});
 </script>
