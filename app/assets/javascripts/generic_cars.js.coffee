@@ -19,7 +19,7 @@ $ ->
 
   $("#generic_car_years").val(val)
 
-  # Function that togles the class after gen_continues checkbox is selected, when loading the view for the first time
+  # Function that toggles the class after gen_continues checkbox is selected, when loading the view for the first time
   $("#generic_car_last_generation_year").toggleClass 'check' if $("#generic_car_gen_continues").is(":checked")
 
 

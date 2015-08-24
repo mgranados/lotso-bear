@@ -27,10 +27,6 @@ gem "cocoon"
 gem 'jquery-rails'
 gem 'jquery-fileupload-rails'
 gem 'twitter-bootstrap-rails'
-gem 'turn'
-
-# DataShift
-gem "datashift"
 
 #Input Mask
 gem 'maskedinput-rails'
@@ -50,23 +46,21 @@ gem 'sass-rails', '~> 4.0.2'
 gem 'rails-i18n', '~> 4.0.0'
 #Null Database Fields
 gem "nilify_blanks"
-
 gem 'pg', '0.15.1'
-gem 'poltergeist'
-
-gem 'passenger'
 gem 'rubyzip', '1.1'
 
 group :development, :test do
   gem 'railroady'
-
+  gem 'turn'
   gem 'spork-rails', '4.0.0'
   gem 'faker'
   gem 'shoulda-matchers'
+  gem 'passenger'
+  gem 'poltergeist'
 end
 
 group :production do
-  gem 'rails_12factor', '0.0.2'
+  gem 'rails_12factor'
 end
 
 group :doc do
@@ -81,8 +75,4 @@ end
 
 group :assets do
   gem 'less-rails'
-
-  # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-  gem 'therubyracer', :platforms => :ruby
-
 end

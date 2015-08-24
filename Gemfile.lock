@@ -54,9 +54,6 @@ GEM
       execjs
     coffee-script-source (1.9.1.1)
     commonjs (0.2.7)
-    datashift (0.15.0)
-      rubyzip
-      spreadsheet
     erubis (2.7.0)
     execjs (2.5.2)
     factory_girl (4.2.0)
@@ -99,7 +96,6 @@ GEM
       less (~> 2.6.0)
       sprockets (> 2, < 4)
       tilt
-    libv8 (3.16.14.7)
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
@@ -171,11 +167,9 @@ GEM
     rake (10.4.2)
     rdoc (4.2.0)
       json (~> 1.4)
-    ref (1.0.5)
     roo (2.1.1)
       nokogiri (~> 1)
       rubyzip (~> 1.1, < 2.0.0)
-    ruby-ole (1.2.11.8)
     rubyzip (1.1.0)
     sass (3.2.19)
     sass-rails (4.0.5)
@@ -192,8 +186,6 @@ GEM
     spork-rails (4.0.0)
       rails (>= 3.0.0, < 5)
       spork (>= 1.0rc0)
-    spreadsheet (1.0.4)
-      ruby-ole (>= 1.0)
     sprockets (2.11.0)
       hike (~> 1.2)
       multi_json (~> 1.0)
@@ -203,9 +195,6 @@ GEM
       actionpack (>= 3.0)
       activesupport (>= 3.0)
       sprockets (~> 2.8)
-    therubyracer (0.12.2)
-      libv8 (~> 3.16.14.0)
-      ref
     thor (0.19.1)
     thread_safe (0.3.5)
     tilt (1.4.1)
@@ -244,7 +233,6 @@ DEPENDENCIES
   chunky_png
   cocoon
   coffee-rails (~> 4.0.0)
-  datashift
   factory_girl_rails (= 4.2.0)
   faker
   jbuilder (~> 1.2)
@@ -267,7 +255,7 @@ DEPENDENCIES
   railroady
   rails (= 4.0.5)
   rails-i18n (~> 4.0.0)
-  rails_12factor (= 0.0.2)
+  rails_12factor
   roo (~> 2.1.0)
   rubyzip (= 1.1)
   sass-rails (~> 4.0.2)
@@ -275,7 +263,6 @@ DEPENDENCIES
   shoulda-matchers
   spork-rails (= 4.0.0)
   sprockets (= 2.11.0)
-  therubyracer
   turbolinks
   turn
   twitter-bootstrap-rails
