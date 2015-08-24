@@ -18,9 +18,11 @@ class GenericCar < ActiveRecord::Base
   accepts_nested_attributes_for :model_acronym
 
   has_many :family_likelihoods, dependent: :destroy
-  has_many :generic_families, through: :family_likelihoods, dependent: :destroy
+  has_many :generic_families, -> { order 'code' }, through: :family_likelihoods, dependent: :destroy
 
-  accepts_nested_attributes_for :family_likelihoods
+  accepts_nested_attributes_for :family_likelihoods,:reject_if => :all_blank
+  accepts_nested_attributes_for :generic_families
+  
   accepts_nested_attributes_for :model_acronym
   accepts_nested_attributes_for :car_type
 

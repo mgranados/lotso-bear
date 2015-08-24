@@ -16,31 +16,54 @@
 
 
 <h2>Familias Con Precios Asignados</h2>
-<table class="table">
+<table id="family">
 	<thead>
-		<th>Modelo</th>
-		<th>Familia</th>
-		<th>Código Interno</th>
-		<th>Código Proveedor</th>
-		<th>Precio</th>
-		<th></th>
+	<th></th>
+    <th>Nombre</th>
+    <th>Codigo Interno</th>
+    <th>Años</th>
+    <th>Codigo Proveedor</th>
+    <th>Precio</th>
+    <th>Cantidad Minima</th>
+    <th>Resurtir</th>
 	</thead>
 	<tbody>
     <% @generic_car.generic_families.each do |generic_family| %>
-      <% supplier_code = generic_family.supplier_codes.select { |x| x.generic_family_id == generic_family.id }.first %>
-
-
+      <% supplier_code = generic_family.supplier_codes.where(supplier_id: @supplier.id).first %>
   			<tr>
-  				<td><%= generic_family.generic_cars.first.model_acronym.model %></td>
+  				<td><button id="generic_family.code" class="btn btn-info">Piezas</button></td>
 				<td><%= generic_family.name %></td>
 				<td><%= generic_family.code %></td>
+				<td><%= generic_family.years %></td>
       			<td><% unless supplier_code.blank? %><%= supplier_code.code %><% end %></td>
       			<td><% unless supplier_code.blank? %><%= supplier_code.price %><% end %></td>
+      			<td></td>
+      			<td></td>
 			</tr>
+    <% generic_family.generic_spares.each do |generic_spare| %>
+      <% supplier_code = generic_spare.spare_supplier_codes.where(supplier_id: @supplier.id).first %>
+    <tr class="">
+      <td></td>
+      <td><%= generic_spare.name %></td>
+      <td><%= generic_spare.code %></td>
+      <td>Años</td>
+      <td><% unless supplier_code.blank? %><%= supplier_code.code %><% end %></td>
+      <td><% unless supplier_code.blank? %><%= supplier_code.price %><% end %></td>
+      <td>cantidad minima</td>
+      <td>Resurtir</td>
+    </tr>
+    <% end %>
 		<% end %>
 	</tbody>
 </table>
 
+
+<script type="text/javascript">
+  $('#family').DataTable({
+  	"aaSorting": [[ 2, "asc" ]] // Sort by first column descending
+  });
+
+</script>
 
 
 

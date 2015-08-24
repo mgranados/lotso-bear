@@ -21,13 +21,12 @@ class GenericFamiliesController < ApplicationController
   end
 
   def update
+    @generic_car = GenericCar.find_by_id(params[:generic_family][:generic_car_id])
     respond_to do |format|
       if @generic_family.update(required_params)
-        format.html { redirect_to generic_cars_path, notice: 'Guardado con éxito' }
-        format.json { render :show, status: :ok, location: @generic_family }
+        format.html { redirect_to assignation_generic_car_path( @generic_car.id ), notice: 'Guardado con éxito' }
       else
         format.html { render :edit }
-        format.json { render json: @generic_family.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -77,6 +76,7 @@ class GenericFamiliesController < ApplicationController
   end
 
   def edit
+    @generic_car = GenericCar.find_by_id(params[:generic_car_id])
   end
 
   def destroy
@@ -111,7 +111,7 @@ class GenericFamiliesController < ApplicationController
 
   private
     def required_params
-      params.require(:generic_family).permit(:code,:name, :years, {:types => []},{:family_ids => []} ,spare_likelihoods_attributes:[:id, :generic_family_id, :generic_spare_id, generic_spare_attributes:[:id, :name,:code, :_destroy]])
+      params.require(:generic_family).permit(:generic_car_id,:code,:name, :years, {:types => []},{:family_ids => []} ,spare_likelihoods_attributes:[:id, :generic_family_id, :generic_spare_id, :_destroy, generic_spare_attributes:[:id, :name,:code, :_destroy]])
     end
 
     def set_family

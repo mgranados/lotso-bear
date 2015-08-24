@@ -35,15 +35,14 @@
     def download_template
       @supplier = Supplier.find_by_id(params[:supplier])
       @generic_car = GenericCar.find_by_id(params[:generic_car])
-
-
-        respond_to do |format|
-            format.xls 
-        end
+      respond_to do |format|
+        headers["Content-Disposition"] = "attachment; filename=\"#{@supplier.name}_#{@generic_car.model_acronym.model}_#{@generic_car.first_generation_year}__#{@generic_car.last_generation_year}.xls\"" 
+        format.xls 
+      end
     end
 
     def import
-      SupplierCode.import(params[:file])
+      Supplier.import(params[:file])
       flash[:success] = "Datos Importados con Exíto"
       supplier = Supplier.find_by_id(params[:supplier])
       generic_car = GenericCar.find_by_id(params[:generic_car])

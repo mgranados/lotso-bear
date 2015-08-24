@@ -5,7 +5,7 @@ class GenericFamily < ActiveRecord::Base
   belongs_to :father, class_name: 'GenericFamily'
 
   has_many :spare_likelihoods, dependent: :destroy
-  has_many :generic_spares, through: :spare_likelihoods, dependent: :destroy
+  has_many :generic_spares, -> { order 'code' }, through: :spare_likelihoods, dependent: :destroy
 
   has_many :stock_families, dependent: :destroy
 
@@ -18,11 +18,22 @@ class GenericFamily < ActiveRecord::Base
   has_many :suppliers, through: :supplier_codes
   has_many :supplier_codes, dependent: :destroy
 
-  accepts_nested_attributes_for :spare_likelihoods
+  accepts_nested_attributes_for :generic_spares
+  accepts_nested_attributes_for :spare_likelihoods, allow_destroy: true
 
   validates :name, presence: :true
   validates :code, presence: :true
+  attr_accessor :generic_car_id
 
+  after_save :delete_empty_spare_likelihoods
+            
+  def delete_empty_spare_likelihoods
+    spare_likelihoods.each do |spare_likelihood|
+      if spare_likelihood.generic_family_id.blank? or spare_likelihood.generic_spare_id.blank?
+        spare_likelihood.delete
+      end
+    end
+  end
 # Clones of a generic_families to all the generic_cars that have the same car_type as the parameter. 
 # Params:
 # +type_likelihood+:: +TypeLikelihood+ object from which to extract the generic family and car_type

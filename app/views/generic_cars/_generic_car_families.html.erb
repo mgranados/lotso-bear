@@ -16,8 +16,8 @@
         <td><input value="Spares" type="button" id="hidden_<%=spares_to_hide%>" class="hide_spares"/></td>
         <td><%= generic_family.name %></td>
         <td><%= generic_family.code %></td>
-        <td><%= link_to "Crear Variante", variant_generic_family_path(generic_family, @generic_car) %></td>
-        <td><%= link_to "Editar Familia", edit_generic_family_path(generic_family) %></td>
+        <td><%= link_to "Crear Variante", variant_generic_family_path(generic_family, @generic_car), class: 'btn btn-info' %></td>
+        <td><%= link_to "Editar Familia", edit_generic_family_path(generic_family, @generic_car), class: 'btn btn-info' %></td>
       </tr>
 
           <% generic_family.generic_spares.each do |spare| %>

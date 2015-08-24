@@ -1,23 +1,40 @@
+<meta charset="UTF-8">
 <table>
   <thead>
   <tr>
-    <th>ID</th>
     <th>Nombre</th>
     <th>Codigo Interno</th>
+    <th>Años</th>
     <th>Codigo Proveedor</th>
     <th>Precio</th>
+    <th>Cantidad Minima</th>
+    <th>Resurtir</th>
   </tr>
   </thead>
   <tbody>
     <% @generic_car.generic_families.each do |generic_family| %>
-      <% supplier_code = generic_family.supplier_codes.select { |x| x.generic_family_id == generic_family.id }.first %>
+      <% supplier_code = generic_family.supplier_codes.where(supplier_id: @supplier.id).first %>
     <tr>
-      <td><%= generic_family.id %>/<%= @supplier.id %></td>
-      <td><%= generic_family.name %></td>
+      <th><%= generic_family.name %></th>
       <td><%= generic_family.code %></td>
+      <td><%= generic_family.years %></td>
       <td><% unless supplier_code.blank? %><%= supplier_code.code %><% end %></td>
       <td><% unless supplier_code.blank? %><%= supplier_code.price %><% end %></td>
+      <td></td>
+      <td></td>
     </tr>
+    <% generic_family.generic_spares.each do |generic_spare| %>
+      <% supplier_code = generic_spare.spare_supplier_codes.where(supplier_id: @supplier.id).first %>
+    <tr>
+      <td><%= generic_spare.name %></td>
+      <td><%= generic_spare.code %></td>
+      <td></td>
+      <td><% unless supplier_code.blank? %><%= supplier_code.code %><% end %></td>
+      <td><% unless supplier_code.blank? %><%= supplier_code.price %><% end %></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <% end %>
     <% end %>
   </tbody>
 </table>

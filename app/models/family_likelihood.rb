@@ -5,8 +5,7 @@ class FamilyLikelihood < ActiveRecord::Base
 
   validates :generic_family_id, uniqueness: {scope: :generic_car_id}
 
-  accepts_nested_attributes_for :generic_family
-
+  accepts_nested_attributes_for :generic_family, :reject_if => :all_blank
 
   def self.dedupe
   grouped = all.group_by{|family| [family.generic_family_id,family.generic_car_id] }

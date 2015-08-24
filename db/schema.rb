@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150720233201) do
+ActiveRecord::Schema.define(version: 20150820191149) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -232,6 +232,15 @@ ActiveRecord::Schema.define(version: 20150720233201) do
   create_table "spare_likelihoods", force: true do |t|
     t.integer  "generic_spare_id"
     t.integer  "generic_family_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "spare_supplier_codes", force: true do |t|
+    t.integer  "generic_spare_id"
+    t.integer  "supplier_id"
+    t.string   "code"
+    t.integer  "price_centavos"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

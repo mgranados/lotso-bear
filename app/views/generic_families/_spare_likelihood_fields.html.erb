@@ -1,0 +1,9 @@
+<div class="col-md-12 nested-fields spare_likelihoods">
+	<%= f.fields_for :generic_spare do | spare | %>
+		<%= render 'generic_spare_fields', :f => spare %>
+	<% end %>
+	<div class="col-md-3">
+		<label>Quitar Pieza</label><br>
+		<%= link_to_remove_association "X", f , class: 'btn btn-danger' %>
+	</div>
+</div>
