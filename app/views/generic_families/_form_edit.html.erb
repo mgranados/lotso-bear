@@ -54,12 +54,6 @@
 <% end %>
 
 <script type="text/javascript">
-		contador = 500
-		$("#creator2").click(function() {
-		$("#family_members").append('<div id="tuple_'+contador+'" class="form-group"><div class="col-md-6"><label>Nombre</label><input class="form-control input-capitalize" id="generic_family_spare_likelihoods_attributes_'+contador+'_generic_spare_attributes_name" name="generic_family[spare_likelihoods_attributes]['+contador+'][generic_spare_attributes][name]" type="text"></div><div class="col-md-6"><label>Código</label><input class="form-control" id="generic_family_spare_likelihoods_attributes_'+contador+'_generic_spare_attributes_code" name="generic_family[spare_likelihoods_attributes]['+contador+'][generic_spare_attributes][code]" type="text"></div></div>');
-			contador+=1
-		});
-
 		$(function() {
 			vals = $("#generic_family_years").val();
 			$('#continua').click(function () {

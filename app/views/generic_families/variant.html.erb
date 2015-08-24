@@ -1,8 +1,20 @@
 <%= form_for @generic_family, :url => create_variant_stock_family_path do |f| %>
-	<h1>Crear Variante</h1>
-	<%= f.submit "Guardar Variante",class:"btn btn-primary" %>
+<h2>Crear Variante</h2>
+<% if @generic_family.errors.any? %>
+  <div class="alert alert-danger">
+    <ul>
+      <% @generic_family.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+	<%= f.hidden_field :generic_car_id, value: @generic_car.id%><br>
 
-	<%= hidden_field_tag :generic_car_id, @generic_car.id %>
+
+	<%= f.submit 'Guardar Variante',class:"btn btn-primary" %>
+	<%= f.hidden_field :generic_car_id, value: @generic_car.id%><br>
+
 	<div class="row">
 		<div class="col-md-4">
 			<div class="form-group">
@@ -26,36 +38,24 @@
 		</div>
 	</div>
 	<div class="row">
-		<h2>Piezas</h2>
-		<div class="col-md-12">
-			<%= link_to "Agregar Pieza", "#", id: "creator3"%>
-		</div>
-		<div id="family_members">
-			<%= f.fields_for :spare_likelihoods do | likelihood | %>
-				<%= likelihood.fields_for :generic_spare do | spare | %>
-					<div class="form-group">
-						<div class="col-md-6">
-							<%= spare.label :name %>
-							<%= spare.text_field :name, class:'form-control' %>
-						</div>
-						<div class="col-md-6">
-							<%= spare.label :code %>
-							<%= spare.text_field :code, class:'form-control' %>
-						</div>
-					</div>
+		<div id="generic_spares">
+			<h2>Piezas</h2>
+			<div id="fields">
+				<%= f.fields_for :spare_likelihoods do | likelihood | %>
+		      		<%= render 'spare_likelihood_fields', :f => likelihood %>
 				<% end %>
-			<% end %>
+			</div>
+			<div class="links">
+			
+<%= link_to_add_association 'Añadir Pieza', f, :spare_likelihoods,
+    'data-association-insertion-node' => "#fields",
+    'data-association-insertion-method' => "append",
+    :wrap_object => Proc.new {|likelihood| likelihood.build_generic_spare; likelihood }, class: "btn btn-info" %>			</div>
 		</div>
 	</div>
 <% end %>
 
 <script type="text/javascript">
-		contador = 500
-		$("#creator3").click(function() {
-			$("#family_members").append('<div class="form-group"><div class="col-md-6"><label>Nombre</label><input class="form-control input-capitalize" id="generic_family_spare_likelihoods_attributes_'+contador+'_generic_spare_attributes_name" name="generic_family[spare_likelihoods_attributes]['+contador+'][generic_spare_attributes][name]" type="text"></div><div class="col-md-6"><label>Código</label><input class="form-control" id="generic_family_spare_likelihoods_attributes_'+contador+'_generic_spare_attributes_code" name="generic_family[spare_likelihoods_attributes]['+contador+'][generic_spare_attributes][code]" type="text"></div></div>');
-			contador+=1
-		});
-
 		$(function() {
 			vals = $("#generic_family_years").val();
 			$('#continua').click(function () {

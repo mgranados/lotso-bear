@@ -49,7 +49,7 @@ class GenericFamiliesController < ApplicationController
   end
 
   def create_variant
-    @generic_car = GenericCar.find_by_id(params[:generic_car_id])
+    @generic_car = GenericCar.find_by_id(params[:generic_family][:generic_car_id])
     @generic_family = GenericFamily.new(required_params)
     @generic_car.generic_families << @generic_family
     if @generic_car.save!
