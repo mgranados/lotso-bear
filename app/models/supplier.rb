@@ -16,41 +16,74 @@ class Supplier < ActiveRecord::Base
 
 	validates :name, :supplier_type_id, presence: true
 
-  def self.import(file)
-  	spreadsheet = open_spreadsheet(file)
-  	header = spreadsheet.row(1)
-  	 (2..spreadsheet.last_row).each do |i|
-      row = spreadsheet.row(i)
-      supplier_family_code = row[0].split("/")
-  		supplier_code_tuple = {generic_family_id: supplier_family_code[0], supplier_id: supplier_family_code[1], price_centavos: row[4], code: row[3]} 
-      supplier_code = SupplierCode.where(supplier_id: supplier_code_tuple[:supplier_id], generic_family_id:supplier_code_tuple[:generic_family_id]).first_or_initialize
-      supplier_code.price = supplier_code_tuple[:price_centavos]
-      supplier_code.code = supplier_code_tuple[:code]
-      begin
-        supplier_code.save!
-      rescue Exception => error
-        next
-      end
-    end
-  end
-  def import(file)
-  	spreadsheet = open_spreadsheet(file)
-  	header = spreadsheet.row(1)
-  	 (2..spreadsheet.last_row).each do |i|
-      row = spreadsheet.row(i)
-      puts row
+  # def self.import(file)
+  # 	spreadsheet = open_spreadsheet(file)
+  # 	header = spreadsheet.row(1)
+  # 	 (2..spreadsheet.last_row).each do |i|
+  #     row = spreadsheet.row(i)
+  #     supplier_family_code = row[0].split("/")
+  # 		supplier_code_tuple = {generic_family_id: supplier_family_code[0], supplier_id: supplier_family_code[1], price_centavos: row[4], code: row[3]} 
+  #     supplier_code = SupplierCode.where(supplier_id: supplier_code_tuple[:supplier_id], generic_family_id:supplier_code_tuple[:generic_family_id]).first_or_initialize
+  #     supplier_code.price = supplier_code_tuple[:price_centavos]
+  #     supplier_code.code = supplier_code_tuple[:code]
+  #     begin
+  #       supplier_code.save!
+  #     rescue Exception => error
+  #       next
+  #     end
+  #   end
+  # end
 
-		  # 		supplier_code_tuple = {generic_family_id: supplier_family_code[0], supplier_id: supplier_family_code[1], price_centavos: row[4], code: row[3]} 
-    #   supplier_code = SupplierCode.where(supplier_id: supplier_code_tuple[:supplier_id], generic_family_id:supplier_code_tuple[:generic_family_id]).first_or_initialize
-    #   supplier_code.price = supplier_code_tuple[:price_centavos]
-    #   supplier_code.code = supplier_code_tuple[:code]
-    #   begin
-    #     supplier_code.save!
-    #   rescue Exception => error
-    #     next
-    #   end
-    # end
-  end
+  def import(file, generic_car)
+  	spreadsheet = Supplier.open_spreadsheet(file)
+  	header = spreadsheet.row(1)
+  	 (2..spreadsheet.last_row).each do |i|
+        row = spreadsheet.row(i)
+        puts "Spare-yeag"
+
+        if row[7].downcase == 'si' or row[7].downcase == "sí"
+          restock = true
+        else
+          restock = false
+        end
+        row[0].split('/')[0] == 'F'? isFamily = true : isFamily = false
+
+    		supplier_code_tuple = {id:row[0].split('/')[1],interior_code: row[2], exterior_code:row[4], years: row[3], price_centavos: row[5], minimum_qty: row[6], restock: restock } 
+        puts supplier_code_tuple
+
+        if isFamily
+          begin
+            generic_family = GenericFamily.find_by_id(supplier_code_tuple[:id])
+            generic_family.years = supplier_code_tuple[:years]
+            generic_family.minimum_quantity = supplier_code_tuple[:minimum_qty]
+            generic_family.restock = supplier_code_tuple[:restock]
+            generic_family.save!
+          rescue
+            next
+          end
+          supplier_code = SupplierCode.where(supplier_id: self.id, generic_family_id:supplier_code_tuple[:id]).first_or_initialize
+          supplier_code.price = supplier_code_tuple[:price_centavos]
+          supplier_code.code = supplier_code_tuple[:exterior_code]
+        else
+          begin
+            generic_spare = GenericSpare.find_by_id(supplier_code_tuple[:id])
+            generic_spare.years = supplier_code_tuple[:years]
+            generic_spare.minimum_quantity = supplier_code_tuple[:minimum_qty]
+            generic_spare.restock = supplier_code_tuple[:restock]
+            generic_spare.save!
+          rescue
+            next
+          end
+          supplier_code = SpareSupplierCode.where(supplier_id: self.id, generic_spare_id:supplier_code_tuple[:id]).first_or_initialize
+          supplier_code.price = supplier_code_tuple[:price_centavos]
+          supplier_code.code = supplier_code_tuple[:exterior_code]
+        end
+           begin
+            supplier_code.save!
+          rescue Exception => error
+            next
+          end
+      end
   end
 
 

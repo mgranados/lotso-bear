@@ -42,10 +42,11 @@
     end
 
     def import
-      Supplier.import(params[:file])
-      flash[:success] = "Datos Importados con Exíto"
       supplier = Supplier.find_by_id(params[:supplier])
       generic_car = GenericCar.find_by_id(params[:generic_car])
+      supplier.import(params[:file],generic_car)
+      flash[:success] = "Datos Importados con Exíto"
+
       redirect_to add_codes_supplier_path(supplier,generic_car)
     end
 

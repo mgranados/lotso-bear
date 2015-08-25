@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150820191149) do
+ActiveRecord::Schema.define(version: 20150825011530) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -106,6 +106,8 @@ ActiveRecord::Schema.define(version: 20150820191149) do
     t.integer  "father_id"
     t.boolean  "active"
     t.string   "years"
+    t.integer  "minimum_quantity"
+    t.boolean  "restock"
   end
 
   create_table "generic_fittables", force: true do |t|
@@ -131,6 +133,9 @@ ActiveRecord::Schema.define(version: 20150820191149) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "father_id"
+    t.integer  "minimum_quantity"
+    t.boolean  "restock"
+    t.string   "years"
   end
 
   create_table "insureds", force: true do |t|

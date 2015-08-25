@@ -37,8 +37,8 @@
 				<td><%= generic_family.years %></td>
       			<td><% unless supplier_code.blank? %><%= supplier_code.code %><% end %></td>
       			<td><% unless supplier_code.blank? %><%= supplier_code.price %><% end %></td>
-      			<td></td>
-      			<td></td>
+        <td><%= generic_family.minimum_quantity %></td>
+        <td><% if generic_family.restock %>Sí <% else %>No<% end %></td>
 			</tr>
     <% generic_family.generic_spares.each do |generic_spare| %>
       <% supplier_code = generic_spare.spare_supplier_codes.where(supplier_id: @supplier.id).first %>
@@ -46,11 +46,11 @@
       <td></td>
       <td><%= generic_spare.name %></td>
       <td><%= generic_spare.code %></td>
-      <td>Años</td>
+      <td><%= generic_spare.years %></td>
       <td><% unless supplier_code.blank? %><%= supplier_code.code %><% end %></td>
       <td><% unless supplier_code.blank? %><%= supplier_code.price %><% end %></td>
-      <td>cantidad minima</td>
-      <td>Resurtir</td>
+        <td><%= generic_spare.minimum_quantity %></td>
+        <td><% if generic_spare.restock %>Sí <% else %>No<% end %></td>
     </tr>
     <% end %>
 		<% end %>
