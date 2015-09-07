@@ -16,6 +16,11 @@ class GenericCarsController < ApplicationController
 
   def index
     @generic_cars = GenericCar.all
+
+    # respond_to do |format|
+    #   format.html
+    #   format.json { render json: ::GenericCarsDatatable.new(view_context) }
+    # end
   end
 
   def update_generation

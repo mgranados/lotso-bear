@@ -38,6 +38,9 @@ gem 'barby'
 gem 'jquery-datatables-rails', '~> 3.3.0'
 gem 'jquery-ui-rails'
 
+# Pagination
+gem 'will_paginate'
+
 #Style
 gem 'sprockets', '2.11.0'
 gem 'sass-rails', '~> 4.0.2'

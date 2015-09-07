@@ -40,8 +40,6 @@ $ ->
   $("#generic_car_brand_id").change ->
     $("#generic_car_model_acronym_attributes_brand_id").val $(this).val()
 
-  # Start DataTables
-  $('#genericCars').dataTable()
 
    #Coocon
   $("#generic_images a.add_fields").

@@ -18,6 +18,8 @@ class GenericFamily < ActiveRecord::Base
   has_many :suppliers, through: :supplier_codes
   has_many :supplier_codes, dependent: :destroy
 
+  has_many :generic_family_images
+
   accepts_nested_attributes_for :generic_spares
   accepts_nested_attributes_for :spare_likelihoods, allow_destroy: true
 
@@ -26,7 +28,7 @@ class GenericFamily < ActiveRecord::Base
   attr_accessor :generic_car_id
 
   after_save :delete_empty_spare_likelihoods
-            
+              
   def delete_empty_spare_likelihoods
     spare_likelihoods.each do |spare_likelihood|
       if spare_likelihood.generic_family_id.blank? or spare_likelihood.generic_spare_id.blank?

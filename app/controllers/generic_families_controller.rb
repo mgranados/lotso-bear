@@ -37,6 +37,7 @@ class GenericFamiliesController < ApplicationController
     generic_family_father = GenericFamily.find_by_id(params[:id])
     @generic_car = GenericCar.find_by_id(params[:generic_car_id])
     @generic_family = GenericFamily.new
+    @generic_family.father_id = generic_family_father.id
     @generic_family.name ||= generic_family_father.name
     @generic_family.code ||= generic_family_father.code
 

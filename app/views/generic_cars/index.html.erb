@@ -4,24 +4,23 @@
 
 
 
-<table id="genericCars">
+<table id="genericCars" data-source="<%= generic_cars_url(format:'json') %>">
   <thead>
     <tr>
       <th> Marca </th>
       <th> Modelo </th>
       <th> Generación </th>
       <th> Codigo</th>
-      <th>
-        Tipo
-      </th>
-      <th>Familias</th>
-      <th>Ver</th>
-      <th>Editar</th>
+      <th> Tipo </th>
+      <th> Familias </th>
+      <th> Ver </th>
+      <th> Editar </th>
       <th>Borrar</th>
     </tr>
   </thead>
   <tbody>
-<% for car in @generic_cars %>
+
+  <% for car in @generic_cars %>
     <tr>
       <td><%= car.model_acronym.brand.name %></td>
       <td><%= car.model_acronym.model %></td>
@@ -29,7 +28,7 @@
         <% if !car.gen_continues %>
           <%= car.last_generation_year %>
         <% else %>
-          <p>Año Actual</p>
+          <label style="font-size:12px">Año Actual</label>
         <% end %>
        </td>
       <td><%= car.code %></td>
@@ -42,5 +41,19 @@
       <td><%= link_to "Borrar", car, data: { confirm: "¿Seguro Que Deseas Borrarlo?"}, :method => :delete , class: "btn btn-primary"%></td>
     </tr>
   <% end %>
-</tbody>
+
+  </tbody>
 </table>
+
+<script type="text/javascript">
+  // Start DataTables
+  $('#genericCars').dataTable();
+  // {
+  //   "sPaginationType": "full_numbers",
+  //   'bProcessing': true,
+  //   'bServerSide': true,
+  //   'sAjaxSource': $('#genericCars').data('source')
+  // })
+
+</script>
+

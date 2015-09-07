@@ -1,24 +1,24 @@
 <h1>Añadir Codigos y Precios para <%= @supplier.name %> en <%= @generic_car.model_acronym.model %></h1>
-
 <div class="row">
-	<div class="col-md-6">
+	<div class="col-md-3">
 		<%= link_to "Descargar Template", download_template_path(@supplier, @generic_car, format: "xls"), class: "btn btn-info" %>
 	</div>
-	<div class="col-md-6">
-<%= form_tag import_suppliers_path(generic_car: @generic_car.id, supplier: @supplier.id), multipart: true do %>
-	<h3>Escoge un archivo y despues de click en importar</h3>
-  <%= file_field_tag :file %>
-  <br>
-  <%= submit_tag "Importar Archivo", class: "btn btn-primary" %>
-<% end %>
+  <div class="col-md-3">
+    <%= link_to "Importar Imagenes de Radec" %>
+  </div>
+	<div class="col-md-3">
+    <%= form_tag import_suppliers_path(generic_car: @generic_car.id, supplier: @supplier.id), multipart: true do %>
+    	<h3>Escoge un archivo y despues de click en importar</h3>
+      <%= file_field_tag :file %>
+      <br>
+      <%= submit_tag "Importar Archivo", class: "btn btn-primary" %>
+    <% end %>
 	</div>
 </div>
-
-
 <h2>Familias Con Precios Asignados</h2>
 <table id="family">
 	<thead>
-	<th></th>
+    <th></th>
     <th>Nombre</th>
     <th>Codigo Interno</th>
     <th>Años</th>
@@ -31,37 +31,50 @@
     <% @generic_car.generic_families.each do |generic_family| %>
       <% supplier_code = generic_family.supplier_codes.where(supplier_id: @supplier.id).first %>
   			<tr>
-  				<td><button id="generic_family.code" class="btn btn-info">Piezas</button></td>
-				<td><%= generic_family.name %></td>
-				<td><%= generic_family.code %></td>
-				<td><%= generic_family.years %></td>
-      			<td><% unless supplier_code.blank? %><%= supplier_code.code %><% end %></td>
-      			<td><% unless supplier_code.blank? %><%= supplier_code.price %><% end %></td>
-        <td><%= generic_family.minimum_quantity %></td>
-        <td><% if generic_family.restock %>Sí <% else %>No<% end %></td>
+    			<td class="details-control"><button id="generic_family.code" class="btn btn-info">Piezas</button></td>
+          <td><%= generic_family.name %></td>
+  				<td><%= generic_family.code %></td>
+  				<td><%= generic_family.years %></td>
+        	<td><% unless supplier_code.blank? %><%= supplier_code.code %><% end %></td>
+        	<td><% unless supplier_code.blank? %><%= supplier_code.price %><% end %></td>
+          <td><%= generic_family.minimum_quantity %></td>
+          <td><% if generic_family.restock %>Sí <% else %>No<% end %></td>
 			</tr>
-    <% generic_family.generic_spares.each do |generic_spare| %>
-      <% supplier_code = generic_spare.spare_supplier_codes.where(supplier_id: @supplier.id).first %>
-    <tr class="">
-      <td></td>
-      <td><%= generic_spare.name %></td>
-      <td><%= generic_spare.code %></td>
-      <td><%= generic_spare.years %></td>
-      <td><% unless supplier_code.blank? %><%= supplier_code.code %><% end %></td>
-      <td><% unless supplier_code.blank? %><%= supplier_code.price %><% end %></td>
-        <td><%= generic_spare.minimum_quantity %></td>
-        <td><% if generic_spare.restock %>Sí <% else %>No<% end %></td>
-    </tr>
-    <% end %>
 		<% end %>
 	</tbody>
 </table>
 
 
 <script type="text/javascript">
-  $('#family').DataTable({
+  var table = $('#family').DataTable({
   	"aaSorting": [[ 2, "asc" ]] // Sort by first column descending
   });
+
+      // Add event listener for opening and closing details
+    $('#family tbody').on('click', 'td.details-control', function () {
+        var id = $(this).attr('id')
+        var tr = $(this).closest('tr');
+        var row = table.row( tr );
+        if ( row.child.isShown() ) {
+            // This row is already open - close it
+            row.child.hide();
+            tr.removeClass('shown');
+        }
+        else {
+          row.child( "holi" ).show();
+          tr.addClass('shown');
+            // $.ajax({
+            //   url: "/get_code"
+            //   via: POST
+            //   data: {id: id}
+            //   sucess: function(response){
+            //     // funcion que le da formato
+            //     row.child( response.id ).show();
+            //     tr.addClass('shown');
+            //   }
+            // })
+        }
+    } );
 
 </script>
 
