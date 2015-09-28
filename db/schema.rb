@@ -16,25 +16,6 @@ ActiveRecord::Schema.define(version: 20150901233628) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "bills", force: true do |t|
-    t.string   "rfc"
-    t.string   "nombre"
-    t.string   "apellido_paterno"
-    t.string   "apellido_materno"
-    t.string   "numero_exterior"
-    t.string   "colonia"
-    t.string   "localidad"
-    t.string   "codigo_postal"
-    t.string   "calle"
-    t.string   "numero_interior"
-    t.string   "municipio"
-    t.string   "entidad_federal"
-    t.string   "correo"
-    t.string   "telefono"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "brands", force: true do |t|
     t.string   "name"
     t.string   "acronym"
@@ -310,8 +291,8 @@ ActiveRecord::Schema.define(version: 20150901233628) do
     t.string   "photo_content_type"
     t.integer  "photo_file_size"
     t.datetime "photo_updated_at"
-    t.integer  "stock_car_id"
     t.string   "color"
+    t.integer  "stock_car_id"
     t.integer  "shelf_id"
     t.integer  "entrance_price_centavos"
     t.string   "entrance_price_currency",  default: "MXN", null: false
