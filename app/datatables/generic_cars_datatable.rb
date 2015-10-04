@@ -36,7 +36,7 @@ private
   end
 
   def fetch_generic_cars
-    generic_cars = GenericCar.includes(model_acronym: :brand).order("#{sort_column} #{sort_direction}")
+    generic_cars = GenericCar.includes(:model_acronym).order("#{sort_column} #{sort_direction}")
     generic_cars = generic_cars.page(page).per_page(per_page)
     if params[:sSearch].present?
       generic_cars = generic_cars.where("model like :search", search: "%#{params[:sSearch].upcase}%")
