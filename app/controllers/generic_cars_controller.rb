@@ -76,6 +76,7 @@ class GenericCarsController < ApplicationController
       generic_family_ids.each do |id|
         generic_family = GenericFamily.find(id)
         generic_family_clone = generic_family.clone_generic_family_with_generic_spares
+        generic_family_clone.years = generic_car.formatted_year
         generic_car.generic_families << generic_family_clone
       end
     end

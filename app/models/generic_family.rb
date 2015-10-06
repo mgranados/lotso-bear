@@ -4,6 +4,9 @@ class GenericFamily < ActiveRecord::Base
   has_many :childs, class_name: 'GenericFamily', foreign_key: 'father_id'
   belongs_to :father, class_name: 'GenericFamily'
 
+  has_many :variants, class_name: 'GenericFamily', foreign_key: 'original_id'
+  belongs_to :original, class_name: 'GenericFamily'
+
   has_many :spare_likelihoods, dependent: :destroy
   has_many :generic_spares, -> { order 'code' }, through: :spare_likelihoods, dependent: :destroy
 
@@ -49,6 +52,7 @@ class GenericFamily < ActiveRecord::Base
       generic_cars.each do |generic_car|
         # Clone the family with generic spares
         clone = family.clone_generic_family_with_generic_spares
+        clone.years = generic_car.formatted_year
         unless clone.blank?
           # Relates the clone to a generic_car
           generic_car.generic_families << clone

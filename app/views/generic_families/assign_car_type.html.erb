@@ -7,21 +7,21 @@
 	        <tr>
 	            <th>Nombre Familia</th>
 	            <% @car_types.each do | type | %>
-	            	<th> <%= type.name %> <%= type.doors %></th>
+	            	<th><%= type.name %><%= type.doors %></th>
 	            <% end %>
 	        </tr>
 	    </thead>
 	    <tbody>
-		    	<tr>
-		           <td><%= @generic_family.name %></td>
-		           <% for type in @car_types do %>
-			           	<% if type.generic_families.select { |fam| fam.id == @generic_family.id}.include? @generic_family  %>
-			           		<td><%= check_box_tag 'family_ids[]', "#{@generic_family.id},#{type.id}", checked: true %></td>
-			           	<% else %>
-			           		<td><%= check_box_tag 'family_ids[]', "#{@generic_family.id},#{type.id}"%></td>
-			           	<% end %>
-		           <% end %>
-	 		  </tr>
+		    <tr>
+		        <td><%= @generic_family.name %></td>
+		        <% for type in @car_types do %>
+		           	<% if type.generic_families.select { |fam| fam.id == @generic_family.id}.include? @generic_family  %>
+		           		<td><%= check_box_tag 'family_ids[]', "#{@generic_family.id},#{type.id}", checked: true %></td>
+		           	<% else %>
+		           		<td><%= check_box_tag 'family_ids[]', "#{@generic_family.id},#{type.id}"%></td>
+		           	<% end %>
+	           	<% end %>
+	 		</tr>
     	</tbody>
 	</table>
 
@@ -30,9 +30,5 @@
 <% end %>
 
 <script type="text/javascript">
-
-$( document ).ready(function() {
 	$('#assignation_table').DataTable({});
-});
-
 </script>

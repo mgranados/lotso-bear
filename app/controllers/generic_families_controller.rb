@@ -34,14 +34,14 @@ class GenericFamiliesController < ApplicationController
 
 # <CREATE VARIANT>
   def variant
-    generic_family_father = GenericFamily.find_by_id(params[:id])
+    @generic_family_father = GenericFamily.find_by_id(params[:id])
     @generic_car = GenericCar.find_by_id(params[:generic_car_id])
     @generic_family = GenericFamily.new
-    @generic_family.father_id = generic_family_father.id
-    @generic_family.name ||= generic_family_father.name
-    @generic_family.code ||= generic_family_father.code
+    @generic_family.father_id = @generic_family_father.id
+    @generic_family.name ||= @generic_family_father.name
+    @generic_family.code ||= @generic_family_father.code
 
-    generic_family_father.generic_spares.each do |generic_spare|
+    @generic_family_father.generic_spares.each do |generic_spare|
       pre_build = @generic_family.spare_likelihoods.build
       build = pre_build.build_generic_spare
       build.name = generic_spare.name
@@ -50,12 +50,22 @@ class GenericFamiliesController < ApplicationController
   end
 
   def create_variant
-    @generic_car = GenericCar.find_by_id(params[:generic_family][:generic_car_id])
-    @generic_family = GenericFamily.new(required_params)
-    @generic_car.generic_families << @generic_family
+    @generic_car = GenericCar.find_by_id(params[:generic_car_id])
+    generic_family_father = GenericFamily.find_by_id(params[:generic_family_father])
+
+    variant_family = generic_family_father.clone_generic_family_with_generic_spares
+    variant_family.original_id = generic_family_father.id
+    variant_family.name ="#{variant_family.name}-#{params[:code]}" 
+    variant_family.code ="#{variant_family.code}-#{params[:code]}"
+    variant_family.years = params[:years]
+    variant_family.variant_comment = params[:comment]
+    variant_family.generic_spares.each do |generic_spare|
+      generic_spare.code = "#{generic_spare.code}-#{params[:code]}"
+    end
+    @generic_car.generic_families << variant_family
     if @generic_car.save!
       flash[:success] = "Guardado con éxito"
-      redirect_to assignation_generic_car_path(@generic_car)
+      redirect_to edit_generic_family_path(variant_family,@generic_car)
     end
   end
 # </CREATE VARIANT>
@@ -70,6 +80,7 @@ class GenericFamiliesController < ApplicationController
   end
 
   def show
+    @generic_car = GenericCar.find_by_id(params[:format])
   end
 
   def index
