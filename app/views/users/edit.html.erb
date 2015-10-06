@@ -3,6 +3,7 @@
 
 <div class="row">
   <div class="span6 offset3">
+
     <%= form_for(@user) do |f| %>
   <%= render 'shared/error_messages', model: @user %>
 
@@ -15,15 +16,12 @@
       <%= f.label :username %>
       <%= f.text_field :username %>
 
+      <%= f.label :clock_id, "ID Del Reloj Checador" %>
+      <%= f.text_field :clock_id %>
+
+
       <%= f.label :privileges %>
       <%= f.select(:privileges, ApplicationHelper::PRIVS) %>
-
-
-      <%= f.label :password %>
-      <%= f.password_field :password %>
-
-      <%= f.label :password_confirmation, "Confirmation" %>
-      <%= f.password_field :password_confirmation %>
 
       <%= f.submit "Dar de Alta Usuario", class: "btn btn-large btn-primary" %>
     <% end %>

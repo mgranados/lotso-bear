@@ -1,0 +1,47 @@
+<h1>Asistencias</h1>
+
+    <%= form_tag import_attendances_path, multipart: true do %>
+    	<h3>Escoge un archivo y despues de click en importar</h3>
+      <%= file_field_tag :file %>
+      <br>
+      <%= submit_tag "Importar Archivo", class: "btn btn-primary" %>
+    <% end %><h2>Usuarios registrados al reloj checador</h2>
+<table class="table">
+<thead>
+	<th>Nombre</th>
+	<th>Privilegios</th>
+	<th>ID Reloj Checador</th>
+	<th>Mes/Año</th>
+	<th>Minutos Tarde</th>
+	<th></th>
+</thead>
+<tbody>
+	<% @users_with_clock.each do |user| %>
+		<tr>
+			<td><%= user.name %></td>
+			<td><%= user.privileges %></td>
+			<td><%= user.clock_id %></td>
+			<td><%= "#{Date.today.month}/#{Date.today.year}" %></td>
+			<td><%= user.delay_this_month(Date.today.month, Date.today.year) %></td>
+			<td><%= link_to "Meses Anteriores", user_attendances_path(user) %></td>
+		</tr>
+	<% end %>
+</tbody>
+</table>
+<h2>Usuarios no registrados al reloj checador</h2>
+<table class="table">
+<thead>
+	<th>Nombre</th>
+	<th>Privilegios</th>
+	<th></th>
+</thead>
+<tbody>
+	<% @users_without_clock.each do |user| %>
+		<tr>
+			<td><%= user.name %></td>
+			<td><%= user.privileges %></td>
+			<td><%= link_to "Registrar ID", edit_user_path(user) %></td>
+		</tr>
+	<% end %>
+</tbody>
+</table>

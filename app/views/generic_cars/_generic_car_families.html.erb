@@ -5,6 +5,8 @@
     <th></th>
     <th>Nombre</th>
     <th>Codigo</th>
+    <th>Años</th>
+    <th>Ver</th>
     <th>Variante</th>
     <th>Editar</th>
   </thead>
@@ -16,7 +18,15 @@
         <td><input value="Spares" type="button" id="hidden_<%=spares_to_hide%>" class="hide_spares"/></td>
         <td><%= generic_family.name %></td>
         <td><%= generic_family.code %></td>
-        <td><%= link_to "Crear Variante", variant_generic_family_path(generic_family, @generic_car), class: 'btn btn-info' %></td>
+        <td><%= generic_family.years %></td>
+        <td><%= link_to "Ver", generic_family_path(generic_family, @generic_car), class: 'btn btn-info' %></td>
+        <td>
+          <% if generic_family.original.blank? %>
+            <%= link_to "Crear Variante", variant_generic_family_path(generic_family, @generic_car), class: 'btn btn-info' %>
+          <% else %>
+            <%= link_to "Ver Original", generic_family_path(generic_family.original, @generic_car), class: 'btn btn-info'%>
+          <% end %>
+        </td>
         <td><%= link_to "Editar Familia", edit_generic_family_path(generic_family, @generic_car), class: 'btn btn-info' %></td>
       </tr>
 

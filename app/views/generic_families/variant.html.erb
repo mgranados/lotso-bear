@@ -1,74 +1,164 @@
-<%= form_for @generic_family, :url => create_variant_stock_family_path do |f| %>
-<h2>Crear Variante</h2>
-<% if @generic_family.errors.any? %>
-  <div class="alert alert-danger">
-    <ul>
-      <% @generic_family.errors.full_messages.each do |msg| %>
-      <li><%= msg %></li>
-      <% end %>
-    </ul>
-  </div>
-<% end %>
-	<%= f.hidden_field :generic_car_id, value: @generic_car.id%><br>
-
-
-	<%= f.submit 'Guardar Variante',class:"btn btn-primary" %>
-	<%= f.hidden_field :generic_car_id, value: @generic_car.id%><br>
-
-	<div class="row">
-		<div class="col-md-4">
-			<div class="form-group">
-				<%= f.label :name %>
-				<%= f.text_field :name , class:'form-control'%><br>
-			</div>
+<%= form_tag create_variant_stock_family_path do %>
+	<% if @generic_family.errors.any? %>
+		<div class="alert alert-danger">
+			<ul>
+				<% @generic_family.errors.full_messages.each do |msg| %>
+					<li><%= msg %></li>
+				<% end %>
+			</ul>
 		</div>
-		<div class="col-md-4">
-			<div class="form-group">
-				<%= f.label :years, "Años" , class:"añitos" %>
-				<%= f.text_field :years , class:'form-control', value: @generic_car.formatted_year %>
-				<%= label_tag "continua", "Generación continúa"%>
-				<%= check_box_tag "continua" %><br>
+	<% end %>
+	<h1>Crear Variante</h1>
+
+	<h2>Información de la Pieza Original</h2>
+
+	<table class="table table-condensed">
+		<thead>
+			<tr>
+				<th>
+					<%= t(:name) %>
+				</th>
+				<th>
+					<%= t(:code) %>
+				</th>
+				<th>
+					<%= t(:years) %>
+				</th>
+				<th>
+					Numero de Piezas
+				</th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>
+					<%= @generic_family_father.name%>
+				</td>
+				<td>
+					<%= @generic_family_father.code%>
+				</td>
+				<td>
+					<%= @generic_family_father.years %>
+				</td>
+				<td>
+					<%= @generic_family_father.generic_spares.count%>
+				</td>
+				<td>
+					<button class="btn btn-info" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">Ver Piezas</button>
+				</td>
+			</tr>
+		</tbody>
+	</table> 
+
+	<div class="collapse" id="collapseExample">
+		<div class="row">
+			<div class="col-md-6">
+				<div class="well">
+					<table class="table table-condensed">
+						<thead>
+							<tr>
+								<th>
+									<%= t(:name) %>
+								</th>
+								<th>
+									<%= t(:code) %>
+								</th>
+							</tr>
+						</thead>
+						<tbody>
+							<% @generic_family_father.generic_spares.each do |spare| %>
+								<tr>
+									<td>
+										<%= spare.name%>
+									</td>
+									<td>
+										<%= spare.code%>
+									</td>
+								</tr>
+							<% end %>
+						</tbody>
+					</table> 				
+				</div>
 			</div>
-		</div>
-		<div class="col-md-4">
-			<div class="form-group">
-				<%= f.label :code %>
-				<%= f.text_field :code , class:'form-control'%>
-			</div>
+			<div class="col-md-6"></div>
 		</div>
 	</div>
 	<div class="row">
-		<div id="generic_spares">
-			<h2>Piezas</h2>
-			<div id="fields">
-				<%= f.fields_for :spare_likelihoods do | likelihood | %>
-		      		<%= render 'spare_likelihood_fields', :f => likelihood %>
-				<% end %>
-			</div>
-			<div class="links">
+		<div class="col-md-12">
+		<h2>Variantes</h2>
+			<table class="table table-condensed">
+				<thead>
+					<tr>
+						<th>
+						<%= t(:name) %>
+						</th>
+						<th>
+						<%= t(:code) %>
+						</th>
+						<th>Años</th>
+						<th>Comentario</th>
+						<th>
+						Número de Piezas
+						</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					<% @generic_family_father.variants.each do |variant| %>
+						<tr>
+							<td>
+							<%= variant.name%>
+							</td>
+							<td>
+							<%= variant.code%>
+							</td>
+							<td><%= variant.years %></td>
+							<td><%= variant.variant_comment %></td>
+							<td>
+							<%= variant.generic_spares.count%>
+							</td>
+						</tr>
+					<% end %>
+				</tbody>
+			</table> 
+		</div>
+	</div>
 
-<%= link_to_add_association 'Añadir Pieza', f, :spare_likelihoods,
-    'data-association-insertion-node' => "#fields",
-    'data-association-insertion-method' => "append",
-    :wrap_object => Proc.new {|likelihood| likelihood.build_generic_spare; likelihood }, class: "btn btn-info" %>			</div>
+	<%= hidden_field_tag :generic_family_father, @generic_family_father.id %>
+	<%= hidden_field_tag :generic_car_id, value: @generic_car.id%><br>
+	<%= submit_tag 'Guardar Variante',class:"btn btn-primary" %>
+	<%= hidden_field_tag :generic_car_id, @generic_car.id%><br>
+
+	<div class="row">
+		<div class="col-md-3">
+			<%= label_tag "Sub-Codigo" %>
+		    <%= text_field_tag :code, nil, class:"form-control" %>
+		</div>
+		<div class="col-md-3">
+			<%= label_tag "Años" %>
+		    <%= text_field_tag :years, nil, class:"form-control" %>
+		</div>
+		<div class="col-md-6">
+			<%= label_tag "Comentario" %>
+		    <%= text_area_tag :comment, nil, class:"form-control" %>
 		</div>
 	</div>
 <% end %>
 
 <script type="text/javascript">
-		$(function() {
-			vals = $("#generic_family_years").val();
-			$('#continua').click(function () {
-				if($("#continua").is(':checked')){
-					$("#generic_family_years").mask("0999");
-					$(".añitos").html("Año inicial (-Año Vigente)");
-				}
-				else{
-					$("#generic_family_years").mask("0999-0999");
-					$(".añitos").html("Años");
-				}
-			});
-			$("#generic_family_years").val(vals);
+	$(function() {
+		vals = $("#generic_family_years").val();
+		$('#continua').click(function () {
+			if($("#continua").is(':checked')){
+				$("#generic_family_years").mask("0999");
+				$(".añitos").html("Año inicial (-Año Vigente)");
+			}
+			else{
+				$("#generic_family_years").mask("0999-0999");
+				$(".añitos").html("Años");
+			}
 		});
-
+		$("#generic_family_years").val(vals);
+	});
 </script>

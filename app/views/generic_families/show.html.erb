@@ -1,5 +1,7 @@
 
 	<h2>Familia Generica </h2>
+
+  <%= link_to "Editar", edit_generic_family_path(@generic_family, @generic_car), class: 'btn btn-info' %>
    <table class="table table-condensed">
      <thead>
        <tr>
@@ -9,8 +11,9 @@
          <th>
            <%= t(:code) %>
          </th>
+         <th>Años</th>
          <th>
-           <%= t(:number_of_spares) %>
+            Número de Piezas
          </th>
          <th></th>
        </tr>
@@ -23,6 +26,7 @@
           <td>
             <%= @generic_family.code%>
           </td>
+          <td><%= @generic_family.years %></td>
           <td>
             <%= @generic_family.generic_spares.count%>
           </td>
@@ -58,3 +62,41 @@
         <% end %>
      </tbody>
    </table> 
+   <h2>Variantes</h2>
+
+    <table class="table table-condensed">
+     <thead>
+       <tr>
+         <th>
+           <%= t(:name) %>
+         </th>
+         <th>
+           <%= t(:code) %>
+         </th>
+         <th>Años</th>
+         <th>Comentario</th>
+         <th>
+            Número de Piezas
+         </th>
+         <th></th>
+       </tr>
+     </thead>
+     <tbody>
+          <% @generic_family.variants.each do |variant| %>
+            <tr>
+              <td>
+                <%= variant.name%>
+              </td>
+              <td>
+                <%= variant.code%>
+              </td>
+              <td><%= variant.years %></td>
+              <td><%= variant.variant_comment %></td>
+              <td>
+                <%= variant.generic_spares.count%>
+              </td>
+            </tr>
+          <% end %>
+     </tbody>
+   </table> 
+

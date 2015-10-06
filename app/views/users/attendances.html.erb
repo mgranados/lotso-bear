@@ -1,0 +1,18 @@
+<table class="table">
+		<thead>
+			<th>
+				Mes/Año
+			</th>
+			<th>
+				Minutos Tarde
+			</th>
+		</thead>
+		<tbody>
+		<% @user.delays.each do |delay|%>
+			<tr>
+				<td><%= "#{delay.month}/#{delay.year}" %></td>
+				<td><%= delay.minutes_late %></td>
+			</tr>
+		<% end %>
+		</tbody>
+</table>
