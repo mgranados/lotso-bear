@@ -96,6 +96,7 @@ LotsoBear::Application.routes.draw do
   post 'generic_families/create_variant', to: 'generic_families#create_variant', as: 'create_variant_stock_family'
   get 'generic_families/:id/variant/:generic_car_id', to: 'generic_families#variant', as: 'variant_generic_family'
   get 'generic_families/:id/edit/:generic_car_id', to: 'generic_families#edit', as: 'edit_generic_family'
+  get 'generic_families/remove/:id/', to: 'generic_families#destroy', as: 'delete_generic_family'
 
   resources :generic_families, only: [:index, :new, :create, :show, :destroy, :update] do
     collection do

@@ -28,6 +28,8 @@
           <% end %>
         </td>
         <td><%= link_to "Editar Familia", edit_generic_family_path(generic_family, @generic_car), class: 'btn btn-info' %></td>
+        <td><%= link_to "Borrar Familia", delete_generic_family_path(generic_family), class: 'btn btn-info' %></td>
+
       </tr>
 
           <% generic_family.generic_spares.each do |spare| %>
@@ -36,20 +38,19 @@
         <td><%= spare.name %></td>
         <td><%= spare.code %></td>
       </tr>
-    <% end %> 
+    <% end %>
 
-    
+
  <script type="text/javascript">
 
    $("#hidden_<%=spares_to_hide%>").on("click",function() {
 
       console.log(""+$(this).parent().parent().next().attr("class"));
       $("tr."+$(this).parent().parent().next().attr("class")).toggle();
-      
+
     });
 
-</script> 
+</script>
   <% end %>
 </tbody>
 </table>
-
