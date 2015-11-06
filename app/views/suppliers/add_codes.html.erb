@@ -4,7 +4,6 @@
 		<%= link_to "Descargar Template", download_template_path(@supplier, @generic_car, format: "xls"), class: "btn btn-info" %>
 	</div>
   <div class="col-md-3">
-    <%= link_to "Importar Imagenes de Radec" %>
   </div>
 	<div class="col-md-3">
     <%= form_tag import_suppliers_path(generic_car: @generic_car.id, supplier: @supplier.id), multipart: true do %>
