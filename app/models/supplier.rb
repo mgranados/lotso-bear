@@ -16,30 +16,12 @@ class Supplier < ActiveRecord::Base
 
 	validates :name, :supplier_type_id, presence: true
 
-  # def self.import(file)
-  # 	spreadsheet = open_spreadsheet(file)
-  # 	header = spreadsheet.row(1)
-  # 	 (2..spreadsheet.last_row).each do |i|
-  #     row = spreadsheet.row(i)
-  #     supplier_family_code = row[0].split("/")
-  # 		supplier_code_tuple = {generic_family_id: supplier_family_code[0], supplier_id: supplier_family_code[1], price_centavos: row[4], code: row[3]} 
-  #     supplier_code = SupplierCode.where(supplier_id: supplier_code_tuple[:supplier_id], generic_family_id:supplier_code_tuple[:generic_family_id]).first_or_initialize
-  #     supplier_code.price = supplier_code_tuple[:price_centavos]
-  #     supplier_code.code = supplier_code_tuple[:code]
-  #     begin
-  #       supplier_code.save!
-  #     rescue Exception => error
-  #       next
-  #     end
-  #   end
-  # end
 
   def import(file, generic_car)
   	spreadsheet = Supplier.open_spreadsheet(file)
   	header = spreadsheet.row(1)
   	 (2..spreadsheet.last_row).each do |i|
         row = spreadsheet.row(i)
-        puts "Spare-yeag"
 
         if row[7].downcase == 'si' or row[7].downcase == "sí"
           restock = true
@@ -48,7 +30,7 @@ class Supplier < ActiveRecord::Base
         end
         row[0].split('/')[0] == 'F'? isFamily = true : isFamily = false
 
-    		supplier_code_tuple = {id:row[0].split('/')[1],interior_code: row[2], exterior_code:row[4], years: row[3], price_centavos: row[5], minimum_qty: row[6], restock: restock } 
+    		supplier_code_tuple = {id:row[0].split('/')[1],interior_code: row[2], exterior_code:row[4], years: row[3], price_centavos: row[5], minimum_qty: row[6], restock: restock, image_url: row[9]} 
         puts supplier_code_tuple
 
         if isFamily
@@ -64,6 +46,9 @@ class Supplier < ActiveRecord::Base
           supplier_code = SupplierCode.where(supplier_id: self.id, generic_family_id:supplier_code_tuple[:id]).first_or_initialize
           supplier_code.price = supplier_code_tuple[:price_centavos]
           supplier_code.code = supplier_code_tuple[:exterior_code]
+          supplier_code.generic_family_supplier_images.new.image_from_url(supplier_code_tuple[:image_url]) unless supplier_code_tuple[:image_url].blank? || supplier_code_tuple[:image_url].downcase == 'no' || supplier_code_tuple[:image_url].downcase == 'sí'
+         
+
         else
           begin
             generic_spare = GenericSpare.find_by_id(supplier_code_tuple[:id])

@@ -11,29 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151005185102) do
+ActiveRecord::Schema.define(version: 20151106234220) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "bills", force: true do |t|
-    t.string   "rfc"
-    t.string   "nombre"
-    t.string   "apellido_paterno"
-    t.string   "apellido_materno"
-    t.string   "numero_exterior"
-    t.string   "colonia"
-    t.string   "localidad"
-    t.string   "codigo_postal"
-    t.string   "calle"
-    t.string   "numero_interior"
-    t.string   "municipio"
-    t.string   "entidad_federal"
-    t.string   "correo"
-    t.string   "telefono"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
 
   create_table "brands", force: true do |t|
     t.string   "name"
@@ -105,6 +86,8 @@ ActiveRecord::Schema.define(version: 20151005185102) do
     t.string   "code"
     t.integer  "father_id"
     t.boolean  "active"
+    t.integer  "entrance_price_centavos"
+    t.integer  "departure_price_centavos"
     t.string   "years"
     t.integer  "minimum_quantity"
     t.boolean  "restock"
@@ -114,6 +97,16 @@ ActiveRecord::Schema.define(version: 20151005185102) do
 
   create_table "generic_family_images", force: true do |t|
     t.integer  "generic_family_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+  end
+
+  create_table "generic_family_supplier_images", force: true do |t|
+    t.integer  "supplier_code_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "image_file_name"
@@ -206,21 +199,6 @@ ActiveRecord::Schema.define(version: 20151005185102) do
     t.datetime "updated_at"
   end
 
-  create_table "prices", force: true do |t|
-    t.string   "entrance"
-    t.string   "departure"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "sections", force: true do |t|
-    t.string   "code"
-    t.integer  "warehouse_id"
-    t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "services", force: true do |t|
     t.string   "name"
     t.text     "description"
@@ -267,8 +245,8 @@ ActiveRecord::Schema.define(version: 20151005185102) do
     t.integer  "supply_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "cost_cents",    default: 0,     null: false
-    t.string   "cost_currency", default: "USD", null: false
+    t.integer  "cost_centavos", default: 0,     null: false
+    t.string   "cost_currency", default: "MXN", null: false
     t.integer  "quantity"
   end
 
@@ -360,14 +338,6 @@ ActiveRecord::Schema.define(version: 20151005185102) do
     t.string   "entrance_price_currency",  default: "MXN", null: false
     t.integer  "departure_price_centavos"
     t.string   "departure_price_currency", default: "MXN", null: false
-  end
-
-  create_table "subsections", force: true do |t|
-    t.string   "code"
-    t.string   "name"
-    t.integer  "section_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
   end
 
   create_table "supplier_codes", force: true do |t|

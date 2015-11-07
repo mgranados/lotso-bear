@@ -25,6 +25,7 @@
     <th>Precio</th>
     <th>Cantidad Minima</th>
     <th>Resurtir</th>
+    <th>Imagen</th>
 	</thead>
 	<tbody>
     <% @generic_car.generic_families.each do |generic_family| %>
@@ -38,6 +39,14 @@
         	<td><% unless supplier_code.blank? %><%= supplier_code.price %><% end %></td>
           <td><%= generic_family.minimum_quantity %></td>
           <td><% if generic_family.restock %>Sí <% else %>No<% end %></td>
+          <td><% unless supplier_code.blank? %>
+                <% if supplier_code.generic_family_supplier_images.length  >= 1 %>
+                  <%= image_tag supplier_code.generic_family_supplier_images.last.image.url(:thumb) %>
+                <% else %>
+                  No Tiene
+                <% end %>
+              <% end %>
+          </td>
 			</tr>
 		<% end %>
 	</tbody>
