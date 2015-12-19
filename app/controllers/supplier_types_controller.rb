@@ -1,2 +1,0 @@
-class SupplierTypesController < ApplicationController
-end
