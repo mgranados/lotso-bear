@@ -62,6 +62,7 @@ group :development, :test do
   gem 'shoulda-matchers'
   gem 'passenger'
   gem 'poltergeist'
+  gem 'cucumber-rails', :require => false
 end
 
 group :production do
