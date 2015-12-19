@@ -153,13 +153,16 @@ get "generic_cars/search_generic_car_models/:supplier", to: "generic_cars#search
   match '/c/show',               to: 'client_actions#show', via: 'get'
   match '/get_client_car', to: 'client_actions#get_client_car', via: 'post'
   match '/admin/suppliers/',    to: 'suppliers#index',        via: 'get'
-
+  match "/admin/attendance", to: 'admin#attendance', via: :get,  as: :attendances
+  match '/user/update_attendances', to: 'users#update_attendances', via: :post, as: :import_attendances
+  match '/user/:id/attendances', to: 'users#attendances', via: :get, as: :user_attendances
 #<CLIENT>
 
 
 # <USERS>
   match '/signin',  to: 'sessions#new',         via: 'get'
   match '/signout', to: 'sessions#destroy',     via: 'delete'
+  match '/download_delays', to: 'users#download_delays', via: 'get', as: :download_delays
   resources :users do
     collection do
       get :spending
