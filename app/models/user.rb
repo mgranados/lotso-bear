@@ -62,7 +62,7 @@ class User < ActiveRecord::Base
       end
 
       def delay_this_month(month,year)
-        minutes_late = self.delays.where(month: month, year: year).first.nil? ? "No hay entrada de este mes" : self.delays.where(month: month, year: year).first.minutes_late
+        minutes_late = self.delays.where(month: month, year: year).first.nil? ? nil : self.delays.where(month: month, year: year).first.minutes_late
       end
 
       private

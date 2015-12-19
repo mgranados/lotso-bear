@@ -161,6 +161,7 @@ get "generic_cars/search_generic_car_models/:supplier", to: "generic_cars#search
 # <USERS>
   match '/signin',  to: 'sessions#new',         via: 'get'
   match '/signout', to: 'sessions#destroy',     via: 'delete'
+  match '/download_delays', to: 'users#download_delays', via: 'get', as: :download_delays
   resources :users do
     collection do
       get :spending

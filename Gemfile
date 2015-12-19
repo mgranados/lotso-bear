@@ -22,6 +22,8 @@ gem 'roo', '~> 2.1.0'
 
 #PDF Generator
 gem 'prawn'
+gem 'prawn-table', '~> 0.2.0'
+
 
 gem "cocoon"
 gem 'jquery-rails'

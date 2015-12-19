@@ -13,7 +13,9 @@
 	<th>ID Reloj Checador</th>
 	<th>Mes/Año</th>
 	<th>Minutos Tarde</th>
-	<th></th>
+	<th>Penalización</th>
+	<th><%= link_to "Descargar Resumen Mensual", download_delays_path, class: "btn btn-primary" %>
+	</th>
 </thead>
 <tbody>
 	<% @users_with_clock.each do |user| %>
@@ -22,7 +24,16 @@
 			<td><%= user.privileges %></td>
 			<td><%= user.clock_id %></td>
 			<td><%= "#{Date.today.month}/#{Date.today.year}" %></td>
-			<td><%= user.delay_this_month(Date.today.month, Date.today.year) %></td>
+			<td>
+			<% if !user.delay_this_month(Date.today.month, Date.today.year).nil? %>
+			<p> <%= user.delay_this_month(Date.today.month, Date.today.year) %> </p>
+			<% else %>
+				<p> No Hay Entradas de Este Mes </p>
+			<% end %>
+			</td>
+			<td>
+			<%= "MXN #{user.delay_this_month(Date.today.month, Date.today.year) * 35}"  unless user.delay_this_month(Date.today.month, Date.today.year).nil?  %>
+			</td>
 			<td><%= link_to "Meses Anteriores", user_attendances_path(user) %></td>
 		</tr>
 	<% end %>

@@ -1,3 +1,5 @@
+require 'prawn'
+
 # -*- encoding : utf-8 -*-
 class UsersController < ApplicationController
   def new
@@ -52,6 +54,20 @@ class UsersController < ApplicationController
         format.html { render :edit }
       end
     end
+  end
+
+  def download_delays
+    table_rows = User.includes(:delays).where(delays:{month:Date.today.month,year:Date.today.year})
+    Prawn::Document.generate("app/assets/pdf/Retardos_#{Date.today.month}_#{Date.today.year}.pdf") do
+      text "Retardos: #{Date.today.month}/#{Date.today.year}"
+
+      table_rows.each do |user|
+        text "#{user.name} Minutos Tarde: #{user.delay_this_month(Date.today.month, Date.today.year)} Descuento: #{user.delay_this_month(Date.today.month, Date.today.year) * 35}"
+        move_down 200
+      end
+    end
+    file = open("app/assets/pdf/Retardos_#{Date.today.month}_#{Date.today.year}.pdf")
+    send_file(file, :filename => "Retardos_#{Date.today.month}_#{Date.today.year}.pdf", :type => "application/pdf" , :disposition =>      "inline")
   end
  
   private
