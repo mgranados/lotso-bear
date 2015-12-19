@@ -5,18 +5,18 @@ class User < ActiveRecord::Base
       has_many :spendings
       has_many :delays
 
-      before_save { self.email = email.downcase }
-      before_create :create_remember_token
+      # before_save { self.email = email.downcase }
+      # before_create :create_remember_token
 
       validates :name, presence: true, length: { maximum: 50 }
-      VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(?:\.[a-z\d\-]+)*\.[a-z]+\z/i
-      validates :email, presence: true,
-                format: { with: VALID_EMAIL_REGEX },
-                uniqueness:{ case_sensitive: false }
+      # VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(?:\.[a-z\d\-]+)*\.[a-z]+\z/i
+      # validates :email, presence: true,
+      #           format: { with: VALID_EMAIL_REGEX },
+      #           uniqueness:{ case_sensitive: false }
 
       # VALID_PRIV_REGEX = /\A\w+\z/  que sea una palabra
-      validates :privileges, presence: true, inclusion: { in: ApplicationHelper::PRIVS, message: "%{value} is not a valid size" }
-      validates :username, presence: true
+      # validates :privileges, presence: true, inclusion: { in: ApplicationHelper::PRIVS, message: "%{value} is not a valid size" }
+      # validates :username, presence: true
 
       has_secure_password
 
