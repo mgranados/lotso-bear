@@ -18,7 +18,26 @@ ActiveRecord::Schema.define(version: 20151203200834) do
 
   create_table "attendances", force: true do |t|
     t.integer  "user_id"
-    t.date     "date"
+    t.datetime "date"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "bills", force: true do |t|
+    t.string   "rfc"
+    t.string   "nombre"
+    t.string   "apellido_paterno"
+    t.string   "apellido_materno"
+    t.string   "numero_exterior"
+    t.string   "colonia"
+    t.string   "localidad"
+    t.string   "codigo_postal"
+    t.string   "calle"
+    t.string   "numero_interior"
+    t.string   "municipio"
+    t.string   "entidad_federal"
+    t.string   "correo"
+    t.string   "telefono"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -309,8 +328,8 @@ ActiveRecord::Schema.define(version: 20151203200834) do
     t.string   "photo_content_type"
     t.integer  "photo_file_size"
     t.datetime "photo_updated_at"
-    t.string   "color"
     t.integer  "stock_car_id"
+    t.string   "color"
     t.integer  "shelf_id"
     t.integer  "entrance_price_centavos"
     t.string   "entrance_price_currency",  default: "MXN", null: false
@@ -432,6 +451,10 @@ ActiveRecord::Schema.define(version: 20151203200834) do
     t.string   "password_digest"
     t.string   "remember_token"
     t.string   "code"
+    t.time     "arrival_time"
+    t.time     "departure_time"
+    t.time     "lunch_time"
+    t.integer  "scanner_id"
     t.integer  "clock_id"
   end
 
